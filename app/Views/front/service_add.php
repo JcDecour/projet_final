@@ -167,8 +167,10 @@ $(document).ready(function(){
 	$('#sector').change(function(){
 		alert('ca marche');
 		$( "#sub-sector" ).load('<?=$this->url('ajax_refreshSubSector');?>');
+	});
+});
 
-<<<<<<< HEAD
+</script>
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -179,11 +181,9 @@ $(document).ready(function(){
 			
 		
 		});
-=======
->>>>>>> origin/master
 	});
 
-});
+
 </script>
 <?php $this->stop('js') ?>
 
