@@ -15,26 +15,34 @@
 				Champs obligatoires
 			</p>
 
-			<!-- Zone géographique concernée par le devis -->
+			<!-- Zone géographique concernée par le service -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="zip_code">
-					Code postal du lieu des travaux
+					Code postal du lieu du service
 					<span class="obligatoire">*</span>
 				</label>  
-				<div class="col-md-1">
-					<input id="zip_code" name="title" type="text" class="form-control input-md">
+				<div class="col-md-2">
+					<input id="zip_code" name="zip_code" type="text" class="form-control input-md" value="<?=isset($post['zip_code']) ? $post['zip_code'] : '';?>">
 				</div>
+				<!-- Gestion des erreurs -->
+				<?php if(isset($formErrors['zip_code'])): ?>
+					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['zip_code']?></div>
+				<?php endif; ?>
 			</div>
 
 			<!-- Objet de l'estimation -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="title">
-					Objet du devis
+					Objet du service
 					<span class="obligatoire">*</span>
 				</label>  
 				<div class="col-md-4">
-					<input id="title" name="title" type="text" class="form-control input-md">
+					<input id="title" name="title" type="text" class="form-control input-md" value="<?=isset($post['title']) ? $post['title'] : '';?>">
 				</div>
+				<!-- Gestion des erreurs -->
+				<?php if(isset($formErrors['title'])): ?>
+					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['title']?></div>
+				<?php endif; ?>
 			</div>
 
 			<!-- Description du projet -->
@@ -44,21 +52,30 @@
 					<span class="obligatoire">*</span>
 				</label>  
 				<div class="col-md-6">
-					<textarea id="description" name="description" rows="4" placeholder="Soyez le plus précis possible dans les éléments de description" class="form-control"></textarea>
+					<textarea id="description" name="description" rows="4" placeholder="Soyez le plus précis possible dans les éléments de description du service que vous souhaitez obtenir" class="form-control"><?=isset($post['title']) ? $post['title'] : '';?></textarea>
 				</div>
+				<!-- Gestion des erreurs -->
+				<?php if(isset($formErrors['description'])): ?>
+					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['description']?></div>
+				<?php endif; ?>
 			</div>
 
-			<!-- Date prévisionnelle du projet -->
+			<!-- Date prévisionnelle du service -->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="description">
+				<label class="col-md-4 control-label" for="predicted_date">
 					Date prévisonnelle (jj/mm/aaaa)
 					<span class="obligatoire">*</span>
 				</label>  
 				<div class="col-md-2">
-					<input id="title" name="title" type="text" class="form-control input-md">
+					<input id="predicted_date" name="predicted_date" type="text" class="form-control input-md" value="<?=isset($post['predicted_date']) ? $post['predicted_date'] : '';?>">
 				</div>
+				<!-- Gestion des erreurs -->
+				<?php if(isset($formErrors['predicted_date'])): ?>
+					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['predicted_date']?></div>
+				<?php endif; ?>
 			</div>
 
+			<!-- Catégorie du service -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="sector" >
 					Catégorie
@@ -78,10 +95,14 @@
 						<option value="" selected disabled>Sous-Catégorie</option>
 					</select>
 				</div>
+				<!-- Gestion des erreurs des catégories-->
+				
 			</div>	
 
 			<!-- Si le User est déja connecté, ses infos de connexion ne lui sont pas demandées -->
 			<?php if(!$w_user): ?>
+
+				<!-- Email de l'utilisateur en cours de création du service -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="email">
 						Email
@@ -90,8 +111,13 @@
 					<div class="col-md-4">
 						<input id="email" name="email" type="email" placeholder="votre@email.fr" class="form-control input-md">
 					</div>
+					<!-- Gestion des erreurs -->
+					<?php if(isset($formErrors['email'])): ?>
+						<div class="error col-md-offset-4 col-md-8"><?=$formErrors['email']?></div>
+					<?php endif; ?>
 				</div>
 
+				<!-- Mot de passe de l'utilisateur en cours de création du service -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password">
 						Mot de passe
@@ -100,8 +126,13 @@
 					<div class="col-md-4">
 						<input id="email" name="password" type="password" class="form-control input-md">
 					</div>
+					<!-- Gestion des erreurs -->
+					<?php if(isset($formErrors['password'])): ?>
+						<div class="error col-md-offset-4 col-md-8"><?=$formErrors['password']?></div>
+					<?php endif; ?>
 				</div>
 
+				<!-- Confirmation du mot de passe de l'utilisateur en cours de création du service -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="confirm-password">
 						Confirmation du mot de passe
@@ -110,9 +141,14 @@
 					<div class="col-md-4">
 						<input id="email" name="confirm-password" type="confirm-password" class="form-control input-md">
 					</div>
+					<!-- Gestion des erreurs -->
+					<?php if(isset($formErrors['confirm-password'])): ?>
+						<div class="error col-md-offset-4 col-md-8"><?=$formErrors['confirm-password']?></div>
+					<?php endif; ?>
 				</div>
 			<?php endif; ?>
 
+			<!-- Bouton de validation -->
 			<div class="form-group">
 				<div class="col-md-3 col-md-offset-9">
 					<button type="submit" class="btn btn-info btn-block">Valider</a>
@@ -124,10 +160,15 @@
 
 <?php $this->stop('main_content') ?>
 
-
-
 <?php $this->start('js') ?>
+<script>
+$(document).ready(function(){
 
+	$('#sector').change(function(){
+		alert('ca marche');
+		$( "#sub-sector" ).load('<?=$this->url('ajax_refreshSubSector');?>');
+
+<<<<<<< HEAD
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -138,8 +179,12 @@
 			
 		
 		});
+=======
+>>>>>>> origin/master
 	});
 
+});
 </script>
-
 <?php $this->stop('js') ?>
+
+

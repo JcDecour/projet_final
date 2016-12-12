@@ -24,3 +24,7 @@ p.text-required-filed{
 .forms .obligatoire {
     color: red;
 }
+
+.forms .error{
+	color: red;
+}
