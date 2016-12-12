@@ -21,7 +21,7 @@ class CustomerController extends Controller
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
 			if (empty($post['email']) && empty($post['password'])) {
-				$error = 'Vous devez compléter votre identifiant et mot de passe pour vous connecter';
+				$error = 'Identifiant ou mot de passe invalid';
 			}
 			else {
 				// l'utilisateur a bien rempli un mdp et un email
@@ -38,7 +38,7 @@ class CustomerController extends Controller
 				}
 				else {
 					// $idCustomer est égal à 0
-					$error = 'Identifiant ou mot de passe invalid !';
+					$error = 'Identifiant ou mot de passe invalid';
 				}
 			}
 		}

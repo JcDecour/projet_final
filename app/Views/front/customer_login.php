@@ -8,21 +8,24 @@
 			<h1 class="text-center">Connexion</h1>
 		</div>
 
-		<?php if(isset($error) && !empty($error)): ?>
-			<div class="alert alert-danger">
-				<?=$error; ?>
-			</div>
-		<?php endif; ?>
-
 		<form method="post" class="form-horizontal" enctype="multipart/form-data">
 			
+			<!-- Gestion des erreurs -->
+			<?php if(isset($error) && !empty($error)): ?>
+				<div class="form-group">
+					<div class="col-md-4 col-md-offset-4 text-danger">
+						<?=$error; ?>
+					</div>
+				</div>
+			<?php endif; ?>
+
 			<!-- Identifiant: Email -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="email">
 						Email
 					</label>  
 					<div class="col-md-4">
-						<input id="email" name="email" type="email" placeholder="votre@email.fr" class="form-control input-md">
+						<input id="email" name="email" type="email" placeholder="Votre@email.fr" class="form-control input-md">
 					</div>
 				</div>
 
@@ -32,7 +35,7 @@
 						Mot de passe
 					</label>  
 					<div class="col-md-4">
-						<input id="email" name="password" type="password" class="form-control input-md">
+						<input id="email" name="password" type="password" placeholder="Votre mot de passe" class="form-control input-md">
 					</div>
 				</div>
 
