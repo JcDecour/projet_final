@@ -136,23 +136,7 @@
 
 			e.preventDefault(); //Empeche la soumission du formulaire
 			
-			/*$.ajax({
-				url: '<?=//$this->url('ajax_adduser'); ?>',
-				type: 'POST',
-				cache: false,
-				dataType: 'json',
-				data: $('form').serialize(),
-				success: function(result) {
-					console.log(result);
-	            	if(result.code === 'ok'){
-	            		$('#resultAjax').html('<div class="alert alert-success">' + result.msg + '</div>');
-	            	}
-	            	else if(result.code === 'error'){
-	            		$('#resultAjax').html('<div class="alert alert-danger">' + result.msg + '</div>');	
-	            	}	
-				},
-			});*/
-
+		
 		});
 	});
 
