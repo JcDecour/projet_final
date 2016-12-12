@@ -4,6 +4,11 @@
 $front_r = array(
 	['GET', '/', 'Default#home', 'front_default_home'],
 	['GET|POST', '/service/add', 'Services#add', 'front_service_add'],
+
+
+	// Les routes ajax
+	['GET', '/ajax/refresh_subsector', 'Ajax#refreshSubSector', 'ajax_refreshSubSector'],
+
 );
 // Routes du back
 $back_r = array(
