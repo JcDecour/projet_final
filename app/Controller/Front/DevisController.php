@@ -4,31 +4,31 @@ namespace Controller\Front;
 
 
 use \W\Controller\Controller;
-use \Model\CustomerModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\AuthorizationModel;
-use \Model\DevisModel;
+use \Model\ProjectModel;
 
 class DevisController extends Controller
 {
-	public function devisProf($id)
+	public function add($idProjet)
 	{
-		if(!is_numeric($id) || empty($id)){
+		if(!is_numeric($idProjet) || empty($idProjet)){
 			$this->showNotFound();
 
 		}
-		$demande = new DevisModel(); 
-			$demande = $usersModel->find($id); // $id correspond à l'id en URL
+		else
+		{
+		$projetModel = new projectModel(); 
+			$projet = $projetModel->find($idProjet); // $id correspond à l'id en URL
 
-
-			// Permet de gérer l'affichage
-			$data = [
-				'user' => $user, // $user vient du find() juste au dessus :-)
-				'hello'	=> 'Bonjour tout le monde',
+			$projet=[
+				'test' => 'hello',
 			];
-		$this->show('front/devis_prof');
+			
+			
+		$this->show('front/devis_add', $projet);
 	}
 }
 
-
+}
 

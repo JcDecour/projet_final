@@ -16,8 +16,8 @@ $front_r = array(
 	['GET|POST', '/customer/logout', 'Customer#logout', 'front_customer_logout'],
 
 
-	//Routes Professionnel
-	['GET|POST', '/provider/devis', 'Provider#devis', 'front_devis_prof'],
+	//Routes devis
+	['GET|POST', '/devis/add/[i:idProjet]', 'Devis#add', 'front_devis_add'],
 
 	// Les routes ajax
 	['GET', '/ajax/refresh_subsector', 'Ajax#refreshSubSector', 'ajax_refreshSubSector'],
