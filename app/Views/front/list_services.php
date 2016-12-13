@@ -5,7 +5,7 @@
 	<div class="page-header">
 		<h1><?= $this->e($title) ?></h1>
 	</div>
-
+	<?php if(!empty($projects)): ?>
 	<table>
 		<thead>
 			<tr>
@@ -38,7 +38,7 @@
 	</table>
 	<?php else: ?>
 		<p>Vous n'avez aucun service encours</p>
-		<?php endif; ?>
+	<?php endif; ?>
 	<div>
 		<a href="<?=$this->url('front_service_add');?>" class="btn btn-info" title="Ajouter un nouveau service">Nouveau service</a>
 	</div>
