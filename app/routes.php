@@ -3,13 +3,18 @@
 // Routes du front
 $front_r = array(
 	['GET', '/', 'Default#home', 'front_default_home'],
+
 	['GET|POST', '/service/add', 'Services#add', 'front_service_add'],
+	['GET|POST', '/service/list_services', 'Services#list_services', 'front_service_list_services'],
 
-	['GET|POST', '/customer/login', 'Customer#login', 'customer_login'],
 
+	// Routes Clients
+	['GET|POST', '/customer/login', 'Customer#login', 'front_customer_login'],
+	
 
 	// Les routes ajax
 	['GET', '/ajax/refresh_subsector', 'Ajax#refreshSubSector', 'ajax_refreshSubSector'],
+
 );
 // Routes du back
 $back_r = array(

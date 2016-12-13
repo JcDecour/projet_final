@@ -3,7 +3,10 @@
 namespace Controller\Front;
 
 use \W\Controller\Controller;
+use \W\Model\ConnectionModel;
 use \Model\SectorModel;
+use \Model\ProjectModel;
+use \W\Security\AuthorizationModel;
 use \Respect\Validation\Validator as v; 
 
 class ServicesController extends Controller
@@ -80,6 +83,37 @@ class ServicesController extends Controller
 		//Il faut alimenter le CP de la demande de devis avec par défaut le CP (s'il existe) du particulier
 
 		$this->show('front/service_add', ['post' => $post, 'sectors' => $sectors, 'formErrors' => $formErrors]);
+	}
+
+	/**
+	 * Affichera la liste des services ou projets par client
+	 */
+	public function list_services()
+	{	
+
+		// si le client n'est pas connecté je le redirige 
+		/*if (!empty($this->getUser())) {
+			
+			$this->redirectToRoute('front_customer_login');
+		}*/
+
+		// On récupère les infos du client connecté
+		$customer = $this->getUser();
+		// On instancie le model pour communiquer avec la BDD
+		$projectModel = new ProjectModel();
+		$projectModel->setTable('project');
+
+		//On récupère la liste des projets correspondant au client connecté
+		$sql = 'SELECT * FROM ' . $projectModel->getTable() . ' WHERE id_customer = :idCustomer';
+		$connectionModel = new ConnectionModel();
+		$bdd = $connectionModel->getDbh();
+		$projects = $bdd->prepare($sql);
+		$projects->bindValue(':idCustomer', $customer['id']);
+		$projects->execute();
+
+		return $projects->fetchAll();
+			
+		$this->show('front/service/list_services', ['projects' => $projects]);
 	}
 
 }
