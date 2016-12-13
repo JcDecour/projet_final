@@ -25,15 +25,15 @@ class CustomerController extends Controller
 			}
 			else {
 				// l'utilisateur a bien rempli un mdp et un email
-				$authModel = new AuthentificationModel();
-				$idCustomer = $authModel->isValidLoginInfo($post['email'], $post['password']);
+				$customerModel = new CustomerModel();
+				$idCustomer = $customerModel->isValidLoginInfo($post['email'], $post['password']);
 
 				// on a un id utilisateur
 				if ($idCustomer) {
-					$customerModel = new CustomerModel();
 					$customer = $customerModel->find($idCustomer); // on récupère l'utilisateur
 
 					// Connecte l'utilisateur et peuple la session
+					$authModel = new AuthentificationModel();
 					$authModel->logUserIn($customer);
 				}
 				else {
@@ -52,6 +52,33 @@ class CustomerController extends Controller
 		}
 
 		$this->show('front/customer_login', ['error' => $error]);
+	}
+
+	/**
+		* Page de déconnexion
+	*/
+	public function logout()
+	{	
+		$post = [];
+		$post = array_map('trim', array_map('strip_tags', $_POST));
+
+		if (isset($post['disconnect']) && !empty($post['disconnect'])) {
+			
+			if($post['disconnect'] === 'yes'){
+
+				$authentificationModel = new AuthentificationModel();
+				$authentificationModel->logUserOut();
+
+				$authorizationModel = new AuthorizationModel();
+				$authorizationModel->redirectToLogin();
+			}
+			elseif ($post['disconnect'] === 'no') {
+				
+				$this->redirectToRoute('front_list_services');
+			}
+		}
+
+		$this->show('front/customer_logout');
 	}
 
 }

@@ -96,11 +96,11 @@ class ServicesController extends Controller
 	public function list_services()
 	{	
 
-		// si le client n'est pas connecté je le redirige 
+		/*// si le client n'est pas connecté je le redirige 
 		if (!empty($this->getUser())) {
 			
 			$this->redirectToRoute('front_customer_login');
-		}
+		}*/
 
 		// On récupère les infos du client connecté
 		$customer = $this->getUser();
@@ -109,10 +109,32 @@ class ServicesController extends Controller
 
 		//On récupère la liste des projets correspondant au client connecté
 		$projects = $projectModel->findServiceById($customer['id']);
-
-		return $projects;
 			
-		$this->show('front/service/list_services', ['projects' => $projects]);
+		$this->show('front/list_services', ['projects' => $projects]);
 	}
+
+	/**
+	 * Page de deleteUser
+	 */
+	public function delete_service($id)
+	{	
+		if (!is_numeric($id) || empty($id)) {
+			$this->showNotFound();
+		}
+		else {
+			$post = array_map('trim', array_map('strip_tags', $_POST));
+			if (empty($post['delete'])) {
+				$projectModel = new ProjectModel();
+				$project = $projectModel->find($id);
+				$this->show('front/delete_service', ['project' => $project]);
+			}
+			elseif(!empty($post['delete'])) {
+				$projectModel = new ProjectModel();
+				$projectModel->delete($id);
+				$this->redirectToRoute('front_list_services');
+			}
+		}
+	}
+
 
 }

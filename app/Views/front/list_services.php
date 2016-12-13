@@ -3,10 +3,12 @@
 <?php $this->start('main_content') ?>
 
 	<div class="page-header">
-		<h1><?= $this->e($title) ?></h1>
+		<h1>Liste des services</h1>
 	</div>
+
 	<?php if(!empty($projects)): ?>
-	<table>
+	<table class="table">
+
 		<thead>
 			<tr>
 				<th>Service</th>
@@ -16,22 +18,23 @@
 				<th>Action</th>
 			</tr>
 		</thead>
+
 		<tbody>
 			<?php foreach($projects as $project): ?>
 			<tr>
 				<td><?=$project['title'] ?></td>
-				<td><?=$project['created_at'] ?></td>
-				<td><?=$project['predicted_at'] ?></td>
+				<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></td>
+				<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['predicted_date'])->format('d/m/Y');?></td>
+				<td></td>
 				<td>
 					<a href="<?=$this->url('front_delete_service', ['id' => $project['id']]);?>" class="text-danger" title="Supprimer ce service">
 					 Supprimer
 					</a>
-					&nbsp;&nbsp;
+					&nbsp; 
 					<a href="<?=$this->url('front_edit_service', ['id' => $project['id']]);?>" class="text-info" title="Modifier ce service">
 					 Modifier
 					</a>
 				</td>
-				<td></td>
 			</tr>
 			<?php endforeach; ?>
 		</tbody>
