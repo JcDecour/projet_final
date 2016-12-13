@@ -11,7 +11,7 @@
 	</div>
 
 	<?php if(!empty($projects)): ?>
-	<table class="table">
+	<table class="table table-bordered table-striped">
 
 		<thead>
 			<tr>
@@ -31,12 +31,16 @@
 				<td><?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></td>
 				<td></td>
 				<td>
-					<a href="<?=$this->url('front_delete_service', ['id' => $project['id']]);?>" class="text-danger" title="Supprimer ce service">
+					<a href="<?=$this->url('front_delete_service', ['id' => $project['id']]);?>" class="btn btn-danger btn-sm" title="Supprimer ce service">
 					 Supprimer
 					</a>
 					&nbsp; 
-					<a href="<?=$this->url('front_edit_service', ['id' => $project['id']]);?>" class="text-info" title="Modifier ce service">
+					<a href="<?=$this->url('front_edit_service', ['id' => $project['id']]);?>" class="btn btn-info btn-sm" title="Modifier ce service">
 					 Modifier
+					</a>
+					&nbsp; 
+					<a href="<?=$this->url('front_offre_service', ['id' => $project['id']]);?>" class="btn btn-success btn-sm" title="Modifier ce service">
+					 <span class="badge">42</span>&nbsp;Offres
 					</a>
 				</td>
 			</tr>
