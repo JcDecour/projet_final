@@ -18,7 +18,7 @@ nav {
     border-bottom: 1px solid #eee;
 }
 body {
-    padding-top: 100px; /* défini le départ du body sous la navbar */
+    padding-top: 50px; /* défini le départ du body sous la navbar */
 }
 #update_footer {
     background-color: aqua;
