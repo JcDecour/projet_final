@@ -1,4 +1,4 @@
-<?php $this->layout('layout_eal_asupp', ['title' => 'Accueil']) ?>
+<?php $this->layout('layout', ['title' => 'Accueil']) ?>
 
 <?php $this->start('main_content') ?>
 	
