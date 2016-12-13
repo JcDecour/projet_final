@@ -102,6 +102,9 @@
 			<!-- Sous catégories sélectionnées -->
 			<div class="form-group">
 				<div class="input_categ_wrap col-md-offset-4 col-md-8">
+					<?php if(!empty($contenuSsSector)): ?>
+						<?=$contenuSsSector;?>
+					<?php endif; ?>
 				</div>
 			</div>
 

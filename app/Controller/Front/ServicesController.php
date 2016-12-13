@@ -67,7 +67,7 @@ class ServicesController extends Controller
 
 		   
 		    if(count($formErrors) === 0){
-
+		    	//Insertion en BDD du service
 				
 
 			}
@@ -80,9 +80,15 @@ class ServicesController extends Controller
 		$sectorModel = new SectorModel();
 		$sectors = $sectorModel->findAll('order_num');
 
-		//Il faut alimenter le CP de la demande de devis avec par défaut le CP (s'il existe) du particulier
+		//Reconstruction des ss_sector
+		$contenuSsSector = '';
+		if(isset($post['tabSsCateg'])){
+			foreach ($post['tabSsCateg'] as $key => $value) {
+				$contenuSsSector .= '<div type="text">valeur</div>';	
+			}
+		}
 
-		$this->show('front/service_add', ['post' => $post, 'sectors' => $sectors, 'formErrors' => $formErrors]);
+		$this->show('front/service_add', ['post' => $post, 'sectors' => $sectors, 'formErrors' => $formErrors, 'contenuSsSector' => $contenuSsSector]);
 	}
 
 	/**
