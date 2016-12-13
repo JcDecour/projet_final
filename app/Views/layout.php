@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="<?= $this->assetUrl('css/styles.css') ?>">
 </head>
 <body>
- <!--barre de  Navigation -->
+
+    <!--Barre de  Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
 
@@ -23,7 +24,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand" href="<?= $this->url('front_default_index') ?>">DevisCible</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -38,7 +39,7 @@
                                 <a href="blog-home-1.html">Comment ça marche ?</a>
                             </li>
                             <li>
-                                <a href="blog-home-2.html">Suivi</a>
+                                <a href="<?= $this->url('front_list_services') ?>">Suivi</a>
                             </li>
                             <li>
                                 <a href="blog-post.html">Inscription</a>
@@ -69,28 +70,43 @@
         <!-- /.container -->
     </nav>
    
-   
-    
     <?= $this->section('my_header') ?>
 
+    <!-- BANNIERE -->
+    <section id="banner">
+        <div class="row">
+            <div class="col-md-4">
+                <p>Gratuit pour les particuliers</p>
+            </div>
+            <div class="col-md-4">
+                <p>Gratuit pour les professionnels</p>
+            </div>
+            <div class="col-md-4">
+                <p>Nombre de devis illimités</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenu -->
     <main class="container">
         <?= $this->section('main_content') ?>
     </main>
 
+    <!-- Pied de page -->
     <footer>
         <div class="row">
-        <div id="update_footer" class="col-lg-12">
-            <div class="container">
-                <ul class="footer_links">
-                    <li><a href="">Mention Légales</a></li>
-                    <li><a href="">Condition Générales d'utilisation</a></li>
-                    <li>
-                        <p>Copyright &copy; Your Website 2014</p>
-                    </li>
-                </ul>
+            <div id="update_footer" class="col-lg-12">
+                <div class="container">
+                    <ul class="footer_links">
+                        <li><a href="">Mention Légales</a></li>
+                        <li><a href="">Condition Générales d'utilisation</a></li>
+                        <li>
+                            <p>Copyright &copy; Your Website 2014</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
     </footer>
 
     <!-- jQuery --> 
