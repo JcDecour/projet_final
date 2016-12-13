@@ -279,6 +279,7 @@ abstract class Model
 		if (!$sth->execute()){
 			return false;
 		}
+		
 		return $this->find($this->lastInsertId());
 	}
 
