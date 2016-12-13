@@ -10,9 +10,9 @@ class DefaultController extends Controller
 	/**
 	 * Page d'accueil par défaut
 	 */
-	public function home()
+	public function index()
 	{
-		$this->show('default/home');
+		$this->show('front/index');
 	}
 
 }

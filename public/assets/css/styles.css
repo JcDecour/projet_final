@@ -1,0 +1,54 @@
+nav {
+    height: 100px;
+    color: black;
+}
+#banner {
+    background-color: aqua;
+    margin-bottom: 20px;
+    text-align: center;
+    height: 50px !important;
+}
+.banner-content {
+    position: absolute;
+}
+
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
+}
+body {
+    padding-top: 100px; /* défini le départ du body sous la navbar */
+}
+#update_footer {
+    background-color: aqua;
+}
+/*.btn {
+    -webkit-border-radius: 9;
+    -moz-border-radius: 9;
+    border-radius: 9px;
+    font-family: Arial;
+    color: #000000;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.5); STYLE POUR BOUTTON
+    padding: 10px 20px 10px 20px;
+    border: solid #b3c6d1 1px;
+    text-decoration: none;
+}
+.btn:hover {
+    background: grey;
+    text-decoration: none;
+}*/
+.footer_links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-decoration: none;
+    list-style: none;
+}
+footer {
+    margin: 50px 0 0 0;
+    line-height: 35.821px;
+}
+
+

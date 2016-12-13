@@ -2,7 +2,7 @@
 	
 // Routes du front
 $front_r = array(
-	['GET', '/', 'Default#home', 'front_default_home'],
+	['GET', '/', 'Default#index', 'front_default_index'],
 	['GET|POST', '/service/add', 'Services#add', 'front_service_add'],
 
 	['GET|POST', '/customer/login', 'Customer#login', 'customer_login'],

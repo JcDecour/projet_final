@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title><?= $this->e($title) ?></title>
-		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+		
 		<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap.min.css') ?>">
 		<link rel="stylesheet" href="<?= $this->assetUrl('css/modern-business.css') ?>">
 		<!-- Custom Fonts -->
@@ -68,12 +68,54 @@
 	        </div>
 	        <!-- /.container -->
 	    </nav>
-	   	<!-----HEADER---->
-	   <header>    
-	   </header>			
+	   
+	   	<header id="myCarousel" class="carousel slide">
+
+	        <!-- Indicators -->
+	        <ol class="carousel-indicators">
+	            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	            <li data-target="#myCarousel" data-slide-to="1"></li>
+	            <li data-target="#myCarousel" data-slide-to="2"></li>
+	        </ol>
+	       
+	        <!-- Wrapper for slides -->
+	        <div class="carousel-inner">
+	            <div class="item active">
+	                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
+	                <div class="carousel-caption">
+	                    <h2>Travaux</h2>
+	                </div>
+	            </div>
+	            <div class="item">
+	                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
+	                <div class="carousel-caption">
+	                    <h2>Réparation</h2>
+	                </div>
+	            </div>
+	            <div class="item">
+	                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
+	                <div class="carousel-caption">
+	                    <h2>Service a la personne</h2>
+	                </div>
+	            </div>
+	        </div>
+
+	        <!-- Controls -->
+	        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+	            <span class="icon-prev"></span>
+	        </a>
+	        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+	            <span class="icon-next"></span>
+	        </a>
+	   
+		</header>
+			
+
+
 			<section>
 				<?= $this->section('main_content') ?>
 			</section>
+
 			<footer>
 				<div class="row">
 	            <div id="update_footer" class="col-lg-12">
@@ -89,12 +131,29 @@
 	            </div>
 	        </div>
 			</footer>
-		<!-- jQuery-->	
+
+		<!-- jQuery -->	
+	    
 	    <script src="<?= $this->assetUrl('js/jquery.js') ?>"></script>
 
 	    <!-- Bootstrap Core JavaScript -->
-	    <script src="<?= $this->assetUrl('js/bootstrap.min.js')?>"</script>
-		<?= $this->section('js') ?>
+	    
+	    <script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
 
+		<?= $this->section('js') ?>
+	
+
+	    <!-- Script du Carousel -->
+	    <script>
+	    $(document).ready(function(){
+	        $('.carousel').carousel({
+	            interval: 5000, //vitesse de changement
+	            pause: null, // défini l'activité du slider si il y a une activité de l'utilisateur ou pas
+	            wrap: true,	// défillement en continue
+	        });
+
+	    });
+
+	    </script>
 	</body>
-</html>
+	</html>
