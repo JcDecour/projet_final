@@ -2,26 +2,33 @@
 
 <?php $this->start('main_content') ?>
 	
+	<div class="forms">
 	<div class="page-header">
-		<h1> Supprimer un service</h1>
+		<h1 class="text-center">Supprimer un service</h1>
 	</div>
 
-	<?php if(empty($project)): ?>
-		<div class="alert alert-danger">
-				Ce service n'existe !
-		</div>
-	<?php else: ?>
-		<div class="container">
-			<p class="alert alert-danger">Voulez-vous vraiment supprimer le service &laquo; <?=$project['title'];?> &raquo; ?</p>
+	<!-- Formulaire de déconnexion -->
+	<form method="post" class="form-horizontal">
+			
+		<div class="form-group">
+			<div class="col-md-6 col-md-offset-4">
+				<h3>Confirmez la suppression du service</h3>
 
-			<form method="post">
-
+				<?php if(empty($project)): ?>
+					<div class="alert alert-danger">
+					Ce service n'existe !
+					</div>
+				<?php else: ?>
 				<a href="<?=$this->url('front_list_services');?>" class="btn btn-default" title="Retour à la liste des services">
 				Annuler
 				</a>
-
-			 	<input type="submit" name="delete" value="Oui, je veux supprimer ce  service" class="btn btn-success">
-			</form>
+				&nbsp; 
+				<button class="btn btn-info" name="delete">
+				Supprimer
+				</button>
+				<?php endif; ?>
+			</div>
 		</div>
-	<?php endif; ?>
+	</form>
+</div>
 <?php $this->start('main_content') ?>
