@@ -134,11 +134,11 @@ class ServicesController extends Controller
 	public function list_services()
 	{	
 
-		/*// si le client n'est pas connecté je le redirige 
+		// si le client n'est pas connecté je le redirige 
 		if (!empty($this->getUser())) {
 			
 			$this->redirectToRoute('front_customer_login');
-		}*/
+		}
 
 		// On récupère les infos du client connecté
 		$customer = $this->getUser();
