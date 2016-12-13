@@ -5,6 +5,7 @@ namespace Controller\Front;
 use \W\Controller\Controller;
 use \Model\SectorModel;
 use \Model\ProjectModel;
+use \Model\ProjectSubSectorModel;
 use \W\Security\AuthorizationModel;
 use \Respect\Validation\Validator as v; 
 
@@ -20,7 +21,7 @@ class ServicesController extends Controller
 		$formErrors = [];
 		if(!empty($_POST)){
 
-			
+			//Nettoyage de la super globale $_POST
 			foreach ($_POST as $key => $value) {
 				if($key !== 'tabSsCateg'){
 					$post[$key] = trim(strip_tags($value));
@@ -49,7 +50,6 @@ class ServicesController extends Controller
 			if(preg_match("#^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$#", $post['predicted_date']))
 		    {
 		      	$tabDate = explode("/", $post['predicted_date']);
-		      	var_dump($tabDate);
 		      	if(!checkdate($tabDate[1], $tabDate[0], $tabDate[2])){
 		      		$formErrors['predicted_date'] = 'La date prévisionnelle est invalide.';
 		      		//Vérifier que la date est supérieure à la date du jour
@@ -59,20 +59,56 @@ class ServicesController extends Controller
 		    	$formErrors['predicted_date'] = 'La date prévisionnelle est invalide.';
 		    }
 
-		    //Email
-		    if(!array_key_exists('email', $post) || !filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
-		    	$formErrors['email'] = 'La format de l\'email est invalide.';
+		    //Cas du client qui n'est pas connecté
+		    if(array_key_exists('email', $post)){
+			    //Email
+			    if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
+			    	$formErrors['email'] = 'La format de l\'email est invalide.';
+			    }
+
+			   	//Mot de passe
+				if(!v::notEmpty()->length(8, 20)->validate($post['password'])){
+					$formErrors['password'] = 'Le mot de passe doit comporter entre 8 et 20 caractères.';
+				}
+
+				//Confirmation du Mot de passe
+				if($post['password'] !== $post['confirm-password']){
+		    	 	$formErrors['confirm-password'] = 'Erreur de confirmation du mot de passe.';
+		    	}
 		    }
 
-		   
+		    //Si aucune erreur de saisie, enregistrement des données en BDD
 		    if(count($formErrors) === 0){
-		    	//Insertion en BDD du service
-				
+		    	//Insertion du service en BDD 
+		    	$data = [
+		    		'id_customer'		=> '1', //A modifier ultérieurement
+		    		'zip_code'			=> $post['zip_code'],
+		    		'title'				=> $post['title'],
+		    		'description'		=> $post['description'],
+		    		'predicted_date'	=> $tabDate[2].'-'.$tabDate[1].'-'.$tabDate[0],
+		    		'created_at'		=> date('Y-m-d H:i:s'),
+		    		'updated_at'		=> date('Y-m-d H:i:s'),
+		    	];
+				$projectModel = new ProjectModel();
+				$project = $projectModel->insert($data);
 
+				if($project){
+					//Insertion des sous catégories du service en BDD
+					$projectSubSectorModel = new ProjectSubsectorModel();
+					foreach ($post['tabSsCateg'] as $key => $value) {
+						$dataProjectSsSector = [
+							'id_project'	=>	$project['id'],
+							'id_subsector'	=>	$value,
+							'created_at'	=> date('Y-m-d H:i:s'),
+						];
+						$projectSubSector = $projectSubSectorModel->insert($dataProjectSsSector);
+					}
+					$this->redirectToRoute('front_service_list_services');
+				}
+				else{
+					$formErrors['global'] = 'Une erreur d\'enregistrement s\'est produite.';
+				}
 			}
-
-
-
 		}
 
 		//Recherche de tous les "Sector" triés par numéro d'ordre

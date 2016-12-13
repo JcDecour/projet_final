@@ -15,6 +15,12 @@
 				Champs obligatoires
 			</p>
 
+			<?php if(isset($formErrors['global'])): ?>
+				<div class="alert alert-danger">
+					<?=$formErrors['global'];?>
+				</div>
+			<?php endif; ?>
+
 			<!-- Zone géographique concernée par le service -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="zip_code">
@@ -52,7 +58,7 @@
 					<span class="obligatoire">*</span>
 				</label>  
 				<div class="col-md-6">
-					<textarea id="description" name="description" rows="4" placeholder="Soyez le plus précis possible dans les éléments de description du service que vous souhaitez obtenir" class="form-control"><?=isset($post['title']) ? $post['title'] : '';?></textarea>
+					<textarea id="description" name="description" rows="4" placeholder="Soyez le plus précis possible dans les éléments de description du service que vous souhaitez obtenir" class="form-control"><?=isset($post['description']) ? $post['description'] : '';?></textarea>
 				</div>
 				<!-- Gestion des erreurs -->
 				<?php if(isset($formErrors['description'])): ?>
@@ -118,7 +124,7 @@
 						<span class="obligatoire">*</span>
 					</label>  
 					<div class="col-md-4">
-						<input id="email" name="email" type="text" placeholder="votre@email.fr" class="form-control input-md" value="<?=isset($post['title']) ? $post['title'] : '';?>">
+						<input id="email" name="email" type="text" placeholder="votre@email.fr" class="form-control input-md" value="<?=isset($post['email']) ? $post['email'] : '';?>">
 					</div>
 					<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['email'])): ?>
@@ -133,7 +139,7 @@
 						<span class="obligatoire">*</span>
 					</label>  
 					<div class="col-md-4">
-						<input id="s" name="password" type="password" class="form-control input-md">
+						<input id="s" name="password" type="password" class="form-control input-md" value="<?=isset($post['password']) ? $post['password'] : '';?>">
 					</div>
 					<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['password'])): ?>
@@ -148,7 +154,7 @@
 						<span class="obligatoire">*</span>
 					</label>  
 					<div class="col-md-4">
-						<input id="email" name="confirm-password" type="confirm-password" class="form-control input-md">
+						<input id="confirm-password" name="confirm-password" type="password" class="form-control input-md" value="<?=isset($post['confirm-password']) ? $post['confirm-password'] : '';?>">
 					</div>
 					<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['confirm-password'])): ?>
