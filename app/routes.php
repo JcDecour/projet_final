@@ -7,6 +7,7 @@ $front_r = array(
 
 	['GET|POST', '/customer/login', 'Customer#login', 'customer_login'],
 
+	['GET|POST', '/front/devis_prof', 'Devis#devisProf', 'front_devis_prof'],
 
 	// Les routes ajax
 	['GET', '/ajax/refresh_subsector', 'Ajax#refreshSubSector', 'ajax_refreshSubSector'],
