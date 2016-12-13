@@ -135,7 +135,7 @@ class ServicesController extends Controller
 	{	
 
 		// si le client n'est pas connecté je le redirige 
-		if (!empty($this->getUser())) {
+		if (empty($this->getUser())) {
 			
 			$this->redirectToRoute('front_customer_login');
 		}

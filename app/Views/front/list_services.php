@@ -24,7 +24,7 @@
 			<tr>
 				<td><?=$project['title'] ?></td>
 				<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></td>
-				<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['predicted_date'])->format('d/m/Y');?></td>
+				<td><?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></td>
 				<td></td>
 				<td>
 					<a href="<?=$this->url('front_delete_service', ['id' => $project['id']]);?>" class="text-danger" title="Supprimer ce service">
