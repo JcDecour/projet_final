@@ -95,9 +95,15 @@
 						<option value="" selected disabled>Sous-Catégorie</option>
 					</select>
 				</div>
-				<!-- Gestion des erreurs des catégories-->
+				<button class="add_ss_categ_button btn btn-default">Ajouter</button>
 				
 			</div>	
+
+			<!-- Sous catégories sélectionnées -->
+			<div class="form-group">
+				<div class="input_categ_wrap col-md-offset-4 col-md-8">
+				</div>
+			</div>
 
 			<!-- Si le User est déja connecté, ses infos de connexion ne lui sont pas demandées -->
 			<?php if(!$w_user): ?>
@@ -109,7 +115,7 @@
 						<span class="obligatoire">*</span>
 					</label>  
 					<div class="col-md-4">
-						<input id="email" name="email" type="email" placeholder="votre@email.fr" class="form-control input-md">
+						<input id="email" name="email" type="text" placeholder="votre@email.fr" class="form-control input-md" value="<?=isset($post['title']) ? $post['title'] : '';?>">
 					</div>
 					<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['email'])): ?>
@@ -124,7 +130,7 @@
 						<span class="obligatoire">*</span>
 					</label>  
 					<div class="col-md-4">
-						<input id="email" name="password" type="password" class="form-control input-md">
+						<input id="s" name="password" type="password" class="form-control input-md">
 					</div>
 					<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['password'])): ?>
@@ -162,28 +168,46 @@
 
 <?php $this->start('js') ?>
 <script>
-$(document).ready(function(){
-
-	$('#sector').change(function(){
-		alert('ca marche');
-		$( "#sub-sector" ).load('<?=$this->url('ajax_refreshSubSector');?>');
-	});
-});
-
-</script>
-<script type="text/javascript">
-
 	$(document).ready(function(){
 
-		 $('button[type="submit"]').click(function(e){
-
-			e.preventDefault(); //Empeche la soumission du formulaire
-			
-		
+		/*Gestion des menu déroulants liés (Carégories -> Sous Catégories)*/
+		$('#sector').change(function(){
+			$.ajax({
+				url: '<?=$this->url('ajax_refreshSubSector'); ?>',
+				type: 'get',
+				cache: false,
+				data: {idsector: $('#sector').find(":selected").attr('value') }, 
+				dataType: 'json', 
+				success: function(result) {
+					console.log(result);
+					$('#sub-sector').html(result.option);
+				}
+			});
 		});
+
+		/*Gestion de l'ajout d'une sous-catégorie*/
+		$('.add_ss_categ_button').click(function(e){
+	        e.preventDefault();
+
+	        //Récupération du libelle de la catégorie
+			var title_categ = $( "#sector option:selected" ).text();
+	        var title_ss_categ = $( "#sub-sector option:selected" ).text();
+	        var id_ss_categ = $('#sub-sector').find(":selected").attr('value');
+
+	        if(id_ss_categ){
+		        var contenu = '<div>'+title_categ+' - '+title_ss_categ+'<input type="hidden" value="'+id_ss_categ+'" name="tabSsCateg[]"/><a href="#" class="remove_ss_categ_button"> Supprimer</a></div>';
+
+		        $('.input_categ_wrap').append(contenu);
+		    }
+	    });
+
+		/*Gestion de la suppression d'une sous catégorie*/
+		$('.input_categ_wrap').on("click",".remove_ss_categ_button", function(e){ 
+	        e.preventDefault(); 
+	        $(this).parent('div').remove(); 
+	    })
+
 	});
-
-
 </script>
 <?php $this->stop('js') ?>
 

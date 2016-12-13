@@ -16,9 +16,21 @@ class AjaxController extends Controller
 	public function refreshSubSector()
 	{
 
-		
+		$get = [];
+		$option = '<option value="" selected disabled>Sous-Catégorie</option>';
+		if(!empty($_GET)){
+			$get = array_map('trim', array_map('strip_tags', $_GET));
 
-			
+			if(isset($get['idsector']) && ctype_digit($get['idsector'])){
+				$subSectorModel = new SubSectorModel();
+				$subSectors = $subSectorModel->findBySectorId($get['idsector']);
+				foreach ($subSectors as $key => $subSector) {
+					$option.='<option value="'.$subSector['id'].'">'.$subSector['title'].'</option>';
+
+				}
+			}
+		}
+		$this->showJson(['option' => $option]);
 	}
 
 }
