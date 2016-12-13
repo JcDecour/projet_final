@@ -1,4 +1,52 @@
-<?php $this->layout('layout_index', ['title' => 'Accueil']) ?>
+<?php $this->layout('layout', ['title' => 'Accueil']) ?>
+
+<?php $this->start('my_header') ?>
+
+        <header id="myCarousel" class="carousel slide">
+
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+       
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
+                <div class="carousel-caption">
+                    <h2>Travaux</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
+                <div class="carousel-caption">
+                    <h2>Réparation</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
+                <div class="carousel-caption">
+                    <h2>Service a la personne</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+   
+    </header>
+
+
+<?php $this->stop('my_header') ?>
+
+
 <?php $this->start('main_content') ?>
 
 		<!-- BANNIERE -->
@@ -52,6 +100,8 @@
                     </div>
                 </div>
             </div>
+
+
 
             	<!-- COLLONE TOP ARTISANS -->
 

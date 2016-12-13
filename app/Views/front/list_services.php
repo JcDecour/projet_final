@@ -1,5 +1,9 @@
 <?php $this->layout('layout', ['title' => 'Liste des services']); ?>
 
+<?php $this->start('my_header') ?>
+
+<?php $this->stop('my_header') ?>
+
 <?php $this->start('main_content') ?>
 
 	<div class="page-header">

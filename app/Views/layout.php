@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta charset="UTF-8">
-	<title><?= $this->e($title) ?></title>
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap.min.css') ?>">
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/modern-business.css') ?>">
-	<!-- Custom Fonts -->
+    <meta charset="UTF-8">
+    <title><?= $this->e($title) ?></title>
+    
+    <link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= $this->assetUrl('css/modern-business.css') ?>">
+    <!-- Custom Fonts -->
     <link rel="stylesheet" type="text/css" href="<?= $this->assetUrl('font-awesome/css/font-awesome.min.css') ?>">
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/styles.css') ?>">
+    <link rel="stylesheet" href="<?= $this->assetUrl('css/styles.css') ?>">
 </head>
 <body>
  <!--barre de  Navigation -->
@@ -28,7 +28,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-	                    <li><a href="contact.html">login</a></li>
+                        <li><a href="contact.html">login</a></li>
                     <li><a href="contact.html">logout</a></li>
 
                     <li class="dropdown">
@@ -57,7 +57,7 @@
                             <li>
                                 <a href="faq.html">Inscription</a>
                             </li>
-						</ul>
+                        </ul>
                     </li>
                     <li>
                         <a href="contact.html">Offre</a>
@@ -70,33 +70,49 @@
     </nav>
    
    
-	<div class="container">
-		<?= $this->section('main_content') ?>
-	</div>
+    
+    <?= $this->section('my_header') ?>
 
-	<footer>
-		<div class="row">
-	        <div id="update_footer" class="col-lg-12">
-	            <div class="container">
-	                <ul class="footer_links">
-	                    <li><a href="">Mention Légales</a></li>
-	                    <li><a href="">Condition Générales d'utilisation</a></li>
-	                    <li>
-	                        <p>Copyright &copy; Your Website 2014</p>
-	                    </li>
-	                </ul>
-	            </div>
-	        </div>
-	    </div>
-	</footer>
+    <main class="container">
+        <?= $this->section('main_content') ?>
+    </main>
 
-	<!-- jQuery-->	
+    <footer>
+        <div class="row">
+        <div id="update_footer" class="col-lg-12">
+            <div class="container">
+                <ul class="footer_links">
+                    <li><a href="">Mention Légales</a></li>
+                    <li><a href="">Condition Générales d'utilisation</a></li>
+                    <li>
+                        <p>Copyright &copy; Your Website 2014</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </footer>
+
+    <!-- jQuery --> 
     <script src="<?= $this->assetUrl('js/jquery.js') ?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="<?= $this->assetUrl('js/bootstrap.min.js')?>"></script>
-     
-	<?= $this->section('js') ?>
+    <script src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
 
+    <?= $this->section('js') ?>
+
+
+    <!-- Script du Carousel -->
+    <script>
+    $(document).ready(function(){
+        $('.carousel').carousel({
+            interval: 5000, //vitesse de changement
+            pause: null, // défini l'activité du slider si il y a une activité de l'utilisateur ou pas
+            wrap: true, // défillement en continue
+        });
+
+    });
+
+    </script>
 </body>
 </html>
