@@ -48,7 +48,7 @@ class CustomerController extends Controller
 		// Je le sors du !empty($_POST) pour que la redirection soit effective si un utilisateur déja connecté arrive sur le formulaire de connexion
 		if (!empty($this->getUser())) {
 			
-			$this->redirectToRoute('front_list_services');
+			$this->redirectToRoute('list_projects');
 		}
 
 		$this->show('front/customer_login', ['error' => $error]);

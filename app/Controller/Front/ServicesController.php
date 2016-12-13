@@ -4,6 +4,7 @@ namespace Controller\Front;
 
 use \W\Controller\Controller;
 use \Model\SectorModel;
+use \Model\SubSectorModel;
 use \Model\ProjectModel;
 use \Model\ProjectSubSectorModel;
 use \W\Security\AuthorizationModel;
@@ -70,11 +71,6 @@ class ServicesController extends Controller
 				if(!v::notEmpty()->length(8, 20)->validate($post['password'])){
 					$formErrors['password'] = 'Le mot de passe doit comporter entre 8 et 20 caractères.';
 				}
-
-				//Confirmation du Mot de passe
-				if($post['password'] !== $post['confirm-password']){
-		    	 	$formErrors['confirm-password'] = 'Erreur de confirmation du mot de passe.';
-		    	}
 		    }
 
 		    //Si aucune erreur de saisie, enregistrement des données en BDD
@@ -118,8 +114,14 @@ class ServicesController extends Controller
 		//Reconstruction des ss_sector
 		$contenuSsSector = '';
 		if(isset($post['tabSsCateg'])){
+			$subSectorModel = new SubSectorModel();
+
 			foreach ($post['tabSsCateg'] as $key => $value) {
-				$contenuSsSector .= '<div type="text">valeur</div>';	
+				$subSectorResult = $subSectorModel->find($value);
+				$sectorResult = $sectorModel->find($subSectorResult['id_sector']);
+
+
+				$contenuSsSector .= '<div>'.$sectorResult['title'].' - '.$subSectorResult['title'].'<input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/><a href="#" class="remove_ss_categ_button"> Supprimer</a></div>';	
 			}
 		}
 

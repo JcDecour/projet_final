@@ -115,7 +115,7 @@
 			</div>
 
 			<!-- Si le User est déja connecté, ses infos de connexion ne lui sont pas demandées -->
-			<?php if(!$w_user): ?>
+			<?php if($w_user): ?>
 
 				<!-- Email de l'utilisateur en cours de création du service -->
 				<div class="form-group">
@@ -147,20 +147,6 @@
 					<?php endif; ?>
 				</div>
 
-				<!-- Confirmation du mot de passe de l'utilisateur en cours de création du service -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="confirm-password">
-						Confirmation du mot de passe
-						<span class="obligatoire">*</span>
-					</label>  
-					<div class="col-md-4">
-						<input id="confirm-password" name="confirm-password" type="password" class="form-control input-md" value="<?=isset($post['confirm-password']) ? $post['confirm-password'] : '';?>">
-					</div>
-					<!-- Gestion des erreurs -->
-					<?php if(isset($formErrors['confirm-password'])): ?>
-						<div class="error col-md-offset-4 col-md-8"><?=$formErrors['confirm-password']?></div>
-					<?php endif; ?>
-				</div>
 			<?php endif; ?>
 
 			<!-- Bouton de validation -->
