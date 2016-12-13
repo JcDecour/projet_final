@@ -11,14 +11,14 @@ use \Model\DevisModel;
 
 class DevisController extends Controller
 {
-	public function devisProf($id)
+	public function devis($id)
 	{
 		if(!is_numeric($id) || empty($id)){
 			$this->show()
 
 		}
 		$DevisController =
-		$this->show('front/devis_prof');
+		$this->show('front/provider_devis');
 	}
 }
 
