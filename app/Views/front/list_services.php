@@ -11,7 +11,7 @@
 	</div>
 
 	<?php if(!empty($projects)): ?>
-	<table class="table table-bordered table-striped">
+	<table class="table">
 
 		<thead>
 			<tr>
@@ -39,7 +39,7 @@
 					 Modifier
 					</a>
 					&nbsp; 
-					<a href="<?=$this->url('front_offre_service', ['id' => $project['id']]);?>" class="btn btn-success btn-sm" title="Modifier ce service">
+					<a href="<?=$this->url('front_view_service', ['id' => $project['id']]);?>" class="btn btn-success btn-sm" title="Modifier ce service">
 					 <span class="badge">42</span>&nbsp;Offres
 					</a>
 				</td>

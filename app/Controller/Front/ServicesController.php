@@ -6,7 +6,7 @@ use \W\Controller\Controller;
 use \Model\SectorModel;
 use \Model\SubSectorModel;
 use \Model\ProjectModel;
-use \Model\ProjectSubSectorModel;
+use \Model\ProjectSubsectorModel;
 use \W\Security\AuthorizationModel;
 use \Respect\Validation\Validator as v; 
 
@@ -152,7 +152,7 @@ class ServicesController extends Controller
 	}
 
 	/**
-	 * Page de deleteUser
+	 * Page de delete service
 	 */
 	public function delete_service($id)
 	{	
@@ -171,6 +171,46 @@ class ServicesController extends Controller
 				$projectModel->delete($id);
 				$this->redirectToRoute('front_list_services');
 			}
+		}
+	}
+
+	/**
+	 * Affiche le détail d'un service sélectionné
+	 * @param $id L'id du membre
+	 */
+	public function view_service($id) // L'id passé en paramètre doit être le même passé dans la route [i:id]
+	{	
+		if (!is_numeric($id) || empty($id)) {
+			$this->showNotFound();
+		}
+		else {
+
+			$datas =[];
+
+			// On récupère les données du projet
+			$projectModel = new ProjectModel();
+			$project = $projectModel->find($id);
+
+			// On récupère toutes les sous-catégories liées au projet
+			$projectSubSectorModel = new ProjectSubSectorModel();
+			$projectsSubSector = $projectSubSectorModel->findByProjectId($project['id']);
+
+			$SubSectorModel = new SubSectorModel();
+
+			foreach ($projectsSubSector as $projectSubSector) {
+				
+				$datas[] = $SubSectorModel->find($projectSubSector['id']);
+
+			}
+
+			//Permet de gérer l'affichage
+
+			$params = [
+
+				'project' => $project,
+				'datas' => $datas,
+			];
+			$this->show('front/view_service', $params);
 		}
 	}
 

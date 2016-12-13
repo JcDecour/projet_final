@@ -9,7 +9,7 @@ $front_r = array(
 	['GET', '/service/list', 'Services#list_services', 'front_list_services'],
 	['GET|POST', '/service/delete/[i:id]', 'Services#delete_service', 'front_delete_service'],
 	['GET|POST', '/service/edit/[i:id]', 'Services#edit_service', 'front_edit_service'],
-	['GET|POST', '/service/offre/[i:id]', 'Services#offre_service', 'front_offre_service'],
+	['GET|POST', '/service/view/[i:id]', 'Services#view_service', 'front_view_service'],
 
 	// Routes Clients
 	['GET|POST', '/customer/login', 'Customer#login', 'front_customer_login'],
