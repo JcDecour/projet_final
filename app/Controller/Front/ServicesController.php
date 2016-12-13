@@ -99,7 +99,7 @@ class ServicesController extends Controller
 						];
 						$projectSubSector = $projectSubSectorModel->insert($dataProjectSsSector);
 					}
-					$this->redirectToRoute('front_service_list_services');
+					$this->redirectToRoute('front_list_services');
 				}
 				else{
 					$formErrors['global'] = 'Une erreur d\'enregistrement s\'est produite.';

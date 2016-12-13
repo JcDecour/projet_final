@@ -89,12 +89,13 @@
 	        </div>
 	    </div>
 	</footer>
-	
+
 	<!-- jQuery-->	
     <script src="<?= $this->assetUrl('js/jquery.js') ?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="<?= $this->assetUrl('js/bootstrap.min.js')?>"</script>
+    <script src="<?= $this->assetUrl('js/bootstrap.min.js')?>"></script>
+     
 	<?= $this->section('js') ?>
 
 </body>
