@@ -31,7 +31,7 @@
 		    	<th>Devis</th>
 		    	<th>Désignation</th>
 		    	<th>Prix HT</th>
-		    	<th>TVA</th>
+		    	<th>TVA %</th>
 		    	<th>Prix TTC</th>
 		    	<th>Date de création</th>
 		    	<th>Votre choix</th>
