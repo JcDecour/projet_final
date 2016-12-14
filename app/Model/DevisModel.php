@@ -26,7 +26,7 @@ class DevisModel extends \W\Model\Model
 	}	
 
 	/**
-	 * Récupère des lignes des deux tables de jointure à partir d'un idProject
+	 * Récupère des lignes de la jointure des deux tables provider et devis à partir d'un id
 	 *  @param $id integer Identifiant
 	 * @return mixed Les données sous forme de tableau associatif triées sur le prix hors taxe	  
 	*/
@@ -38,10 +38,10 @@ class DevisModel extends \W\Model\Model
 
 		$providerModel = new ProviderModel();
 
-		$sql = 'SELECT d.id, d.created_at, d.ht_amount, d.tva_amount, p.company_name FROM ' . $this->table .' as d INNER JOIN '.$providerModel->getTable().' as p ON p.id = d.id_provider WHERE d.id_project = :idProject ORDER BY d.ht_amount ';
+		$sql = 'SELECT d.*, p.company_name FROM ' . $this->table .' as d INNER JOIN '.$providerModel->getTable().' as p ON p.id = d.id_provider WHERE d.id_project_subsector = :id ORDER BY d.ht_amount';
 
 		$sth = $this->dbh->prepare($sql);
-		$sth->bindValue(':idProject', $id);
+		$sth->bindValue(':id', $id);
 		$sth->execute();
 
 		return $sth->fetchAll();

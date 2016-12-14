@@ -11,7 +11,7 @@
 	</div>
 
 	<?php if(!empty($projects)): ?>	
-	<table class="table table-responsive">
+	<table class="table table-striped">
 
 		<thead>
 			<tr>

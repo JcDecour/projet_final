@@ -236,19 +236,16 @@ class ServicesController extends Controller
 			$projectModel = new ProjectModel();
 			$project = $projectModel->find($id);
 
-			// On récupère les devis liés au projer ou service
-			$devisModel = new DevisModel();
-			$datasDevis = $devisModel->findAllDevisById($project['id']);
-
 			// On récupère toutes les sous-catégories liées au projet
 			$projectSubSectorModel = new ProjectSubSectorModel();
-			$projectsSubSector = $projectSubSectorModel->findProjectSubsectorById($project['id']);
+			$projectsSubSector = $projectSubSectorModel->findAllProjectSubsectorById($project['id']);
 
-			$SubSectorModel = new SubSectorModel();
 
+			// On récupère les devis liés au projet ou service
+			$devisModel = new DevisModel();
 			foreach ($projectsSubSector as $projectSubSector) {
 				
-				$subSectors[] = $SubSectorModel->find($projectSubSector['id']);
+				$datasDevis[] = $devisModel->findAllDevisById($projectSubSector['id']);
 
 			}
 
@@ -257,7 +254,7 @@ class ServicesController extends Controller
 			$data = [
 
 				'project' => $project,
-				'subSectors' => $subSectors,
+				'projectsSubSector' => $projectsSubSector,
 				'datasDevis' => $datasDevis,
 			];
 			$this->show('front/view_service', $data);
