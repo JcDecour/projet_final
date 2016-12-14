@@ -23,7 +23,7 @@
 				Annuler
 				</a>
 				&nbsp; 
-				<button class="btn btn-info" name="delete">
+				<button type="submit" class="btn btn-info" name="delete">
 				Supprimer
 				</button>
 				<?php endif; ?>
