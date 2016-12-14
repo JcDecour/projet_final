@@ -10,8 +10,8 @@
 		<h1>Liste des services</h1>
 	</div>
 
-	<?php if(!empty($projects)): ?>
-	<table class="table">
+	<?php if(!empty($projects)): ?>	
+	<table class="table table-responsive">
 
 		<thead>
 			<tr>
