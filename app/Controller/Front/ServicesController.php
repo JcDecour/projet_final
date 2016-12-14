@@ -318,9 +318,17 @@ class ServicesController extends Controller
 	 */
 	public function listAllUsers()
 	{
+		if(!empty($_GET)){
+			$get = array_map('trim', array_map('strip_tags', $_GET));
+
+
+
+
+		}
+
 		//Recherche de l'ensemble des projets non cloturés
 		$projectModel = new ProjectModel();
-		$projects = $projectModel->findAll('created_at' ,'DESC');
+		$projects = $projectModel->findAllWithoutClosed($zip_code, $sub_sector);
 
 		//Recherche de tous les "Sector" triés par numéro d'ordre
 		$sectorModel = new SectorModel();

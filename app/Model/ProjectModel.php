@@ -22,4 +22,19 @@ class ProjectModel extends \W\Model\Model
 		return $sth->fetchAll();
 	}
 
+
+	/**
+	 * Récupère toutes les lignes de la table
+	 
+	 * @return array Les données sous forme de tableau multidimensionnel
+	 */
+	public function findAllWithoutClosed()
+	{
+		$sql = 'SELECT * FROM ' . $this->table . ' WHERE closed = 0 ORDER BY created_at DESC';
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+
+		return $sth->fetchAll();
+	}
+
 }
