@@ -68,7 +68,7 @@
                                 <a href="sidebar.html">Consulter les services</a>
                             </li>
                             <li>
-                                <a href="faq.html">S'inscrire</a>
+                                <a href="<?= $this->url('front_provider_signin') ?>">S'inscrire</a>
                             </li>
                         </ul>
                     </li>

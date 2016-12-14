@@ -19,6 +19,9 @@ $front_r = array(
 	['GET|POST', '/customer/signin', 'Customer#signin', 'front_customer_signin'],
 	['GET|POST', '/customer/profil', 'Customer#profil', 'front_customer_profil'],
 	['GET', '/customer/help', 'Customer#help', 'front_customer_help'],
+	
+	// Routes Profesionnels
+	['GET|POST', '/provider/signin', 'Provider#signin', 'front_provider_signin'],
 
 	//Routes devis
 	['GET|POST', '/devis/add/[i:idProjet]', 'Devis#add', 'front_devis_add'],

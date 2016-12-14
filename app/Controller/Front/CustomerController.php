@@ -97,7 +97,7 @@ class CustomerController extends Controller
 	*/
 	public function signin()
 	{	
-		// $usersModel = new UsersModel();//appel de la fonction emailExist
+		
 		$customerModel = new CustomerModel(); // appel de la fonction insert 
 		$formErrors =[];//stockage des erreurs
 		$passwordHash = new AuthentificationModel(); // appel de la fonction hashPassword
@@ -164,7 +164,7 @@ class CustomerController extends Controller
 					'zipcode' => $post['zipcode'],
 					'city'	=> $post['city'],
 					'created_at' => date('Y-m-d H:i:s'),
-					'updated_at' => date('Y-m-d H:i:s'),
+					// 'updated_at' => date('Y-m-d H:i:s'), envoie du'une date de mise a jour 
 				];
 				if($customerModel->insert($createCustomer)){
 
