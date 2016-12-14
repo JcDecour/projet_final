@@ -29,8 +29,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                        <li><a href="contact.html">login</a></li>
-                    <li><a href="contact.html">logout</a></li>
+                   
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace particulier<b class="caret"></b></a>
@@ -39,10 +38,17 @@
                                 <a href="blog-home-1.html">Comment ça marche ?</a>
                             </li>
                             <li>
-                                <a href="<?= $this->url('front_list_services') ?>">Suivi</a>
+                                <a href="<?= $this->url('front_list_services') ?>">Mes demandes de services</a>
                             </li>
                             <li>
-                                <a href="blog-post.html">Inscription</a>
+                                <a href="blog-post.html">M'inscrire</a>
+                            </li>
+                             <li>
+                                <?php if($w_user): ?>
+                                    <a href="<?= $this->url('front_customer_logout') ?>">Me déconnecter</a> 
+                                <?php else: ?>
+                                    <a href="<?= $this->url('front_customer_login') ?>">Me connecter</a>
+                                <?php endif; ?>
                             </li>
                         </ul>
                     </li>
@@ -50,18 +56,18 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace professionel<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="full-width.html">Comment ça marche</a>
+                                <a href="full-width.html">Comment ça marche ?</a>
                             </li>
                             <li>
-                                <a href="sidebar.html">Consulter les demandes</a>
+                                <a href="sidebar.html">Consulter les services</a>
                             </li>
                             <li>
-                                <a href="faq.html">Inscription</a>
+                                <a href="faq.html">M'inscrire</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="contact.html">Offre</a>
+                        <a href="contact.html">Consulter les demandes de services</a>
                     </li>
                 </ul>
             </div>
