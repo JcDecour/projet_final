@@ -1,6 +1,6 @@
 <?php $this->layout('layout', ['title' => 'Accueil']) ?>
 
-<?php $this->start('my_header') ?>
+<?php $this->start('header_content') ?>
     <header id="myCarousel" class="carousel slide">
 
         <!-- Indicators -->
@@ -41,9 +41,27 @@
         </a>
    
     </header>
-<?php $this->stop('my_header') ?>
+<?php $this->stop('header_content') ?>
 
 
+<?php $this->start('banniere_content') ?>
+ <!-- BANNIERE -->
+    <section id="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p><i class="fa fa-fw fa-check"></i>&nbsp;Gratuit pour les particuliers</p>
+                </div>
+                <div class="col-md-4">
+                    <p><i class="fa fa-fw fa-check"></i>&nbsp;Gratuit pour les professionnels</p>
+                </div>
+                <div class="col-md-4">
+                    <p><i class="fa fa-fw fa-check"></i>&nbsp;Nombre de devis illimités et sans engagement</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php $this->stop('banniere_content') ?>
 
 
 <?php $this->start('main_content') ?>
@@ -70,8 +88,7 @@
                 </div>
             </div>
 
-                <!-- COLONNE COMMENT çA MARCHE -->
-
+            <!-- COLONNE COMMENT CA MARCHE -->
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">

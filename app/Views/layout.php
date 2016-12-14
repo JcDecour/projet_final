@@ -70,22 +70,11 @@
         <!-- /.container -->
     </nav>
    
-    <?= $this->section('my_header') ?>
+    <!-- Entete -->
+    <?= $this->section('header_content') ?>
 
-    <!-- BANNIERE -->
-    <section id="banner">
-        <div class="row">
-            <div class="col-md-4">
-                <p><i class="fa fa-fw fa-check"></i>&nbsp;Gratuit pour les particuliers</p>
-            </div>
-            <div class="col-md-4">
-                <p><i class="fa fa-fw fa-check"></i>&nbsp;Gratuit pour les professionnels</p>
-            </div>
-            <div class="col-md-4">
-                <p><i class="fa fa-fw fa-check"></i>&nbsp;Nombre de devis illimités et sans engagement</p>
-            </div>
-        </div>
-    </section>
+    <!-- Banière -->
+    <?= $this->section('banniere_content') ?>
 
     <!-- Contenu -->
     <main class="container">

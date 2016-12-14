@@ -1,3 +1,9 @@
+body {
+    padding-top: 50px; /* défini le départ du body sous la navbar */
+}
+
+/*Barre de navigation*/
+
 nav {
     height: 50px;
     color: black;
@@ -8,14 +14,13 @@ nav {
     color: #9d9d9d;
 }
 
+/*Bannière*/
+
 #banner {
     background-color: #222222;
     margin-bottom: 20px;
     text-align: center;
 }
-/*.banner-content {
-    position: absolute;
-}*/
 
 #banner  p {
     height: 40px;
@@ -25,38 +30,7 @@ nav {
     font-weight: bold;
 }
 
-
-.page-header {
-    padding-bottom: 9px;
-    margin: 40px 0 20px;
-    border-bottom: 1px solid #eee;
-}
-body {
-    padding-top: 50px; /* défini le départ du body sous la navbar */
-}
-#update_footer {
-    background-color: #222222;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-}
-/*.btn {
-    -webkit-border-radius: 9;
-    -moz-border-radius: 9;
-    border-radius: 9px;
-    font-family: Arial;
-    color: #000000;
-    font-size: 20px;
-    background: rgba(255, 255, 255, 0.5); STYLE POUR BOUTTON
-    padding: 10px 20px 10px 20px;
-    border: solid #b3c6d1 1px;
-    text-decoration: none;
-}
-.btn:hover {
-    background: grey;
-    text-decoration: none;
-}*/
-
+/*Pied de page*/
 
 footer {
     margin: 50px 0 0 0;
@@ -74,6 +48,13 @@ footer {
 
 .footer_links a, p{
     color: #FFF;
+}
+
+#update_footer {
+    background-color: #222222;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 
 
