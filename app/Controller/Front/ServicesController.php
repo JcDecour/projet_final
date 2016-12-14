@@ -314,7 +314,17 @@ class ServicesController extends Controller
 	}
 
 	/**
-	 * Affichera la liste des services ou projets par client
+	 * Afficher la liste des services pour les utilisateurs non connectés
+	 */
+	public function list_allusers()
+	{
+
+		$this->show('front/service_list_allusers');
+	}
+
+
+	/**
+	 * Affiche la liste des services ou projets par client
 	 */
 	public function list_services()
 	{	

@@ -73,7 +73,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="contact.html">Consulter les demandes de services</a>
+                        <a href="<?= $this->url('front_service_list_allusers') ?>">Consulter les demandes de services</a>
                     </li>
                 </ul>
             </div>

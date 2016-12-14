@@ -4,9 +4,11 @@
 $front_r = array(
 
 	['GET', '/', 'Default#index', 'front_default_index'],
+
 	// Routes services
 	['GET|POST', '/service/add', 'Services#add', 'front_service_add'],
 	['GET', '/service/list', 'Services#list_services', 'front_list_services'],
+	['GET', '/service/listallusers', 'Services#list_allusers', 'front_service_list_allusers'],
 	['GET|POST', '/service/delete/[i:id]', 'Services#delete_service', 'front_delete_service'],
 	['GET|POST', '/service/edit/[i:idProject]', 'Services#edit', 'front_edit_service'],
 	['GET|POST', '/service/view/[i:id]', 'Services#view_service', 'front_view_service'],
