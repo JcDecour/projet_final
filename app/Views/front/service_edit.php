@@ -1,11 +1,11 @@
-<?php $this->layout('layout', ['title' => 'Ajout d\'un service']) ?>
+<?php $this->layout('layout', ['title' => 'Modification d\'un service']) ?>
 
 <?php $this->start('main_content') ?>
 	
 	<div class="forms">
 
 		<div class="page-header">
-			<h1>Description du service à ajouter</h1>
+			<h1>Description du service à modifier</h1>
 		</div>
 
 		<form method="post" class="form-horizontal" enctype="multipart/form-data">
@@ -117,41 +117,6 @@
 					<?php endif; ?>
 				</div>
 			</div>
-
-			<!-- Si le User est déja connecté, ses infos de connexion ne lui sont pas demandées -->
-			<?php if(!$w_user): ?>
-
-				<!-- Email de l'utilisateur en cours de création du service -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="email">
-						Email
-						<span class="obligatoire">*</span>
-					</label>  
-					<div class="col-md-4">
-						<input id="email" name="email" type="text" placeholder="votre@email.fr" class="form-control input-md" value="<?=isset($post['email']) ? $post['email'] : '';?>">
-					</div>
-					<!-- Gestion des erreurs -->
-					<?php if(isset($formErrors['email'])): ?>
-						<div class="error col-md-offset-4 col-md-8"><?=$formErrors['email']?></div>
-					<?php endif; ?>
-				</div>
-
-				<!-- Mot de passe de l'utilisateur en cours de création du service -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="password">
-						Mot de passe
-						<span class="obligatoire">*</span>
-					</label>  
-					<div class="col-md-4">
-						<input id="s" name="password" type="password" class="form-control input-md" value="<?=isset($post['password']) ? $post['password'] : '';?>">
-					</div>
-					<!-- Gestion des erreurs -->
-					<?php if(isset($formErrors['password'])): ?>
-						<div class="error col-md-offset-4 col-md-8"><?=$formErrors['password']?></div>
-					<?php endif; ?>
-				</div>
-
-			<?php endif; ?>
 
 			<!-- Bouton de validation -->
 			<div class="form-group">

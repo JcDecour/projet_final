@@ -85,6 +85,9 @@ class CustomerController extends Controller
 	*/
 	public function help()
 	{	
+
+
+		$this->show('front/customer_help');
 	}
 
 

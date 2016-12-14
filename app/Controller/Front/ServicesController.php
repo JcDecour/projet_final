@@ -16,10 +16,15 @@ use \Respect\Validation\Validator as v;
 class ServicesController extends Controller
 {
 	/**
-	 * Page d'ajout d'une demande de service ou de projet par un particulier
+	 * Page de modification d'une demande de service ou de projet par un particulier
 	 */
-	public function add()
+	public function edit($idProject)
 	{
+		$projectModel = new ProjectModel();
+		$sectorModel = new SectorModel();
+		$subSectorModel = new SubSectorModel();
+		$projectSubsectorModel = new ProjectSubsectorModel();
+		$projectSubSectorModel = new ProjectSubsectorModel();
 		$customerModel = new CustomerModel();
 		$authModel = new AuthentificationModel();
 
@@ -64,6 +69,142 @@ class ServicesController extends Controller
 		    }
 		    else{
 		    	$formErrors['predicted_date'] = 'La date prévisionnelle est invalide.';
+		    }
+
+		    //Ctrl que le service comporte au moins une catégorie / Ss-Catégorie
+		   	if(!isset($post['tabSsCateg'])){
+		    	$formErrors['tabSsCateg'] = 'Le service doit comporter au minimum une catégorie / sous-catégorie.';
+		    }
+
+		    //Si aucune erreur de saisie, enregistrement des données en BDD
+		    if(count($formErrors) === 0){
+
+		    	//Insertion du service en BDD 
+		    	$data = [
+		    		'zip_code'			=> $post['zip_code'],
+		    		'title'				=> $post['title'],
+		    		'description'		=> $post['description'],
+		    		'predicted_date'	=> $tabDate[2].'-'.$tabDate[1].'-'.$tabDate[0],
+		    		'updated_at'		=> date('Y-m-d H:i:s'),
+		    	];
+				$project = $projectModel->update($data, $idProject);
+
+				if($project){
+					//Suppression de toutes les sous catégories
+					$projectSubSectorModel->delete($idProject);
+
+					//Insertion des sous catégories du service en BDD
+					foreach ($post['tabSsCateg'] as $key => $value) {
+						$dataProjectSsSector = [
+							'id_project'	=>	$project['id'],
+							'id_subsector'	=>	$value,
+							'created_at'	=> date('Y-m-d H:i:s'),
+						];
+						$projectSubSector = $projectSubSectorModel->insert($dataProjectSsSector);
+					}
+					$this->redirectToRoute('front_list_services');
+				}
+				else{
+					$formErrors['global'] = 'Une erreur d\'enregistrement s\'est produite.';
+				}
+			}
+		}
+
+		//Recherche du projet à éditer si on est pas en post de formulaire (1er chargement du formulaire à partir de la BDD)
+		$contenuSsSector = '';
+		if(empty($post)){
+			$project = $projectModel->find($idProject);
+			if($project){
+				$post['zip_code'] = $project['zip_code'];
+				$post['title'] = $project['title'];
+				$post['description'] = $project['description'];
+				$post['predicted_date'] = \DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');
+			}
+
+			//Construction de la liste des ss_catégories
+			$projectSubsectors = $projectSubsectorModel->findProjectSubsectorById($idProject);
+			foreach ($projectSubsectors as $key => $projectSubsector) {
+				$subSectorResult = $subSectorModel->find($projectSubsector['id_subsector']);
+				$sectorResult = $sectorModel->find($subSectorResult['id_sector']);
+
+				$contenuSsSector .= '<div>'.$sectorResult['title'].' - '.$subSectorResult['title'].'<input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/><a href="#" class="remove_ss_categ_button"> Supprimer</a></div>';	
+			}
+			$contenuSsSector_build = true;
+		}
+
+		//Recherche de tous les "Sector" triés par numéro d'ordre
+		$sectors = $sectorModel->findAll('order_num');
+
+		//Reconstruction des ss_sector dans le cas d'un post
+		if(!isset($contenuSsSector_build)){
+			if(isset($post['tabSsCateg'])){
+				foreach ($post['tabSsCateg'] as $key => $value) {
+					$subSectorResult = $subSectorModel->find($value);
+					$sectorResult = $sectorModel->find($subSectorResult['id_sector']);
+
+					$contenuSsSector .= '<div>'.$sectorResult['title'].' - '.$subSectorResult['title'].'<input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/><a href="#" class="remove_ss_categ_button"> Supprimer</a></div>';	
+				}
+			}
+		}
+
+		$this->show('front/service_edit', ['post' => $post, 'sectors' => $sectors, 'formErrors' => $formErrors, 'contenuSsSector' => $contenuSsSector]);
+	}
+
+	/**
+	 * Page d'ajout d'une demande de service ou de projet par un particulier
+	 */
+	public function add()
+	{
+		$projectModel = new ProjectModel();
+		$customerModel = new CustomerModel();
+		$authModel = new AuthentificationModel();
+
+		//Soumission du formulaire
+		$post = [];
+		$formErrors = [];
+		if(!empty($_POST)){
+
+			//Nettoyage de la super globale $_POST
+			foreach ($_POST as $key => $value) {
+				if($key !== 'tabSsCateg'){
+					$post[$key] = trim(strip_tags($value));
+				}
+				else{
+					$post[$key] = $value;
+				}
+			}
+
+			//Zip_code
+			if(!v::notEmpty()->length(5, 5)->validate($post['zip_code'])){
+				$formErrors['zip_code'] = 'Le code postal doit comporter 5 caractères.';
+			}
+
+			//Title
+			if(!v::notEmpty()->length(10, 80)->validate($post['title'])){
+				$formErrors['title'] = 'L\'objet du service doit comporter au moins 10 caractères.';
+			}
+
+			//Description
+			if(!v::notEmpty()->length(20, null)->validate($post['description'])){
+				$formErrors['description'] = 'Le descriptif du service doit comporter au moins 20 caractères.';
+			}
+
+			//Date prévisonnelle
+			if(preg_match("#^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$#", $post['predicted_date']))
+		    {
+		      	$tabDate = explode("/", $post['predicted_date']);
+		      	if(!checkdate($tabDate[1], $tabDate[0], $tabDate[2])){
+		      		$formErrors['predicted_date'] = 'La date prévisionnelle est invalide.';
+		      		//Vérifier que la date est supérieure à la date du jour
+		      	}
+		    }
+		    else{
+		    	$formErrors['predicted_date'] = 'La date prévisionnelle est invalide.';
+		    }
+
+		 	//Ctrl que le service comporte au moins une catégorie / Ss-Catégorie
+		    if(!isset($post['tabSsCateg'])){
+		    		$formErrors['tabSsCateg'] = 'Le service doit comporter au minimum une catégorie / sous-catégorie.';
 		    }
 
 		    //Cas du client qui n'est pas connecté
@@ -130,7 +271,6 @@ class ServicesController extends Controller
 		    		'created_at'		=> date('Y-m-d H:i:s'),
 		    		'updated_at'		=> date('Y-m-d H:i:s'),
 		    	];
-				$projectModel = new ProjectModel();
 				$project = $projectModel->insert($data);
 
 				if($project){

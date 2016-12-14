@@ -35,7 +35,7 @@
 					 Supprimer
 					</a>
 					&nbsp; 
-					<a href="<?=$this->url('front_edit_service', ['id' => $project['id']]);?>" class="btn btn-info btn-sm" title="Modifier ce service">
+					<a href="<?=$this->url('front_edit_service', ['idProject' => $project['id']]);?>" class="btn btn-info btn-sm" title="Modifier ce service">
 					 Modifier
 					</a>
 					&nbsp; 

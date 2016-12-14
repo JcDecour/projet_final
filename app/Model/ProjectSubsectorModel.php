@@ -20,5 +20,22 @@ class ProjectSubsectorModel extends \W\Model\Model
 		$sth->execute();
 
 		return $sth->fetchAll();
-	}	
+	}
+
+	/**
+	 * Supprime toutes les lignes en fonction de l'identifiant du projet
+	 * @param mixed $idProject L'identifiant projet des lignes à effacer
+	 * @return mixed La valeur de retour de la méthode execute()
+	 */
+	public function delete($idProject)
+	{
+		if (!is_numeric($idProject)){
+			return false;
+		}
+
+		$sql = 'DELETE FROM ' . $this->table . ' WHERE id_project = :idProject';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':idProject', $idProject);
+		return $sth->execute();
+	}
 }

@@ -37,7 +37,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace particulier<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="blog-home-1.html">Comment ça marche ?</a>
+                                <a href="<?= $this->url('front_customer_help') ?>">Comment ça marche ?</a>
                             </li>
                             <li>
                                 <a href="<?= $this->url('front_list_services') ?>">Mes demandes de services</a>
