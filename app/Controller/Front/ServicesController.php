@@ -6,6 +6,7 @@ use \W\Controller\Controller;
 use \Model\SectorModel;
 use \Model\SubSectorModel;
 use \Model\ProjectModel;
+use \Model\DevisModel;
 use \Model\ProjectSubsectorModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\AuthorizationModel;
@@ -220,7 +221,7 @@ class ServicesController extends Controller
 
 	/**
 	 * Affiche le détail d'un service sélectionné
-	 * @param $id L'id du membre
+	 * @param $id L'id du projet ou service
 	 */
 	public function view_service($id) // L'id passé en paramètre doit être le même passé dans la route [i:id]
 	{	
@@ -235,26 +236,31 @@ class ServicesController extends Controller
 			$projectModel = new ProjectModel();
 			$project = $projectModel->find($id);
 
+			// On récupère les devis liés au projer ou service
+			$devisModel = new DevisModel();
+			$datasDevis = $devisModel->findAllDevisById($project['id']);
+
 			// On récupère toutes les sous-catégories liées au projet
 			$projectSubSectorModel = new ProjectSubSectorModel();
-			$projectsSubSector = $projectSubSectorModel->findByProjectId($project['id']);
+			$projectsSubSector = $projectSubSectorModel->findProjectSubsectorById($project['id']);
 
 			$SubSectorModel = new SubSectorModel();
 
 			foreach ($projectsSubSector as $projectSubSector) {
 				
-				$datas[] = $SubSectorModel->find($projectSubSector['id']);
+				$subSectors[] = $SubSectorModel->find($projectSubSector['id']);
 
 			}
 
 			//Permet de gérer l'affichage
 
-			$params = [
+			$data = [
 
 				'project' => $project,
-				'datas' => $datas,
+				'subSectors' => $subSectors,
+				'datasDevis' => $datasDevis,
 			];
-			$this->show('front/view_service', $params);
+			$this->show('front/view_service', $data);
 		}
 	}
 
