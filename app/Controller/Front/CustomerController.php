@@ -69,8 +69,7 @@ class CustomerController extends Controller
 				$authentificationModel = new AuthentificationModel();
 				$authentificationModel->logUserOut();
 
-				$authorizationModel = new AuthorizationModel();
-				$authorizationModel->redirectToLogin();
+				$this->redirectToRoute('front_default_index');
 			}
 			elseif ($post['disconnect'] === 'no') {
 				
@@ -80,6 +79,15 @@ class CustomerController extends Controller
 
 		$this->show('front/customer_logout');
 	}
+
+	/**
+		* Page du principe de fonctionnement du site pour le particulier
+	*/
+	public function help()
+	{	
+	}
+
+
 
 }
 

@@ -41,13 +41,17 @@
                                 <a href="<?= $this->url('front_list_services') ?>">Mes demandes de services</a>
                             </li>
                             <li>
-                                <a href="blog-post.html">M'inscrire</a>
+                                <?php if($w_user): ?>
+                                    <a href="blog-post.html">Mon profil</a>
+                                <?php else: ?>
+                                    <a href="blog-post.html">S'inscrire</a>
+                                <?php endif; ?>
                             </li>
                              <li>
                                 <?php if($w_user): ?>
-                                    <a href="<?= $this->url('front_customer_logout') ?>">Me déconnecter</a> 
+                                    <a href="<?= $this->url('front_customer_logout') ?>">Se déconnecter</a> 
                                 <?php else: ?>
-                                    <a href="<?= $this->url('front_customer_login') ?>">Me connecter</a>
+                                    <a href="<?= $this->url('front_customer_login') ?>">Se connecter</a>
                                 <?php endif; ?>
                             </li>
                         </ul>
@@ -62,7 +66,7 @@
                                 <a href="sidebar.html">Consulter les services</a>
                             </li>
                             <li>
-                                <a href="faq.html">M'inscrire</a>
+                                <a href="faq.html">S'inscrire</a>
                             </li>
                         </ul>
                     </li>
