@@ -46,7 +46,7 @@
                                 <?php if($w_user): ?>
                                     <a href="blog-post.html">Mon profil</a>
                                 <?php else: ?>
-                                    <a href="blog-post.html">S'inscrire</a>
+                                    <a href="<?= $this->url('front_customer_signin')?>">S'inscrire</a>
                                 <?php endif; ?>
                             </li>
                              <li>
