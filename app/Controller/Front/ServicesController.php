@@ -316,12 +316,19 @@ class ServicesController extends Controller
 	/**
 	 * Afficher la liste des services pour les utilisateurs non connectés
 	 */
-	public function list_allusers()
+	public function listAllUsers()
 	{
+		//Recherche de l'ensemble des projets non cloturés
+		$projectModel = new ProjectModel();
+		$projects = $projectModel->findAll('created_at' ,'DESC');
 
-		$this->show('front/service_list_allusers');
+		//Recherche de tous les "Sector" triés par numéro d'ordre
+		$sectorModel = new SectorModel();
+		$sectors = $sectorModel->findAll('order_num');
+
+		$this->show('front/service_list_allusers', ['projects' => $projects, 'sectors' => $sectors
+			]);
 	}
-
 
 	/**
 	 * Affiche la liste des services ou projets par client
