@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Détail des offres sur le service']); ?>
+<?php $this->layout('layout', ['title' => 'Liste des devis sur le service']); ?>
 
 <?php $this->start('my_header') ?>
 
@@ -7,7 +7,7 @@
 <?php $this->start('main_content') ?>
 
 	<div class="page-header">
-		<h1>Détail des offres sur le service</h1>
+		<h1>Liste des devis sur le service</h1>
 	</div>
 
 	<?php if(!empty($project)): ?>
