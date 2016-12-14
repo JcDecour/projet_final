@@ -21,12 +21,9 @@ class DevisController extends Controller
 		$projetModel = new projectModel(); 
 			$projet = $projetModel->find($idProjet); // $id correspond à l'id en URL
 
-			$projet=[
-				'test' => 'hello',
-			];
+
 			
-			
-		$this->show('front/devis_add', $projet);
+		$this->show('front/devis_add', ['projet' => $projet]);
 	}
 }
 
