@@ -90,7 +90,6 @@
 				<div class="col-md-2">
 					<select id="sector" name="sector" class="form-control">
 						<option value="" selected disabled>Catégorie</option>
-						<?php var_dump($sectors); ?>
 						<?php foreach($sectors as $sector) :; ?>
 							<option value="<?=$sector['id'];?>"><?=$sector['title'];?></option>
 						<?php endforeach; ?>

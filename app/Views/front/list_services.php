@@ -1,8 +1,5 @@
 <?php $this->layout('layout', ['title' => 'Liste des services']); ?>
 
-<?php $this->start('my_header') ?>
-
-<?php $this->stop('my_header') ?>
 
 <?php $this->start('main_content') ?>
 
@@ -16,10 +13,10 @@
 		<thead>
 			<tr>
 				<th>Service</th>
-				<th>Date du création</th>
-				<th>Délai</th>
-				<th>Etat d'avancement</th>
-				<th>Action</th>
+				<th>Créé le</th>
+				<th>Prévu le</th>
+				<th class="text-center">Offres</th>
+				<th class="text-center">Action</th>
 			</tr>
 		</thead>
 
@@ -29,8 +26,14 @@
 				<td><?=$project['title'] ?></td>
 				<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></td>
 				<td><?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></td>
-				<td></td>
-				<td>
+				<td class="text-center">
+					<?php if($project['closed']): ?>
+						<span class="text-danger">Cloturé</span>
+					<?php else: ?>
+						<span class="badge badge-success"><?=$project['nb_devis'];?></span>
+					<?php endif; ?>	
+				</td>
+				<td class="text-center">
 					<a href="<?=$this->url('front_delete_service', ['id' => $project['id']]);?>" class="btn btn-danger btn-sm" title="Supprimer ce service">
 					 Supprimer
 					</a>
@@ -39,8 +42,8 @@
 					 Modifier
 					</a>
 					&nbsp; 
-					<a href="<?=$this->url('front_view_service', ['id' => $project['id']]);?>" class="btn btn-success btn-sm" title="Modifier ce service">
-					 <span class="badge">42</span>&nbsp;Offres
+					<a href="<?=$this->url('front_view_service', ['id' => $project['id']]);?>" class="btn btn-success btn-sm" title="Consulter ce service">
+					 Consulter
 					</a>
 				</td>
 			</tr>
