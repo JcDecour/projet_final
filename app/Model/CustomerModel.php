@@ -54,4 +54,30 @@ class CustomerModel extends \W\Model\Model
 
 		return 0;
 	}
+
+	/**
+	* Teste si un email est présent en base de données
+	* @param string $email L'email à tester
+	* @return boolean true si présent en base de données, false sinon
+	*/
+	public function emailExists($email)
+	{
+
+	   $app = getApp();
+
+	   $sql = 'SELECT ' . $app->getConfig('security_email_property') . ' FROM ' . $this->table .
+	          ' WHERE ' . $app->getConfig('security_email_property') . ' = :email LIMIT 1';
+
+	   $dbh = ConnectionModel::getDbh();
+	   $sth = $dbh->prepare($sql);
+	   $sth->bindValue(':email', $email);
+	   if($sth->execute()){
+	       $foundUser = $sth->fetch();
+	       if($foundUser){
+	           return true;
+	       }
+	   }
+
+	   return false;
+	}
 }

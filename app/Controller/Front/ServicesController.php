@@ -7,7 +7,9 @@ use \Model\SectorModel;
 use \Model\SubSectorModel;
 use \Model\ProjectModel;
 use \Model\ProjectSubsectorModel;
+use \W\Security\AuthentificationModel;
 use \W\Security\AuthorizationModel;
+use \Model\CustomerModel;
 use \Respect\Validation\Validator as v; 
 
 class ServicesController extends Controller
@@ -61,23 +63,57 @@ class ServicesController extends Controller
 		    }
 
 		    //Cas du client qui n'est pas connecté
-		    if(array_key_exists('email', $post)){
-			    //Email
-			    if(!filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
-			    	$formErrors['email'] = 'La format de l\'email est invalide.';
+		    $customerToCreate = false;
+		    $idCustomer = null;
+		    if (empty($this->getUser())) {
+		
+			    //Verification de la validité de l'email
+			    if(empty($post['email']) || !filter_var($post['email'], FILTER_VALIDATE_EMAIL)){
+			    	$formErrors['email'] = 'Le format de l\'email saisi est invalide.';
 			    }
-
-			   	//Mot de passe
-				if(!v::notEmpty()->length(8, 20)->validate($post['password'])){
-					$formErrors['password'] = 'Le mot de passe doit comporter entre 8 et 20 caractères.';
-				}
+			    //Verification de la validité du mot de passe
+			    elseif(!v::notEmpty()->length(8, 20)->validate($post['password'])){
+			    	$formErrors['password'] = 'Le mot de passe doit comporter entre 8 et 20 caractères.';
+			    }
+			    else{
+			    	//Vérification que cet email existe
+			    	$customerModel = new CustomerModel();
+			    	if($customerModel->emailExists($post['email'])){
+			    		//Vérification validité Mot de passe/ Email
+			    		$idCustomer = $customerModel->isValidLoginInfo($post['email'], $post['password']);
+			    		if ($idCustomer) {
+							$customer = $customerModel->find($idCustomer);
+							// Connection l'utilisateur et la session est peuplée
+							$authModel = new AuthentificationModel();
+							$authModel->logUserIn($customer);
+						}
+						else{
+							$formErrors['global'] = 'Email ou mot de passe invalide.';	
+						}
+					}
+					else {
+						//Le customer doit être créé en BDD
+						$customerToCreate = true;
+					}
+			    }
+		    }
+		    else{
+		    	//Récupération de l'id du "Customer" à partir des infos de session
+		    	$user = $this->getUser();
+		    	$idCustomer = $user['id'];	
 		    }
 
 		    //Si aucune erreur de saisie, enregistrement des données en BDD
 		    if(count($formErrors) === 0){
+
+		    	//Cas ou il faut créer au préalble le "Customer" en BDD
+		    	if($customerToCreate){
+
+		    	}
+
 		    	//Insertion du service en BDD 
 		    	$data = [
-		    		'id_customer'		=> '1', //A modifier ultérieurement
+		    		'id_customer'		=> $idCustomer, 
 		    		'zip_code'			=> $post['zip_code'],
 		    		'title'				=> $post['title'],
 		    		'description'		=> $post['description'],

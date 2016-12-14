@@ -115,7 +115,7 @@
 			</div>
 
 			<!-- Si le User est déja connecté, ses infos de connexion ne lui sont pas demandées -->
-			<?php if($w_user): ?>
+			<?php if(!$w_user): ?>
 
 				<!-- Email de l'utilisateur en cours de création du service -->
 				<div class="form-group">
