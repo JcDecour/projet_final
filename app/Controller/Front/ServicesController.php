@@ -19,6 +19,9 @@ class ServicesController extends Controller
 	 */
 	public function add()
 	{
+		$customerModel = new CustomerModel();
+		$authModel = new AuthentificationModel();
+
 		//Soumission du formulaire
 		$post = [];
 		$formErrors = [];
@@ -77,14 +80,12 @@ class ServicesController extends Controller
 			    }
 			    else{
 			    	//Vérification que cet email existe
-			    	$customerModel = new CustomerModel();
 			    	if($customerModel->emailExists($post['email'])){
 			    		//Vérification validité Mot de passe/ Email
 			    		$idCustomer = $customerModel->isValidLoginInfo($post['email'], $post['password']);
 			    		if ($idCustomer) {
 							$customer = $customerModel->find($idCustomer);
 							// Connection l'utilisateur et la session est peuplée
-							$authModel = new AuthentificationModel();
 							$authModel->logUserIn($customer);
 						}
 						else{
@@ -106,9 +107,16 @@ class ServicesController extends Controller
 		    //Si aucune erreur de saisie, enregistrement des données en BDD
 		    if(count($formErrors) === 0){
 
-		    	//Cas ou il faut créer au préalble le "Customer" en BDD
+		    	//Cas ou il faut créer au préalable le "Customer" en BDD
 		    	if($customerToCreate){
+		    		$dataCustomer = [
+		    			'email'		=>  $post['email'],
+		    			'password'	=>	$authModel->hashPassword($post['password'])
+		    		];
 
+			    	//Création du "Customer" en BDD
+			    	$customer = $customerModel->insert($dataCustomer);
+			    	$idCustomer = $customer['id'];
 		    	}
 
 		    	//Insertion du service en BDD 
