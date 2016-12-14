@@ -28,7 +28,7 @@ class ProjectModel extends \W\Model\Model
 	 
 	 * @return array Les données sous forme de tableau multidimensionnel
 	 */
-	public function findAllWithoutClosed()
+	public function findAllWithoutClosed($zip_code = null, $sub_sector = null)
 	{
 		$sql = 'SELECT * FROM ' . $this->table . ' WHERE closed = 0 ORDER BY created_at DESC';
 		$sth = $this->dbh->prepare($sql);

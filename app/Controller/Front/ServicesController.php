@@ -328,7 +328,7 @@ class ServicesController extends Controller
 
 		//Recherche de l'ensemble des projets non cloturés
 		$projectModel = new ProjectModel();
-		$projects = $projectModel->findAllWithoutClosed($zip_code, $sub_sector);
+		$projects = $projectModel->findAllWithoutClosed();
 
 		//Recherche de tous les "Sector" triés par numéro d'ordre
 		$sectorModel = new SectorModel();
