@@ -2,11 +2,12 @@
 
 namespace Controller\Front;
 
+
 use \W\Controller\Controller;
 use \Model\CustomerModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\AuthorizationModel;
-
+use \Respect\Validation\Validator as v; 
 class CustomerController extends Controller
 {
 
@@ -85,9 +86,102 @@ class CustomerController extends Controller
 	*/
 	public function help()
 	{	
+
+
+		$this->show('front/customer_help');
 	}
 
+	/*
+	*Page d'inscription particulier
+	*
+	*/
+	public function signin()
+	{	
+		// $usersModel = new UsersModel();//appel de la fonction emailExist
+		$customerModel = new CustomerModel(); // appel de la fonction insert 
+		$formErrors =[];//stockage des erreurs
+		$passwordHash = new AuthentificationModel(); // appel de la fonction hashPassword
+		$formValid =[ 
+			'valid' =>'L\'inscription c\'est dérouler avec succes.'
+			];
 
+		if(!empty($_POST)){
+
+			$post= array_map('trim', array_map('strip_tags', $_POST));
+
+
+
+			if(!v::notEmpty()->length(3, 15)->validate($post['firstname'])){
+				$formErrors['firstname'] = 'Le prénom doit comporter entre 3 et 15 caractères';
+			}
+
+			if(!v::notEmpty()->length(3, 15)->validate($post['lastname'])){
+				$formErrors['lastname'] = 'Le prénom doit comporter entre 3 et 15 caractères';
+			}
+
+			if(!v::notEmpty()->email()->validate($post['email'])){
+				$formErrors['email'] = 'L\'adresse email saisie est invalide';
+			}
+
+			if($customerModel->emailExists($post['email'])){
+				$formErrors['email'] = 'L\'adresse email est déjà utilisée';
+			}
+
+			if(!v::notEmpty()->length(8,20)->validate($post['password'])){
+				$formErrors['password'] = 'Le mot de passe doit comporter entre 8 et 20 caractères';
+			}
+
+			if(!v::notEmpty()->digit()->length(10,10)->validate($post['fixed_phone'])){
+				$formErrors['fixed_phone'] = 'Le téléphone fixe est invalide';
+			}
+
+			if(!v::notEmpty()->digit()->length(10,10)->validate($post['mobile_phone'])){
+				$formErrors['mobile_phone'] = 'Le téléphone mobile est invalide';
+			}
+
+			if(!v::notEmpty()->length(8, 15)->validate($post['street'])){
+				$formErrors['street'] = 'L\'adresse doit comporter entre 8 et 15 caractères';
+			}
+
+			if(!v::notEmpty()->digit()->length(5,5)->validate($post['zipcode'])){
+				$formErrors['zipcode'] = 'Le code postal est invalide';
+			}
+
+			if(!v::notEmpty()->length(4, 15)->validate($post['city'])){
+				$formErrors['city'] = 'La ville doit comporter entre 4 et 15 caractères';
+			}
+
+			if(count($formErrors) === 0){
+
+				$createCustomer = [
+					'firstname'  => $post['firstname'],
+					'lastname'  => $post['lastname'],
+					'email'  => $post['email'],
+					'password'  => $passwordHash->hashPassword($post['password']),
+					'fixed_phone' => $post['fixed_phone'],
+					'mobile_phone' => $post['mobile_phone'],
+					'street' => $post['street'],
+					'zipcode' => $post['zipcode'],
+					'city'	=> $post['city'],
+					'created_at' => date('Y-m-d H:i:s'),
+					'updated_at' => date('Y-m-d H:i:s'),
+				];
+				if($customerModel->insert($createCustomer)){
+
+					$this->redirectToRoute('front_customer_login', ['formValid'=>$formValid]);
+					
+				}
+
+			}
+			else{
+				$formErrors['global'] = 'Une erreur d\'enregistrement s\'est produite.';
+				
+			}
+
+		}
+
+		$this->show('front/customer_signin', ['formErrors'=>$formErrors]);
+	}
 
 }
 

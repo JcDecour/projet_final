@@ -2,6 +2,7 @@
 namespace Model;
 
 use \W\Model\ConnectionModel;
+use \W\Model\UsersModel;
 
 class CustomerModel extends \W\Model\Model
 {

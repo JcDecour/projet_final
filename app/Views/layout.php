@@ -37,7 +37,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace particulier<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="blog-home-1.html">Comment ça marche ?</a>
+                                <a href="<?= $this->url('front_customer_help') ?>">Comment ça marche ?</a>
                             </li>
                             <li>
                                 <a href="<?= $this->url('front_list_services') ?>">Mes demandes de services</a>
@@ -46,7 +46,7 @@
                                 <?php if($w_user): ?>
                                     <a href="blog-post.html">Mon profil</a>
                                 <?php else: ?>
-                                    <a href="blog-post.html">S'inscrire</a>
+                                    <a href="<?= $this->url('front_customer_signin')?>">S'inscrire</a>
                                 <?php endif; ?>
                             </li>
                              <li>
@@ -73,7 +73,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="contact.html">Consulter les demandes de services</a>
+                        <a href="<?= $this->url('front_service_list_allusers') ?>">Consulter les demandes de services</a>
                     </li>
                 </ul>
             </div>

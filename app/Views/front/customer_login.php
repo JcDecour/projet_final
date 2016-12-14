@@ -8,6 +8,12 @@
 			<h1 class="text-center">Connexion</h1>
 		</div>
 
+		<?php if(isset($formValid['valid'])): ?>
+		<div lass="alert alert-success" role="alert">
+			<?=$formValid['valid'];?>
+		</div>
+	<?php endif; ?>
+
 		<form method="post" class="form-horizontal" enctype="multipart/form-data">
 			
 			<!-- Gestion des erreurs -->

@@ -2,8 +2,8 @@
 
 <?php $this->start('main_content') ?>
 
+	<div class="page-header">
+		<h1>Un fonctionnement simple</h1>
+	</div>
 
-
-
-
-<?php $this->start('main_content') ?>
+<?php $this->stop('main_content') ?>
