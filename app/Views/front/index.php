@@ -13,9 +13,9 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
-                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/terrassement.jpg') ?>');"></div>
                 <div class="carousel-caption">
-                    <h2>Travaux</h2>
+                    <h2>Terrasement</h2>
                 </div>
             </div>
             <div class="item">
