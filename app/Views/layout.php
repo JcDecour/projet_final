@@ -76,13 +76,13 @@
     <section id="banner">
         <div class="row">
             <div class="col-md-4">
-                <p>Gratuit pour les particuliers</p>
+                <p><i class="fa fa-fw fa-check"></i>&nbsp;Gratuit pour les particuliers</p>
             </div>
             <div class="col-md-4">
-                <p>Gratuit pour les professionnels</p>
+                <p><i class="fa fa-fw fa-check"></i>&nbsp;Gratuit pour les professionnels</p>
             </div>
             <div class="col-md-4">
-                <p>Nombre de devis illimités</p>
+                <p><i class="fa fa-fw fa-check"></i>&nbsp;Nombre de devis illimités et sans engagement</p>
             </div>
         </div>
     </section>

@@ -38,7 +38,7 @@ class CustomerController extends Controller
 				}
 				else {
 					// $idCustomer est égal à 0
-					$error = 'Identifiant ou mot de passe invalid';
+					$error = 'Identifiant ou mot de passe invalide.';
 				}
 			}
 		}

@@ -3,7 +3,6 @@ nav {
     color: black;
 }
 
-
 .navbar-inverse .navbar-nav > li > a {
     background-color: #222222;
     color: #9d9d9d;
@@ -13,17 +12,17 @@ nav {
     background-color: #222222;
     margin-bottom: 20px;
     text-align: center;
-  /*  height: 60px !important;*/
-  height: auto;
 }
-.banner-content {
+/*.banner-content {
     position: absolute;
-}
+}*/
 
 #banner  p {
-    height: 30px;
-    line-height: 30px;
+    height: 40px;
+    line-height: 40px;
     margin : 0;
+    color: #FFF;
+    font-weight: bold;
 }
 
 
@@ -57,16 +56,24 @@ body {
     background: grey;
     text-decoration: none;
 }*/
+
+
+footer {
+    margin: 50px 0 0 0;
+    line-height: 35.821px;
+}
+
 .footer_links {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     text-decoration: none;
     list-style: none;
+    
 }
-footer {
-    margin: 50px 0 0 0;
-    line-height: 35.821px;
+
+.footer_links a, p{
+    color: #FFF;
 }
 
 

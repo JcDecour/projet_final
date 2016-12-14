@@ -21,13 +21,13 @@
             <div class="item">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
                 <div class="carousel-caption">
-                    <h2>Réparation</h2>
+                    <h2>Réparations</h2>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
                 <div class="carousel-caption">
-                    <h2>Service a la personne</h2>
+                    <h2>Services à la personne</h2>
                 </div>
             </div>
         </div>
@@ -42,6 +42,8 @@
    
     </header>
 <?php $this->stop('my_header') ?>
+
+
 
 
 <?php $this->start('main_content') ?>
