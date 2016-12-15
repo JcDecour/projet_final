@@ -44,7 +44,7 @@
                                 </li>
                                 <li>
                                     <?php if($w_user): ?>
-                                        <a href="blog-post.html">Mon profil</a>
+                                        <a href="<?=$this->url('front_customer_profil')?>">Mon profil</a>
                                     <?php else: ?>
                                         <a href="<?= $this->url('front_customer_signin')?>">S'inscrire</a>
                                     <?php endif; ?>

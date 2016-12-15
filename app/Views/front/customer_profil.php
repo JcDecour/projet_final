@@ -13,14 +13,14 @@
         <?=$formErrors['global'];?>
       </div>
       <?php endif; ?>
-
+      <?php var_dump($customer);?>
       <!-- Select civilité -->
       <div class="form-group">
         <label class="col-md-4 control-label" for="civilité">Civilité :
         </label>
         <div class="col-md-2">
           <select id="civilité" name="civilité" class="form-control" required="">
-            <option value="" selected disabled>- sélection -</option>
+            <option value="" selected disabled><?=isset($customer['civilité']) ? $customer['civilité'] : '';?></option>
             <option value="Monsieur">Mr</option>
             <option value="Madame">Mme</option>
             <option value="Mademoiselle">Melle</option>
@@ -36,7 +36,7 @@
         <label class="col-md-4 control-label" for="firstname">Prénom :
         </label>
         <div class="col-md-4">
-          <input id="firstname" name="firstname" type="text" value="<?=isset($post['firstname']) ? $post['firstname'] : '';?>"  class="form-control input-md">
+          <input id="firstname" name="firstname" type="text" value="<?=isset($customer['firstname']) ? $customer['firstname'] : '';?>"  class="form-control input-md">
           
         </div>
         <!-- Gestion des erreurs -->
@@ -49,7 +49,7 @@
         <label class="col-md-4 control-label" for="lastname">Nom :
         </label>
         <div class="col-md-4">
-          <input id="lastname" name="lastname" type="text" class="form-control input-md">
+          <input id="lastname" name="lastname" type="text" value="<?=isset($customer['lastname']) ? $customer['lastname'] : '';?>" class="form-control input-md">
           
         </div>
         <!-- Gestion des erreurs -->

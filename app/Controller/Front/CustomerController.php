@@ -182,5 +182,11 @@ class CustomerController extends Controller
 		$this->show('front/customer_signin', ['formErrors'=>$formErrors]);
 	}
 
+	public function edit()
+	{
+		
+		$customer = $this->getUser();
+		$this->show('front/customer_profil', ['customer' => $customer]);
+	}
 }
 

@@ -18,7 +18,7 @@ $front_r = array(
 	['GET|POST', '/customer/login', 'Customer#login', 'front_customer_login'],
 	['GET|POST', '/customer/logout', 'Customer#logout', 'front_customer_logout'],
 	['GET|POST', '/customer/signin', 'Customer#signin', 'front_customer_signin'],
-	['GET|POST', '/customer/profil', 'Customer#profil', 'front_customer_profil'],
+	['GET|POST', '/customer/profil', 'Customer#edit', 'front_customer_profil'],
 	['GET', '/customer/help', 'Customer#help', 'front_customer_help'],
 	
 	// Routes Profesionnels
