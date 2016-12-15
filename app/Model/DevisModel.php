@@ -38,7 +38,7 @@ class DevisModel extends \W\Model\Model
 
 		$providerModel = new ProviderModel();
 
-		$sql = 'SELECT d.*, p.company_name FROM ' . $this->table .' as d INNER JOIN '.$providerModel->getTable().' as p ON p.id = d.id_provider WHERE d.id_project_subsector = :id ORDER BY d.ht_amount';
+		$sql = 'SELECT d.*, p.*, d.ht_amount*(1 + d.tva_amount/100) as ttc_amount FROM ' . $this->table .' as d INNER JOIN '.$providerModel->getTable().' as p ON p.id = d.id_provider WHERE d.id_project_subsector = :id ORDER BY d.ht_amount';
 
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':id', $id);
@@ -46,4 +46,6 @@ class DevisModel extends \W\Model\Model
 
 		return $sth->fetchAll();
 	}	
+
+
 }

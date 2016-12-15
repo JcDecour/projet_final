@@ -466,6 +466,11 @@ class ServicesController extends Controller
 	 */
 	public function view_service($id) // L'id passé en paramètre doit être le même passé dans la route [i:id]
 	{	
+		// On instancie les classes
+		$projectModel = new ProjectModel();
+		$projectSubSectorModel = new ProjectSubSectorModel();
+		$devisModel = new DevisModel();
+
 		if (!is_numeric($id) || empty($id)) {
 			$this->showNotFound();
 		}
@@ -474,23 +479,20 @@ class ServicesController extends Controller
 			$datas =[];
 
 			// On récupère les données du projet
-			$projectModel = new ProjectModel();
 			$project = $projectModel->find($id);
 
 			// On récupère toutes les sous-catégories liées au projet
-			$projectSubSectorModel = new ProjectSubSectorModel();
 			$projectsSubSector = $projectSubSectorModel->findAllProjectSubsectorById($project['id']);
 
 
 			// On récupère les devis liés au projet ou service
-			$devisModel = new DevisModel();
 			foreach ($projectsSubSector as $projectSubSector) {
 				
 				$datasDevis[] = $devisModel->findAllDevisById($projectSubSector['id']);
 
 			}
 
-			//Permet de gérer l'affichage
+			//Envoi des données à la page
 
 			$data = [
 
