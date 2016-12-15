@@ -318,15 +318,56 @@ class ServicesController extends Controller
 	 */
 	public function listAllUsers()
 	{
+
+		//Gestion du formulaire de recherche
+		$get = [];
+		$zip_code = null;
+		$sub_sector = null;
+
+		if(!empty($_GET)){
+			$get = array_map('trim', array_map('strip_tags', $_GET));
+
+			//Cas d'un recherche sur le code postal
+			if(isset($get['zip_code']) && ctype_digit($get['zip_code'])){
+				$zip_code = $get['zip_code'];
+			}
+			//Cas d'un recherche sur la sous-catégorie
+			if(!empty($get['sub-sector']) && ctype_digit($get['sub-sector'])){
+				$sub_sector = $get['sub-sector'];
+			}
+		}
+
 		//Recherche de l'ensemble des projets non cloturés
 		$projectModel = new ProjectModel();
-		$projects = $projectModel->findAll('created_at' ,'DESC');
+		$projects = $projectModel->findAllWithoutClosed($zip_code, $sub_sector);
 
 		//Recherche de tous les "Sector" triés par numéro d'ordre
 		$sectorModel = new SectorModel();
 		$sectors = $sectorModel->findAll('order_num');
 
-		$this->show('front/service_list_allusers', ['projects' => $projects, 'sectors' => $sectors
+		//Si la sous catégorie de la recherche est renseignée, alors il faut reconstruire le menu déroulant de la sous catégorie
+		$optionSubSector = '';
+		if(!empty($get['sub-sector'])){
+			$optionSubSector = '<option value="" selected>Sous-Catégorie</option>';
+			$subSectorModel = new SubSectorModel();
+			$subSectors = $subSectorModel->findBySectorId($get['sector']);
+			foreach ($subSectors as $key => $subSector) {
+				if($get['sub-sector'] == $subSector['id']){
+					$selected = 'selected';
+				}
+				else
+				{
+					$selected = '';
+				}
+				$optionSubSector.='<option value="'.$subSector['id'].'" '.$selected.'>'.$subSector['title'].'</option>';
+			}
+		}
+
+		$this->show('front/service_list_allusers', [
+				'projects'			=> $projects, 
+				'sectors'			=> $sectors,
+				'search'			=> $get,
+				'optionSubSector'	=> $optionSubSector,
 			]);
 	}
 

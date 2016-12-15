@@ -12,18 +12,24 @@
 			<!-- Code postal -->
 			<div class="form-group">
 				<label class="sr-only" for="zip_code">Code postal</label>
-				<input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="CP">
+				<input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="CP" value="<?=isset($search['zip_code']) ? $search['zip_code'] : '';?>">
 			</div>
+
 			<!-- Catégorie -->
 			<select id="sector" name="sector" class="form-control">
-				<option value="" selected disabled>Catégorie</option>
+				<option value="" selected>Catégorie</option>
 				<?php foreach($sectors as $sector) :; ?>
-					<option value="<?=$sector['id'];?>"><?=$sector['title'];?></option>
+					<option value="<?=$sector['id'];?>" <?=(isset($search['sector']) && $search['sector'] == $sector['id']) ? 'selected' : '';?>><?=$sector['title'];?></option>
 				<?php endforeach; ?>
 			</select>
+
 			<!-- Sous-Catégorie -->
 			<select id="sub-sector" name="sub-sector" class="form-control">
-				<option value="" selected disabled>Sous-Catégorie</option>
+				<?php if(!empty($optionSubSector)):?>
+					<?=$optionSubSector;?>
+				<?php else: ?>
+					<option value="" selected>Sous-Catégorie</option>
+				<?php endif; ?>
 			</select>
 				
 			<button class="btn btn-info" type="submit">
