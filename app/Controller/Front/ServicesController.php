@@ -24,7 +24,6 @@ class ServicesController extends Controller
 		$sectorModel = new SectorModel();
 		$subSectorModel = new SubSectorModel();
 		$projectSubsectorModel = new ProjectSubsectorModel();
-		$projectSubSectorModel = new ProjectSubsectorModel();
 		$customerModel = new CustomerModel();
 		$authModel = new AuthentificationModel();
 
@@ -321,10 +320,23 @@ class ServicesController extends Controller
 		$projectModel = new ProjectModel();
 		$project = $projectModel->find($id);
 
+		$projectSubsectorModel = new ProjectSubsectorModel();
+		$sectorModel = new SectorModel();
+		$subSectorModel = new SubSectorModel();
+		$projectSubsectors = $projectSubsectorModel->findProjectSubsectorById($id);
 
+		$contenuSsSector = '';
+		foreach ($projectSubsectors as $key => $value) {
+			$subSector = $subSectorModel->find($value['id_subsector']);
+			if($subSector){
+				$sector = $sectorModel->find($subSector['id_sector']);
+				if($sector){
+					$contenuSsSector.= '<span class="tag label label-default">'.$sector['title'].' - '.$subSector['title'].'</span>&nbsp;';
+				}
+			}
+		}
 
-
-		$this->show('front/service_view_allusers', ['projet' => $project]);
+		$this->show('front/service_view_allusers', ['project' => $project, 'contenuSsSector' => $contenuSsSector]);
 	}
 
 
