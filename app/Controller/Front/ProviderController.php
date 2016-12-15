@@ -39,7 +39,7 @@ class ProviderController extends Controller
 		$providerModel = new ProviderModel(); // appel de la fonction insert 
 		$formErrors =[];//stockage des erreurs
 		$passwordHash = new AuthentificationModel(); // appel de la fonction hashPassword
-		$formValid = 'l\' inscription est un succès';
+		
 			
 
 		if(!empty($_POST)){
@@ -118,8 +118,8 @@ class ProviderController extends Controller
 					// 'updated_at' => date('Y-m-d H:i:s'),
 				];
 				if($providerModel->insert($createProvider)){
-
-					$this->redirectToRoute('front_provider_login', ['formValid'=>$formValid]);
+					$_SESSION = [ 'co' => 'is true'];
+					$this->redirectToRoute('front_provider_login');
 						
 
 				}

@@ -73,12 +73,11 @@
                                 </li>
                                 <li>
                                     <?php if($w_user): ?>
-                                            <a href="<?= $this->url('front_provider_signin') ?>">S'inscrire</a>
-                                         </li>
+                                        <a href="">Mon Profil</a>
                                     <?php else: ?>
-                                        <li><a href="">Mon Profil</a>
-                                        </li>
+                                         <a href="<?= $this->url('front_provider_signin') ?>">S'inscrire</a>
                                     <?php endif; ?>
+                                </li>
                                 <li>
                                     <?php if($w_user): ?>
                                         <a href="<?= $this->url('front_customer_logout') ?>">Se déconnecter</a> 

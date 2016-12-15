@@ -101,9 +101,7 @@ class CustomerController extends Controller
 		$customerModel = new CustomerModel(); // appel de la fonction insert 
 		$formErrors =[];//stockage des erreurs
 		$passwordHash = new AuthentificationModel(); // appel de la fonction hashPassword
-		$formValid =[ 
-			'valid' =>'L\'inscription c\'est dérouler avec succes.'
-			];
+		
 
 		if(!empty($_POST)){
 
@@ -168,7 +166,7 @@ class CustomerController extends Controller
 				];
 				if($customerModel->insert($createCustomer)){
 
-					$this->redirectToRoute('front_customer_login', ['formValid'=>$formValid]);
+					$this->redirectToRoute('front_customer_login');
 					
 				}
 

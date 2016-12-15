@@ -15,7 +15,7 @@
 	<?php endif; ?>
 
 		<form method="post" class="form-horizontal" enctype="multipart/form-data">
-			
+			<?php var_dump($_SESSION); ?>
 			<!-- Gestion des erreurs -->
 			<?php if(isset($error) && !empty($error)): ?>
 				<div class="form-group">
