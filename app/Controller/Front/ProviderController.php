@@ -39,9 +39,8 @@ class ProviderController extends Controller
 		$providerModel = new ProviderModel(); // appel de la fonction insert 
 		$formErrors =[];//stockage des erreurs
 		$passwordHash = new AuthentificationModel(); // appel de la fonction hashPassword
-		$formValid =[ 
-			'valid' =>'L\'inscription c\'est dérouler avec succes.'
-			];
+		$formValid = 'l\' inscription est un succès';
+			
 
 		if(!empty($_POST)){
 
@@ -105,7 +104,7 @@ class ProviderController extends Controller
 					'company_name'  => $post['company_name'],
 					'company_description'  => $post['company_description'],
 					'siret'  => $post['siret'],
-					'civilité'  => $post['civilité'],
+					'civilite'  => $post['civilite'],
 					'firstname'  => $post['firstname'],
 					'lastname'  => $post['lastname'],
 					'email'  => $post['email'],
@@ -121,7 +120,6 @@ class ProviderController extends Controller
 				if($providerModel->insert($createProvider)){
 
 					$this->redirectToRoute('front_customer_login', ['formValid'=>$formValid]);
-						var_dump('yes');
 						
 
 				}
@@ -129,16 +127,11 @@ class ProviderController extends Controller
 			}
 			else{
 				$formErrors['global'] = 'Une erreur d\'enregistrement s\'est produite.';
-				var_dump('!!!!');
 
 			}
 
 		}
-
-		$this->show('front/provider_signin', ['stock'=>$createProvider]);
-
-		// , ['formErrors'=>$formErrors]
+		$this->show('front/provider_signin', ['formErrors'=>$formErrors]);
 	}
 
-		// parametre la table avec le setable car conflit entre provider et provider subsector
 }
