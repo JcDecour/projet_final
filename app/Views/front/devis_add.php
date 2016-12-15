@@ -47,20 +47,60 @@
 	<!-- ########### -->
 
 	<br>
-
+		<form method="post">
 	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Devis</h3>
-		</div>
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">Devis</div>
 		<div class="panel-body">
-			<form method="post">
-				<table class="table table-bordered">
- 
-				</table>
-			</form>
+			<div class="row">
+				<label class="col-md-12 control-label" for="zip_code">Descriptif</label>
+				<div class="col-md-12">
+					<textarea class="form-control input-md" placeholder="(Détails, précsions, autres ...)"></textarea>
+				</div>
+			</div>
 		</div>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Désignation</th>
+					<th>Montant HT (€)</th>
+					<th>TVA</th>
+					<th>Montant TTC (€)</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>
+						<input class="form-control input-md" type="text">
+					</td>
+					<td>
+						<input class="form-control input-md text-right" type="text">
+					</td>
+					<td>
+						<select class="form-control">
+							<option value="5.5">5.5</option>
+							<option value="10">10</option>
+							<option value="18">18</option>
+						</select>
+					</td>
+					<td>
+						<span class="col-md-12 text-right">0.00</span>	
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
 	</div>
+	
+	<!-- Bouton de validation -->
+			<div class="form-group">
+				<div class="col-md-3 col-md-offset-9">
+					<button type="submit" class="btn btn-success btn-block">Valider</a>
+				</div>
+			</div>
 
-
+		</form>
 
 <?php $this->stop('main_content') ?>
