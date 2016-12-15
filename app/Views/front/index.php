@@ -14,27 +14,27 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
-                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/terrassement.jpg') ?>');"></div>
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/bull.jpg') ?>');"></div>
                 <div class="carousel-caption">
-                    <h2>Terrasement</h2>
+                    <h2>Gros &oelig;uvres</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/alliance.jpg') ?>');"></div>
+                <div class="carousel-caption">
+                    <h2>&Eacute;vènements</h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/travaux2.jpg') ?>');"></div>
+                <div class="carousel-caption">
+                    <h2>Constructions</h2>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
                 <div class="carousel-caption">
                     <h2>Réparations</h2>
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
-                <div class="carousel-caption">
-                    <h2>Services à la personne</h2>
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
-                <div class="carousel-caption">
-                    <h2>toto</h2>
                 </div>
             </div>
         </div>
