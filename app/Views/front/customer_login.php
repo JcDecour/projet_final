@@ -7,11 +7,22 @@
 		<div class="page-header">
 			<h1 class="text-center">Connexion Particulier</h1>
 		</div>
-
-		<?php var_dump($formValid); ?>
-	
+			<?php if(isset($_SESSION['formValid'])): ?>
+				<div class="alert alert-info" style="text-align: center;" role="alert">
+					<?=$_SESSION['formValid'];?>
+					<?php unset($_SESSION['formValid']);?>
+				</div>
+			<?php endif; ?>
 		<form method="post" class="form-horizontal" enctype="multipart/form-data">
 			
+			<!-- Message de confirmation si inscription ok -->
+
+			<?php if(isset($_SESSION['formValid'])): ?>
+				<div class="alert alert-info" style="text-align: center;" role="alert">
+					<?=$_SESSION['formValid'];?>
+				</div>
+			<?php endif; ?>
+
 			<!-- Gestion des erreurs -->
 			<?php if(isset($error) && !empty($error)): ?>
 				<div class="form-group">

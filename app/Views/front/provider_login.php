@@ -8,14 +8,21 @@
 			<h1 class="text-center">Connexion Professionnel</h1>
 		</div>
 
-		<?php if(isset($formValid['valid'])): ?>
-		<div lass="alert alert-success" role="alert">
-			<?=$formValid['valid'];?>
-		</div>
-	<?php endif; ?>
+		<?php if(isset($_SESSION['formValid'])): ?>
+			<div class="alert alert-info" style="text-align: center;" role="alert">
+				<?=$_SESSION['formValid'];?>
+				<?php unset($_SESSION['formValid']);?>
+			</div>
+
+		<?php endif; ?>
 
 		<form method="post" class="form-horizontal" enctype="multipart/form-data">
-			<?php var_dump($_SESSION); ?>
+
+			<p class="text-required-filed">
+				<span class="obligatoire">*</span>
+				Champs obligatoires
+			</p>
+			
 			<!-- Gestion des erreurs -->
 			<?php if(isset($error) && !empty($error)): ?>
 				<div class="form-group">

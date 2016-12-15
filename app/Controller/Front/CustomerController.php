@@ -165,7 +165,8 @@ class CustomerController extends Controller
 					// 'updated_at' => date('Y-m-d H:i:s'), envoie du'une date de mise a jour 
 				];
 				if($customerModel->insert($createCustomer)){
-
+					// si l'utilisateur a été bien été créer ont stock un message de reussite dans $_SESSION et on redirige vers la page de connexion
+					$_SESSION = [ 'formValid' => 'Votre profil a bien été créer, Veuillez vous connecter.'];
 					$this->redirectToRoute('front_customer_login');
 					
 				}

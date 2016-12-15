@@ -118,7 +118,8 @@ class ProviderController extends Controller
 					// 'updated_at' => date('Y-m-d H:i:s'),
 				];
 				if($providerModel->insert($createProvider)){
-					$_SESSION = [ 'co' => 'is true'];
+					// si l'utilisateur a été bien été créer ont stock un message de reussite dans $_SESSION et on redirige vers la page de connexion
+					$_SESSION = [ 'formValid' => 'Votre profil a bien été crée, Veuillez vous connecter.'];
 					$this->redirectToRoute('front_provider_login');
 						
 
@@ -170,9 +171,11 @@ class ProviderController extends Controller
 		// si l'utilisateur est connecté, je le redirige
 		// Je le sors du !empty($_POST) pour que la redirection soit effective si un utilisateur déja connecté arrive sur le formulaire de connexion
 		if (!empty($this->getUser())) {
-			
+
 			$this->redirectToRoute('front_devis_list');
 		}
+
+
 
 		$this->show('front/provider_login', ['error' => $error]);
 	}
