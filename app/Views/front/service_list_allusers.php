@@ -3,7 +3,7 @@
 <?php $this->start('main_content') ?>
 
 	<div class="page-header">
-			<h1>Liste des services recherchés</h1>
+			<h1>Liste des offres de services</h1>
 	</div>
 
 	<!-- Formulaire de recherche -->
