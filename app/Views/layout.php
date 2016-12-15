@@ -69,7 +69,7 @@
                                     <a href="full-width.html">Comment ça marche ?</a>
                                 </li>
                                 <li>
-                                    <a href="sidebar.html">Consulter les services</a>
+                                    <a href="<?= $this->url('front_provider_list_services') ?>">Consulter les services</a>
                                 </li>
                                 <li>
                                     <a href="<?= $this->url('front_provider_signin') ?>">S'inscrire</a>
@@ -114,7 +114,7 @@
                         <li><a href="">Mention Légales</a></li>
                         <li><a href="">Condition Générales d'utilisation</a></li>
                         <li>
-                            <p>Copyright &copy; Your Website 2014</p>
+                            <p>Copyright &copy; Farid-Eric-Jean-charles</p>
                         </li>
                     </ul>
                 </div>

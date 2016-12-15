@@ -171,7 +171,7 @@ class ProviderController extends Controller
 		// Je le sors du !empty($_POST) pour que la redirection soit effective si un utilisateur déja connecté arrive sur le formulaire de connexion
 		if (!empty($this->getUser())) {
 			
-			$this->redirectToRoute('front_list_services');
+			$this->redirectToRoute('front_provider_list_services');
 		}
 
 		$this->show('front/provider_login', ['error' => $error]);
@@ -213,4 +213,8 @@ class ProviderController extends Controller
 		$this->show('front/customer_help');
 	}
 
+	public function list()
+	{
+		$this->show('front/provider_list_services');
+	}
 }
