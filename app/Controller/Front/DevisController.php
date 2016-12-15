@@ -21,8 +21,12 @@ class DevisController extends Controller
 			$this->redirectToRoute('front_provider_login');
 		}
 
+		$zip_code = null;
+		$sub_sector = null;
+		$projectModel = new ProjectModel();
+		$projects = $projectModel->findAllWithoutClosed($zip_code, $sub_sector);
 
-		$this->show('front/devis_list');	
+		$this->show('front/devis_list', ['projects' => $projects]);	
 	}
 
 

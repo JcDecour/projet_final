@@ -69,7 +69,7 @@
                                     <a href="full-width.html">Comment ça marche ?</a>
                                 </li>
                                 <li>
-                                    <a href="<?= $this->url('front_devis_list') ?>">Mes offres</a>
+                                    <a href="<?= $this->url('front_devis_list') ?>">Mes devis</a>
                                 </li>
                                 <li>
                                     <?php if($w_user): ?>

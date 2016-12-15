@@ -3,7 +3,7 @@
 <?php $this->start('main_content') ?>
 
 	<div class="page-header">
-			<h1>Liste des offres de services</h1>
+			<h1>Liste des offres de services des particuliers</h1>
 	</div>
 
 	<!-- Formulaire de recherche -->
@@ -80,7 +80,6 @@
 			</tbody>
 
 		</table>
-
 
 	<?php else: ?>
 		<p>Aucun service.</p>
