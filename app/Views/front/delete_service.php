@@ -6,6 +6,7 @@
 	<div class="page-header">
 		<h1 class="text-center">Supprimer un service</h1>
 	</div>
+
 	<?php if(!empty($msg)): ?>
 		<?php if($msg === 'success'): ?>
 			<p class="alert alert-success">Service supprimé</p>
@@ -18,8 +19,10 @@
 		</div>
 	<?php endif; ?>
 
-		<?php if(empty($msg)): ?>	
+	<?php if(empty($msg)): ?>	
+
 	<!-- Formulaire de delete -->
+
 	<form method="post" class="form-horizontal">
 		<div class="form-group">
 			<div class="col-md-6 col-md-offset-4">
@@ -34,6 +37,6 @@
 			</div>
 		</div>
 	</form>
-<?php endif; ?>
+	<?php endif; ?>
 </div>
 <?php $this->start('main_content') ?>
