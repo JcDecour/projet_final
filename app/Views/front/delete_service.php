@@ -6,19 +6,24 @@
 	<div class="page-header">
 		<h1 class="text-center">Supprimer un service</h1>
 	</div>
+	<?php if(!empty($msg)): ?>
+		<?php if($msg === 'success'): ?>
+			<p class="alert alert-success">Service supprimé</p>
+		<?php endif; ?>
+		<?php if($msg === 'error'): ?>
+			<p class="alert alert-danger">Ce service n'existe pas</p>
+		<?php endif; ?>
+		<div>
+		<a href="<?=$this->url('front_list_services');?>" class="btn btn-info" title="Retour à la liste des services">Retour à la liste des services</a>
+		</div>
+	<?php endif; ?>
 
-	<!-- Formulaire de déconnexion -->
+		<?php if(empty($msg)): ?>	
+	<!-- Formulaire de delete -->
 	<form method="post" class="form-horizontal">
-			
 		<div class="form-group">
 			<div class="col-md-6 col-md-offset-4">
 				<h3>Confirmez la suppression du service</h3>
-
-				<?php if(empty($project)): ?>
-					<div class="alert alert-danger">
-					Ce service n'existe !
-					</div>
-				<?php else: ?>
 				<a href="<?=$this->url('front_list_services');?>" class="btn btn-default" title="Retour à la liste des services">
 				Annuler
 				</a>
@@ -26,9 +31,9 @@
 				<button type="submit" class="btn btn-info" name="delete">
 				Supprimer
 				</button>
-				<?php endif; ?>
 			</div>
 		</div>
 	</form>
+<?php endif; ?>
 </div>
 <?php $this->start('main_content') ?>

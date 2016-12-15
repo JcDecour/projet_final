@@ -415,22 +415,37 @@ class ServicesController extends Controller
 	 */
 	public function delete_service($id)
 	{	
+		$post = [];
+		$msg = '';
+
+
 		if (!is_numeric($id) || empty($id)) {
 			$this->showNotFound();
 		}
-		else {
+
+		if(!empty($_POST)){
+
 			$post = array_map('trim', array_map('strip_tags', $_POST));
-			if (empty($post['delete'])) {
-				$projectModel = new ProjectModel();
-				$project = $projectModel->find($id);
-				$this->show('front/delete_service', ['project' => $project]);
-			}
-			elseif(!empty($post['delete'])) {
-				$projectModel = new ProjectModel();
+
+			$projectModel = new ProjectModel();
+			$project = $projectModel->find($id);
+
+			if ($project) {
+				
 				$projectModel->delete($id);
-				$this->redirectToRoute('front_list_services');
+
+				$msg = 'success';
+				
 			}
+			else {
+
+				$msg = 'error';
+		
+			}
+		
 		}
+		$this->show('front/delete_service', [ 'msg' => $msg ]);
+
 	}
 
 	/**
