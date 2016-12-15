@@ -72,8 +72,13 @@
                                     <a href="<?= $this->url('front_provider_list_services') ?>">Consulter les services</a>
                                 </li>
                                 <li>
-                                    <a href="<?= $this->url('front_provider_signin') ?>">S'inscrire</a>
-                                </li>
+                                    <?php if($w_user): ?>
+                                            <a href="<?= $this->url('front_provider_signin') ?>">S'inscrire</a>
+                                         </li>
+                                    <?php else: ?>
+                                        <li><a href="">Mon Profil</a>
+                                        </li>
+                                    <?php endif; ?>
                                 <li>
                                     <?php if($w_user): ?>
                                         <a href="<?= $this->url('front_customer_logout') ?>">Se déconnecter</a> 

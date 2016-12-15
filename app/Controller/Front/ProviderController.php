@@ -86,16 +86,16 @@ class ProviderController extends Controller
 				$formErrors['mobile_phone'] = 'Le téléphone mobile est invalide';
 			}
 
-			if(!v::notEmpty()->length(8, 15)->validate($post['street'])){
-				$formErrors['street'] = 'L\'adresse doit comporter entre 8 et 15 caractères';
+			if(!v::notEmpty()->length(8, 80)->validate($post['street'])){
+				$formErrors['street'] = 'L\'adresse doit comporter entre 8 et 80 caractères';
 			}
 
 			if(!v::notEmpty()->digit()->length(5,5)->validate($post['zipcode'])){
 				$formErrors['zipcode'] = 'Le code postal est invalide';
 			}
 
-			if(!v::notEmpty()->length(4, 15)->validate($post['city'])){
-				$formErrors['city'] = 'La ville doit comporter entre 4 et 15 caractères';
+			if(!v::notEmpty()->length(3, 80)->validate($post['city'])){
+				$formErrors['city'] = 'La ville doit comporter entre 3 et 80 caractères';
 			}
 
 			if(count($formErrors) ===  0){

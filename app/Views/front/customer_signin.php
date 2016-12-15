@@ -11,6 +11,7 @@
         <?=$formErrors['global'];?>
       </div>
       <?php endif; ?>
+
       <!-- Select civilité -->
       <div class="form-group">
         <label class="col-md-4 control-label" for="civilité">Civilité :</label>
