@@ -4,6 +4,7 @@ namespace Controller\Front;
 
 
 use \W\Controller\Controller;
+use \Model\ProjectSubsectorModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\AuthorizationModel;
 use \Model\ProjectModel;
@@ -11,36 +12,39 @@ use \Model\ProjectModel;
 class DevisController extends Controller
 {
 	/**
-		* Page de déconnexion
+	 * Liste des devis du professionnel
 	*/
 	public function list()
 	{
-		// si le professionnel n'est pas connecté , il est redirigé sur la page de login
+		//Si le professionnel n'est pas connecté , il est redirigé sur la page de login
 		if (empty($this->getUser())) {
-			
 			$this->redirectToRoute('front_provider_login');
 		}
 
 		$zip_code = null;
 		$sub_sector = null;
 		$projectModel = new ProjectModel();
-		$projects = $projectModel->findAllWithoutClosed($zip_code, $sub_sector);
+
+		$projects = $projectModel->findAllDetailWithoutClosed($zip_code, $sub_sector);
 
 		$this->show('front/devis_list', ['projects' => $projects]);	
 	}
 
-
-	public function add($idProjet)
+	/**
+	 * Ajout d'un devis par un professionnel
+	 * @param $id integer Correspond a l'id de la table ProjectSubsector
+	*/
+	public function add($id)
 	{
-		if(!is_numeric($idProjet) || empty($idProjet)){
+		if(!is_numeric($id) || empty($id)){
 			$this->showNotFound();
 		}
 		else
 		{
-			$projetModel = new projectModel(); 
-			$projet = $projetModel->find($idProjet); // $id correspond à l'id en URL
-	
-			$this->show('front/devis_add', ['projet' => $projet]);
+			//Recherche du projet, de la catégorie et sous catégorie rattaché
+			$projectSubsectorModel = new ProjectSubsectorModel(); 
+			$projectSubsector = $projectSubsectorModel->findWithProjectAndSectorAndSubsector($id); 
+			$this->show('front/devis_add', ['projectSubsector' => $projectSubsector]);
 		}
 	}
 	

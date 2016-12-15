@@ -26,7 +26,7 @@ $front_r = array(
 	['GET|POST', '/provider/login', 'Provider#login', 'front_provider_login'],
 
 	//Routes devis
-	['GET|POST', '/devis/add/[i:idProjet]', 'Devis#add', 'front_devis_add'],
+	['GET|POST', '/devis/add/[i:id]', 'Devis#add', 'front_devis_add'],
 	['GET', '/devis/list', 'Devis#list', 'front_devis_list'],
 
 	// Les routes ajax

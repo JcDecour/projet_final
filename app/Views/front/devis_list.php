@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Liste des propositions']); ?>
+<?php $this->layout('layout', ['title' => 'Mes devis']); ?>
 
 
 <?php $this->start('main_content') ?>
@@ -17,10 +17,12 @@
 			<thead>
 				<tr>
 					<th>Lieu</th>
-					<th>Service</th>
+					<th>Libellé du service</th>
+					<th>Catégorie</th>
+					<th>Sous Catégorie</th>
 					<th>Créé le</th>
 					<th>Prévu le</th>
-					<th class="text-center">Offres</th>
+					<th class="text-center">Devis</th>
 					<th class="text-center">Action</th>
 				</tr>
 			</thead>
@@ -30,18 +32,20 @@
 				<tr>
 					<td><?=$project['zip_code'] ?></td>
 					<td><?=$project['title'] ?></td>
+					<td><?=$project['titlesector'];?></td>
+					<td><?=$project['titlesubsector'];?></td>
 					<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></td>
 					<td><?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></td>
 					<td class="text-center">
 						<?php if($project['closed']): ?>
 							<span class="text-danger">Cloturé</span>
 						<?php else: ?>
-							<span class="badge badge-success"><?=$project['nb_devis'];?></span>
+							<span class="badge badge-success"><?=$project['nbdevisprojetsubsector'];?></span>
 						<?php endif; ?>	
 					</td>
 					<td class="text-center">
-						<a href="<?=$this->url('front_service_view_allusers', ['id' => $project['id']]);?>" class="btn btn-success btn-sm" title="Consulter ce service">
-					 		Faire une offre
+						<a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-success btn-sm" title="Proposer un devis">
+					 		Proposer un devis
 						</a>
 					</td>
 				</tr>

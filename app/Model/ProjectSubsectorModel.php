@@ -4,7 +4,31 @@ namespace Model;
 class ProjectSubsectorModel extends \W\Model\Model
 {
 	/**
-	 * Récupère toutes les lignes de la table à partir d'un IdProject
+	 * Récupère une ligne de la table en fonction d'un identifiant
+	 * @param  integer Identifiant
+	 * @return mixed Les données sous forme de tableau associatif
+	 */
+	public function findWithProjectAndSectorAndSubsector($id)
+	{
+		if (!is_numeric($id)){
+			return false;
+		}
+
+		$sql = 'SELECT p.*, subsector.title as titlesubsector, sector.title as titlesector FROM ' . $this->table . '
+				INNER JOIN project as p ON p.id = ' . $this->table . '.id_project
+				INNER JOIN sub_sector as subsector ON subsector.id = ' . $this->table . '.id_subsector
+				INNER JOIN sector as sector ON sector.id = subsector.id_sector
+				WHERE ' . $this->table . '.' . $this->primaryKey .'  = :id LIMIT 1';
+
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':id', $id);
+		$sth->execute();
+
+		return $sth->fetch();
+	}
+
+	/**
+	 * Récupère toutes les lignes de la table à partir d'un Id de project
 	 * @param  integer Id
 	 * @return mixed Les données sous forme de tableau 
 	 */
@@ -24,7 +48,7 @@ class ProjectSubsectorModel extends \W\Model\Model
 
 	/**
 	 * Récupère des lignes des deux tables de jointure project_subsector et sub_sector à partir d'un idProject
-	 *  @param $id integer Identifiant
+	 * @param $id integer Identifiant
 	 * @return mixed Les données sous forme de tableau associatif triées sur le prix hors taxe	  
 	*/
 	public function findAllProjectSubsectorById($id)

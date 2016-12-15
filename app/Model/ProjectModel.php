@@ -24,7 +24,7 @@ class ProjectModel extends \W\Model\Model
 
 
 	/**
-	 * Récupère toutes les lignes de la table
+	 * Récupère toutes les lignes de la table sans les projet "Terminés" (possibilité de filtrer sur le secteur et sous secteur)
 	 * @param  integer Code postal auquel les projets doivent etre rattachés
 	 * @param  integer Sous Catégories auquel les projets doivent etre rattachés
 	 * @return array Les données sous forme de tableau multidimensionnel
@@ -59,4 +59,48 @@ class ProjectModel extends \W\Model\Model
 
 		return $sth->fetchAll();
 	}
+
+
+	/**
+	 * Récupère toutes les lignes de la table avec lignes de détail des sous catégories et sans les projets terminés (possibilité de filtrer sur le secteur et sous secteur)
+	 * @param  integer Code postal auquel les projets doivent etre rattachés
+	 * @param  integer Sous Catégories auquel les projets doivent etre rattachés
+	 * @return array Les données sous forme de tableau multidimensionnel
+	 */
+	public function findAllDetailWithoutClosed($zip_code = null, $sub_sector = null)
+	{
+		$sql = 'SELECT p.*, subsector.title as titlesubsector, ps.id as idprojetsubsector, ps.nb_devis as nbdevisprojetsubsector, sector.title as titlesector FROM ' . $this->table . ' as p 
+				INNER JOIN project_subsector as ps ON p.id = ps.id_project
+				INNER JOIN sub_sector as subsector ON subsector.id = ps.id_subsector
+				INNER JOIN sector as sector ON sector.id = subsector.id_sector
+				WHERE closed = 0 ';
+
+		if(!empty($zip_code) && !ctype_digit($zip_code)){
+			return false;
+		}
+		if(!empty($sub_sector) && !ctype_digit($sub_sector)){
+			return false;
+		}
+
+		if(!empty($zip_code)){
+			$sql .= ' AND zip_code = :zip_code';
+		}
+		if(!empty($sub_sector)){
+			$sql .= ' AND id_subsector = :sub_sector';
+		}
+		$sql .= ' ORDER BY created_at DESC, sector.order_num ASC, subsector.order_num ASC';
+
+		$sth = $this->dbh->prepare($sql);
+		if(!empty($zip_code)){
+			$sth->bindValue(':zip_code', $zip_code);
+		}
+		if(!empty($sub_sector)){
+			$sth->bindValue(':sub_sector', $sub_sector);
+		}
+		$sth->execute();
+
+		return $sth->fetchAll();
+	}
+
+
 }
