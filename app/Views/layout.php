@@ -32,46 +32,58 @@
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                    
+                    <?php if((!$w_user) || (!isset($w_user['siret']))): ?>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace particulier<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="<?= $this->url('front_customer_help') ?>">Comment ça marche ?</a>
+                                </li>
+                                <li>
+                                    <a href="<?= $this->url('front_list_services') ?>">Mes demandes de services</a>
+                                </li>
+                                <li>
+                                    <?php if($w_user): ?>
+                                        <a href="blog-post.html">Mon profil</a>
+                                    <?php else: ?>
+                                        <a href="<?= $this->url('front_customer_signin')?>">S'inscrire</a>
+                                    <?php endif; ?>
+                                </li>
+                                 <li>
+                                    <?php if($w_user): ?>
+                                        <a href="<?= $this->url('front_customer_logout') ?>">Se déconnecter</a> 
+                                    <?php else: ?>
+                                        <a href="<?= $this->url('front_customer_login') ?>">Se connecter</a>
+                                    <?php endif; ?>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>    
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace particulier<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="<?= $this->url('front_customer_help') ?>">Comment ça marche ?</a>
-                            </li>
-                            <li>
-                                <a href="<?= $this->url('front_list_services') ?>">Mes demandes de services</a>
-                            </li>
-                            <li>
-                                <?php if($w_user): ?>
-                                    <a href="blog-post.html">Mon profil</a>
-                                <?php else: ?>
-                                    <a href="<?= $this->url('front_customer_signin')?>">S'inscrire</a>
-                                <?php endif; ?>
-                            </li>
-                             <li>
-                                <?php if($w_user): ?>
-                                    <a href="<?= $this->url('front_customer_logout') ?>">Se déconnecter</a> 
-                                <?php else: ?>
-                                    <a href="<?= $this->url('front_customer_login') ?>">Se connecter</a>
-                                <?php endif; ?>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace professionel<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="full-width.html">Comment ça marche ?</a>
-                            </li>
-                            <li>
-                                <a href="sidebar.html">Consulter les services</a>
-                            </li>
-                            <li>
-                                <a href="<?= $this->url('front_provider_signin') ?>">S'inscrire</a>
-                            </li>
-                        </ul>
-                    </li>
+                    <?php if((!$w_user) || (isset($w_user['siret']))): ?>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace professionel<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="full-width.html">Comment ça marche ?</a>
+                                </li>
+                                <li>
+                                    <a href="sidebar.html">Consulter les services</a>
+                                </li>
+                                <li>
+                                    <a href="<?= $this->url('front_provider_signin') ?>">S'inscrire</a>
+                                </li>
+                                <li>
+                                    <?php if($w_user): ?>
+                                        <a href="<?= $this->url('front_customer_logout') ?>">Se déconnecter</a> 
+                                    <?php else: ?>
+                                        <a href="<?= $this->url('front_provider_login') ?>">Se connecter</a>
+                                    <?php endif; ?>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
                     <li>
                         <a href="<?= $this->url('front_service_list_allusers') ?>">Consulter les demandes de services</a>
                     </li>

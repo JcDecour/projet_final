@@ -1,11 +1,11 @@
-<?php $this->layout('layout', ['title' => 'Connexion Particulier']); ?>
+<?php $this->layout('layout', ['title' => 'Connexion Professionnel']); ?>
 
 <?php $this->start('main_content') ?>
 
 <div class="forms">
 
 		<div class="page-header">
-			<h1 class="text-center">Connexion Particulier</h1>
+			<h1 class="text-center">Connexion Professionnel</h1>
 		</div>
 
 		<?php if(isset($formValid['valid'])): ?>

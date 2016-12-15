@@ -119,7 +119,7 @@ class ProviderController extends Controller
 				];
 				if($providerModel->insert($createProvider)){
 
-					$this->redirectToRoute('front_customer_login', ['formValid'=>$formValid]);
+					$this->redirectToRoute('front_provider_login', ['formValid'=>$formValid]);
 						
 
 				}
@@ -132,6 +132,85 @@ class ProviderController extends Controller
 
 		}
 		$this->show('front/provider_signin', ['formErrors'=>$formErrors]);
+	}
+	/**
+	 * Page de connexion
+	 */
+	public function login()
+	{
+
+		$error = null;
+		if (!empty($_POST)) {
+			$post = array_map('trim', array_map('strip_tags', $_POST));
+
+			if (empty($post['email']) && empty($post['password'])) {
+				$error = 'Identifiant ou mot de passe invalid';
+			}
+			else {
+				// l'utilisateur a bien rempli un mdp et un email
+				$providerModel = new ProviderModel();
+				$idProvider = $providerModel->isValidLoginInfo($post['email'], $post['password']);
+
+				// on a un id utilisateur
+				if ($idProvider) {
+					$provider = $providerModel->find($idProvider); // on récupère l'utilisateur
+
+					// Connecte l'utilisateur et peuple la session
+					$authModel = new AuthentificationModel();
+					$authModel->logUserIn($provider);
+				}
+				else {
+					// $idCustomer est égal à 0
+					$error = 'Identifiant ou mot de passe invalide.';
+				}
+			}
+		}
+
+		// getUser() récupère l'utilisateur connecté
+		// si l'utilisateur est connecté, je le redirige
+		// Je le sors du !empty($_POST) pour que la redirection soit effective si un utilisateur déja connecté arrive sur le formulaire de connexion
+		if (!empty($this->getUser())) {
+			
+			$this->redirectToRoute('front_list_services');
+		}
+
+		$this->show('front/provider_login', ['error' => $error]);
+	}
+
+	/**
+		* Page de déconnexion
+	*/
+	public function logout()
+	{	
+		$post = [];
+		$post = array_map('trim', array_map('strip_tags', $_POST));
+
+		if (isset($post['disconnect']) && !empty($post['disconnect'])) {
+			
+			if($post['disconnect'] === 'yes'){
+
+				$authentificationModel = new AuthentificationModel();
+				$authentificationModel->logUserOut();
+
+				$this->redirectToRoute('front_default_index');
+			}
+			elseif ($post['disconnect'] === 'no') {
+				
+				$this->redirectToRoute('front_list_services');
+			}
+		}
+
+		$this->show('front/customer_logout');
+	}
+
+	/**
+		* Page du principe de fonctionnement du site pour le particulier
+	*/
+	public function help()
+	{	
+
+
+		$this->show('front/customer_help');
 	}
 
 }

@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Inscription Particulier']) ?>
+<?php $this->layout('layout', ['title' => 'Inscription Professionnel']) ?>
 <?php $this->start('main_content') ?>
 <div class="page-header">
 	<h1>Inscription Professionnel</h1>
