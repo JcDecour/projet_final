@@ -3,4 +3,12 @@
 
 <?php $this->start('main_content') ?>
 
+
+
+<div class="page-header">
+		<h1>Liste des offres</h1>
+	</div>
+
+
+
 <?php $this->stop('main_content') ?>
