@@ -9,6 +9,7 @@ $front_r = array(
 	['GET|POST', '/service/add', 'Services#add', 'front_service_add'],
 	['GET', '/service/list', 'Services#list_services', 'front_list_services'],
 	['GET', '/service/list-all-users', 'Services#listAllUsers', 'front_service_list_allusers'],
+	['GET', '/service/view-all-users/[i:id]', 'Services#viewAllUsers', 'front_service_view_allusers'],
 	['GET|POST', '/service/delete/[i:id]', 'Services#delete_service', 'front_delete_service'],
 	['GET|POST', '/service/edit/[i:idProject]', 'Services#edit', 'front_edit_service'],
 	['GET|POST', '/service/view/[i:id]', 'Services#view_service', 'front_view_service'],

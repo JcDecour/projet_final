@@ -71,7 +71,7 @@
 						<?php endif; ?>	
 					</td>
 					<td class="text-center">
-						<a href="#" class="btn btn-success btn-sm" title="Consulter ce service">
+						<a href="<?=$this->url('front_service_view_allusers', ['id' => $project['id']]);?>" class="btn btn-success btn-sm" title="Consulter ce service">
 					 		Consulter
 						</a>
 					</td>

@@ -314,6 +314,18 @@ class ServicesController extends Controller
 	}
 
 	/**
+	 * Permet de consulter un service pour les utilisateurs non connectés
+	 */
+	public function viewAllUsers($id)
+	{
+
+
+		$this->show('front/service_view_allusers');
+	}
+
+
+
+	/**
 	 * Afficher la liste des services pour les utilisateurs non connectés
 	 */
 	public function listAllUsers()
