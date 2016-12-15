@@ -1,0 +1,47 @@
+body{
+    background-color: #f2f2f3;
+    background-image: url("../img/fond-3.png");
+    background-position: center;
+    background-size: cover;
+}
+
+
+
+
+.content-site{
+    
+    background-color: #fff;
+    
+   
+   
+    
+    
+    border: 1px solid #d7d7d7;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding: 24px 30px 30px;  
+}
+
+.content-site .page-header {
+    background-color: rgba(61, 61, 61, 0.92);
+    border-bottom: 1px solid #eee;
+ 
+    padding: 5px 10px;
+    color: #FFF;
+    font-size: 18px;
+    margin: 5px 0 15px 0;
+   
+}
+
+.content-site   .page-header h1 {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.btn-success {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #468847;
+}

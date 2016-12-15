@@ -2,6 +2,8 @@
 
 <?php $this->start('main_content') ?>
 
+<div class="content-site">
+
 	<div class="page-header">
 		<h1>Consultation d'un service</h1>
 	</div>
@@ -47,9 +49,13 @@
 	</div>
 
 	<br>
-	<div class="col-md-3 col-md-offset-9">
+    
+    <div class="row">
+	<div class="col-md-12 text-right">
 		<a href="<?=$this->url('front_service_list_allusers');?>" class="btn btn-info" title="Ajouter un nouveau service">Retour liste</a>
 	</div>
+        </div>
 
+</div>
 
 <?php $this->stop('main_content') ?>
