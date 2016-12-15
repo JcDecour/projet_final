@@ -35,7 +35,7 @@
 		    	<th>Société</th>
 		    	<th>Prix HT</th>
 		    	<th>TVA %</th>
-		    	<th>Prix TTC (€)</th>
+		    	<th class="text-center">Prix TTC (€)</th>
 		    </thead>
 		 
 			<tbody>
@@ -53,9 +53,9 @@
 						  		<td><?=$data['id'] ?></td>
 						  		<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $data['created_at'])->format('d/m/Y');?></td>
 						  		<td><?=$data['company_name'] ?></td>
-						  		<td><?=$data['ht_amount'] ?></td>
+						  		<td><?=number_format($data['ht_amount'], 2, ',', ' ') ?></td>
 						  		<td><?=$data['tva_amount'] ?></td>
-						  		<td class="text-right"><?=$data['ttc_amount'] ?></td>
+						  		<td class="text-right"><?=number_format($data['ttc_amount'], 2, ',', ' ') ?></td>
 						  	</tr>
 
 							<?php $cpt++;?>
@@ -84,15 +84,15 @@
 	<?php endforeach; ?>
 
 	<div class="row" >
-		<div class="col-md-9"></div>
+		<div class="col-md-8"></div>
 		<div class="col-md-2 ">
 			<strong>Total TTC :</strong>
 		</div>
-		<div class="col-md-1 text-right "><span id="totalResult">0.00</span></div>
+		<div class="col-md-2 text-right "><span id="totalResult">0.00</span></div>
 	</div>
 	
 	<div class="row">
-		<div class="col-md-3 col-md-offset-9">
+		<div class="col-md-4 col-md-offset-8">
 			<button type="submit" class="btn btn-primary btn-block">Accepter</button>
 		</div>
 	</div>
@@ -115,7 +115,7 @@ $(document).ready(function() {
 
 			});
 	
-		 	$('#totalResult').html( total );
+		 	$('#totalResult').html(new Intl.NumberFormat("fr-FR",   {style: "currency", currency: "EUR"}).format(total));
 
 		});
 
