@@ -318,9 +318,13 @@ class ServicesController extends Controller
 	 */
 	public function viewAllUsers($id)
 	{
+		$projectModel = new ProjectModel();
+		$project = $projectModel->find($id);
 
 
-		$this->show('front/service_view_allusers');
+
+
+		$this->show('front/service_view_allusers', ['projet' => $project]);
 	}
 
 
