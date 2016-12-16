@@ -22,6 +22,8 @@
 <!-- on utilise un compteur pour gérer l'absence de devis pour un service -->
 	<?php $cpt = 0;?>
 
+<form method="POST">
+
 	<?php foreach($projectsSubSector as $projectSubSector): ?>
 	<div class="row">
 		<div class="panel panel-primary">
@@ -50,7 +52,7 @@
 
 						  	<tr>
 						  		<td>
-						  			<input type="checkbox" name="choice" value="<?=$data['ttc_amount'] ?>">
+						  			<input id="<?=$data['id'] ?>" type="checkbox" name="choice" value="<?=$data['ttc_amount'] ?>">
 						  		</td>
 						  		<td><?=$data['id'] ?></td>
 						  		<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $data['created_at'])->format('d/m/Y');?></td>
@@ -98,6 +100,8 @@
 			<button type="submit" class="btn btn-primary btn-block">Accepter</button>
 		</div>
 	</div>
+	<div id="inputHidden"></div>
+</form>
 
 </div>
 
@@ -113,9 +117,15 @@ $(document).ready(function() {
 
 			var total= 0;
 
+			$('#inputHidden').empty();
+
 			$('input[type=checkbox]:checked').each(function() {
 
 				total += parseFloat($(this).val());
+
+				var idCheckbox = $(this).attr('id');
+
+				$('#inputHidden').append('<input type="hidden" name="acceptedDevis[]" value="'+idCheckbox +'">');
 
 			});
 	

@@ -10,14 +10,13 @@
 
 	<?php if(isset($errorConsult) && $errorConsult): ?>
 		<div class="row">
-			<div class="col-md-6">Pour consulter vos offres veuillez compléter votre profil</div>
-			<div class="col-md-6">
-				<a href="<?=$this->url('front_customer_signin');?>" class="btn btn-danger" title="Compléter votre profil">Compléter mon profil</a>
+			<div class="col-md-12 text-right">
+				<a href="<?=$this->url('front_customer_signin');?>" title="Compléter votre profil">Veuillez compléter votre profil pour consulter les devis</a>
 			</div>
 		</div>
-	
+	<?php endif; ?>
 
-	<?php elseif(!empty($projects) && isset($errorConsult)): ?>	
+	<?php if(!empty($projects)): ?>	
 	<table class="table table-bordered table-responsive">
 
 		<thead>
@@ -60,6 +59,7 @@
 			<?php endforeach; ?>
 		</tbody>
 	</table>
+
 	<?php else: ?>
 		<p>Vous n'avez aucun service encours</p>
 	<?php endif; ?>

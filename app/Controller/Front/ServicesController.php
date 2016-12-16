@@ -415,6 +415,7 @@ class ServicesController extends Controller
 		$customer = $this->getUser();
 		// On instancie le model pour communiquer avec la BDD
 		$projectModel = new ProjectModel();
+		$projectSubsectorModel = new ProjectSubsectorModel();
 
 		//On récupère la liste des projets correspondant au client connecté
 		$projects = $projectModel->findServiceById($customer['id']);
@@ -478,6 +479,12 @@ class ServicesController extends Controller
 		else {
 
 			$datas =[];
+			$post =[];
+
+			if (!empty($_POST)) {
+				
+				$post = array_map('trim', array_map('strip_tags', $_POST));
+			}
 
 			// On récupère les données du projet
 			$project = $projectModel->find($id);
@@ -485,11 +492,22 @@ class ServicesController extends Controller
 			// On récupère les données du client 
 			$customer = $customerModel->find($project['id_customer']);
 
+			/** On vérifie si son profil est complet pour pouvoir consulter les offres de devis */
+
 			if (empty($customer['lastname'])) {
 				
 				$errorConsult = true;
 
-				$this->show('front/list_services', ['errorConsult' => $errorConsult]);
+				$projects = $projectModel->findServiceById($customer['id']);
+
+				$data = [
+
+				'projects' => $projects,
+				'errorConsult' => $errorConsult,
+
+				];
+
+				$this->show('front/list_services', $data);
 				
 			}
 
@@ -511,6 +529,7 @@ class ServicesController extends Controller
 				'project' => $project,
 				'projectsSubSector' => $projectsSubSector,
 				'datasDevis' => $datasDevis,
+
 			];
 			$this->show('front/view_service', $data);
 		}
