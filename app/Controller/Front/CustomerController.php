@@ -129,24 +129,33 @@ class CustomerController extends Controller
 				$formErrors['password'] = 'Le mot de passe doit comporter entre 8 et 20 caractères';
 			}
 
-			if(!v::notEmpty()->digit()->length(10,10)->validate($post['fixed_phone'])){
-				$formErrors['fixed_phone'] = 'Le téléphone fixe est invalide';
+			if(!empty($post['fixed_phone'])){
+				if(!v::notEmpty()->digit()->length(10,10)->validate($post['fixed_phone'])){
+					$formErrors['fixed_phone'] = 'Le téléphone fixe est invalide';
+				}
 			}
 
-			if(!v::notEmpty()->digit()->length(10,10)->validate($post['mobile_phone'])){
-				$formErrors['mobile_phone'] = 'Le téléphone mobile est invalide';
-			}
+			if(!empty($post['mobile_phone'])){
+				if(!v::notEmpty()->digit()->length(10,10)->validate($post['mobile_phone'])){
+					$formErrors['mobile_phone'] = 'Le téléphone mobile est invalide';
+				}
+			}	
 
-			if(!v::notEmpty()->length(8, 80)->validate($post['street'])){
-				$formErrors['street'] = 'L\'adresse doit comporter entre 8 et 80 caractères';
-			}
+			if(!empty($post['street'])){
+				if(!v::notEmpty()->length(8, 80)->validate($post['street'])){
+					$formErrors['street'] = 'L\'adresse doit comporter entre 8 et 80 caractères';
+				}
+			}	
 
-			if(!v::notEmpty()->digit()->length(5,5)->validate($post['zipcode'])){
-				$formErrors['zipcode'] = 'Le code postal est invalide';
+			if(!empty($post['zipcode'])){
+				if(!v::notEmpty()->digit()->length(5,5)->validate($post['zipcode'])){
+					$formErrors['zipcode'] = 'Le code postal est invalide';
+				}
 			}
-
-			if(!v::notEmpty()->length(3, 80)->validate($post['city'])){
-				$formErrors['city'] = 'La ville doit comporter entre 3 et 80 caractères';
+			if(!empty($post['city'])){	
+				if(!v::notEmpty()->length(3, 80)->validate($post['city'])){
+					$formErrors['city'] = 'La ville doit comporter entre 3 et 80 caractères';
+				}
 			}
 
 			if(count($formErrors) === 0){
@@ -166,7 +175,7 @@ class CustomerController extends Controller
 				];
 				if($customerModel->insert($createCustomer)){
 					// si l'utilisateur a été bien été créer ont stock un message de reussite dans $_SESSION et on redirige vers la page de connexion
-					$_SESSION = [ 'formValid' => 'Votre profil a bien été créer, Veuillez vous connecter.'];
+					$_SESSION = [ 'formValid' => 'Votre profil a bien été créer, veuillez vous connecter.'];
 					$this->redirectToRoute('front_customer_login');
 					
 				}
@@ -186,8 +195,11 @@ class CustomerController extends Controller
 	{
 		$customerModel = new CustomerModel(); // appel de la fonction update
 		$formErrors =[];//stockage des erreurs
+		$refreshCustomer = new AuthentificationModel();
 		$passwordHash = new AuthentificationModel(); // appel de la fonction hashPassword
 		$customer = $this->getUser(); // récupère les info de l'utilisateur connecté
+		$updatePassword = false; // vrification si le champs password a été renseigné
+		$formValid = []; // contiendra mon message de réussite
 
 		if(!empty($_POST)){
 
@@ -195,24 +207,24 @@ class CustomerController extends Controller
 
 
 
-			if(!v::notEmpty()->length(3, 15)->validate($post['firstname'])){
-				$formErrors['firstname'] = 'Le prénom doit comporter entre 3 et 15 caractères';
+			if(!v::notEmpty()->length(3, 25)->validate($post['firstname'])){
+				$formErrors['firstname'] = 'Le prénom doit comporter entre 3 et 25 caractères';
 			}
 
-			if(!v::notEmpty()->length(3, 15)->validate($post['lastname'])){
-				$formErrors['lastname'] = 'Le prénom doit comporter entre 3 et 15 caractères';
+			if(!v::notEmpty()->length(3, 25)->validate($post['lastname'])){
+				$formErrors['lastname'] = 'Le prénom doit comporter entre 3 et 25 caractères';
 			}
 
 			if(!v::notEmpty()->email()->validate($post['email'])){
 				$formErrors['email'] = 'L\'adresse email saisie est invalide';
 			}
 
-			if($customerModel->emailExists($post['email'])){
-				$formErrors['email'] = 'L\'adresse email est déjà utilisée';
-			}
+			if(!empty($post['password'])){
+				$updatePassword = true;
 
-			if(!v::notEmpty()->length(8,20)->validate($post['password'])){
-				$formErrors['password'] = 'Le mot de passe doit comporter entre 8 et 20 caractères';
+				if(!v::stringType()->length(8,20)->validate($post['password'])){
+					$formErrors['password'] = 'Le mot de passe doit comporter entre 8 et 20 caractères';
+				}
 			}
 
 			if(!v::notEmpty()->digit()->length(10,10)->validate($post['fixed_phone'])){
@@ -241,28 +253,38 @@ class CustomerController extends Controller
 					'firstname'  => $post['firstname'],
 					'lastname'  => $post['lastname'],
 					'email'  => $post['email'],
-					'password'  => $passwordHash->hashPassword($post['password']),
 					'fixed_phone' => $post['fixed_phone'],
 					'mobile_phone' => $post['mobile_phone'],
 					'street' => $post['street'],
 					'zipcode' => $post['zipcode'],
 					'city'	=> $post['city'],
 					'updated_at' => date('Y-m-d H:i:s'),
-					// 'updated_at' => date('Y-m-d H:i:s'), envoie du'une date de mise a jour 
 				];
-				if($customerModel->update($updateCustomer, $customer['id'])){
-				
+
+				if($updatePassword){
+					$updateCustomer['password'] = $passwordHash->hashPassword($post['password']) ;
+				}
+
+				$customer = $customerModel->update($updateCustomer, $customer['id']);
+				if($customer){
+					//si ok message de réussite
+					$formValid = [ 'valid' => 'Votre Profil a bien été modifier'];	
+					// je refresh mes info de session avec les info stocke en bdd
+					unset($_SESSION['user']);
+					$_SESSION['user'] = $customer;
+
+
+
 				}
 		
 			}
 			else{
 				$formErrors['global'] = 'Une erreur d\'enregistrement s\'est produite.';
-				
 			}
 		
 		}
 		
-		$this->show('front/customer_profil', ['customer' => $customer], ['formErrors' => $formErrors]);
+		$this->show('front/customer_profil', ['customer' => $customer, 'formErrors' => $formErrors, 'formValid' => $formValid]);
 	}
 
 }

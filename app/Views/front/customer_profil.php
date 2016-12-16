@@ -3,17 +3,19 @@
 <div class="page-header">
   <h1 style="text-align: center;">Mon profil</h1>
 </div>
-<?php var_dump($customer); ?>
-<?php var_dump($formErrors); ?>
 <div class="forms">
   <form method="post" class="form-horizontal">
     <p class="text-required-filed">
     </p>
     <fieldset>
-      <?php if(isset($formErrors['global'])): ?>
-      <div class="alert alert-danger">
-        <?=$formErrors['global'];?>
-      </div>
+      <?php if(isset($formValid['valid'])): ?>
+        <div class="alert alert-info" style="text-align:center;">
+          <?=$formValid['valid'];?>
+        </div>
+      <?php elseif(isset($formErrors['global'])): ?>
+        <div class="alert alert-danger" style="text-align:center;">
+          <?=$formErrors['global'];?>
+        </div>
       <?php endif; ?>
       <!-- Select civilité -->
       <div class="form-group">
@@ -155,9 +157,9 @@
       </div>
       <!-- Button -->
       <div class="form-group">
-        <label class="col-md-4 control-label" for="signin"></label>
+        <label class="col-md-4 control-label" for="edit"></label>
         <div class="col-md-4">
-          <button id="signin" name="signin" class="btn btn-info">Inscription</button>
+          <button id="edit" name="edit" class="btn btn-info">Modifier le profil</button>
         </div>
       </div>
     </fieldset>
