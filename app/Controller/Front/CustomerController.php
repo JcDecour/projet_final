@@ -161,6 +161,7 @@ class CustomerController extends Controller
 			if(count($formErrors) === 0){
 
 				$createCustomer = [
+					'civilite' => $post['civilite'],
 					'firstname'  => $post['firstname'],
 					'lastname'  => $post['lastname'],
 					'email'  => $post['email'],
@@ -190,15 +191,17 @@ class CustomerController extends Controller
 
 		$this->show('front/customer_signin', ['formErrors'=>$formErrors]);
 	}
-
+	/*
+	*mettra a jour les infos de l'utilisateur connecté
+	*
+	*/
 	public function edit()
 	{
 		$customerModel = new CustomerModel(); // appel de la fonction update
 		$formErrors =[];//stockage des erreurs
-		$refreshCustomer = new AuthentificationModel();
 		$passwordHash = new AuthentificationModel(); // appel de la fonction hashPassword
 		$customer = $this->getUser(); // récupère les info de l'utilisateur connecté
-		$updatePassword = false; // vrification si le champs password a été renseigné
+		$updatePassword = false; // false si le champs password n'a pas été renseigné true si oui
 		$formValid = []; // contiendra mon message de réussite
 
 		if(!empty($_POST)){
@@ -212,7 +215,7 @@ class CustomerController extends Controller
 			}
 
 			if(!v::notEmpty()->length(3, 25)->validate($post['lastname'])){
-				$formErrors['lastname'] = 'Le prénom doit comporter entre 3 et 25 caractères';
+				$formErrors['lastname'] = 'Le nom doit comporter entre 3 et 25 caractères';
 			}
 
 			if(!v::notEmpty()->email()->validate($post['email'])){
@@ -250,6 +253,7 @@ class CustomerController extends Controller
 			if(count($formErrors) === 0){
 
 				$updateCustomer = [
+					'civilite' => $post['civilite'],
 					'firstname'  => $post['firstname'],
 					'lastname'  => $post['lastname'],
 					'email'  => $post['email'],
@@ -268,7 +272,7 @@ class CustomerController extends Controller
 				$customer = $customerModel->update($updateCustomer, $customer['id']);
 				if($customer){
 					//si ok message de réussite
-					$formValid = [ 'valid' => 'Votre Profil a bien été modifier'];	
+					$formValid = [ 'valid' => 'Votre profil a bien été modifier'];	
 					// je refresh mes info de session avec les info stocke en bdd
 					unset($_SESSION['user']);
 					$_SESSION['user'] = $customer;
@@ -279,7 +283,7 @@ class CustomerController extends Controller
 		
 			}
 			else{
-				$formErrors['global'] = 'Une erreur d\'enregistrement s\'est produite.';
+				$formErrors['global'] = 'Erreur lors de la mise a jour du profil.';
 			}
 		
 		}

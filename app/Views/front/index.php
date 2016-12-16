@@ -2,7 +2,6 @@
 
 <?php $this->start('header_content') ?>
     <header id="myCarousel" class="carousel slide">
-
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -13,6 +12,7 @@
        
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
+            <a href="" class="test"> C'est parti</a>
             <div class="item active">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/bull.jpg') ?>');"></div>
                 <div class="carousel-caption">

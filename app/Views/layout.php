@@ -74,7 +74,7 @@
                                 </li>
                                 <li>
                                     <?php if($w_user): ?>
-                                        <a href="">Mon Profil</a>
+                                        <a href="<?=$this->url('front_provider_profil') ?>">Mon Profil</a>
                                     <?php else: ?>
                                          <a href="<?= $this->url('front_provider_signin') ?>">S'inscrire</a>
                                     <?php endif; ?>

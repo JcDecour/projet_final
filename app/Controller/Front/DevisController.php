@@ -25,11 +25,16 @@ class DevisController extends Controller
 
 		$zip_code = null;
 		$sub_sector = null;
+		//Recherche de tous les projets en détail non terminés et non extimés par le professionnel
 		$projectModel = new ProjectModel();
-
 		$projects = $projectModel->findAllDetailWithoutClosed($zip_code, $sub_sector);
 
-		$this->show('front/devis_list', ['projects' => $projects]);	
+		//Recherche des devis établis par le professionnel
+		$devisModel = new DevisModel();
+		$provider = $this->getUser();
+		$devis = $devisModel->findAllWithDetailsByProviderId($provider['id']);
+
+		$this->show('front/devis_list', ['projects' => $projects, 'listdevis' => $devis]);	
 	}
 
 	/**
@@ -44,12 +49,15 @@ class DevisController extends Controller
 		
 		$projectSubsectorModel = new ProjectSubsectorModel(); 
 		$devisModel = new DevisModel();
+		$projectModel = new ProjectModel();
 
 		//Recherche du projet, de la catégorie et sous catégorie rattaché
 		$projectSubsector = $projectSubsectorModel->findWithProjectAndSectorAndSubsector($id);
 
-		//récupératon du nombre de devis pour cette sous catégorie de projet
-		$nbDevis = $projectSubsector['nb_devis'];
+		//Récupératon du nombre de devis pour cette sous catégorie de projet
+		$nbDevisProjectSubsector = $projectSubsector['ndDevisProjectSubSector'];
+		//Récupératon du nombre de devis pour cette sous catégorie de projet
+		$nbDevisProject = $projectSubsector['nb_devis'];
 
 		//Cas de la soumission du formulaire
 		//Soumission du formulaire
@@ -86,21 +94,24 @@ class DevisController extends Controller
 				$devis = $devisModel->insert($data);
 				if($devis){
 					//Mise a jour du compteur de devis pour la sous catégorie du projet concerné
-					var_dump(intval($nbDevis));
-					$data = [
-						'nb_devis'	=> (intval($nbDevis) + 1),
+					$dataProjectSubsector = [
+						'nb_devis'	=> ($nbDevisProjectSubsector + 1),
 					];
-					$projectSubsectorUpdate = $projectSubsectorModel->update($data, $id);
+					$projectSubsectorUpdate = $projectSubsectorModel->update($dataProjectSubsector, $id);
 					if($projectSubsectorUpdate){
-						$this->redirectToRoute('front_devis_list');
-					}
-					else{
-						$formErrors['global'] = 'Une erreur d\'enregistrement s\'est produite.';	
+						//Mise à jour du compteur de devis du projet
+						$dataProject = [
+							'nb_devis'	=> ($nbDevisProject + 1),
+						];
+						$projectUpdate = $projectModel->update($dataProject, $projectSubsectorUpdate['id_project']);
+						if($projectUpdate){
+							$this->redirectToRoute('front_devis_list');
+						}
 					}
 				}
-				else{
-					$formErrors['global'] = 'Une erreur d\'enregistrement s\'est produite.';
-				}
+
+				//Cas d'une erreur d'enregistrement
+				$formErrors['global'] = 'Une erreur d\'enregistrement s\'est produite.';
 			}
 
 		}
