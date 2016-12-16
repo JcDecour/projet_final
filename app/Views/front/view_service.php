@@ -123,15 +123,20 @@ $(document).ready(function() {
 
 				total += parseFloat($(this).val());
 
-				var idCheckbox = $(this).attr('id');
+				var idCheckbox = $(this).attr("id");
 
-				$('#inputHidden').append('<input type="hidden" name="acceptedDevis[]" value="'+idCheckbox +'">');
+
+
+				$('#inputHidden').append('<input type="hidden" name="acceptedDevis" value='+idCheckbox+'>');
+
 
 			});
 	
 		 	$('#totalResult').html(new Intl.NumberFormat("fr-FR",   {style: "currency", currency: "EUR"}).format(total));
 
 		});
+
+
 
 });
 

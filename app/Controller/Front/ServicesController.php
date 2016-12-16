@@ -485,6 +485,8 @@ class ServicesController extends Controller
 			if (!empty($_POST)) {
 				
 				$post = array_map('trim', array_map('strip_tags', $_POST));
+
+				var_dump($post);
 			}
 
 			// On récupère les données du projet
