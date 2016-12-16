@@ -3,11 +3,11 @@
 <?php $this->start('main_content') ?>
 <div class="content-site">
 	<div class="forms">
-		<div class="row">
-			<div class="page-header">
-				<h1>Description du service à modifier</h1>
-			</div>
+	
+		<div class="page-header">
+			<h1>Description du service à modifier</h1>
 		</div>
+		
 		<form method="post" class="form-horizontal" enctype="multipart/form-data">
 
 			<p class="text-required-filed">

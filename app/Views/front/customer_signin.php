@@ -2,11 +2,11 @@
 <?php $this->start('main_content') ?>
 
 <div class="forms">
-  <div class="row">
-      <div class="page-header">
-        <h1 style="text-align: center;">Inscription Particulier</h1>
-      </div>
-    </div>
+  
+  <div class="page-header">
+      <h1 style="text-align: center;">Inscription Particulier</h1>
+  </div>
+   
   <form method="post" class="form-horizontal">
     <p class="text-required-filed">
       <span class="obligatoire">*</span>

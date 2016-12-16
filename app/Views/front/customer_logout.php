@@ -4,12 +4,11 @@
 <div class="content-site">
 
 	<div class="forms">
-		<div class="row">
-			<div class="page-header">
-				<h1>>Déconnexion</h1>
-			</div>
+		
+		<div class="page-header">
+			<h1>Déconnexion</h1>
 		</div>
-
+		
 		<!-- Formulaire de déconnexion -->
 		<form method="post" class="form-horizontal">
 				

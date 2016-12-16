@@ -3,13 +3,9 @@
 
 <div class="content-site">
   <div class="forms">
-
-    <div class="row">
       <div class="page-header">
         <h1 style="text-align: center;">Mon profil</h1>
       </div>
-      </div>
-    </div>
 
     <form method="post" class="form-horizontal">
       <p class="text-required-filed">

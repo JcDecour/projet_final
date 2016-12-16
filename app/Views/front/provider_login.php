@@ -3,11 +3,11 @@
 <?php $this->start('main_content') ?>
 <div class="content-site">
 	<div class="forms">
-		<div class="row">
+	
 			<div class="page-header">
 				<h1>Connexion Professionnel</h1>
 			</div>
-		</div>
+		
 			<?php if(isset($_SESSION['formValid'])): ?>
 				<div class="alert alert-info" style="text-align: center;" role="alert">
 					<?=$_SESSION['formValid'];?>

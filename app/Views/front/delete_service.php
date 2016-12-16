@@ -2,8 +2,7 @@
 
 <?php $this->start('main_content') ?>
 <div class="content-site">	
-	<div class="forms">
-		
+	<div class="forms">	
 		<div class="page-header">
 			<h1>Supprimer un service</h1>
 		</div>

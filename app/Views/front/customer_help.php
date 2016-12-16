@@ -3,11 +3,11 @@
 <?php $this->start('main_content') ?>
 
 <div class="content-site">
-	<div class="row">
-		<div class="page-header">
-			<h1>>Un fonctionnement simple</h1>
-		</div>
+	
+	<div class="page-header">
+		<h1>>Un fonctionnement simple</h1>
 	</div>
+	
 
 	<ul>
 		<li>Vous décrivez votre demande de service avec un maximum de détails </li>
