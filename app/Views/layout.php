@@ -64,7 +64,7 @@
                     <?php if((!$w_user) || (isset($w_user['siret']))): ?>
 
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace professionel<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace professionnel<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="full-width.html">Comment ça marche ?</a>
