@@ -1,7 +1,7 @@
 <?php $this->layout('layout', ['title' => 'Connexion']); ?>
 
 <?php $this->start('main_content') ?>
-
+<div class="content-site">
 <div class="forms">
 	<div class="page-header">
 		<h1 class="text-center">Déconnexion</h1>
@@ -25,5 +25,5 @@
 		</div>
 	</form>
 </div>
-	
+</div>	
 <?php $this->stop('main_content') ?>

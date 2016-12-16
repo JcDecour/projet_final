@@ -3,8 +3,7 @@
 
 <?php $this->start('main_content') ?>
 
-
-
+<div class="content-site">
 	<div class="page-header">
 		<h1>Liste des offres de services des particuliers</h1>
 	</div>
@@ -64,6 +63,6 @@
 		<h1>Mes devis</h1>
 	</div>
 
-
+</div>
 
 <?php $this->stop('main_content') ?>

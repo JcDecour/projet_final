@@ -6,6 +6,8 @@
 
 <?php $this->start('main_content') ?>
 
+<div class="content-site">
+
 	<div class="page-header">
 		<h1>Liste des devis pour le service</h1>
 	</div>
@@ -96,6 +98,8 @@
 			<button type="submit" class="btn btn-primary btn-block">Accepter</button>
 		</div>
 	</div>
+
+</div>
 
 <?php $this->stop('main_content') ?>
 

@@ -1,9 +1,8 @@
 <?php $this->layout('layout', ['title' => 'Modification d\'un service']) ?>
 
 <?php $this->start('main_content') ?>
-	
+<div class="content-site">
 	<div class="forms">
-
 		<div class="page-header">
 			<h1>Description du service à modifier</h1>
 		</div>
@@ -120,13 +119,12 @@
 			<!-- Bouton de validation -->
 			<div class="form-group">
 				<div class="col-md-3 col-md-offset-9">
-					<button type="submit" class="btn btn-info btn-block">Valider</a>
+					<button type="submit" class="btn btn-info btn-block">Valider</button>
 				</div>
 			</div>
-
 		</form>
 	</div>
-
+</div>
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>

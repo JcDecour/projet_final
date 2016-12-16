@@ -468,6 +468,7 @@ class ServicesController extends Controller
 	{	
 		// On instancie les classes
 		$projectModel = new ProjectModel();
+		$customerModel = new CustomerModel();
 		$projectSubSectorModel = new ProjectSubSectorModel();
 		$devisModel = new DevisModel();
 
@@ -480,6 +481,17 @@ class ServicesController extends Controller
 
 			// On récupère les données du projet
 			$project = $projectModel->find($id);
+		
+			// On récupère les données du client 
+			$customer = $customerModel->find($project['id_customer']);
+
+			if (empty($customer['lastname'])) {
+				
+				$errorConsult = true;
+
+				$this->show('front/list_services', ['errorConsult' => $errorConsult]);
+				
+			}
 
 			// On récupère toutes les sous-catégories liées au projet
 			$projectsSubSector = $projectSubSectorModel->findAllProjectSubsectorById($project['id']);

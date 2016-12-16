@@ -1,14 +1,24 @@
 <?php $this->layout('layout', ['title' => 'Liste des services']); ?>
 
-
 <?php $this->start('main_content') ?>
+
+<div class="content-site">
 
 	<div class="page-header">
 		<h1>Liste des services</h1>
 	</div>
 
-	<?php if(!empty($projects)): ?>	
-	<table class="table table-striped table-responsive">
+	<?php if(isset($errorConsult) && $errorConsult): ?>
+		<div class="row">
+			<div class="col-md-6">Pour consulter vos offres veuillez compléter votre profil</div>
+			<div class="col-md-6">
+				<a href="<?=$this->url('front_customer_signin');?>" class="btn btn-danger" title="Compléter votre profil">Compléter mon profil</a>
+			</div>
+		</div>
+	
+
+	<?php elseif(!empty($projects) && isset($errorConsult)): ?>	
+	<table class="table table-bordered table-responsive">
 
 		<thead>
 			<tr>
@@ -56,5 +66,7 @@
 	<div>
 		<a href="<?=$this->url('front_service_add');?>" class="btn btn-info" title="Ajouter un nouveau service">Nouveau service</a>
 	</div>
+
+</div>
 
 <?php $this->stop('main_content') ?>
