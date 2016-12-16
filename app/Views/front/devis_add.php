@@ -8,6 +8,12 @@
 		<h1>Proposition de devis</h1>
 	</div>
 
+	<?php if(isset($formErrors['global'])): ?>
+		<div class="alert alert-danger">
+			<?=$formErrors['global'];?>
+		</div>
+	<?php endif; ?>
+
 	<!-- Code postal du lieu du service -->
 	<div class="row">
 		<label class="col-md-3 control-label text-right" for="zip_code">Code postal du lieu du service:</label>  
@@ -56,10 +62,14 @@
 			<div class="panel-body">
 
 				<div class="row">
-					<label class="col-md-12 control-label" for="zip_code">Informations complémentaires<span class="obligatoire">*</span></label>
+					<label class="col-md-12 control-label" for="description">Informations complémentaires</label>
 					<div class="col-md-12">
 						<textarea id="description" name="description" class="form-control input-md" placeholder="Toute précision, détail ou autre permettant de décrire au mieux votre offre de devis..."></textarea>
 					</div>
+					<!-- Gestion des erreurs -->
+					<?php if(isset($formErrors['description'])): ?>
+						<div class="error col-md-12"><?=$formErrors['description']?></div>
+					<?php endif; ?>
 				</div>
 			</div>
 
@@ -77,9 +87,17 @@
 					<tr>
 						<td>
 							<input id="designation" name="designation" class="form-control input-md" type="text" placeholder="Libellé">
+							<!-- Gestion des erreurs -->
+							<?php if(isset($formErrors['designation'])): ?>
+								<div class="error col-md-12"><?=$formErrors['designation']?></div>
+							<?php endif; ?>
 						</td>
 						<td>
 							<input id="ht_amount" name="ht_amount" class="form-control input-md text-right" type="text" placeholder="0.00">
+							<!-- Gestion des erreurs -->
+							<?php if(isset($formErrors['ht_amount'])): ?>
+								<div class="error col-md-12"><?=$formErrors['ht_amount']?></div>
+							<?php endif; ?>
 						</td>
 						<td>
 							<select id="tva_amount" name="tva_amount" class="form-control">
@@ -110,9 +128,7 @@
 					<button type="submit" class="btn btn-success btn-block">Valider</a>
 				</div>
 			</div>
-		</div>
-
-		<input id="<?=$projectSubsector['id'];?>" name="<?=$projectSubsector['id'];?>" type="hidden" value=""> 
+		</div> 
 
 	</form>
 
