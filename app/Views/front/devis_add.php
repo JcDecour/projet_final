@@ -49,13 +49,14 @@
 	<!-- ########### -->
 
 	<br>
-	<form method="post">
+	<form method="post" class="forms">
 		<div class="panel panel-default">
 		  <!-- Default panel contents -->
 		  <div class="panel-heading">Devis</div>
 			<div class="panel-body">
+
 				<div class="row">
-					<label class="col-md-12 control-label" for="zip_code">Informations complémentaires</label>
+					<label class="col-md-12 control-label" for="zip_code">Informations complémentaires<span class="obligatoire">*</span></label>
 					<div class="col-md-12">
 						<textarea id="description" name="description" class="form-control input-md" placeholder="Toute précision, détail ou autre permettant de décrire au mieux votre offre de devis..."></textarea>
 					</div>
@@ -65,8 +66,8 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th>Désignation</th>
-						<th>Montant HT (€)</th>
+						<th>Désignation<span class="obligatoire">*</span></th>
+						<th>Montant HT (€)<span class="obligatoire">*</span></th>
 						<th>Taux de TVA</th>
 						<th>Montant TTC (€)</th>
 					</tr>
@@ -96,6 +97,11 @@
 			</table>
 
 		</div>
+
+		<p class="text-required-filed">
+			<span class="obligatoire">*</span>
+			Champs obligatoires
+		</p>
 		
 		<!-- Bouton de validation -->
 		<div class="row">

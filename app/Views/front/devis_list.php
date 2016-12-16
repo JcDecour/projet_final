@@ -4,6 +4,7 @@
 <?php $this->start('main_content') ?>
 
 <div class="content-site">
+
 	<div class="page-header">
 		<h1>Liste des offres de services des particuliers</h1>
 	</div>
@@ -60,7 +61,7 @@
 	<!-- ######################################################## -->
 
 	<div class="page-header">
-		<h1>Mes devis</h1>
+		<h1>Mes devis proposés</h1>
 	</div>
 
 </div>

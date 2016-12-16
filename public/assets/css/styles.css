@@ -83,6 +83,12 @@ p.text-required-filed{
     font-size: 12px;
 }
 
+#ttc_amount{
+    font-weight: bold;
+    color: green;
+    margin-top: 8px;
+}
+
 /*Tableaux*/
 
 

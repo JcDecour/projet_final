@@ -3,6 +3,7 @@ namespace Model;
 
 use \W\Model\ConnectionModel;
 use \W\Model\UsersModel;
+use \W\Security\AuthentificationModel;
 
 class CustomerModel extends \W\Model\Model
 {
