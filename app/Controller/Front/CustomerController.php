@@ -212,7 +212,7 @@ class CustomerController extends Controller
 			}
 
 			if(!v::notEmpty()->length(3, 25)->validate($post['lastname'])){
-				$formErrors['lastname'] = 'Le prénom doit comporter entre 3 et 25 caractères';
+				$formErrors['lastname'] = 'Le nom doit comporter entre 3 et 25 caractères';
 			}
 
 			if(!v::notEmpty()->email()->validate($post['email'])){
