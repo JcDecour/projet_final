@@ -14,7 +14,7 @@ class ProjectSubsectorModel extends \W\Model\Model
 			return false;
 		}
 
-		$sql = 'SELECT p.*, subsector.title as titlesubsector, sector.title as titlesector FROM ' . $this->table . '
+		$sql = 'SELECT p.*, subsector.title as titlesubsector, sector.title as titlesector, ' .$this->table. '.nb_devis as ndDevisProjectSubSector FROM ' . $this->table . '
 				INNER JOIN project as p ON p.id = ' . $this->table . '.id_project
 				INNER JOIN sub_sector as subsector ON subsector.id = ' . $this->table . '.id_subsector
 				INNER JOIN sector as sector ON sector.id = subsector.id_sector

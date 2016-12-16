@@ -49,7 +49,7 @@ class DevisController extends Controller
 		$projectSubsector = $projectSubsectorModel->findWithProjectAndSectorAndSubsector($id);
 
 		//récupératon du nombre de devis pour cette sous catégorie de projet
-		$nbDevis = $projectSubsector['nb_devis'];
+		$nbDevis = $projectSubsector['ndDevisProjectSubSector'];
 
 		//Cas de la soumission du formulaire
 		//Soumission du formulaire
@@ -86,9 +86,8 @@ class DevisController extends Controller
 				$devis = $devisModel->insert($data);
 				if($devis){
 					//Mise a jour du compteur de devis pour la sous catégorie du projet concerné
-					var_dump(intval($nbDevis));
 					$data = [
-						'nb_devis'	=> (intval($nbDevis) + 1),
+						'nb_devis'	=> ($nbDevis + 1),
 					];
 					$projectSubsectorUpdate = $projectSubsectorModel->update($data, $id);
 					if($projectSubsectorUpdate){

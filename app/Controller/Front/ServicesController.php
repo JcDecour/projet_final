@@ -413,6 +413,7 @@ class ServicesController extends Controller
 
 		// On récupère les infos du client connecté
 		$customer = $this->getUser();
+	
 		// On instancie le model pour communiquer avec la BDD
 		$projectModel = new ProjectModel();
 
