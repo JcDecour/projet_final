@@ -96,5 +96,14 @@ p.text-required-filed{
 .badge-success {
   background-color: #468847;
 }
-
+ .test {
+    z-index: 9999;
+    text-align: center;
+    height: 50px;
+    width: 150px;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(255,255,255,0.8);
+    position: absolute;
+ }
 /*Views*/
