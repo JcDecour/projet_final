@@ -44,12 +44,15 @@ class DevisController extends Controller
 		
 		$projectSubsectorModel = new ProjectSubsectorModel(); 
 		$devisModel = new DevisModel();
+		$projectModel = new ProjectModel();
 
 		//Recherche du projet, de la catégorie et sous catégorie rattaché
 		$projectSubsector = $projectSubsectorModel->findWithProjectAndSectorAndSubsector($id);
 
-		//récupératon du nombre de devis pour cette sous catégorie de projet
-		$nbDevis = $projectSubsector['ndDevisProjectSubSector'];
+		//Récupératon du nombre de devis pour cette sous catégorie de projet
+		$nbDevisProjectSubsector = $projectSubsector['ndDevisProjectSubSector'];
+		//Récupératon du nombre de devis pour cette sous catégorie de projet
+		$nbDevisProject = $projectSubsector['nb_devis'];
 
 		//Cas de la soumission du formulaire
 		//Soumission du formulaire
@@ -86,20 +89,24 @@ class DevisController extends Controller
 				$devis = $devisModel->insert($data);
 				if($devis){
 					//Mise a jour du compteur de devis pour la sous catégorie du projet concerné
-					$data = [
-						'nb_devis'	=> ($nbDevis + 1),
+					$dataProjectSubsector = [
+						'nb_devis'	=> ($nbDevisProjectSubsector + 1),
 					];
-					$projectSubsectorUpdate = $projectSubsectorModel->update($data, $id);
+					$projectSubsectorUpdate = $projectSubsectorModel->update($dataProjectSubsector, $id);
 					if($projectSubsectorUpdate){
-						$this->redirectToRoute('front_devis_list');
-					}
-					else{
-						$formErrors['global'] = 'Une erreur d\'enregistrement s\'est produite.';	
+						//Mise à jour du compteur de devis du projet
+						$dataProject = [
+							'nb_devis'	=> ($nbDevisProject + 1),
+						];
+						$projectUpdate = $projectModel->update($dataProject, $projectSubsectorUpdate['id_project']);
+						if($projectUpdate){
+							$this->redirectToRoute('front_devis_list');
+						}
 					}
 				}
-				else{
-					$formErrors['global'] = 'Une erreur d\'enregistrement s\'est produite.';
-				}
+
+				//Cas d'une erreur d'enregistrement
+				$formErrors['global'] = 'Une erreur d\'enregistrement s\'est produite.';
 			}
 
 		}

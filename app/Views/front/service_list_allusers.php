@@ -55,7 +55,7 @@
 					<th>Service</th>
 					<th>Créé le</th>
 					<th>Prévu le</th>
-					<th class="text-center">Offres</th>
+					<th class="text-center">Devis proposés</th>
 					<th class="text-center">Action</th>
 				</tr>
 			</thead>
