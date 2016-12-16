@@ -69,11 +69,12 @@ class ProjectModel extends \W\Model\Model
 	 */
 	public function findAllDetailWithoutClosed($zip_code = null, $sub_sector = null)
 	{
-		$sql = 'SELECT p.*, subsector.title as titlesubsector, ps.id as idprojetsubsector, ps.nb_devis as nbdevisprojetsubsector, sector.title as titlesector FROM ' . $this->table . ' as p 
+		$sql = 'SELECT p.*, subsector.title as titlesubsector, ps.id as idprojetsubsector, ps.nb_devis as nbdevisprojetsubsector, sector.title as titlesector, devis.designation as designation FROM ' . $this->table . ' as p 
 				INNER JOIN project_subsector as ps ON p.id = ps.id_project
 				INNER JOIN sub_sector as subsector ON subsector.id = ps.id_subsector
 				INNER JOIN sector as sector ON sector.id = subsector.id_sector
-				WHERE closed = 0 ';
+				LEFT JOIN devis as devis ON (devis.id_project_subsector = ps.id AND devis.id_provider = 1)
+				WHERE closed = 0';
 
 		if(!empty($zip_code) && !ctype_digit($zip_code)){
 			return false;

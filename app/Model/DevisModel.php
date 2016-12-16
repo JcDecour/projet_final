@@ -7,7 +7,7 @@ use \Model\ProviderModel;
 class DevisModel extends \W\Model\Model
 {	
 	/**
-	 * Récupère toutes les lignes de la table à partir d'un IdProject
+	 * Récupère toutes les lignes de la table à partir d'un id de Project
 	 * @param $id integer Identifiant
 	 * @return mixed Les données sous forme de tableau associatif triées sur le prix hors taxe
 	 */
@@ -20,6 +20,30 @@ class DevisModel extends \W\Model\Model
 		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_project = :idProject ORDER BY ht_amount';
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':idProject', $id);
+		$sth->execute();
+
+		return $sth->fetchAll();
+	}
+
+	/**
+	 * Récupère toutes les lignes de la table à partir d'un id de Project
+	 * @param $id integer Identifiant
+	 * @return mixed Les données sous forme de tableau associatif triées sur le prix hors taxe
+	 */
+	public function findAllWithDetailsByProviderId($idProvider)
+	{
+		if (!is_numeric($idProvider)){
+			return false;
+		}
+
+		$sql = 'SELECT devis.*, project.zip_code as projectZipCode, project.closed as projectClosed, project.title as projectTitle, project.predicted_date as projectPredicted, ps.accepted as accepted, sector.title as titleSector, subsector.title as titleSubsector FROM ' . $this->table . ' as devis 
+			INNER JOIN project_subsector as ps ON ps.id = devis.id_project_subsector
+			INNER JOIN sub_sector as subsector ON subsector.id = ps.id_subsector
+			INNER JOIN sector as sector ON sector.id = subsector.id_sector
+			INNER JOIN project as project ON project.id = subsector.id_sector
+			WHERE id_provider = :idProvider ORDER BY created_at DESC';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':idProvider', $idProvider);
 		$sth->execute();
 
 		return $sth->fetchAll();

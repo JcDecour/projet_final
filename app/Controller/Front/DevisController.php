@@ -25,11 +25,16 @@ class DevisController extends Controller
 
 		$zip_code = null;
 		$sub_sector = null;
+		//Recherche de tous les projets en détail non terminés et non extimés par le professionnel
 		$projectModel = new ProjectModel();
-
 		$projects = $projectModel->findAllDetailWithoutClosed($zip_code, $sub_sector);
 
-		$this->show('front/devis_list', ['projects' => $projects]);	
+		//Recherche des devis établis par le professionnel
+		$devisModel = new DevisModel();
+		$provider = $this->getUser();
+		$devis = $devisModel->findAllWithDetailsByProviderId($provider['id']);
+
+		$this->show('front/devis_list', ['projects' => $projects, 'listdevis' => $devis]);	
 	}
 
 	/**
