@@ -3,6 +3,8 @@
 <div class="page-header">
   <h1 style="text-align: center;">Mon profil</h1>
 </div>
+<?php var_dump($customer); ?>
+<?php var_dump($formErrors); ?>
 <div class="forms">
   <form method="post" class="form-horizontal">
     <p class="text-required-filed">
@@ -13,13 +15,12 @@
         <?=$formErrors['global'];?>
       </div>
       <?php endif; ?>
-      <?php var_dump($customer);?>
       <!-- Select civilité -->
       <div class="form-group">
         <label class="col-md-4 control-label" for="civilité">Civilité :
         </label>
         <div class="col-md-2">
-          <select id="civilité" name="civilité" class="form-control" required="">
+          <select id="civilité" name="civilité" class="form-control">
             <option value="" selected disabled><?=isset($customer['civilité']) ? $customer['civilité'] : '';?></option>
             <option value="Monsieur">Mr</option>
             <option value="Madame">Mme</option>
@@ -63,7 +64,7 @@
           <span class="obligatoire">*</span>
         </label>
         <div class="col-md-4">
-          <input id="email" name="email" type="email" class="form-control input-md">
+          <input id="email" name="email" type="email" class="form-control input-md" value="<?=isset($customer['email']) ? $customer['email'] : '';?>">
           
         </div>
         <!-- Gestion des erreurs -->
@@ -89,7 +90,7 @@
         <label class="col-md-4 control-label" for="fixed_phone">Téléphone fixe:
         </label>
         <div class="col-md-4">
-          <input id="fixed_phone" name="fixed_phone" type="text" class="form-control input-md">
+          <input id="fixed_phone" name="fixed_phone" type="text" class="form-control input-md" value="<?=isset($customer['fixed_phone']) ? $customer['fixed_phone'] : '';?>">
           
         </div>
         <!-- Gestion des erreurs -->
@@ -102,7 +103,7 @@
         <label class="col-md-4 control-label" for="mobile_phone">Téléphone mobile:
         </label>
         <div class="col-md-4">
-          <input id="mobile_phone" name="mobile_phone" type="text"  class="form-control input-md">
+          <input id="mobile_phone" name="mobile_phone" type="text"  class="form-control input-md" value="<?=isset($customer['mobile_phone']) ? $customer['mobile_phone'] : '';?>">
           
         </div>
         <!-- Gestion des erreurs -->
@@ -116,7 +117,7 @@
           <span class="obligatoire">*</span>
         </label>
         <div class="col-md-4">
-          <input id="street" name="street" type="text" placeholder="Rue de la paix" class="form-control input-md">
+          <input id="street" name="street" type="text" placeholder="Rue de la paix" class="form-control input-md" value="<?=isset($customer['street']) ? $customer['street'] : '';?>">
           
         </div>
         <!-- Gestion des erreurs -->
@@ -130,7 +131,7 @@
           <span class="obligatoire">*</span>
         </label>
         <div class="col-md-2">
-          <input id="zipcode" name="zipcode" type="text" placeholder="75000" class="form-control input-md">
+          <input id="zipcode" name="zipcode" type="text" placeholder="75000" class="form-control input-md" value="<?=isset($customer['zipcode']) ? $customer['zipcode'] : '';?>">
           
         </div>
         <!-- Gestion des erreurs -->
@@ -144,7 +145,7 @@
           <span class="obligatoire">*</span>
         </label>
         <div class="col-md-4">
-          <input id="city" name="city" type="text" placeholder="Paris" class="form-control input-md">
+          <input id="city" name="city" type="text" placeholder="Paris" class="form-control input-md" value="<?=isset($customer['city']) ? $customer['city'] : '';?>">
           
         </div>
         <!-- Gestion des erreurs -->

@@ -52,6 +52,7 @@ footer {
 
 .footer_links a, .footer_links p{
     color: #FFF;
+    font-size: 1vw;
 }
 
 #update_footer {
