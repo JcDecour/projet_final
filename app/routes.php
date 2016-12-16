@@ -24,6 +24,7 @@ $front_r = array(
 	// Routes Profesionnels
 	['GET|POST', '/provider/signin', 'Provider#signin', 'front_provider_signin'],
 	['GET|POST', '/provider/login', 'Provider#login', 'front_provider_login'],
+	['GET|POST', '/provider/profil', 'Provider#edit', 'front_provider_profil'],
 
 	//Routes devis
 	['GET|POST', '/devis/add/[i:id]', 'Devis#add', 'front_devis_add'],

@@ -25,8 +25,8 @@
           <label class="col-md-4 control-label" for="civilité">Civilité :
           </label>
           <div class="col-md-2">
-            <select id="civilité" name="civilité" class="form-control">
-              <option value="" selected disabled><?=isset($customer['civilité']) ? $customer['civilité'] : '';?></option>
+            <select id="civilite" name="civilite" class="form-control">
+              <option value="" selected disabled><?=isset($customer['civilite']) ? $customer['civilite'] : '';?></option>
               <option value="Monsieur">Mr</option>
               <option value="Madame">Mme</option>
               <option value="Mademoiselle">Melle</option>
@@ -82,7 +82,6 @@
         <!-- Password input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="password">Mot de passe:
-            <span class="obligatoire">*</span>
           </label>
           <div class="col-md-4">
             <input id="password" name="password" type="password" class="form-control input-md">

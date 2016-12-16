@@ -5,7 +5,7 @@
 
 	<div class="content-site">
 	<div class="page-header">
-		<h1 style="text-align: center;">Inscription Professionnel</h1>
+		<h1 style="text-align: center;">Mon profil</h1>
 	</div>
 	<div class="forms">
 		<form method="post" class="form-horizontal">
@@ -16,8 +16,12 @@
 			<fieldset>
 			<!-- affichage erreurs générale -->
 			<?php if(isset($formErrors['global'])): ?>
-	      		<div class="alert alert-danger">
+	      		<div class="alert alert-danger" style="text-align:center;">
 	        		<?=$formErrors['global'];?>
+	      		</div>
+	      	<?php elseif(isset($formValid['valid'])): ?>
+	      		<div class="alert alert-info" style="text-align:center;">
+	      			<?=$formValid['valid'];?>
 	      		</div>
 	      	<?php endif; ?>
 
@@ -27,7 +31,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="company_name" name="company_name" type="text" placeholder="EURL Ptit travaux" class="form-control input-md">
+						<input id="company_name" name="company_name" type="text" value="<?=isset($provider['company_name']) ? $provider['company_name'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- Gestion des erreurs -->
 	        		<?php if(isset($formErrors['company_name'])): ?>
@@ -43,7 +47,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<textarea class="form-control" id="company_description" name="company_description" placeholder="Un petit mot sur l'entreprise"></textarea>
+						<textarea class="form-control" id="company_description" name="company_description"><?=isset($provider['company_description']) ? $provider['company_description'] : '';?></textarea>
 					</div>
 						<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['company_description'])): ?>
@@ -58,7 +62,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="siret" name="siret" type="text" placeholder="01234567891122" class="form-control input-md">
+						<input id="siret" name="siret" type="text" value="<?=isset($provider['siret']) ? $provider['siret'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['siret'])): ?>
@@ -72,8 +76,8 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-2">
-						<select id="civilite" name="civilite" class="form-control" required="">
-							<option value="" selected disabled>-- Sélection --</option>
+						<select id="civilite" name="civilite" class="form-control">
+							<option value="" selected disabled><?=isset($provider['civilite']) ? $provider['civilite'] : '';?></option>
 							<option value="Monsieur">Mr</option>
 							<option value="Madame">Mme</option>
 							<option value="Mademoiselle">Melle</option>
@@ -87,7 +91,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="firstname" name="firstname" type="text" placeholder="jean" class="form-control input-md">
+						<input id="firstname" name="firstname" type="text" value="<?=isset($provider['firstname']) ? $provider['firstname'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['firstname'])): ?>
@@ -102,7 +106,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="lastname" name="lastname" type="text" placeholder="Durandet" class="form-control input-md">
+						<input id="lastname" name="lastname" type="text" value="<?=isset($provider['lastname']) ? $provider['lastname'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['lastname'])): ?>
@@ -117,7 +121,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="email" name="email" type="text" placeholder="jean.durandet@gmail.com" class="form-control input-md">
+						<input id="email" name="email" type="text" value="<?=isset($provider['email']) ? $provider['email'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['email'])): ?>
@@ -128,7 +132,6 @@
 				<!-- password-->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="password">Mot de passe:
-						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
 						<input id="password" name="password" type="password" placeholder="" class="form-control input-md">
@@ -146,7 +149,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="fixed_phone" name="fixed_phone" type="text" placeholder="0123456789" class="form-control input-md">
+						<input id="fixed_phone" name="fixed_phone" type="text" value="<?=isset($provider['fixed_phone']) ? $provider['fixed_phone'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- gestion des erreurs -->
 					<?php if(isset($formErrors['fixed_phone'])): ?>
@@ -161,7 +164,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="mobile_phone" name="mobile_phone" type="text" placeholder="0612345678" class="form-control input-md">
+						<input id="mobile_phone" name="mobile_phone" type="text" value="<?=isset($provider['mobile_phone']) ? $provider['mobile_phone'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- gestion des erreurs -->
 					<?php if(isset($formErrors['mobile_phone'])): ?>
@@ -176,7 +179,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="street" name="street" type="text" placeholder="Rue de la paix" class="form-control input-md">
+						<input id="street" name="street" type="text" value="<?=isset($provider['street']) ? $provider['street'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- gestion des erreurs -->
 					<?php if(isset($formErrors['street'])): ?>
@@ -191,7 +194,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-2">
-						<input id="zipcode" name="zipcode" type="text" placeholder="75000" class="form-control input-md">
+						<input id="zipcode" name="zipcode" type="text" value="<?=isset($provider['zipcode']) ? $provider['zipcode'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- gestion des erreurs -->
 					<?php if(isset($formErrors['zipcode'])): ?>
@@ -206,7 +209,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="city" name="city" type="text" placeholder="Paris" class="form-control input-md">
+						<input id="city" name="city" type="text" value="<?=isset($provider['city']) ? $provider['city'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- gestion des erreurs -->	
 					<?php if(isset($formErrors['city'])): ?>
@@ -216,9 +219,9 @@
 
 				<!-- validation inscription -->
 				<div class="form-group">
-					<label class="col-md-4 control-label" for="signin"></label>
+					<label class="col-md-4 control-label" for="edit"></label>
 					<div class="col-md-4">
-						<button id="signin" name="signin" class="btn btn-info">Inscription</button>
+						<button id="edit" name="edit" class="btn btn-info">Modifier le profil</button>
 					</div>
 				</div>
 			</fieldset>
