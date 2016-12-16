@@ -3,10 +3,11 @@
 <?php $this->start('main_content') ?>
 <div class="content-site">	
 	<div class="forms">
-		<div class="page-header">
-			<h1 class="text-center">Supprimer un service</h1>
+		<div class="row">
+			<div class="page-header">
+				<h1>>Supprimer un service</h1>
+			</div>
 		</div>
-
 		<?php if(!empty($msg)): ?>
 			<?php if($msg === 'success'): ?>
 				<p class="alert alert-success">Service supprimé</p>

@@ -3,9 +3,10 @@
 <?php $this->start('main_content') ?>
 <div class="content-site">	
 	<div class="forms">
-
-		<div class="page-header">
-			<h1>Description du service à ajouter</h1>
+		<div class="row">
+			<div class="page-header">
+				<h1>Description du service à ajouter</h1>
+			</div>
 		</div>
 
 		<form method="post" class="form-horizontal" enctype="multipart/form-data">

@@ -4,12 +4,11 @@
 
 
 <div class="content-site">
-
- 
-	<div class="page-header">
-			<h1>Liste des offres de services des particuliers</h1>
+	<div class="row">
+		<div class="page-header">
+			<h1>>Liste des offres de services des particuliers</h1>
+		</div>
 	</div>
-
 	<!-- Formulaire de recherche -->
 	<div class="well well-sm">
 		<form method="get" class="form-inline">

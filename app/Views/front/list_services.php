@@ -3,11 +3,12 @@
 <?php $this->start('main_content') ?>
 
 <div class="content-site">
-
-	<div class="page-header">
-		<h1>Liste des services</h1>
-	</div>
-
+	<div class="row">
+			<div class="page-header">
+				<h1>>Liste des services</h1>
+			</div>
+		</div>
+		
 	<?php if(isset($errorConsult) && $errorConsult): ?>
 		<div class="row">
 			<div class="col-md-12 text-right">

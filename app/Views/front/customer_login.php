@@ -3,15 +3,20 @@
 <?php $this->start('main_content') ?>
 <div class="content-site">
 	<div class="forms">
-			<div class="page-header">
-				<h1 class="text-center">Connexion Particulier</h1>
+
+			<div class="row">
+				<div class="page-header">
+					<h1>>Connexion Particulier</h1>
+				</div>
 			</div>
+
 				<?php if(isset($_SESSION['formValid'])): ?>
 					<div class="alert alert-info" style="text-align: center;" role="alert">
 						<?=$_SESSION['formValid'];?>
 						<?php unset($_SESSION['formValid']);?>
 					</div>
 				<?php endif; ?>
+				
 			<form method="post" class="form-horizontal" enctype="multipart/form-data">
 				
 				<!-- Message de confirmation si inscription ok -->

@@ -3,9 +3,10 @@
 <?php $this->start('main_content') ?>
 
 <div class="content-site">
-
-	<div class="page-header">
-		<h1>Consultation d'un service</h1>
+	<div class="row">
+		<div class="page-header">
+			<h1>>Consultation d'un service</h1>
+		</div>
 	</div>
 
 	<!-- Code postal du lieu du service -->

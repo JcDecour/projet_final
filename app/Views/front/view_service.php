@@ -7,11 +7,11 @@
 <?php $this->start('main_content') ?>
 
 <div class="content-site">
-
-	<div class="page-header">
-		<h1>Liste des devis pour le service</h1>
+	<div class="row">
+		<div class="page-header">
+			<h1>Liste des devis pour le service</h1>
+		</div>
 	</div>
-
 	<div class="row">
 		<ul class="list-group col-md-4">
 		  <li class="list-group-item">Service&nbsp;:&nbsp;<?=$project['title'] ?></li>
