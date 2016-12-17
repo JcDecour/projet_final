@@ -9,13 +9,16 @@
 	</div>
     
     
-    <!-- Code postal du lieu du service -->
+    <p class="devis_pending">Votre devis est dans l'état: "A statué"</p>
+    
+    <!--Partie entete du devis (Récapitulatif)-->
+        <!-- Code postal du lieu du service -->
 	<div class="row">
 		<label class="col-md-3 control-label text-right" for="zip_code">Code postal du lieu du service:</label>  
 		<div class="col-md-9"><?=$devis['projectZipCode'];?></div>
 	</div>
 
-	<!-- Objet du service -->
+	   <!-- Objet du service -->
 	<div class="row">
 		<label class="col-md-3 control-label text-right" for="zip_code">Objet du service:</label>  
 		<div class="col-md-9"><?=$devis['projectTitle'];?></div>
@@ -23,7 +26,7 @@
 
 	<br>
 
-	<!-- Description du service -->
+	   <!-- Description du service -->
 	<div class="row">
 		<label class="col-md-3 control-label text-right" for="zip_code">Description:</label>  
 		<div class="col-md-9"><?=nl2br($devis['projectDescription']);?></div>
@@ -31,13 +34,13 @@
     
     <br>
     
-    <!-- Date prévisionnelle du service -->
+        <!-- Date prévisionnelle du service -->
 	<div class="row">
 		<label class="col-md-3 control-label text-right" for="zip_code">Date prévisonnelle:</label>  
 		<div class="col-md-9"><?=DateTime::createFromFormat('Y-m-d', $devis['projectPredicted'])->format('d/m/Y');?></div>
 	</div>
     
-    <!-- Catégorie / Ss Catégorie du service -->
+        <!-- Catégorie / Ss Catégorie du service -->
 	<div class="row">
 		<label class="col-md-3 control-label text-right" for="zip_code">Catégorie / Sous Catégorie:</label>
 		<div class="col-md-9"><span class="tag label label-default"><?=$devis['titleSector'];?> - <?=$devis['titleSubsector'];?></span></div> 
@@ -81,7 +84,7 @@
 							 <?=$devis['tva_amount'];?>
 						</td>
 						<td class="text-right">
-							<span id="ttc_amount"><?=number_format($devis['ht_amount'] * (1  + ($devis['tva_amount'] / 100)), 2);?></span>
+							<span id="ttc_amount"><?=number_format($devis['ht_amount'] * (1  + ($devis['tva_amount'] / 100)), 2 , "." , " ");?></span>
 						</td>
 					</tr>
 				</tbody>
@@ -90,7 +93,12 @@
     </div>
     
     
-    
+    <!--Bouton de retour à la liste des devis-->
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <a href="<?=$this->url('front_devis_list');?>" class="btn btn-default" title="Retour liste des devis">Retour liste des devis</a>
+        </div>
+    </div>
     
     
     

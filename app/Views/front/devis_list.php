@@ -47,7 +47,7 @@
 								<?php endif; ?>	
 							</td>
 							<td class="text-center">
-								<a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-success btn-sm" title="Proposer un devis">
+								<a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-default btn-sm" title="Proposer un devis">
 							 		Proposer un devis
 								</a>
 							</td>
@@ -104,9 +104,9 @@
 					<td><?=$devis['titleSubsector'];?></td>
 					<td><?=DateTime::createFromFormat('Y-m-d', $devis['projectPredicted'])->format('d/m/Y');?></td>
 					<?php 
-						$montantTTC = number_format($devis['ht_amount'] * (1 +($devis['tva_amount']/100)), 2);
+						$montantTTC = number_format($devis['ht_amount'] * (1 +($devis['tva_amount']/100)), 2, "." , " ");
 					?>
-					<td class="text-right"><?=$montantTTC;?></td>
+                    <td class="text-right"><span id="ttc_amount"><?=$montantTTC;?></span></td>
 					<td>
 						<?php if($devis['accepted']): ?>
 							Accepté
@@ -117,7 +117,7 @@
 						<?php endif; ?>
 					</td>
 					<td class="text-center">
-						<a href="<?=$this->url('front_devis_view', ['id' => $devis['id']]);?>" class="btn btn-success btn-sm" title="Consulter mon devis">
+						<a href="<?=$this->url('front_devis_view', ['id' => $devis['id']]);?>" class="btn btn-default btn-sm" title="Consulter mon devis">
 					 		Consulter mon devis
 						</a>
 					</td>
