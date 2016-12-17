@@ -43,6 +43,54 @@
 		<div class="col-md-9"><span class="tag label label-default"><?=$devis['titleSector'];?> - <?=$devis['titleSubsector'];?></span></div> 
 	</div>
     
+    <br>
+    
+    
+   <!-- Partie devis-->
+    <div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading">Devis</div>
+			<div class="panel-body">
+
+				<div class="row">
+					<label class="col-md-12 control-label" for="description">Informations complémentaires:</label>
+					<div class="col-md-12">
+						<?=$devis['description'];?>
+                    </div>
+				</div>
+			</div>
+        
+            <table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Désignation</th>
+						<th>Montant HT (€)</th>
+						<th>Taux de TVA</th>
+						<th>Montant TTC (€)</th>
+					</tr>
+				</thead>
+                <tbody>
+					<tr>
+						<td>
+							<?=$devis['designation'];?>
+						</td>
+						<td class="text-right">
+				            <?=$devis['ht_amount'];?>
+						</td>
+						<td class="text-right">
+							 <?=$devis['tva_amount'];?>
+						</td>
+						<td class="text-right">
+							<span id="ttc_amount"><?=number_format($devis['ht_amount'] * (1  + ($devis['tva_amount'] / 100)), 2);?></span>
+						</td>
+					</tr>
+				</tbody>
+            </table>
+        
+    </div>
+    
+    
+    
     
     
     

@@ -104,7 +104,7 @@
 					<td><?=$devis['titleSubsector'];?></td>
 					<td><?=DateTime::createFromFormat('Y-m-d', $devis['projectPredicted'])->format('d/m/Y');?></td>
 					<?php 
-						$montantTTC = $devis['ht_amount'] * (1 +($devis['tva_amount']/100));
+						$montantTTC = number_format($devis['ht_amount'] * (1 +($devis['tva_amount']/100)), 2);
 					?>
 					<td class="text-right"><?=$montantTTC;?></td>
 					<td>
