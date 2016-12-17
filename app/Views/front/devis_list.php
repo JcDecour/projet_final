@@ -5,7 +5,7 @@
 
 <div class="content-site">	
 	<div class="page-header">
-		<h1>Liste des offres de services des particuliers</h1>
+		<h1>Liste des offres de services</h1>
 	</div>
 	
 	<!-- Liste des projets -->
@@ -21,7 +21,7 @@
 					<th>Sous Catégorie</th>
 					<th>Créé le</th>
 					<th>Prévu le</th>
-					<th class="text-center">Devis proposés</th>
+					<th class="text-center">Nb. devis des professionnels</th>
 					<th class="text-center">Action</th>
 				</tr>
 			</thead>
@@ -72,7 +72,7 @@
 	<!-- ######################################################## -->
 
 	<div class="page-header">
-		<h1>Mes devis proposés</h1>
+		<h1>Mes devis proposés sur les offres</h1>
 	</div>
 
 	<!-- Liste des projets -->
@@ -113,7 +113,7 @@
 						<?php elseif($devis['projectClosed']): ?>
 							Non retenu
 						<?php else: ?>
-							En cours d'étude
+							Non statué
 						<?php endif; ?>
 					</td>
 					<td class="text-center">
