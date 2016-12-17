@@ -29,6 +29,11 @@
                 </button>
                 <a class="navbar-brand" href="<?= $this->url('front_default_index') ?>">DevisCible</a>
             </div>
+            <?php if(isset($w_user)):?>
+            <div class="row" style="text-align: center;">
+            <p> Bonjour&nbsp;<?=$w_user['civilite'];?>&nbsp;<?=$w_user['lastname'];?></p>
+            </div>
+        <?php endif;?>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
