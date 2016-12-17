@@ -132,3 +132,7 @@ a {
 .not_accepted {
     color: firebrick;
 }
+
+.container .jumbotrondevis{
+   padding: 20px;
+}

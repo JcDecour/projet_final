@@ -17,6 +17,25 @@
         <p class="devis_status pending">Votre devis est dans l'état: "Non statué"</p>
     <?php endif; ?>
     
+     <!--Partie coordonnées du client-->
+    <?php if($devis['accepted']): ?>
+        <div class="jumbotron jumbotrondevis">
+            <address>
+                <strong>Coordonnées du client à contacter:</strong><br>
+                <?=$devis['civilite'];?>&nbsp;<?=$devis['lastname'];?>&nbsp;<?=$devis['firstname'];?><br>
+                <?=$devis['street'];?>&nbsp;<?=$devis['zipcode'];?>&nbsp;<?=$devis['city'];?><br>
+                Tél fixe:&nbsp;<?=$devis['fixed_phone'];?><br>
+                Tél mobile:&nbsp;<?=$devis['mobile_phone'];?><br>
+            </address>
+
+            <address>
+                <strong>Mail:</strong><br>
+                <?=$devis['email'];?>
+            </address>
+        </div>
+    <?php endif; ?>
+    
+    
     <!--Partie entete du devis (Récapitulatif)-->
         <!-- Code postal du lieu du service -->
 	<div class="row">
@@ -98,16 +117,12 @@
         
     </div>
     
-    
     <!--Bouton de retour à la liste des devis-->
     <div class="row">
         <div class="col-md-12 text-right">
             <a href="<?=$this->url('front_devis_list');?>" class="btn btn-default" title="Retour liste des devis">Retour liste des devis</a>
         </div>
     </div>
-    
-    
-    
 </div>
 
 <?php $this->stop('main_content') ?>
