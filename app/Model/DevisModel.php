@@ -104,7 +104,7 @@ class DevisModel extends \W\Model\Model
                     INNER JOIN project_subsector as ps ON ps.id = devis.id_project_subsector 
                     INNER JOIN sub_sector as subsector ON subsector.id = ps.id_subsector 
                     INNER JOIN sector as sector ON sector.id = subsector.id_sector 
-                    INNER JOIN project as project ON project.id = subsector.id_sector
+                    INNER JOIN project as project ON project.id = ps.id_project
                     INNER JOIN customer as customer ON customer.id = project.id_customer
                     WHERE devis.id = :idDevis 
                     ORDER BY created_at DESC';
