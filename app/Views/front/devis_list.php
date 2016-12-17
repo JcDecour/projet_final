@@ -72,7 +72,7 @@
 	<!-- ######################################################## -->
 
 	<div class="page-header">
-		<h1>Mes devis proposés sur des offres</h1>
+		<h1>Mes devis proposés sur les offres</h1>
 	</div>
 
 	<!-- Liste des projets -->
@@ -117,7 +117,7 @@
 						<?php endif; ?>
 					</td>
 					<td class="text-center">
-						<a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-success btn-sm" title="Proposer un devis">
+						<a href="<?=$this->url('front_devis_view', ['id' => $devis['id']]);?>" class="btn btn-success btn-sm" title="Consulter mon devis">
 					 		Consulter mon devis
 						</a>
 					</td>
