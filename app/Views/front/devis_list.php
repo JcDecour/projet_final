@@ -47,7 +47,7 @@
 								<?php endif; ?>	
 							</td>
 							<td class="text-center">
-								<a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-success btn-sm" title="Proposer un devis">
+								<a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-default btn-sm" title="Proposer un devis">
 							 		Proposer un devis
 								</a>
 							</td>
@@ -89,8 +89,8 @@
 					<th>Sous Catégorie</th>
 					<th>Prévu le</th>
 					<th>Montant TTC (€)</th>
-					<th>Etat</th>
-					<th>Action</th>
+					<th class="text-center">Etat</th>
+					<th class="text-center">Action</th>
 				</tr>
 			</thead>
 
@@ -104,20 +104,20 @@
 					<td><?=$devis['titleSubsector'];?></td>
 					<td><?=DateTime::createFromFormat('Y-m-d', $devis['projectPredicted'])->format('d/m/Y');?></td>
 					<?php 
-						$montantTTC = $devis['ht_amount'] * (1 +($devis['tva_amount']/100));
+						$montantTTC = number_format($devis['ht_amount'] * (1 +($devis['tva_amount']/100)), 2, "." , " ");
 					?>
-					<td class="text-right"><?=$montantTTC;?></td>
-					<td>
+                    <td class="text-right"><span id="ttc_amount"><?=$montantTTC;?></span></td>
+					<td class="text-center">
 						<?php if($devis['accepted']): ?>
-							Accepté
+                            <span class="devis_status accepted">Accepté</span>
 						<?php elseif($devis['projectClosed']): ?>
-							Non retenu
+							<span class="devis_status not_accepted">Non retenu</span>
 						<?php else: ?>
-							Non statué
+							<span class="devis_status pending">Non statué</span>
 						<?php endif; ?>
 					</td>
 					<td class="text-center">
-						<a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-info btn-sm" title="Proposer un devis">
+						<a href="<?=$this->url('front_devis_view', ['id' => $devis['id']]);?>" class="btn btn-default btn-sm" title="Consulter mon devis">
 					 		Consulter mon devis
 						</a>
 					</td>

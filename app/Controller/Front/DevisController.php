@@ -120,7 +120,18 @@ class DevisController extends Controller
 		$this->show('front/devis_add', ['projectSubsector' => $projectSubsector, 'formErrors' => $formErrors]);	
 	}
 	
-
+    /**
+	 * Controlleur de consultation d'un devis
+	 * @param $id integer Correspond a l'id du devis à consulter
+	*/
+	public function view($id)
+	{
+        //Recherche du devis à consulter
+        $devisModel = new DevisModel;
+        $devis = $devisModel->findWithDetailsById($id);
+        
+        $this->show('front/devis_view', ['devis' => $devis]);
+    }
 
 }
 
