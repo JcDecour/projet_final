@@ -23,11 +23,11 @@
 
         <!-- Select civilité -->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="civilité">Civilité :
+          <label class="col-md-4 control-label" for="civilite">Civilité :
             <span class="obligatoire">*</span>
           </label>
           <div class="col-md-2">
-            <select id="civilité" name="civilité" class="form-control" required="">
+            <select id="civilite" name="civilite" class="form-control" required="">
               <option value="" selected disabled>- sélection -</option>
               <option value="Monsieur">Mr</option>
               <option value="Madame">Mme</option>
