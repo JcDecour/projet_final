@@ -2,41 +2,12 @@
 <?php $this->start('main_content') ?>
 
 <div class="forms">
-  
-  <div class="page-header">
-      <h1 style="text-align: center;">Inscription Particulier</h1>
-  </div>
-   
-  <form method="post" class="form-horizontal">
-    <p class="text-required-filed">
-      <span class="obligatoire">*</span>
-      Champs obligatoires
-    </p>
-    <fieldset>
-      <?php if(isset($formErrors['global'])): ?>
-      <div class="alert alert-danger">
-        <?=$formErrors['global'];?>
-      </div>
-      <?php endif; ?>
-
-      <!-- Select civilité -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="civilité">Civilité :
-          <span class="obligatoire">*</span>
-        </label>
-        <div class="col-md-2">
-          <select id="civilité" name="civilité" class="form-control" required="">
-            <option value="" selected disabled>- sélection -</option>
-            <option value="Monsieur">Mr</option>
-            <option value="Madame">Mme</option>
-            <option value="Mademoiselle">Melle</option>
-          </select>
 
 <div class="content-site">
   <div class="page-header">
     <h1 style="text-align: center;">Inscription Particulier</h1>
   </div>
-  <div class="forms">
+ 
     <form method="post" class="form-horizontal">
       <p class="text-required-filed">
         <span class="obligatoire">*</span>
