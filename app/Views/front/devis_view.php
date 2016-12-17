@@ -8,8 +8,14 @@
 		<h1>Consultation d'un devis</h1>
 	</div>
     
-    
-    <p class="devis_pending">Votre devis est dans l'état: "A statué"</p>
+   <!-- Gestion du status du devis-->
+    <?php if($devis['accepted']): ?>
+        <p class="devis_status accepted">Votre devis est dans l'état: "Accepté"</p>
+    <?php elseif($devis['projectClosed']):?>
+        <p class="devis_status not_accepted">Votre devis est dans l'état: "Non retenu"</p>
+    <?php else: ?>
+        <p class="devis_status pending">Votre devis est dans l'état: "Non statué"</p>
+    <?php endif; ?>
     
     <!--Partie entete du devis (Récapitulatif)-->
         <!-- Code postal du lieu du service -->

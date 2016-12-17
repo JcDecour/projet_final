@@ -96,6 +96,7 @@ class DevisModel extends \W\Model\Model
                     project.title as projectTitle,
                     project.description as projectDescription, 
                     project.predicted_date as projectPredicted,
+                    project.closed as projectClosed,
                     customer.civilite,
                     customer.firstname,
                     customer.lastname,

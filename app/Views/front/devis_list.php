@@ -89,8 +89,8 @@
 					<th>Sous Catégorie</th>
 					<th>Prévu le</th>
 					<th>Montant TTC (€)</th>
-					<th>Etat</th>
-					<th>Action</th>
+					<th class="text-center">Etat</th>
+					<th class="text-center">Action</th>
 				</tr>
 			</thead>
 
@@ -107,13 +107,13 @@
 						$montantTTC = number_format($devis['ht_amount'] * (1 +($devis['tva_amount']/100)), 2, "." , " ");
 					?>
                     <td class="text-right"><span id="ttc_amount"><?=$montantTTC;?></span></td>
-					<td>
+					<td class="text-center">
 						<?php if($devis['accepted']): ?>
-							Accepté
+                            <span class="devis_status accepted">Accepté</span>
 						<?php elseif($devis['projectClosed']): ?>
-							Non retenu
+							<span class="devis_status not_accepted">Non retenu</span>
 						<?php else: ?>
-							Non statué
+							<span class="devis_status pending">Non statué</span>
 						<?php endif; ?>
 					</td>
 					<td class="text-center">
