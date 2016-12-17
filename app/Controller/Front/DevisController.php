@@ -126,7 +126,11 @@ class DevisController extends Controller
 	*/
 	public function view($id)
 	{
-        $this->show('front/devis_view');
+        //Recherche du devis à consulter
+        $devisModel = new DevisModel;
+        $devis = $devisModel->findWithDetailsById($id);
+        
+        $this->show('front/devis_view', ['devis' => $devis]);
     }
 
 }

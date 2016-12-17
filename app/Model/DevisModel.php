@@ -79,5 +79,44 @@ class DevisModel extends \W\Model\Model
 
 		return $sth->fetchAll();
 	}
+    
+    /**
+	 * Récupère la ligne de la table à partir d'un id de "devis"
+	 * @param $id integer Identifiant du devis
+	 * @return mixed Les données sous forme de tableau associatif avec les donnés de "Projet", "ProjectSubSector", "Customer", "SubSector", "Sector"
+	 */
+	public function findWithDetailsById($idDevis)
+	{
+		if (!is_numeric($idDevis)){
+			return false;
+		}
+
+		$sql = 'SELECT devis.*, 
+                    project.zip_code as projectZipCode,
+                    project.title as projectTitle,
+                    project.description as projectDescription, 
+                    project.predicted_date as projectPredicted,
+                    customer.civilite,
+                    customer.firstname,
+                    customer.lastname,
+                    customer.email,
+                    customer.fixed_phone,
+                    customer.mobile_phone,
+                    sector.title as titleSector, 
+                    subsector.title as titleSubsector 
+                    FROM ' . $this->table . ' as devis 
+                    INNER JOIN project_subsector as ps ON ps.id = devis.id_project_subsector 
+                    INNER JOIN sub_sector as subsector ON subsector.id = ps.id_subsector 
+                    INNER JOIN sector as sector ON sector.id = subsector.id_sector 
+                    INNER JOIN project as project ON project.id = subsector.id_sector
+                    INNER JOIN customer as customer ON customer.id = project.id_customer
+                    WHERE devis.id = :idDevis 
+                    ORDER BY created_at DESC';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':idDevis', $idDevis);
+		$sth->execute();
+
+		return $sth->fetch();
+	}	
 
 }
