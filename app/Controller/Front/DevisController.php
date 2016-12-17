@@ -16,7 +16,7 @@ class DevisController extends Controller
 	/**
 	 * Liste des devis du professionnel
 	*/
-	public function list()
+    public function listService()
 	{
 		//Si le professionnel n'est pas connecté , il est redirigé sur la page de login
 		if (empty($this->getUser())) {

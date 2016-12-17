@@ -38,7 +38,7 @@ class DevisModel extends \W\Model\Model
 			return false;
 		}
 
-		$sql = 'SELECT devis.*, project.zip_code as projectZipCode, project.closed as projectClosed, project.title as projectTitle, project.predicted_date as projectPredicted, ps.accepted as accepted, sector.title as titleSector, subsector.title as titleSubsector FROM ' . $this->table . ' as devis 
+		$sql = 'SELECT devis.*, project.zip_code as projectZipCode, project.closed as projectClosed, project.title as projectTitle, project.predicted_date as projectPredicted, sector.title as titleSector, subsector.title as titleSubsector FROM ' . $this->table . ' as devis 
 			INNER JOIN project_subsector as ps ON ps.id = devis.id_project_subsector
 			INNER JOIN sub_sector as subsector ON subsector.id = ps.id_subsector
 			INNER JOIN sector as sector ON sector.id = subsector.id_sector
