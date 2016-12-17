@@ -473,6 +473,7 @@ class ServicesController extends Controller
 		$customerModel = new CustomerModel();
 		$projectSubSectorModel = new ProjectSubSectorModel();
 		$devisModel = new DevisModel();
+		
 
 		if (!is_numeric($id) || empty($id)) {
 			$this->showNotFound();
@@ -519,12 +520,7 @@ class ServicesController extends Controller
 
 
 			// On récupère les devis liés au projet ou service
-			foreach ($projectsSubSector as $projectSubSector) {
-				
-				$datasDevis[] = $devisModel->findAllDevisById($projectSubSector['id']);
-
-			}
-
+			$datasDevis = $devisModel->findAllDevisByProjectId($project['id']);
 			//Envoi des données à la page
 
 			$data = [

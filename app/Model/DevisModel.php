@@ -60,24 +60,35 @@ class DevisModel extends \W\Model\Model
 	}	
 
 	/**
-	 * Récupère des lignes de la jointure des deux tables provider et devis à partir d'un id de 'Sous catégorie de projet"
-	 *  @param $id integer Identifiant
-	 * @return mixed Les données sous forme de tableau associatif triées sur le prix hors taxe	  
-	*/
-	public function findAllDevisById($id)
+	 * Récupère toutes les lignes de la table à partir d'un id de "Project"
+	 * @param $idProject integer Identifiant du provider
+	 * @return mixed Les données sous forme de tableau associatif triées montant TTC
+	 */
+	public function findAllDevisByProjectId($idProject)
 	{
-		if (!is_numeric($id)){
+		if (!is_numeric($idProject)){
 			return false;
 		}
 
-		$providerModel = new ProviderModel();
-
-		$sql = 'SELECT d.*, p.*, d.ht_amount*(1 + d.tva_amount/100) as ttc_amount FROM ' . $this->table .' as d INNER JOIN '.$providerModel->getTable().' as p ON p.id = d.id_provider WHERE d.id_project_subsector = :idSubsectorProject ORDER BY d.ht_amount';
+		$sql = 'SELECT d.*, 
+                    d.ht_amount*(1 + d.tva_amount/100) as ttc_amount,
+                    d.id as devisId,
+                    d.created_at as devisDateCreat, 
+                    p.company_name as companyName, 
+                    p.siret as companySiret, 
+                    p.email as companyEmail,
+                    ps.id as projectSubsectorId 
+                    FROM ' . $this->table . ' as d 
+                    INNER JOIN provider as p ON p.id = d.id_provider 
+                    INNER JOIN project_subsector as ps ON ps.id = d.id_project_subsector                    
+                    WHERE ps.id_project = :idProject 
+                    ORDER BY ttc_amount DESC';
 		$sth = $this->dbh->prepare($sql);
-		$sth->bindValue(':idSubsectorProject', $id);
+		$sth->bindValue(':idProject', $idProject);
 		$sth->execute();
 
 		return $sth->fetchAll();
-	}
+	}	
+
 
 }

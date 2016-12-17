@@ -5,7 +5,7 @@
 <div class="content-site">
 	
 	<div class="page-header">
-		<h1>>Un fonctionnement simple</h1>
+		<h1>Un fonctionnement simple</h1>
 	</div>
 	
 

@@ -19,8 +19,9 @@
 		  <li class="list-group-item">Délai&nbsp;:&nbsp;<?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></li>
 		</ul>
 	</div>
-<!-- on utilise un compteur pour gérer l'absence de devis pour un service -->
-	<?php $cpt = 0;?>
+
+
+<?php $cpt = 0;?>
 
 <form method="POST">
 
@@ -46,27 +47,27 @@
 
 			  	<?php foreach($datasDevis as $dataDevis): ?>
 
-				  	<?php foreach($dataDevis as $data): ?>
+				  	
 
-				  		<?php if($projectSubSector['id'] == $data['id_project_subsector']):?>
+				  		<?php if($projectSubSector['id'] == $dataDevis['projectSubsectorId']):?>
 
 						  	<tr>
 						  		<td>
-						  			<input id="<?=$data['id'] ?>" type="checkbox" name="choice" value="<?=$data['ttc_amount'] ?>">
+						  			<input id="<?= $dataDevis['devisId'] ?>" type="checkbox" name="choice" value="<?= $dataDevis['ttc_amount'] ?>">
 						  		</td>
-						  		<td><?=$data['id'] ?></td>
-						  		<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $data['created_at'])->format('d/m/Y');?></td>
-						  		<td><?=$data['company_name'] ?></td>
-						  		<td><?=number_format($data['ht_amount'], 2, ',', ' ') ?></td>
-						  		<td><?=$data['tva_amount'] ?></td>
-						  		<td class="text-right"><?=number_format($data['ttc_amount'], 2, ',', ' ') ?></td>
+						  		<td><?=$dataDevis['devisId'] ?></td>
+						  		<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $dataDevis['devisDateCreat'])->format('d/m/Y');?></td>
+						  		<td><?=$dataDevis['companyName'] ?></td>
+						  		<td><?=number_format($dataDevis['ttc_amount'], 2, ',', ' ') ?></td>
+						  		<td><?=$dataDevis['tva_amount'] ?></td>
+						  		<td class="text-right"><?=number_format($dataDevis['ttc_amount'], 2, ',', ' ') ?></td>
 						  	</tr>
 
 							<?php $cpt++;?>
 
 				 		<?php endif; ?>
 
-				  	<?php endforeach; ?>
+				  	
 			  	 
 			  	<?php endforeach; ?>
 			 
@@ -103,6 +104,9 @@
 	<div id="inputHidden"></div>
 </form>
 
+
+
+
 </div>
 
 <?php $this->stop('main_content') ?>
@@ -127,7 +131,7 @@ $(document).ready(function() {
 
 
 
-				$('#inputHidden').append('<input type="hidden" name="acceptedDevis" value='+idCheckbox+'>');
+				$('#inputHidden').append('<input type="hidden" name="acceptedDevis'+idCheckbox+'" value='+idCheckbox+'>');
 
 
 			});
