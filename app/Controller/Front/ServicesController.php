@@ -90,7 +90,8 @@ class ServicesController extends Controller
 
 				if($project){
 					//Suppression de toutes les sous catégories
-					$projectSubSectorModel->delete($idProject);
+                    
+					$projectSubsectorModel->delete($idProject);
 
 					//Insertion des sous catégories du service en BDD
 					foreach ($post['tabSsCateg'] as $key => $value) {
@@ -99,7 +100,7 @@ class ServicesController extends Controller
 							'id_subsector'	=>	$value,
 							'created_at'	=> date('Y-m-d H:i:s'),
 						];
-						$projectSubSector = $projectSubSectorModel->insert($dataProjectSsSector);
+						$projectSubSector = $projectSubsectorModel->insert($dataProjectSsSector);
 					}
 					$this->redirectToRoute('front_list_services');
 				}
