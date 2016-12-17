@@ -66,7 +66,7 @@
 		</table>
 
 	<?php else: ?>
-		<p>Aucun service.</p>
+		<p>Aucune offre de services n'est disponible.</p>
 	<?php endif; ?>
 
 	<!-- ######################################################## -->

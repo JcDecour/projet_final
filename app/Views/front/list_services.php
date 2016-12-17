@@ -25,7 +25,7 @@
 				<th>Service</th>
 				<th>Créé le</th>
 				<th>Prévu le</th>
-				<th class="text-center">Offres</th>
+				<th class="text-center">Devis</th>
 				<th class="text-center">Action</th>
 			</tr>
 		</thead>
@@ -53,10 +53,15 @@
 					 Modifier
 					</a>
 					&nbsp; 
-				<?php endif;  ?>
-					<a href="<?=$this->url('front_view_service', ['id' => $project['id']]);?>" class="btn btn-success btn-sm" title="Consulter ce service">
+                    <a href="<?=$this->url('front_view_service', ['id' => $project['id']]);?>" class="btn btn-success btn-sm" title="Consulter ce service">
 					 Consulter
 					</a>
+                <?php else: ?>
+                    <a href="<?=$this->url('front_devis_view_customer', ['id' => $project['id']]);?>" class="btn btn-success btn-sm" title="Consulter ce service">
+					 Consulter
+					</a>
+				<?php endif; ?>
+					
 				</td>
 			</tr>
 			<?php endforeach; ?>

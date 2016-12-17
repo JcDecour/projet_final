@@ -30,6 +30,7 @@ $front_r = array(
 	['GET|POST', '/devis/add/[i:id]', 'Devis#add', 'front_devis_add'],
     ['GET', '/devis/list', 'Devis#listService', 'front_devis_list'],
     ['GET', '/devis/view/[i:id]', 'Devis#view', 'front_devis_view'],
+    ['GET', '/devis/view-customer/[i:id]', 'Devis#viewCustomer', 'front_devis_view_customer'],
 
 	// Les routes ajax
 	['GET', '/ajax/refresh_subsector', 'Ajax#refreshSubSector', 'ajax_refreshSubSector'],

@@ -133,6 +133,17 @@ class DevisController extends Controller
         
         $this->show('front/devis_view', ['devis' => $devis]);
     }
+    
+     /**
+	 * Controlleur de consultation d'un devis par le particulier
+	 * @param $id integer Correspond a l'id du devis à consulter
+	*/
+	public function viewCustomer($id)
+	{
+       
+        
+        $this->show('front/devis_view_customer');
+    }
 
 }
 
