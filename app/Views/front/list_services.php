@@ -44,6 +44,7 @@
 					<?php endif; ?>	
 				</td>
 				<td class="text-center">
+				<?php if(!$project['closed']): ?>
 					<a href="<?=$this->url('front_delete_service', ['id' => $project['id']]);?>" class="btn btn-danger btn-sm" title="Supprimer ce service">
 					 Supprimer
 					</a>
@@ -52,6 +53,7 @@
 					 Modifier
 					</a>
 					&nbsp; 
+				<?php endif;  ?>
 					<a href="<?=$this->url('front_view_service', ['id' => $project['id']]);?>" class="btn btn-success btn-sm" title="Consulter ce service">
 					 Consulter
 					</a>

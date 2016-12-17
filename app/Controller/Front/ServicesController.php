@@ -487,6 +487,14 @@ class ServicesController extends Controller
 				
 				$post = array_map('trim', array_map('strip_tags', $_POST));
 
+				foreach ($post as $key => $value) {
+					
+					$devisModel->update(['accepted' => 1], $value);
+					$devis = $devisModel->find($value);
+					$projectSS = $projectSubSectorModel->find($devis['id_project_subsector']);
+					$projectModel->update(['closed' => 1], $projectSS['id_project']);
+				}
+
 				var_dump($post);
 			}
 

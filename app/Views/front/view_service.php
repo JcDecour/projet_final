@@ -23,6 +23,7 @@
 
 <?php $cpt = 0;?>
 
+<?php if(!$project['closed']): ?>
 <form method="POST">
 
 	<?php foreach($projectsSubSector as $projectSubSector): ?>
@@ -46,14 +47,12 @@
 			<tbody>
 
 			  	<?php foreach($datasDevis as $dataDevis): ?>
-
-				  	
-
+				
 				  		<?php if($projectSubSector['id'] == $dataDevis['projectSubsectorId']):?>
 
 						  	<tr>
 						  		<td>
-						  			<input id="<?= $dataDevis['devisId'] ?>" type="checkbox" name="choice" value="<?= $dataDevis['ttc_amount'] ?>">
+						  			<input id="<?= $dataDevis['devisId'] ?>" type="checkbox" name="" value="<?= $dataDevis['ttc_amount'] ?>">
 						  		</td>
 						  		<td><?=$dataDevis['devisId'] ?></td>
 						  		<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $dataDevis['devisDateCreat'])->format('d/m/Y');?></td>
@@ -104,7 +103,7 @@
 	<div id="inputHidden"></div>
 </form>
 
-
+<?php endif; ?>
 
 
 </div>
