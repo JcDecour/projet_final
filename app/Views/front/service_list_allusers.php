@@ -54,7 +54,7 @@
 					<th>Service</th>
 					<th>Créé le</th>
 					<th>Prévu le</th>
-					<th class="text-center">Devis proposés</th>
+					<th class="text-center">Devis</th>
 					<th class="text-center">Action</th>
 				</tr>
 			</thead>
@@ -85,7 +85,7 @@
 		</table>
 
 	<?php else: ?>
-		<p>Aucun service.</p>
+		<p>Aucune offre de services de particuliers n'est disponible.</p>
 	<?php endif; ?>
 
    

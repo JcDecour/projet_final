@@ -351,6 +351,7 @@ class ServicesController extends Controller
 		$get = [];
 		$zip_code = null;
 		$sub_sector = null;
+        $sector = null;
 
 		if(!empty($_GET)){
 			$get = array_map('trim', array_map('strip_tags', $_GET));
@@ -359,15 +360,19 @@ class ServicesController extends Controller
 			if(isset($get['zip_code']) && ctype_digit($get['zip_code'])){
 				$zip_code = $get['zip_code'];
 			}
-			//Cas d'un recherche sur la sous-catégorie
+			//Cas d'une recherche sur la sous-catégorie
 			if(!empty($get['sub-sector']) && ctype_digit($get['sub-sector'])){
 				$sub_sector = $get['sub-sector'];
+			}
+            //Cas d'un recherche sur la catégorie
+			if(!empty($get['sector']) && ctype_digit($get['sector'])){
+				$sector = $get['sector'];
 			}
 		}
 
 		//Recherche de l'ensemble des projets non cloturés
 		$projectModel = new ProjectModel();
-		$projects = $projectModel->findAllWithoutClosed($zip_code, $sub_sector);
+		$projects = $projectModel->findAllWithoutClosed($zip_code, $sub_sector, $sector);
 
 		//Recherche de tous les "Sector" triés par numéro d'ordre
 		$sectorModel = new SectorModel();
@@ -375,12 +380,12 @@ class ServicesController extends Controller
 
 		//Si la sous catégorie de la recherche est renseignée, alors il faut reconstruire le menu déroulant de la sous catégorie
 		$optionSubSector = '';
-		if(!empty($get['sub-sector'])){
+		if(!empty($get['sector'])){
 			$optionSubSector = '<option value="" selected>Sous-Catégorie</option>';
 			$subSectorModel = new SubSectorModel();
 			$subSectors = $subSectorModel->findBySectorId($get['sector']);
 			foreach ($subSectors as $key => $subSector) {
-				if($get['sub-sector'] == $subSector['id']){
+				if((isset($get['sub-sector'])) && ($get['sub-sector'] == $subSector['id'])){
 					$selected = 'selected';
 				}
 				else

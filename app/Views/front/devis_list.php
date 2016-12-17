@@ -21,7 +21,7 @@
 					<th>Sous Catégorie</th>
 					<th>Créé le</th>
 					<th>Prévu le</th>
-					<th class="text-center">Nb. devis des professionnels</th>
+					<th class="text-center">Devis</th>
 					<th class="text-center">Action</th>
 				</tr>
 			</thead>

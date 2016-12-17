@@ -24,19 +24,26 @@ class ProjectModel extends \W\Model\Model
 
 
 	/**
-	 * Récupère toutes les lignes de la table sans les projet "Terminés" (possibilité de filtrer sur le secteur et sous secteur)
+	 * Récupère toutes les lignes de la table sans les projet "Terminés" (possibilité de filtrer sur le lieu géographique, le secteur et sous secteur)
 	 * @param  integer Code postal auquel les projets doivent etre rattachés
 	 * @param  integer Sous Catégories auquel les projets doivent etre rattachés
 	 * @return array Les données sous forme de tableau multidimensionnel
 	 */
-	public function findAllWithoutClosed($zip_code = null, $sub_sector = null)
+	public function findAllWithoutClosed($zip_code = null, $sub_sector = null, $sector = null)
 	{
-		$sql = 'SELECT distinct p.* FROM ' . $this->table . ' as p INNER JOIN project_subsector as ps ON p.id = ps.id_project WHERE closed = 0 ';
-
+		$sql = 'SELECT distinct p.* FROM ' . $this->table . ' as p 
+                INNER JOIN project_subsector as ps ON p.id = ps.id_project
+                INNER JOIN sub_sector as ss ON ss.id = ps.id_subsector
+                INNER JOIN sector as s ON s.id = ss.id_sector
+                WHERE closed = 0';
+       
 		if(!empty($zip_code) && !ctype_digit($zip_code)){
 			return false;
 		}
 		if(!empty($sub_sector) && !ctype_digit($sub_sector)){
+			return false;
+		}
+        if(!empty($sector) && !ctype_digit($sector)){
 			return false;
 		}
 
@@ -44,8 +51,11 @@ class ProjectModel extends \W\Model\Model
 			$sql .= ' AND zip_code = :zip_code';
 		}
 		if(!empty($sub_sector)){
-			$sql .= ' AND id_subsector = :sub_sector';
+			$sql .= ' AND id_subsector = :idSub_sector';
 		}
+        elseif(!empty($sector)){
+            $sql .= ' AND s.id = :idSector';   
+        }
 		$sql .= ' ORDER BY created_at DESC';
 
 		$sth = $this->dbh->prepare($sql);
@@ -53,8 +63,11 @@ class ProjectModel extends \W\Model\Model
 			$sth->bindValue(':zip_code', $zip_code);
 		}
 		if(!empty($sub_sector)){
-			$sth->bindValue(':sub_sector', $sub_sector);
+			$sth->bindValue(':idSub_sector', $sub_sector);
 		}
+        elseif(!empty($sector)){
+            $sth->bindValue(':idSector', $sector);  
+        }
 		$sth->execute();
 
 		return $sth->fetchAll();
