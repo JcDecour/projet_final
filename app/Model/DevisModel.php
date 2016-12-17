@@ -30,7 +30,7 @@ class DevisModel extends \W\Model\Model
                     INNER JOIN project_subsector as ps ON ps.id = devis.id_project_subsector 
                     INNER JOIN sub_sector as subsector ON subsector.id = ps.id_subsector 
                     INNER JOIN sector as sector ON sector.id = subsector.id_sector 
-                    INNER JOIN project as project ON project.id = subsector.id_sector 
+                    INNER JOIN project as project ON project.id = ps.id_project
                     WHERE id_provider = :idProvider 
                     ORDER BY created_at DESC';
 		$sth = $this->dbh->prepare($sql);

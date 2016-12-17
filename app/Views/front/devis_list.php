@@ -108,7 +108,6 @@
 					?>
                     <td class="text-right"><span id="ttc_amount"><?=$montantTTC;?></span></td>
 					<td class="text-center">
-                        <?php var_dump($devis);?>
 						<?php if($devis['accepted']): ?>
                             <span class="devis_status accepted">Accepté</span>
 						<?php elseif($devis['projectClosed']): ?>
