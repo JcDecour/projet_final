@@ -136,3 +136,8 @@ a {
 .container .jumbotrondevis{
    padding: 20px;
 }
+
+/*Button*/
+.btn_margin{
+    margin-bottom: 5px;
+}
