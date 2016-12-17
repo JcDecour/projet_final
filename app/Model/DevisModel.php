@@ -64,7 +64,7 @@ class DevisModel extends \W\Model\Model
 	 *  @param $id integer Identifiant
 	 * @return mixed Les données sous forme de tableau associatif triées sur le prix hors taxe	  
 	*/
-	public function findAllDevisById($idSubsectorProject)
+	public function findAllDevisById($id)
 	{
 		if (!is_numeric($id)){
 			return false;
@@ -74,7 +74,7 @@ class DevisModel extends \W\Model\Model
 
 		$sql = 'SELECT d.*, p.*, d.ht_amount*(1 + d.tva_amount/100) as ttc_amount FROM ' . $this->table .' as d INNER JOIN '.$providerModel->getTable().' as p ON p.id = d.id_provider WHERE d.id_project_subsector = :idSubsectorProject ORDER BY d.ht_amount';
 		$sth = $this->dbh->prepare($sql);
-		$sth->bindValue(':idSubsectorProject', $idSubsectorProject);
+		$sth->bindValue(':idSubsectorProject', $id);
 		$sth->execute();
 
 		return $sth->fetchAll();
