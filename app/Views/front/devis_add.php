@@ -4,7 +4,7 @@
 
 <div class="content-site">
 	<div class="page-header">
-		<h1>Proposition de devis</h1>
+		<h1>Proposition de devis sur une offre de service</h1>
 	</div>
 	
 	<?php if(isset($formErrors['global'])): ?>
