@@ -9,25 +9,6 @@ class DevisModel extends \W\Model\Model
 {	
 
 	/**
-	 * Récupère toutes les lignes de la table à partir d'un id de Project
-	 * @param $id integer Identifiant du projet
-	 * @return mixed Les données sous forme de tableau associatif triées sur le prix hors taxe
-	 */
-	public function findDevisById($idProject)
-	{
-		if (!is_numeric($id)){
-			return false;
-		}
-
-		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_project = :idProject ORDER BY ht_amount';
-		$sth = $this->dbh->prepare($sql);
-		$sth->bindValue(':idProject', $idProject);
-		$sth->execute();
-
-		return $sth->fetchAll();
-	}
-
-	/**
 	 * Récupère toutes les lignes de la table à partir d'un id de "Provider"
 	 * @param $id integer Identifiant du provider
 	 * @return mixed Les données sous forme de tableau associatif triées sur la date de création descendante
