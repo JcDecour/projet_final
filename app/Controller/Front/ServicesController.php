@@ -560,9 +560,9 @@ class ServicesController extends Controller
         $projectSubSectorModel = new ProjectSubSectorModel();
         
         $project = $projectModel->find($id);
-        $projectSubSector = $projectSubSectorModel->findAllWithDetailsByIdProject($id);
+        $projectSubSectors = $projectSubSectorModel->findAllWithDetailsByIdProject($id);
 
-        $this->show('front/view_service_closed', ['project' => $project, 'projectSubSector' => $projectSubSector]);
+        $this->show('front/view_service_closed', ['project' => $project, 'projectSubSectors' => $projectSubSectors]);
     }
     
 

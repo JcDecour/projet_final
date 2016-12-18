@@ -37,7 +37,33 @@
 		<div class="col-md-9"><?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></div>
 	</div>
     
+    <!-- Partie devis par catégrorie / ss-categorie-->
+    <?php foreach($projectSubSectors as $key => $projectSubSector): ?>
     
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <?=$projectSubSector['sectorTitle'];?>&nbsp;-&nbsp;<?=$projectSubSector['subsectorTitle'];?>
+            </div>
+            <div class="panel-body">
+                
+                <!-- Cas d'absence de devis pour cette sous-catégorie, ou de non acceptation de l'un d'entre eux-->
+                <?php if(empty($projectSubSector['id_provider'])): ?>
+                    Aucun devis retenu.
+                <?php endif; ?>
+                
+                
+                <div class="row">
+                    <label class="col-md-12 control-label" for="description">Informations complémentaires:</label>
+                    <div class="col-md-12">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    
+    <?php endforeach; ?>
     
     
 </div>
