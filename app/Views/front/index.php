@@ -97,17 +97,16 @@
 
             <!-- COLONNE COMMENT CA MARCHE -->
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default .commentcamarche">
                     <div class="panel-heading">
                         <h3 class="text-center"><i style="color:orange" class="fa fa-question-circle fa-fw" aria-hidden="true"></i>&nbsp;Comment ça marche ?</h3>
                     </div>
                     <div class="panel-body">
-                        <ul class="text-center list-group">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
+                        <ul class="list-group">
+                            <li class="list-group-item">Vous décrivez votre demande de service.</li>
+                            <li class="list-group-item">Des professionnels émettent des propositions de devis.</li>
+                            <li class="list-group-item">Comparez alors les devis et choisissez celui de votre convenance.</li>
+                            <li class="list-group-item">Vous entrez alors directement en contact avec le professionnel retenu.</li>
                         </ul>
                     </div>
                 </div>
