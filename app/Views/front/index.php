@@ -12,7 +12,7 @@
        
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-            <a href="" class="test"> C'est parti</a>
+            <a href="<?=$this->url('front_service_add')?>"" class="test"> C'est parti</a>
             <div class="item active">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/alliance.jpg') ?>');"></div>
                 <div class="carousel-caption">
