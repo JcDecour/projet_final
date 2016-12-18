@@ -79,7 +79,7 @@
 					</label>
 					<div class="col-md-2">
 						<select id="civilite" name="civilite" class="form-control">
-							<option value="" selected disabled><?=isset($provider['civilite']) ? $provider['civilite'] : '';?></option>
+							<option><?=isset($provider['civilite']) ? $provider['civilite'] : '';?></option>
 							<option value="Monsieur">Mr</option>
 							<option value="Madame">Mme</option>
 							<option value="Mademoiselle">Melle</option>

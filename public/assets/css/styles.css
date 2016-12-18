@@ -57,7 +57,7 @@ footer {
 
 #update_footer {
     background-color: #222222;
-    position: fixed;
+    position: fixed; /* fou la merde en responsive*/
     bottom: 0;
     left: 0;
 }
@@ -97,7 +97,7 @@ p.text-required-filed{
   background-color: #468847;
 }
  .test {
-    z-index: 9999;
+    z-index: 1029;
     text-align: center;
     height: 50px;
     width: 150px;

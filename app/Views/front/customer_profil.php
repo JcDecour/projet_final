@@ -27,8 +27,8 @@
           <label class="col-md-4 control-label" for="civilité">Civilité :
           </label>
           <div class="col-md-2">
-            <select id="civilite" name="civilite" class="form-control" value="<?=isset($customer['civilite']) ? $customer['civilite'] : '';?>">
-              <!-- <option value="" selected disabled></option> -->
+            <select id="civilite" name="civilite" class="form-control" value="">
+              <option><?=isset($customer['civilite']) ? $customer['civilite'] : '';?></option>
               <option value="Monsieur">Mr</option>
               <option value="Madame">Mme</option>
               <option value="Mademoiselle">Melle</option>
@@ -45,7 +45,7 @@
             <span class="obligatoire">*</span>
           </label>
           <div class="col-md-4">
-            <input id="firstname" name="firstname" type="text" value="<?=isset($customer['firstname']) ? $customer['firstname'] : '';?>"  class="form-control input-md">
+            <input id="firstname" name="firstname" type="text" value="<?=isset($post['firstname']) ? $post['firstname'] : '';?>"  class="form-control input-md">
             
           </div>
           <!-- Gestion des erreurs -->
