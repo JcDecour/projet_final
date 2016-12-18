@@ -146,17 +146,22 @@ a {
 
 
 /*Style de la page Index*/
-.commentcamarche li{
+
+.recentservice, .commentcamarche, .topartisans{
+    min-height: 450px;
+}
+
+.recentservice li, .commentcamarche li, .topartisans li{
     padding-left: 30px;
     margin: 8px 0;
     position: relative;
 }
 
-
-.pucecolor{
-   background-color: #00a699;
+.puce{
     display: inline-block;
+    border-radius: 20px;
     color: #FFF;
+<<<<<<< HEAD
 
     font-size: 11px;
     float: left;
@@ -207,4 +212,33 @@ a {
 .txt a:hover {
   text-decoration: none;
   background-color: #ffc55b;
+=======
+    font-size: 11px;
+    float: left;
+    left: 5px;
+    position: absolute;
+    top: 10px;
+    margin: 2px 8px 10px 0;
+    text-align: center;
+    width: 20px; 
+    padding: 2px;
+   
+}
+
+.pucerecentservice{
+    background-color: #00a699;
+}
+
+.pucecommentcamarche{
+    background-color: #00a699;  
+}
+
+.pucetopartisans{
+    background-color: #00a699;
+}
+
+.markup{
+    font-weight: 600;
+    color: #222;
+>>>>>>> origin/master
 }
