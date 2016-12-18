@@ -5,7 +5,7 @@
 <div class="content-site">
     
 	<div class="page-header">
-		<h1>Consultation d'un devis</h1>
+		<h1>Consultation du service cloturé</h1>
 	</div>
     
     <!--Partie entete du devis (Récapitulatif)-->
@@ -37,6 +37,8 @@
 		<div class="col-md-9"><?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></div>
 	</div>
     
+    <br>
+    
     <!-- Partie devis par catégrorie / ss-categorie-->
     <?php foreach($projectSubSectors as $key => $projectSubSector): ?>
     
@@ -45,22 +47,49 @@
             <div class="panel-heading">
                 <?=$projectSubSector['sectorTitle'];?>&nbsp;-&nbsp;<?=$projectSubSector['subsectorTitle'];?>
             </div>
-            <div class="panel-body">
-                
-                <!-- Cas d'absence de devis pour cette sous-catégorie, ou de non acceptation de l'un d'entre eux-->
-                <?php if(empty($projectSubSector['id_provider'])): ?>
-                    Aucun devis retenu.
-                <?php endif; ?>
-                
-                
-                <div class="row">
-                    <label class="col-md-12 control-label" for="description">Informations complémentaires:</label>
-                    <div class="col-md-12">
-
+            
+            <?php if(empty($projectSubSector['id_provider'])): ?>
+                <div class="panel-body">
+                     Absence de devis retenu pour cette catégorie.
+                </div>
+            <?php else:;?>
+                <div class="panel-body">
+                    <div class="row">
+                        <label class="col-md-12 control-label" for="description">Informations complémentaires du devis:</label>
+                        <div class="col-md-12">
+                            <?=$projectSubSector['description'];?>
+                        </div>
                     </div>
                 </div>
-
-            </div>
+            
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Désignation</th>
+                            <th>Montant HT (€)</th>
+                            <th>Taux de TVA</th>
+                            <th>Montant TTC (€)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <?=$projectSubSector['designation'];?>
+                            </td>
+                            <td class="text-right">
+                                <?=$projectSubSector['ht_amount'];?>
+                            </td>
+                            <td class="text-right">
+                                 <?=$projectSubSector['tva_amount'];?>
+                            </td>
+                            <td class="text-right">
+                                <span id="ttc_amount"><?=number_format($projectSubSector['ht_amount'] * (1  + ($projectSubSector['tva_amount'] / 100)), 2 , "." , " ");?></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+            <?php endif; ?>
         </div>
     
     <?php endforeach; ?>

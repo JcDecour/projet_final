@@ -102,8 +102,9 @@ class ProjectSubsectorModel extends \W\Model\Model
                 INNER JOIN sub_sector as subsector ON subsector.id = ps.id_subsector
                 INNER JOIN sector as sector ON sector.id = subsector.id_sector
                 LEFT JOIN devis ON devis.id_project_subsector = ps.id
-                WHERE id_project = :idProject';
-        var_dump($sql);
+                WHERE id_project = :idProject
+                AND (devis.accepted = 1 OR devis.accepted IS NULL)';
+       
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':idProject', $idProject);
 		$sth->execute();
