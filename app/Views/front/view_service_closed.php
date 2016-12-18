@@ -54,6 +54,27 @@
                 </div>
             <?php else:;?>
                 <div class="panel-body">
+                    
+                    <!--Coordonnées du provider-->
+                    <div class="jumbotron jumbotrondevis">
+                        <address>
+                            <strong>Coordonnées du professionel à contacter:</strong><br>
+                            <?=$projectSubSector['providerCompanyName'];?><br>
+                            <?=$projectSubSector['providerCivilite'];?>&nbsp;<?=$projectSubSector['providerLastname'];?>&nbsp;<?=$projectSubSector['providerFirstname'];?><br>
+                             <?=$projectSubSector['providerStreet'];?>&nbsp;<?=$projectSubSector['providerZipcode'];?>&nbsp;<?=$projectSubSector['providerCity'];?><br>
+                            Tél fixe:&nbsp;<?=$projectSubSector['providerFixedphone'];?><br>
+                            Tél mobile:&nbsp;<?=$projectSubSector['providerMobilephone'];?><br>
+                        </address>
+                        
+                        <address>
+                            <strong>Mail:</strong><br>
+                            <?=$projectSubSector['providerEmail'];?>
+                        </address>
+                    </div>
+                    
+                    
+                    
+                    <!--Informations complémenatires du devis-->
                     <div class="row">
                         <label class="col-md-12 control-label" for="description">Informations complémentaires du devis:</label>
                         <div class="col-md-12">

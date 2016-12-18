@@ -97,11 +97,22 @@ class ProjectSubsectorModel extends \W\Model\Model
 
 		$sql = 'SELECT  devis.*,
                         subsector.title as subsectorTitle,
-                        sector.title as sectorTitle
+                        sector.title as sectorTitle,
+                        provider.company_name as providerCompanyName,
+                        provider.civilite as providerCivilite,
+                        provider.firstname as providerFirstname,
+                        provider.lastname as providerLastname,
+                        provider.street as providerStreet,
+                        provider.zipcode as providerZipcode,
+                        provider.city as providerCity,
+                        provider.fixed_phone as providerFixedphone,
+                        provider.mobile_phone as providerMobilephone,
+                        provider.email as providerEmail  
                 FROM ' . $this->table . ' as ps 
                 INNER JOIN sub_sector as subsector ON subsector.id = ps.id_subsector
                 INNER JOIN sector as sector ON sector.id = subsector.id_sector
                 LEFT JOIN devis ON devis.id_project_subsector = ps.id
+                LEFT JOIN provider as provider ON provider.id = devis.id_provider
                 WHERE id_project = :idProject
                 AND (devis.accepted = 1 OR devis.accepted IS NULL)';
        
