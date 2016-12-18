@@ -38,6 +38,7 @@
     
     <!--Partie entete du devis (Récapitulatif)-->
         <!-- Code postal du lieu du service -->
+        
 	<div class="row">
 		<label class="col-md-3 control-label text-right" for="zip_code">Code postal du lieu du service:</label>  
 		<div class="col-md-9"><?=$devis['projectZipCode'];?></div>

@@ -56,6 +56,8 @@
     
 <?php $cpt = 0;?>
 
+
+
 <?php if(!$project['closed']): ?>
 <form method="POST">
 
@@ -63,7 +65,7 @@
 
 	<!-- Partie devis-->
 	<div class="row">
-	    <div class="panel panel-primary">
+	    <div class="panel panel-default">
 			  <!-- Default panel contents -->
 				<div class="panel-heading">
 				  	<span class="tag label label-default">
@@ -150,7 +152,7 @@
 
 <?php endif; ?>
 
-
+	</div>
 </div>
 
 <?php $this->stop('main_content') ?>
