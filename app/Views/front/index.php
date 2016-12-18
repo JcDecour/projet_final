@@ -12,7 +12,7 @@
        
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-            <a href="<?=$this->url('front_service_add')?>"" class="test"> C'est parti</a>
+            <a href="<?=$this->url('front_service_add')?>" class="test"> C'est parti</a>
             <div class="item active">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/alliance.jpg') ?>');"></div>
                 <div class="carousel-caption">
@@ -113,14 +113,10 @@
                             </li>
                             <li class="list-group-item">
                                 <span class="pucecolor">3</span>
-                                Vous comparez alors les devis des professionnels et choisissez celui de votre convenance.
+                                Vous comparez alors les devis des professionnels et validez ceux de votre choix.
                             </li>
                             <li class="list-group-item">
                                 <span class="pucecolor">4</span>
-                                Vous validez les devis de votre choix.
-                            </li>
-                            <li class="list-group-item">
-                                <span class="pucecolor">5</span>
                                 Les coordonnées des professionnels retenus vous sont alors mises à disposition et vous entrez directement en relation avec eux.
                             </li>
                         </ul>
