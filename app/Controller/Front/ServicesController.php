@@ -499,6 +499,8 @@ class ServicesController extends Controller
 					$devis = $devisModel->find($value);
 					$projectSS = $projectSubSectorModel->find($devis['id_project_subsector']);
 					$projectModel->update(['closed' => 1], $projectSS['id_project']);
+
+					$this->redirectToRoute('front_list_services');
 				}
 
 				var_dump($post);
