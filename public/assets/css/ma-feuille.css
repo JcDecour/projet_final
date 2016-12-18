@@ -49,6 +49,6 @@ body{
 .hello{
     width: 30% !important;
     color: white !important;
-    position: absolute !important;
-    font-size: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }

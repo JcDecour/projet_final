@@ -10,7 +10,7 @@ body {
 
 nav {
     height: 50px;
-    color: black;
+    background-color: black;
 }
 
 .navbar-inverse .navbar-nav > li > a {

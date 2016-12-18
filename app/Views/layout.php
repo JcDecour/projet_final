@@ -28,15 +28,19 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="<?= $this->url('front_default_index') ?>">DevisCible</a>
-                <?php if(isset($w_user)):?>
-                    <span class="hello"> Bonjour&nbsp;<?=$w_user['civilite'];?>&nbsp;<?=$w_user['lastname'];?></span>
-                <?php endif;?>
             </div>
-            
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                   
+                    <li>
+                        <?php if(isset($w_user) && (!isset($w_user['siret']))):?>
+                            <a href="<?=$this->url('front_customer_profil')?>"> Bonjour&nbsp;<?=$w_user['civilite'];?>&nbsp;<?=$w_user['lastname'];?>
+                            </a>
+                        <?php elseif(isset($w_user) && (isset($w_user['company_name']))):?>
+                            <a style="color:orange;" href="<?=$this->url('front_provider_profil')?>"> Bonjour&nbsp;<?=$w_user['company_name'];?>
+                            </a>
+                        <?php endif;?>
+                    </li>
                     <?php if((!$w_user) || (!isset($w_user['siret']))): ?>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace particulier<b class="caret"></b></a>
