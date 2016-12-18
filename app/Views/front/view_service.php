@@ -12,77 +12,122 @@
 			<h1>Liste des devis pour le service</h1>
 		</div>
 	</div>
+	
+	 <!--Partie entete du service (Récapitulatif)-->
+        <!-- Code postal du lieu du service -->
 	<div class="row">
-		<ul class="list-group col-md-4">
-		  <li class="list-group-item">Service&nbsp;:&nbsp;<?=$project['title'] ?></li>
-		  <li class="list-group-item">Crée le&nbsp;:&nbsp;<?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></li>
-		  <li class="list-group-item">Délai&nbsp;:&nbsp;<?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></li>
-		</ul>
+		<label class="col-md-3 control-label text-right" for="zip_code">Code postal du lieu du service:</label>  
+		<div class="col-md-9"><?=$project['zip_code'];?></div>
 	</div>
 
+	   <!-- Objet du service -->
+	<div class="row">
+		<label class="col-md-3 control-label text-right" for="zip_code">Objet du service:</label>  
+		<div class="col-md-9"><?=$project['title'];?></div>
+	</div>
 
+	<br>
+
+	   <!-- Description du service -->
+	<div class="row">
+		<label class="col-md-3 control-label text-right" for="zip_code">Description:</label>  
+		<div class="col-md-9"><?=nl2br($project['description']);?></div>
+	</div>
+    
+    <br>
+    
+        <!-- Date de création du service -->
+	<div class="row">
+		<label class="col-md-3 control-label text-right" for="zip_code">Date de création:</label>  
+		<div class="col-md-9"><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></div>
+	</div>
+    
+    <br>
+
+     <!-- Date prévisionnelle du service -->
+	<div class="row">
+		<label class="col-md-3 control-label text-right" for="zip_code">Date prévisonnelle:</label>  
+		<div class="col-md-9">
+			<?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?>		
+		</div>
+	</div>
+
+	<br>
+    
 <?php $cpt = 0;?>
 
 <?php if(!$project['closed']): ?>
 <form method="POST">
 
-	<?php foreach($projectsSubSector as $projectSubSector): ?>
+	<?php foreach($sectors as $sector): ?>
+
+	<!-- Partie devis-->
 	<div class="row">
-		<div class="panel panel-primary">
-		 
-		  <div class="panel-heading"><?=$projectSubSector['title'] ?></div>
+	    <div class="panel panel-primary">
+			  <!-- Default panel contents -->
+				<div class="panel-heading">
+				  	<span class="tag label label-default">
+				  		<?=$sector['sectorTitle'];?> - <?=$sector['subSectorTitle'];?>		  		
+				  	</span>
+				</div>
 
-		  
-		  <table class="table table-responsive table-bordered">
-		    <thead>
-		    	<th>Votre choix</th>
-		    	<th>Devis</th>
-		    	<th>Date de création</th>
-		    	<th>Société</th>
-		    	<th>Prix HT</th>
-		    	<th>TVA %</th>
-		    	<th class="text-center">Prix TTC (€)</th>
-		    </thead>
-		 
-			<tbody>
+				<div class="panel-body">
 
-			  	<?php foreach($datasDevis as $dataDevis): ?>
-				
-				  		<?php if($projectSubSector['id'] == $dataDevis['projectSubsectorId']):?>
+					<div class="row">
+						<label class="col-md-12 control-label" for="description">Informations complémentaires:</label>
+						<div class="col-md-12">
+							Choisissez un seul devis par sous catégorie
+	                    </div>
+					</div>
+				</div>
+			  
+			  	<table class="table table-bordered table-responsive ">
+				    <thead>
+				    	<th>Votre choix</th>
+				    	<th>Devis</th>
+				    	<th>Date de création</th>
+				    	<th>Société</th>
+				    	<th>Prix HT</th>
+				    	<th>TVA %</th>
+				    	<th class="text-center">Prix TTC (€)</th>
+				    </thead>
+				 
+					<tbody>
 
-						  	<tr>
-						  		<td>
-						  			<input id="<?= $dataDevis['devisId'] ?>" type="checkbox" name="" value="<?= $dataDevis['ttc_amount'] ?>">
-						  		</td>
-						  		<td><?=$dataDevis['devisId'] ?></td>
-						  		<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $dataDevis['devisDateCreat'])->format('d/m/Y');?></td>
-						  		<td><?=$dataDevis['companyName'] ?></td>
-						  		<td><?=number_format($dataDevis['ttc_amount'], 2, ',', ' ') ?></td>
-						  		<td><?=$dataDevis['tva_amount'] ?></td>
-						  		<td class="text-right"><?=number_format($dataDevis['ttc_amount'], 2, ',', ' ') ?></td>
-						  	</tr>
+					  	<?php foreach($datasDevis as $dataDevis): ?>
+						
+						  		<?php if($sector['projectSubSectorId'] == $dataDevis['projectSubsectorId']):?>
 
-							<?php $cpt++;?>
+								  	<tr>
+								  		<td>
+								  			<input id="<?= $dataDevis['devisId'] ?>" type="checkbox" name="" value="<?= $dataDevis['ttc_amount'] ?>">
+								  		</td>
+								  		<td><?=$dataDevis['devisId'] ?></td>
+								  		<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $dataDevis['devisDateCreat'])->format('d/m/Y');?></td>
+								  		<td><?=$dataDevis['companyName'] ?></td>
+								  		<td><?=number_format($dataDevis['ttc_amount'], 2, ',', ' ') ?></td>
+								  		<td><?=$dataDevis['tva_amount'] ?></td>
+								  		<td class="text-right"><?=number_format($dataDevis['ttc_amount'], 2, ',', ' ') ?></td>
+								  	</tr>
 
-				 		<?php endif; ?>
+									<?php $cpt++;?>
 
-				  	
-			  	 
-			  	<?php endforeach; ?>
-			 
-			 </tbody>
+						 		<?php endif; ?>					  	
+					  	 
+					  	<?php endforeach; ?>
+					 
+					</tbody>
 
-			<?php if($cpt == 0):?>
-				<tbody>
-					<tr>
-						<td colspan="7" class="text-danger">Aucun devis enregistré</td>
-					</tr>
-				</tbody>
-			<?php endif;?>
+					<?php if($cpt == 0):?>
+						<tbody>
+							<tr>
+								<td colspan="7" class="text-danger">Aucun devis enregistré</td>
+							</tr>
+						</tbody>
+					<?php endif;?>
 
-			<?php $cpt=0;?>
-
-		   </table>
+					<?php $cpt=0;?>
+			   	</table>
 		</div>
 	</div>
 	<?php endforeach; ?>

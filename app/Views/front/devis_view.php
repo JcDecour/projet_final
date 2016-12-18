@@ -93,7 +93,7 @@
 					<tr>
 						<th>Désignation</th>
 						<th>Montant HT (€)</th>
-						<th>Taux de TVA</th>
+						<th>Taux de TVA (%)</th>
 						<th>Montant TTC (€)</th>
 					</tr>
 				</thead>

@@ -479,6 +479,7 @@ class ServicesController extends Controller
 		$customerModel = new CustomerModel();
 		$projectSubSectorModel = new ProjectSubSectorModel();
 		$devisModel = new DevisModel();
+		$sectorModel = new SectorModel();
 		
 
 		if (!is_numeric($id) || empty($id)) {
@@ -531,8 +532,12 @@ class ServicesController extends Controller
 				
 			}
 
-			// On récupère toutes les sous-catégories liées au projet
-			$projectsSubSector = $projectSubSectorModel->findAllProjectSubsectorById($project['id']);
+			// On récupère toutes les catégories et les sous-catégories liées au projet
+			$sectors = $sectorModel->findAllSectorsByProjectId($project['id']);
+
+			// On récupère toutes les catégories liés au projet 
+
+
 
 
 			// On récupère les devis liés au projet ou service
@@ -542,7 +547,7 @@ class ServicesController extends Controller
 			$data = [
 
 				'project' => $project,
-				'projectsSubSector' => $projectsSubSector,
+				'sectors' => $sectors,
 				'datasDevis' => $datasDevis,
 
 			];
