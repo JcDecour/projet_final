@@ -57,10 +57,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <p><i class="fa fa-fw fa-check"></i>&nbsp;Gratuit pour les particuliers</p>
+                    <p><i class="fa fa-fw fa-check"></i>&nbsp;Gratuit pour les particuliers et professionnels</p>
                 </div>
                 <div class="col-md-4">
-                    <p><i class="fa fa-fw fa-check"></i>&nbsp;Gratuit pour les professionnels</p>
+                    <p><i class="fa fa-fw fa-check"></i>&nbsp;Pas d'intermédiaires</p>
                 </div>
                 <div class="col-md-4">
                     <p><i class="fa fa-fw fa-check"></i>&nbsp;Nombre de devis illimités et sans engagement</p>
@@ -81,7 +81,7 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="text-center"><i style="color:green;" class="fa fa-fw fa-check"></i>&nbsp;Dernier Projets</h3>
+                        <h3 class="text-center"><i style="color:green;" class="fa fa-fw fa-check"></i>&nbsp;Les derniers Services</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="text-center list-group">
@@ -109,11 +109,11 @@
                             </li>
                             <li class="list-group-item">
                                 <span class="pucecolor">2</span>
-                                Des professionnels émettent des propositions de devis adaptés.
+                                Des professionnels émettent leurs propositions de devis.
                             </li>
                             <li class="list-group-item">
                                 <span class="pucecolor">3</span>
-                                Vous étudiez les propositions de devis reçues et validez celles de votre choix.
+                                Comparez et sélectionnez les propositions de devis reçues et validez celles de votre choix.
                             </li>
                             <li class="list-group-item">
                                 <span class="pucecolor">4</span>
@@ -128,7 +128,7 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="text-center"><i style="color:gold" class="fa fa-list-ol" aria-hidden="true"></i>&nbsp; Top Artisans</h3>
+                        <h3 class="text-center"><i style="color:gold" class="fa fa-list-ol" aria-hidden="true"></i>&nbsp;Le Top des professionnels</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="text-center list-group">
