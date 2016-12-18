@@ -145,8 +145,6 @@ a {
 }
 
 
-
-
 /*Style de la page Index*/
 
 .recentservice, .commentcamarche, .topartisans{
@@ -213,4 +211,30 @@ a {
 .txt a:hover {
   text-decoration: none;
   background-color: #ffc55b;
+    font-size: 11px;
+    float: left;
+    left: 5px;
+    position: absolute;
+    top: 10px;
+    margin: 2px 8px 10px 0;
+    text-align: center;
+    width: 20px; 
+    padding: 2px;
+   
 }
+
+.pucerecentservice{
+    background-color: #00a699;
+}
+
+.pucecommentcamarche{
+    background-color: #00a699;  
+}
+
+.pucetopartisans{
+    background-color: #00a699;
+}
+
+.markup{
+    font-weight: 600;
+    color: #222;

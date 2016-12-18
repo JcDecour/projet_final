@@ -101,7 +101,7 @@ class CustomerController extends Controller
 		$customerModel = new CustomerModel(); // appel de la fonction insert 
 		$formErrors =[];//stockage des erreurs
 		$passwordHash = new AuthentificationModel(); // appel de la fonction hashPassword
-		
+		$post = [];
 
 		if(!empty($_POST)){
 
