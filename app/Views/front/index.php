@@ -79,17 +79,21 @@
         <div class="row">
 
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default recentservice">
                     <div class="panel-heading">
-                        <h3 class="text-center"><i style="color:green;" class="fa fa-fw fa-check"></i>&nbsp;Les derniers Services</h3>
+                        <h3 class="text-center"><i style="color:orange;" class="fa fa-fw fa-check"></i>&nbsp;Les derniers Services</h3>
                     </div>
                     <div class="panel-body">
-                        <ul class="text-center list-group">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
+                        <ul class="list-group">
+                            <?php foreach($topProjects as $key => $topProject): ?>
+                                <li class="list-group-item">
+                                    <span class="pucerecentservice">&#10004;</span>
+                                    <span class="markup"><?=DateTime::createFromFormat('Y-m-d H:i:s', $topProject['created_at'])->format('d/m/y');?></span>
+                                    <?=$topProject['title']; ?>
+                                    &nbsp;(<i class="fa fa-fw fa-map-marker"></i><?=$topProject['zip_code']; ?>)
+                            </li>
+                            <?php endforeach; ?>
+                        
                         </ul>
                     </div>
                 </div>
@@ -104,20 +108,20 @@
                     <div class="panel-body">
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <span class="pucecolor">1</span>
-                                Vous effectuez votre demande de service.
+                                <span class="pucecommentcamarche">1</span>
+                                Vous effectuez <span class="markup">gratuitement</span> votre demande de service.
                             </li>
                             <li class="list-group-item">
-                                <span class="pucecolor">2</span>
-                                Des professionnels émettent leurs propositions de devis.
+                                <span class="pucecommentcamarche">2</span>
+                                Des professionnels émettent <span class="markup">gratuitement</span> leurs propositions de devis.
                             </li>
                             <li class="list-group-item">
-                                <span class="pucecolor">3</span>
-                                Comparez et sélectionnez les propositions de devis reçues et validez celles de votre choix.
+                                <span class="pucecommentcamarche">3</span>
+                                <span class="markup">Comparez</span> et sélectionnez les devis reçus et validez ceux de votre <span class="markup">choix</span>.
                             </li>
                             <li class="list-group-item">
-                                <span class="pucecolor">4</span>
-                                Les coordonnées des professionnels retenus vous sont alors accessibles et vous pouvez entrer directement en contact avec eux.
+                                <span class="pucecommentcamarche">4</span>
+                                Les coordonnées des professionnels retenus vous sont alors accessibles et vous pouvez entrer <span class="markup">directement</span> en contact avec eux.
                             </li>
                         </ul>
                     </div>
@@ -126,9 +130,9 @@
 
             <!-- COLLONE TOP ARTISANS -->
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default topartisans">
                     <div class="panel-heading">
-                        <h3 class="text-center"><i style="color:gold" class="fa fa-list-ol" aria-hidden="true"></i>&nbsp;Le Top des professionnels</h3>
+                        <h3 class="text-center"><i style="color:orange" class="fa fa-list-ol" aria-hidden="true"></i>&nbsp;Le Top des professionnels</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="text-center list-group">

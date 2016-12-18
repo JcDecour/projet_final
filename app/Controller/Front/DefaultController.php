@@ -16,9 +16,9 @@ class DefaultController extends Controller
 
         //Recherche des 5 derniers projets soumis par les particuliers
         $projectModel = new ProjectModel();
-        
-        
-		$this->show('front/index');
+        $topProjects = $projectModel->findAll('created_at', 'DESC', null, 5);
+       
+		$this->show('front/index', ['topProjects' => $topProjects]);
 	}
 
 }
