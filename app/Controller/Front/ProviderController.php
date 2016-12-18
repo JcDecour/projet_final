@@ -39,7 +39,7 @@ class ProviderController extends Controller
 		$providerModel = new ProviderModel(); // appel de la fonction insert 
 		$formErrors =[];//stockage des erreurs
 		$passwordHash = new AuthentificationModel(); // appel de la fonction hashPassword
-		
+		$post = [];
 			
 
 		if(!empty($_POST)){
@@ -132,7 +132,7 @@ class ProviderController extends Controller
 			}
 
 		}
-		$this->show('front/provider_signin', ['formErrors'=>$formErrors]);
+		$this->show('front/provider_signin', ['formErrors'=>$formErrors, 'post' => $post]);
 	}
 	/**
 	 * Page de connexion

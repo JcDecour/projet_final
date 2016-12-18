@@ -26,7 +26,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="company_name" name="company_name" type="text" placeholder="EURL Ptit travaux" class="form-control input-md">
+						<input id="company_name" name="company_name" type="text" placeholder="EURL Ptit travaux" value="<?=isset($post['company_name']) ? $post['company_name'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- Gestion des erreurs -->
 	        		<?php if(isset($formErrors['company_name'])): ?>
@@ -42,7 +42,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<textarea class="form-control" id="company_description" name="company_description" placeholder="Un petit mot sur l'entreprise"></textarea>
+						<textarea class="form-control" id="company_description" name="company_description" placeholder="Un petit mot sur l'entreprise"><?=isset($post['company_description']) ? $post['company_description'] : '';?></textarea>
 					</div>
 						<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['company_description'])): ?>
@@ -57,7 +57,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="siret" name="siret" type="text" placeholder="01234567891122" class="form-control input-md">
+						<input id="siret" name="siret" type="text" placeholder="01234567891122" value="<?=isset($post['siret']) ? $post['siret'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['siret'])): ?>
@@ -86,7 +86,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="firstname" name="firstname" type="text" placeholder="jean" class="form-control input-md">
+						<input id="firstname" name="firstname" type="text" placeholder="jean" value="<?=isset($post['firstname']) ? $post['firstname'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['firstname'])): ?>
@@ -101,7 +101,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="lastname" name="lastname" type="text" placeholder="Durandet" class="form-control input-md">
+						<input id="lastname" name="lastname" type="text" placeholder="Durandet" value="<?=isset($post['lastname']) ? $post['lastname'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['lastname'])): ?>
@@ -116,7 +116,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="email" name="email" type="text" placeholder="jean.durandet@gmail.com" class="form-control input-md">
+						<input id="email" name="email" type="text" placeholder="jean.durandet@gmail.com" value="<?=isset($post['email']) ? $post['email'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['email'])): ?>
@@ -145,7 +145,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="fixed_phone" name="fixed_phone" type="text" placeholder="0123456789" class="form-control input-md">
+						<input id="fixed_phone" name="fixed_phone" type="text" placeholder="0123456789" value="<?=isset($post['fixed_phone']) ? $post['fixed_phone'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- gestion des erreurs -->
 					<?php if(isset($formErrors['fixed_phone'])): ?>
@@ -160,7 +160,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="mobile_phone" name="mobile_phone" type="text" placeholder="0612345678" class="form-control input-md">
+						<input id="mobile_phone" name="mobile_phone" type="text" placeholder="0612345678" value="<?=isset($post['mobile_phone']) ? $post['mobile_phone'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- gestion des erreurs -->
 					<?php if(isset($formErrors['mobile_phone'])): ?>
@@ -175,7 +175,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="street" name="street" type="text" placeholder="Rue de la paix" class="form-control input-md">
+						<input id="street" name="street" type="text" placeholder="Rue de la paix" value="<?=isset($post['street']) ? $post['street'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- gestion des erreurs -->
 					<?php if(isset($formErrors['street'])): ?>
@@ -190,7 +190,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-2">
-						<input id="zipcode" name="zipcode" type="text" placeholder="75000" class="form-control input-md">
+						<input id="zipcode" name="zipcode" type="text" placeholder="75000" value="<?=isset($post['zipcode']) ? $post['zipcode'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- gestion des erreurs -->
 					<?php if(isset($formErrors['zipcode'])): ?>
@@ -205,7 +205,7 @@
 						<span class="obligatoire">*</span>
 					</label>
 					<div class="col-md-4">
-						<input id="city" name="city" type="text" placeholder="Paris" class="form-control input-md">
+						<input id="city" name="city" type="text" placeholder="Paris" value="<?=isset($post['city']) ? $post['city'] : '';?>" class="form-control input-md">
 					</div>
 						<!-- gestion des erreurs -->	
 					<?php if(isset($formErrors['city'])): ?>
