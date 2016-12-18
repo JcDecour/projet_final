@@ -64,7 +64,7 @@
                         </div>
                     <?php else: ?>
                         <div class="col-md-3">
-                            <a href="<?=$this->url('front_devis_view_customer', ['id' => $project['id']]);?>" class="btn btn-success btn-sm btn_margin" title="Consulter ce service">
+                            <a href="<?=$this->url('front_service_view_closed', ['id' => $project['id']]);?>" class="btn btn-success btn-sm btn_margin" title="Consulter ce service">
                              Consulter
                             </a>
                         </div>

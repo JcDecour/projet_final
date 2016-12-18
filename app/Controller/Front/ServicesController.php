@@ -550,5 +550,17 @@ class ServicesController extends Controller
 		}
 	}
 
+      /**
+	 * Controleur de consultation d'un service par le particulier qui a été cloturé
+	 * @param $id integer Correspond a l'id du projet à consulter
+	*/
+	public function viewClosed($id)
+	{
+        $projectModel = new ProjectModel();
+        $project = $projectModel->find($id);
+
+        $this->show('front/view_service_closed', ['project' => $project]);
+    }
+    
 
 }
