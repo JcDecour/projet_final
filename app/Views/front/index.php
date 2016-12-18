@@ -81,19 +81,18 @@
             <div class="col-md-4">
                 <div class="panel panel-default recentservice">
                     <div class="panel-heading">
-                        <h3 class="text-center"><i style="color:orange;" class="fa fa-fw fa-check"></i>&nbsp;Les derniers Services</h3>
+                        <h3 class="text-center"><i style="color:#00a699;" class="fa fa-fw fa-check"></i>&nbsp;Les derniers services</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
                             <?php foreach($topProjects as $key => $topProject): ?>
                                 <li class="list-group-item">
-                                    <span class="pucerecentservice">&#10004;</span>
-                                    <span class="markup"><?=DateTime::createFromFormat('Y-m-d H:i:s', $topProject['created_at'])->format('d/m/y');?></span>
-                                    <?=$topProject['title']; ?>
-                                    &nbsp;(<i class="fa fa-fw fa-map-marker"></i><?=$topProject['zip_code']; ?>)
+                                    <span class="puce pucerecentservice">&#10004;</span>
+                                   <?=DateTime::createFromFormat('Y-m-d H:i:s', $topProject['created_at'])->format('d/m/y');?>
+                                    -&nbsp;<?=$topProject['title']; ?>
+                                    &nbsp;(<i class="fa fa-fw fa-map-marker"></i><?=$topProject['zip_code']; ?> )
                             </li>
                             <?php endforeach; ?>
-                        
                         </ul>
                     </div>
                 </div>
@@ -103,24 +102,24 @@
             <div class="col-md-4">
                 <div class="panel panel-default commentcamarche">
                     <div class="panel-heading">
-                        <h3 class="text-center"><i style="color:orange" class="fa fa-question-circle fa-fw" aria-hidden="true"></i>&nbsp;Comment ça marche ?</h3>
+                        <h3 class="text-center"><i style="color:#DE4563" class="fa fa-question-circle fa-fw" aria-hidden="true"></i>&nbsp;Comment ça marche ?</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <span class="pucecommentcamarche">1</span>
+                                <span class="puce pucecommentcamarche">1</span>
                                 Vous effectuez <span class="markup">gratuitement</span> votre demande de service.
                             </li>
                             <li class="list-group-item">
-                                <span class="pucecommentcamarche">2</span>
+                                <span class="puce pucecommentcamarche">2</span>
                                 Des professionnels émettent <span class="markup">gratuitement</span> leurs propositions de devis.
                             </li>
                             <li class="list-group-item">
-                                <span class="pucecommentcamarche">3</span>
+                                <span class="puce pucecommentcamarche">3</span>
                                 <span class="markup">Comparez</span> et sélectionnez les devis reçus et validez ceux de votre <span class="markup">choix</span>.
                             </li>
                             <li class="list-group-item">
-                                <span class="pucecommentcamarche">4</span>
+                                <span class="puce pucecommentcamarche">4</span>
                                 Les coordonnées des professionnels retenus vous sont alors accessibles et vous pouvez entrer <span class="markup">directement</span> en contact avec eux.
                             </li>
                         </ul>
@@ -132,15 +131,17 @@
             <div class="col-md-4">
                 <div class="panel panel-default topartisans">
                     <div class="panel-heading">
-                        <h3 class="text-center"><i style="color:orange" class="fa fa-list-ol" aria-hidden="true"></i>&nbsp;Le Top des professionnels</h3>
+                        <h3 class="text-center"><i style="color:#ffb400" class="fa fa-thumbs-o-up " aria-hidden="true"></i>&nbsp;Le Top des professionnels</h3>
                     </div>
                     <div class="panel-body">
-                        <ul class="text-center list-group">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
+                        <ul class="list-group">
+                            <?php foreach($devis as $key => $devisVal): ?>
+                                <li class="list-group-item">
+                                    <span class="puce pucetopartisans"><i class="fa fa-fw fa-thumbs-o-up "></i></span>
+                                    <?=$devisVal['company_name']; ?>
+                                    (<i class="fa fa-fw fa-map-marker"></i><?=$devisVal['zipcode']; ?> )
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>

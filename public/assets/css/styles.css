@@ -149,15 +149,15 @@ a {
     min-height: 450px;
 }
 
-.recentservice li, .commentcamarche li{
+.recentservice li, .commentcamarche li, .topartisans li{
     padding-left: 30px;
     margin: 8px 0;
     position: relative; 
 }
 
-.pucerecentservice{
-    background-color: #DE4563;
+.puce{
     display: inline-block;
+    border-radius: 20px;
     color: #FFF;
     font-size: 11px;
     float: left;
@@ -166,23 +166,21 @@ a {
     top: 10px;
     margin: 2px 8px 10px 0;
     text-align: center;
-    width: 15px;  
-     border-radius: 10px;
+    width: 20px; 
+    padding: 2px;
+   
+}
+
+.pucerecentservice{
+    background-color: #00a699;
 }
 
 .pucecommentcamarche{
-    background-color: #00a699;
-    display: inline-block;
-    color: #FFF;
-    font-size: 11px;
-    float: left;
-    left: 5px;
-    position: absolute;
-    top: 10px;
-    margin: 2px 8px 10px 0;
-    text-align: center;
-    width: 15px;
-   
+    background-color: #DE4563;  
+}
+
+.pucetopartisans{
+    background-color: #ffb400;
 }
 
 .markup{

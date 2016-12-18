@@ -4,6 +4,7 @@ namespace Controller\Front;
 
 use \W\Controller\Controller;
 use \Model\ProjectModel;
+use \Model\DevisModel;
 
 class DefaultController extends Controller
 {
@@ -18,7 +19,12 @@ class DefaultController extends Controller
         $projectModel = new ProjectModel();
         $topProjects = $projectModel->findAll('created_at', 'DESC', null, 5);
        
-		$this->show('front/index', ['topProjects' => $topProjects]);
+        //Recherche des 5 meilleurs professionnels
+        $devisModel = new DevisModel();
+        $devis = $devisModel->findBestProfessionnels(5);
+
+        //Affichage du template
+		$this->show('front/index', ['topProjects' => $topProjects, 'devis' => $devis]);
 	}
 
 }

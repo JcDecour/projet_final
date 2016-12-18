@@ -113,7 +113,30 @@ class DevisModel extends \W\Model\Model
 		$sth->execute();
 
 		return $sth->fetch();
-	}	
+	}
+    
+     /**
+	 * Recherche des 5 meilleurs professionnels (Ceux qui ont le plus de devis acceptés)
+     * @param  integer Nbre de ligne que l'on souhaite récupérer (Par défaut si non renseigné, 5 enregistrements sont retournés)
+     * @return mixed Les données sous forme de tableau associatif
+	 */
+	public function findBestProfessionnels($limit = 5)
+	{
+        if ($limit && !is_int($limit)){
+                die('Error: invalid limit param');
+        }
+        
+        $sql = 'SELECT *, count(*) as nbre 
+                FROM ' . $this->table . ' 
+                INNER JOIN provider as p ON p.id = devis.id_provider
+                WHERE accepted = 1 
+                GROUP BY id_provider 
+                ORDER BY nbre DESC 
+                LIMIT :limit';
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':limit', $limit, \PDO::PARAM_INT);
+		$sth->execute();
 
-
+		return $sth->fetchAll(); 
+    }
 }
