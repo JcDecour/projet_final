@@ -81,7 +81,7 @@
             <div class="col-md-4">
                 <div class="panel panel-default recentservice">
                     <div class="panel-heading">
-                        <h3 class="text-center"><i style="color:#00a699;" class="fa fa-fw fa-check"></i>&nbsp;Les derniers services</h3>
+                        <h3 class="text-center"><i style="color:#ffb400;" class="fa fa-fw fa-check"></i>&nbsp;Les derniers services</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
@@ -102,7 +102,7 @@
             <div class="col-md-4">
                 <div class="panel panel-default commentcamarche">
                     <div class="panel-heading">
-                        <h3 class="text-center"><i style="color:#DE4563" class="fa fa-question-circle fa-fw" aria-hidden="true"></i>&nbsp;Comment ça marche ?</h3>
+                        <h3 class="text-center"><i style="color:#ffb400" class="fa fa-question-circle fa-fw" aria-hidden="true"></i>&nbsp;Comment ça marche ?</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
