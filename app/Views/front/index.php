@@ -105,7 +105,7 @@
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <span class="pucecolor">1</span>
-                                Vous décrivez votre demande de service avec un maximum de détails.
+                                Vous effectuez votre demande de service.
                             </li>
                             <li class="list-group-item">
                                 <span class="pucecolor">2</span>
@@ -113,11 +113,11 @@
                             </li>
                             <li class="list-group-item">
                                 <span class="pucecolor">3</span>
-                                Vous comparez alors les devis des professionnels et validez ceux de votre choix.
+                                Vous étudiez les propositions de devis reçues et validez celles de votre choix.
                             </li>
                             <li class="list-group-item">
                                 <span class="pucecolor">4</span>
-                                Les coordonnées des professionnels retenus vous sont alors mises à disposition et vous entrez directement en relation avec eux.
+                                Les coordonnées des professionnels retenus vous sont alors accessibles et vous pouvez entrer directement en contact avec eux.
                             </li>
                         </ul>
                     </div>
