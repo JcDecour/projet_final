@@ -97,17 +97,32 @@
 
             <!-- COLONNE COMMENT CA MARCHE -->
             <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default commentcamarche">
                     <div class="panel-heading">
                         <h3 class="text-center"><i style="color:orange" class="fa fa-question-circle fa-fw" aria-hidden="true"></i>&nbsp;Comment ça marche ?</h3>
                     </div>
                     <div class="panel-body">
-                        <ul class="text-center list-group">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="pucecolor">1</span>
+                                Vous décrivez votre demande de service avec un maximum de détails.
+                            </li>
+                            <li class="list-group-item">
+                                <span class="pucecolor">2</span>
+                                Des professionnels émettent des propositions de devis adaptés.
+                            </li>
+                            <li class="list-group-item">
+                                <span class="pucecolor">3</span>
+                                Vous comparez alors les devis des professionnels et choisissez celui de votre convenance.
+                            </li>
+                            <li class="list-group-item">
+                                <span class="pucecolor">4</span>
+                                Vous validez les devis de votre choix.
+                            </li>
+                            <li class="list-group-item">
+                                <span class="pucecolor">5</span>
+                                Les coordonnées des professionnels retenus vous sont alors mises à disposition et vous entrez directement en relation avec eux.
+                            </li>
                         </ul>
                     </div>
                 </div>
