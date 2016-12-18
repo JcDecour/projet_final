@@ -557,9 +557,12 @@ class ServicesController extends Controller
 	public function viewClosed($id)
 	{
         $projectModel = new ProjectModel();
+        $projectSubSectorModel = new ProjectSubSectorModel();
+        
         $project = $projectModel->find($id);
+        $projectSubSector = $projectSubSectorModel->findAllWithDetailsByIdProject($id);
 
-        $this->show('front/view_service_closed', ['project' => $project]);
+        $this->show('front/view_service_closed', ['project' => $project, 'projectSubSector' => $projectSubSector]);
     }
     
 

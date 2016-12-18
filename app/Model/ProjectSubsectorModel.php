@@ -83,5 +83,32 @@ class ProjectSubsectorModel extends \W\Model\Model
 		$sth->bindValue(':idProject', $idProject);
 		return $sth->execute();
 	}
+    
+    /**
+	 * Récupère toutes les lignes de la table à partir d'un Id de project
+	 * @param  integer Id
+	 * @return mixed Les données sous forme de tableau 
+	 */
+	public function findAllWithDetailsByIdProject($idProject)
+	{
+		if (!is_numeric($idProject)){
+			return false;
+		}
+
+		$sql = 'SELECT  devis.*,
+                        subsector.title as subsectorTitle,
+                        sector.title as sectorTitle
+                FROM ' . $this->table . ' as ps 
+                INNER JOIN sub_sector as subsector ON subsector.id = ps.id_subsector
+                INNER JOIN sector as sector ON sector.id = subsector.id_sector
+                LEFT JOIN devis ON devis.id_project_subsector = ps.id
+                WHERE id_project = :idProject';
+        var_dump($sql);
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindValue(':idProject', $idProject);
+		$sth->execute();
+
+		return $sth->fetchAll();
+	}
 
 }
