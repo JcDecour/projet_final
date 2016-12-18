@@ -113,8 +113,16 @@
             <?php endif; ?>
         </div>
     
+       
+    
     <?php endforeach; ?>
     
+    <!--Bouton de retour à la liste des devis-->
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <a href="<?=$this->url('front_list_services');?>" class="btn btn-default" title="Retour liste des devis">Retour liste des services</a>
+        </div>
+    </div>
     
 </div>
 
