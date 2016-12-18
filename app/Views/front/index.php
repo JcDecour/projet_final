@@ -9,10 +9,16 @@
             <li data-target="#myCarousel" data-slide-to="2"></li>
             <li data-target="#myCarousel" data-slide-to="3"></li>
         </ol>
-       
+
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-            <a href="<?=$this->url('front_service_add')?>" class="test"> C'est parti</a>
+
+        <div class="txt">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elita.
+              <a href="<?=$this->url('front_service_add')?>" class=""> C'est parti</a>
+            </p>
+        </div>
+
             <div class="item active">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/baby.jpg') ?>');"></div>
                 <div class="carousel-caption">
@@ -46,7 +52,7 @@
         <a class="right carousel-control" href="#myCarousel" data-slide="next">
             <span class="icon-next"></span>
         </a>
-   
+
     </header>
 <?php $this->stop('header_content') ?>
 

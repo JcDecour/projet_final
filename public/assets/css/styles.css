@@ -47,7 +47,7 @@ footer {
     justify-content: space-between;
     text-decoration: none;
     list-style: none;
-    
+
 }
 
 .footer_links a, .footer_links p{
@@ -96,6 +96,7 @@ p.text-required-filed{
 .badge-success {
   background-color: #468847;
 }
+
  .test {
     z-index: 1029;
     text-align: center;
@@ -106,6 +107,7 @@ p.text-required-filed{
     background-color: rgba(255,255,255,0.8);
     position: absolute;
  }
+
 /*Views*/
 
 /* Les liens*/
@@ -147,7 +149,7 @@ a {
 .commentcamarche li{
     padding-left: 30px;
     margin: 8px 0;
-    position: relative; 
+    position: relative;
 }
 
 
@@ -155,16 +157,54 @@ a {
    background-color: #00a699;
     display: inline-block;
     color: #FFF;
-  
+
     font-size: 11px;
     float: left;
-    
+
     left: 5px;
     position: absolute;
     top: 10px;
-    
-    
+
+
     margin: 2px 8px 10px 0;
     text-align: center;
-    width: 15px;  
+    width: 15px;
+}
+
+/* Slider */
+
+.txt {
+    position: absolute;
+    text-align: center;
+    padding: 60px 0 0 0;
+    z-index: 1029;
+    left: 0;
+    right: 0;
+}
+
+.txt p {
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+    font-size: 22px;
+    background-color: rgba(0, 0, 0, 0.45);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px 15px;
+    border-radius: 3px;
+}
+
+.txt a {
+  display: inline-block;
+  color: #fff;
+  background-color: orange;
+  text-shadow: none;
+  line-height: 38px;
+  padding: 0 20px;
+  border-radius: 4px;
+  margin-top: 15px;
+  transition: all 0.2s;
+}
+.txt a:hover {
+  text-decoration: none;
+  background-color: #ffc55b;
 }
