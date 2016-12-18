@@ -45,7 +45,7 @@
             <span class="obligatoire">*</span>
           </label>
           <div class="col-md-4">
-            <input id="firstname" name="firstname" type="text" value="<?=isset($post['firstname']) ? $post['firstname'] : '';?>"  class="form-control input-md">
+            <input id="firstname" name="firstname" type="text" value="<?=isset($customer['firstname']) ? $customer['firstname'] : '';?>"  class="form-control input-md">
             
           </div>
           <!-- Gestion des erreurs -->

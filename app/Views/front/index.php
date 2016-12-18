@@ -14,7 +14,7 @@
         <div class="carousel-inner">
             <a href="<?=$this->url('front_service_add')?>" class="test"> C'est parti</a>
             <div class="item active">
-                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/alliance.jpg') ?>');"></div>
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/baby.jpg') ?>');"></div>
                 <div class="carousel-caption">
                     <h2>&Eacute;vènements</h2>
                 </div>

@@ -189,7 +189,7 @@ class CustomerController extends Controller
 
 		}
 
-		$this->show('front/customer_signin', ['formErrors'=>$formErrors]);
+		$this->show('front/customer_signin', ['formErrors'=>$formErrors, 'post'=>$post]);
 	}
 	/*
 	*mettra a jour les infos de l'utilisateur connecté
