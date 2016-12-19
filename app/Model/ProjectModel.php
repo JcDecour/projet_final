@@ -62,7 +62,7 @@ class ProjectModel extends \W\Model\Model
         if(!empty($title)){
 			$sql .= ' AND (p.title LIKE :title OR p.description LIKE :title)';
 		}
-		$sql .= ' ORDER BY created_at DESC';
+		$sql .= ' ORDER BY p.id DESC';
         
 		$sth = $this->dbh->prepare($sql);
 		if(!empty($zip_code)){
@@ -124,7 +124,7 @@ class ProjectModel extends \W\Model\Model
         if(!empty($title)){
 			$sql .= ' AND (p.title LIKE :title OR p.description LIKE :title)';
 		}
-		$sql .= ' ORDER BY created_at DESC, sector.order_num ASC, subsector.title ASC';
+		$sql .= ' ORDER BY p.id DESC, sector.order_num ASC, subsector.title ASC';
         
 		$sth = $this->dbh->prepare($sql);
 		if(!empty($zip_code)){

@@ -26,8 +26,9 @@ class DevisController extends Controller
 			$this->redirectToRoute('front_provider_login');
 		}
         
-        //Instanciation de la classe "SectorModel"
+        //Instanciation des classes
 		$sectorModel = new SectorModel();
+        $projectModel = new ProjectModel();
         
         //#####################################################################
         // Partie Liste des Projets disponibles
@@ -60,9 +61,8 @@ class DevisController extends Controller
 				$title = $get['title'];
 			}
 		}
-
+        
 		//Recherche de tous les projets en détail non terminés et non extimés par le professionnel
-		$projectModel = new ProjectModel();
 		$projects = $projectModel->findAllDetailWithoutClosed($zip_code, $sub_sector, $sector, $title);
 
         //Recherche de tous les "Sector" triés par numéro d'ordre

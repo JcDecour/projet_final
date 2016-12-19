@@ -71,11 +71,15 @@
 
 			<thead>
 				<tr>
-					<th>N° Offre</th>
+					<th>
+                        N° Offre
+                        &nbsp;
+                        <i class="fa fa-fw fa-sort-amount-desc"></i>
+                    </th>
 					<th>Lieu</th>
 					<th>Service</th>
-					<th>Ajouté le</th>
-					<th>Prévu le</th>
+					<th>Ajoutée le</th>
+					<th>Prévue le</th>
 					<th class="text-center">Devis</th>
 					<th class="text-center">Action</th>
 				</tr>

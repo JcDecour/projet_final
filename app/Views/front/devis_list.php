@@ -7,7 +7,7 @@
 	<div class="page-header">
 		<h1>Liste des offres de services disponibles</h1>
 	</div>
-	
+    
     <!-- Formulaire de recherche -->
 	<div class="well well-sm">
 		<form method="get" class="form-inline">
@@ -52,13 +52,17 @@
     <table class="table table-responsive table-bordered">
         <thead>
             <tr>
-                <th>N° Offre</th>
+                <th>
+                    N° Offre
+                    &nbsp;
+                    <i class="fa fa-fw fa-sort-amount-desc"></i>
+                </th>
                 <th>Lieu</th>
                 <th>Service</th>
                 <th>Catégorie</th>
                 <th>Ss Catégorie</th>
-                <th>Créé le</th>
-                <th>Prévu le</th>
+                <th>Ajoutée le</th>
+                <th>Prévue le</th>
                 <th class="text-center">Devis</th>
                 <th class="text-center">Action</th>
             </tr>
@@ -122,13 +126,17 @@
 
 			<thead>
 				<tr>
-					<th>N° Devis</th>
+					<th>
+                        N° Devis
+                        &nbsp;
+                        <i class="fa fa-fw fa-sort-amount-desc"></i>
+                    </th>
+                    <th>N° Offre</th>
 					<th>Lieu</th>
 					<th>Service</th>
 					<th>Catégorie</th>
 					<th>Ss Catégorie</th>
-					<th>Prévu le</th>
-					<th>Montant TTC (€)</th>
+					<th>Mont. TTC (€)</th>
 					<th class="text-center">Etat</th>
 					<th class="text-center">Action</th>
 				</tr>
@@ -138,11 +146,11 @@
 				<?php foreach($listdevis as $devis): ?>
 				<tr>
 					<td><?=sprintf("%06d", $devis['id'])?></td>
+                    <td><?=sprintf("%06d", $devis['projectId'])?></td>
 					<td><?=$devis['projectZipCode'] ?></td>
 					<td><?=$devis['projectTitle'] ?></td>
 					<td><?=$devis['titleSector'];?></td>
 					<td><?=$devis['titleSubsector'];?></td>
-					<td><?=DateTime::createFromFormat('Y-m-d', $devis['projectPredicted'])->format('d/m/Y');?></td>
 					<?php 
 						$montantTTC = number_format($devis['ht_amount'] * (1 +($devis['tva_amount']/100)), 2, "." , " ");
 					?>
@@ -158,7 +166,7 @@
 					</td>
 					<td class="text-center">
 						<a href="<?=$this->url('front_devis_view', ['id' => $devis['id']]);?>" class="btn btn-default btn-sm" title="Consulter mon devis">
-					 		Consulter devis
+					 		Consulter
 						</a>
 					</td>
 				</tr>

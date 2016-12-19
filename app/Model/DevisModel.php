@@ -19,7 +19,8 @@ class DevisModel extends \W\Model\Model
 			return false;
 		}
 
-		$sql = 'SELECT devis.*, 
+		$sql = 'SELECT devis.*,
+                    project.id as projectId, 
                     project.zip_code as projectZipCode, 
                     project.closed as projectClosed, 
                     project.title as projectTitle, 
@@ -32,7 +33,7 @@ class DevisModel extends \W\Model\Model
                     INNER JOIN sector as sector ON sector.id = subsector.id_sector 
                     INNER JOIN project as project ON project.id = ps.id_project
                     WHERE id_provider = :idProvider 
-                    ORDER BY created_at DESC';
+                    ORDER BY devis.id DESC';
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':idProvider', $idProvider);
 		$sth->execute();
