@@ -31,7 +31,7 @@
 	<!-- Description du service -->
 	<div class="row">
 		<label class="col-md-4 control-label text-right" for="zip_code">Description:</label>  
-		<div class="col-md-8"><?=nl2br($project['description']);?></div>
+		<div class="col-md-7 withbackground"><?=nl2br($project['description']);?></div>
 	</div>
 
 	<br>

@@ -9,6 +9,11 @@
 		<h1>Liste des offres de services des particuliers</h1>
 	</div>
 	
+	<div class="accrocheNbOffre">
+		<span class="accroche">Actuellement, 523 offres de services sont à pourvoir<span>
+	</div>
+
+
 	<!-- Formulaire de recherche -->
 	<div class="well well-sm">
 		<form method="get" class="form-inline">
@@ -53,7 +58,7 @@
 					<th>N° Offre</th>
 					<th>Lieu</th>
 					<th>Service</th>
-					<th>Créé le</th>
+					<th>Ajouté le</th>
 					<th>Prévu le</th>
 					<th class="text-center">Devis</th>
 					<th class="text-center">Action</th>
