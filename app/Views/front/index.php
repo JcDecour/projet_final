@@ -14,7 +14,7 @@
         <div class="carousel-inner">
 
         <div class="txt">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elita.
+            <p>Un service à faire réaliser par un professionnel ?
               <a href="<?=$this->url('front_service_add')?>" class=""> C'est parti</a>
             </p>
         </div>
@@ -144,7 +144,7 @@
                             <?php foreach($devis as $key => $devisVal): ?>
                                 <li class="list-group-item">
                                     <span class="puce pucetopartisans"><i class="fa fa-fw fa-thumbs-o-up "></i></span>
-                                    <?=$devisVal['company_name']; ?>
+                                    <?=$devisVal['company_name']; ?><br>
                                     (<i class="fa fa-fw fa-map-marker"></i><?=$devisVal['zipcode']; ?> )
                                 </li>
                             <?php endforeach; ?>
