@@ -5,7 +5,7 @@
 
 <div class="content-site">	
 	<div class="page-header">
-		<h1>Liste des offres de services</h1>
+		<h1>Liste des offres de services disponibles</h1>
 	</div>
 	
 	<!-- Liste des projets -->
@@ -15,10 +15,11 @@
 
 			<thead>
 				<tr>
+                    <th>N° Offre</th>
 					<th>Lieu</th>
-					<th>Objet du service</th>
+					<th>Service</th>
 					<th>Catégorie</th>
-					<th>Sous Catégorie</th>
+					<th>Ss Catégorie</th>
 					<th>Créé le</th>
 					<th>Prévu le</th>
 					<th class="text-center">Devis</th>
@@ -33,8 +34,9 @@
 					<?php if(empty($project['designation'])): ?> <!-- Si le champ désignation est renseigné c'est que le provider a fait une estimation sur cette sous catégorie de projet, il ne faut donc pas l'ajouter-->
 						<?php $cpt++; ?>
 						<tr>
-							<td><?=$project['zip_code'] ?></td>
-							<td><?=$project['title'] ?></td>
+                            <td><?=sprintf("%06d", $project['id'])?></td>
+							<td><?=$project['zip_code'];?></td>
+							<td><?=$project['title'];?></td>
 							<td><?=$project['titlesector'];?></td>
 							<td><?=$project['titlesubsector'];?></td>
 							<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></td>
@@ -48,7 +50,7 @@
 							</td>
 							<td class="text-center">
 								<a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-default btn-sm" title="Proposer un devis">
-							 		Proposer un devis
+							 		Proposer devis
 								</a>
 							</td>
 						</tr>
@@ -72,7 +74,7 @@
 	<!-- ######################################################## -->
 
 	<div class="page-header">
-		<h1>Mes devis proposés sur les offres</h1>
+		<h1>Mes devis proposés</h1>
 	</div>
 
 	<!-- Liste des projets -->
@@ -83,10 +85,10 @@
 			<thead>
 				<tr>
 					<th>Devis</th>
-					<th>Lieu du service</th>
-					<th>Objet du service</th>
+					<th>Lieu</th>
+					<th>Service</th>
 					<th>Catégorie</th>
-					<th>Sous Catégorie</th>
+					<th>Ss Catégorie</th>
 					<th>Prévu le</th>
 					<th>Montant TTC (€)</th>
 					<th class="text-center">Etat</th>
@@ -97,7 +99,7 @@
 			<tbody>
 				<?php foreach($listdevis as $devis): ?>
 				<tr>
-					<td><?=$devis['id'] ?></td>
+					<td><?=sprintf("%06d", $devis['id'])?></td>
 					<td><?=$devis['projectZipCode'] ?></td>
 					<td><?=$devis['projectTitle'] ?></td>
 					<td><?=$devis['titleSector'];?></td>
@@ -118,7 +120,7 @@
 					</td>
 					<td class="text-center">
 						<a href="<?=$this->url('front_devis_view', ['id' => $devis['id']]);?>" class="btn btn-default btn-sm" title="Consulter mon devis">
-					 		Consulter mon devis
+					 		Consulter devis
 						</a>
 					</td>
 				</tr>
