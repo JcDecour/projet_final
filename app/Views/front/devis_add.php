@@ -13,6 +13,12 @@
 		</div>
 	<?php endif; ?>
 
+    <!-- N° de l'offre -->
+	<div class="row">
+		<label class="col-md-3 control-label text-right" for="num_offre">N° Offre:</label>  
+		<div class="col-md-9"><?=sprintf("%06d", $projectSubsector['id'])?>&nbsp;( Ajoutée le <?=DateTime::createFromFormat('Y-m-d H:i:s', $projectSubsector['created_at'])->format('d/m/Y');?> )</div>
+	</div>
+    
 	<!-- Code postal du lieu du service -->
 	<div class="row">
 		<label class="col-md-3 control-label text-right" for="zip_code">Code postal du lieu du service:</label>  
