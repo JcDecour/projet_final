@@ -37,7 +37,7 @@
                             <a style="color:orange;" href="<?=$this->url('front_customer_profil')?>"> Bienvenue&nbsp;<?=$w_user['civilite'];?>&nbsp;<?=$w_user['lastname'];?>
                             </a>
                         <?php elseif(isset($w_user) && (isset($w_user['company_name']))):?>
-                            <a style="color:orange;" href="<?=$this->url('front_provider_profil')?>"> Bonjour&nbsp;<?=$w_user['company_name'];?>
+                            <a style="color:orange;" href="<?=$this->url('front_provider_profil')?>"> Bienvenue&nbsp;<?=$w_user['company_name'];?>
                             </a>
                         <?php endif;?>
                     </li>
@@ -127,7 +127,7 @@
                         <li><a href="">Mention Légales</a></li>
                         <li><a href="">Condition Générales d'utilisation</a></li>
                         <li>
-                            <p>Copyright &copy; Farid-Eric-Jean-charles</p>
+                            <p>Copyright &copy; &nbsp;Farid&nbsp;Eric&nbsp;Jean-charles</p>
                         </li>
                     </ul>
                 </div>
