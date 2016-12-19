@@ -12,9 +12,9 @@
 	<div class="accrocheNbOffre">
 		<span class="accroche">
 			<i class="fa fa-fw fa-quote-left"></i>
-			<?php if(count($projectsTotal['nbTotalService']) === 0): ?>
+			<?php if($projectsTotal['nbTotalService'] === 0): ?>
 				Actuellement, aucune offre de service est à pourvoir !
-			<?php elseif(count($projectsTotal['nbTotalService']) === 1): ?>
+			<?php elseif($projectsTotal['nbTotalService'] === 1): ?>
 				Actuellement, 1 offre de service est à pourvoir !
 			<?php else: ?>	
 				Actuellement, <?=$projectsTotal['nbTotalService'];?> offres de services sont à pourvoir !
