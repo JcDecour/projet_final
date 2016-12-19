@@ -26,19 +26,19 @@
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/alliance.jpg') ?>');"></div>
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/cours.jpg') ?>');"></div>
                 <div class="carousel-caption">
                     <h2>Services à la personne</h2>
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/travaux2.jpg') ?>');"></div>
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/maison.jpg') ?>');"></div>
                 <div class="carousel-caption">
                     <h2>Construction - Rénovation</h2>
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/renovation.jpg') ?>');"></div>
                 <div class="carousel-caption">
                     <h2>Transport - Logistique</h2>
                 </div>
