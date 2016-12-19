@@ -26,6 +26,15 @@ nav {
     color: #9d9d9d;
 }
 
+.dropdown-menu>li>a {
+  background-color: black;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+  border-color: #101010;
+  background-color: black;
+}
+
 /*Bannière*/
 
 #banner {
@@ -257,6 +266,10 @@ a {
 
 header.carousel {
   height: 60%;
+}
+
+.carousel-caption{
+  text-shadow: 0 2px 4px rgba(0,0,0,.9);
 }
 
 
