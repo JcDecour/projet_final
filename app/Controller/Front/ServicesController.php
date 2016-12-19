@@ -332,10 +332,11 @@ class ServicesController extends Controller
 			if($subSector){
 				$sector = $sectorModel->find($subSector['id_sector']);
 				if($sector){
-					$contenuSsSector.= '<span class="tag label label-categories">'.$sector['title'].' - '.$subSector['title'].'</span>&nbsp;';
+					$contenuSsSector.= '<span class="tag label label-categories">'.$sector['title'].' - '.$subSector['title'].'</span><br>';
 				}
 			}
 		}
+        
 
 		$this->show('front/service_view_allusers', ['project' => $project, 'contenuSsSector' => $contenuSsSector]);
 	}
