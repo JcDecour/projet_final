@@ -50,6 +50,7 @@
 
 			<thead>
 				<tr>
+					<th>N° Offre</th>
 					<th>Lieu</th>
 					<th>Service</th>
 					<th>Créé le</th>
@@ -62,6 +63,7 @@
 			<tbody>
 				<?php foreach($projects as $project): ?>
 				<tr>
+					<td><?=sprintf("%06d", $project['id'])?></td>
 					<td><?=$project['zip_code'] ?></td>
 					<td><?=$project['title'] ?></td>
 					<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></td>

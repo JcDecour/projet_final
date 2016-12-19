@@ -8,6 +8,11 @@
 		<h1>Consultation d'un service</h1>
 	</div>
 	
+	<!-- N° de l'offre -->
+	<div class="row">
+		<label class="col-md-4 control-label text-right" for="zip_code">N° Offre:</label>  
+		<div class="col-md-8"><?=sprintf("%06d", $project['id'])?>&nbsp;( Ajoutée le <?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?> )</div>
+	</div>
 
 	<!-- Code postal du lieu du service -->
 	<div class="row">
@@ -53,7 +58,7 @@
     
     <div class="row">
 	<div class="col-md-12 text-right">
-		<a href="<?=$this->url('front_service_list_allusers');?>" class="btn btn-info" title="Ajouter un nouveau service">Retour liste</a>
+		<a href="<?=$this->url('front_service_list_allusers');?>" class="btn btn-default" title="Ajouter un nouveau service">Retour liste</a>
 	</div>
         </div>
 
