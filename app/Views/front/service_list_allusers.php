@@ -8,16 +8,16 @@
 	<div class="page-header">
 		<h1>Liste des offres de services des particuliers</h1>
 	</div>
-	
+    
 	<div class="accrocheNbOffre">
 		<span class="accroche">
 			<i class="fa fa-fw fa-quote-left"></i>
-			<?php if($projectsTotal['nbTotalService'] === 0): ?>
-				Actuellement, aucune offre de service est à pourvoir !
-			<?php elseif($projectsTotal['nbTotalService'] === 1): ?>
-				Actuellement, 1 offre de service est à pourvoir !
+			<?php if($projectsTotal['nbTotalService'] == 0): ?>
+				Il n'y a pas d'offre de services à pourvoir
+			<?php elseif($projectsTotal['nbTotalService'] == 1): ?>
+				1 offre de service est à pourvoir
 			<?php else: ?>	
-				Actuellement, <?=$projectsTotal['nbTotalService'];?> offres de services sont à pourvoir !
+				Actuellement, <?=$projectsTotal['nbTotalService'];?> offres de services sont à pourvoir
 			<?php endif; ?>
 			<i class="fa fa-fw fa-quote-right"></i>
 		<span>
@@ -108,7 +108,9 @@
 		</table>
 
 	<?php else: ?>
-		<p>Aucune offre de services de particuliers n'est disponible.</p>
+        <?php if($projectsTotal['nbTotalService'] > 0): ?>
+		  <p>Aucune offre de services ne répond à vos critères de recherche.</p>
+        <?php endif; ?>
 	<?php endif; ?>
 
    
