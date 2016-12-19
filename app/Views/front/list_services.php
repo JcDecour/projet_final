@@ -87,17 +87,13 @@
                              Modifier
                             </a>
                         </div>
-                    <?php endif; ?>
-                    <?php if($project['nb_devis'] > 0):?>
-                    	<div class="col-md-3">
-                            &nbsp;
-                        </div>
-                    <?php endif; ?>
                         <div class="col-md-3">
                             <a href="<?=$this->url('front_delete_service', ['id' => $project['id']]);?>" class="btn btn-danger btn-sm btn_margin" title="Supprimer ce service">
                              Supprimer
                             </a>
                         </div>
+                    <?php endif; ?>
+                   
                     <?php else: ?>
                         <div class="col-md-3">
                             <a href="<?=$this->url('front_service_view_closed', ['id' => $project['id']]);?>" class="btn btn-success btn-sm btn_margin" title="Consulter ce service">
