@@ -72,60 +72,59 @@
 				</div>
 
 				<div class="panel-body">
-
-					<div class="row">
-						<label class="col-md-12 control-label" for="description">Informations complémentaires:</label>
-						<div class="col-md-12">
-							Choisissez un seul devis par sous catégorie
-	                    </div>
-					</div>
-				</div>
 			  
-			  	<table class="table table-bordered table-responsive ">
-				    <thead>
-				    	<th class="text-center">Choix</th>
-				    	<th>N° Devis</th>
-				    	<th>Créé le</th>
-				    	<th>Société</th>
-				    	<th class="text-right">Montant HT(€)</th>
-				    	<th class="text-right">Taux de TVA(%)</th>
-				    	<th class="text-right">Montant TTC (€)</th>
-				    </thead>
-				 
-					<tbody>
+                    <table class="table table-bordered table-responsive table-striped">
+                        <thead>
+                            <th class="text-center">Choix</th>
+                            <th>N° Devis</th>
+                            <th>Créé le</th>
+                            <th>Société</th>
+                            <th class="text-right">Montant HT(€)</th>
+                            <th class="text-right">Taux de TVA(%)</th>
+                            <th class="text-right">Montant TTC (€)</th>
+                        </thead>
 
-					  	<?php foreach($datasDevis as $dataDevis): ?>
-						
-						  		<?php if($sector['projectSubSectorId'] == $dataDevis['projectSubsectorId']):?>
+                        <tbody>
 
-								  	<tr>
-								  		<td class="text-center">
-								  			<input id="<?= $dataDevis['devisId'] ?>" type="checkbox" name="" value="<?= $dataDevis['ttc_amount'] ?>">
-								  		</td>
-								  		<td><?=sprintf("%06d", $dataDevis['devisId'])?></td>
-								  		<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $dataDevis['devisDateCreat'])->format('d/m/Y');?></td>
-								  		<td><?=$dataDevis['companyName'] ?></td>
-								  		<td class="text-right"><?=number_format($dataDevis['ht_amount'], 2, ',', ' ') ?></td>
-								  		<td class="text-right"><?=$dataDevis['tva_amount'] ?></td>
-								  		<td class="text-right"><?=number_format($dataDevis['ttc_amount'], 2, ',', ' ') ?></td>
-								  	</tr>
+                            <?php foreach($datasDevis as $dataDevis): ?>
 
-									<?php $cpt++;?>
+                                    <?php if($sector['projectSubSectorId'] == $dataDevis['projectSubsectorId']):?>
 
-						 		<?php endif; ?>					  	
-					  	 
-					  	<?php endforeach; ?>
-                        
-                        <?php if($cpt == 0):?>
-                            <tr>
-                                <td colspan="7" class="text-danger">Aucune proposition de devis</td>
-                            </tr>
-                        <?php endif;?>
-                        <?php $cpt=0;?>
-					 
-					</tbody>
-					
-			   	</table>
+                                        <tr>
+                                            <td class="text-center">
+                                                <input id="<?= $dataDevis['devisId'] ?>" type="checkbox" name="" value="<?= $dataDevis['ttc_amount'] ?>">
+                                            </td>
+                                            <td><?=sprintf("%06d", $dataDevis['devisId'])?></td>
+                                            <td><?=DateTime::createFromFormat('Y-m-d H:i:s', $dataDevis['devisDateCreat'])->format('d/m/Y');?></td>
+                                            <td><?=$dataDevis['companyName'] ?></td>
+                                            <td class="text-right"><?=number_format($dataDevis['ht_amount'], 2, ',', ' ') ?></td>
+                                            <td class="text-right"><?=$dataDevis['tva_amount'] ?></td>
+                                            <td class="text-right"><?=number_format($dataDevis['ttc_amount'], 2, ',', ' ') ?></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="2" class="text-right">Info. complémentaires</td>
+                                            <td colspan="5"><?=$dataDevis['description'] ?></td>
+                                        </tr>
+
+                                        <?php $cpt++;?>
+
+                                    <?php endif; ?>					  	
+
+                            <?php endforeach; ?>
+
+                            <?php if($cpt == 0):?>
+                                <tr>
+                                    <td colspan="7" class="text-danger">Aucune proposition de devis</td>
+                                </tr>
+                            <?php endif;?>
+                            <?php $cpt=0;?>
+
+                        </tbody>
+
+                     </table>
+                    
+                </div>
 		</div>
 	</div>
 	<?php endforeach; ?>
