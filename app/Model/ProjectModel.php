@@ -22,7 +22,6 @@ class ProjectModel extends \W\Model\Model
 		return $sth->fetchAll();
 	}
 
-
 	/**
 	 * Récupère toutes les lignes de la table sans les projet "Terminés" (possibilité de filtrer sur le lieu géographique, le secteur et sous secteur)
 	 * @param  integer Code postal auquel les projets doivent etre rattachés
@@ -116,5 +115,17 @@ class ProjectModel extends \W\Model\Model
 		return $sth->fetchAll();
 	}
 
+	/**
+	 * Récupère le nbre total des ervices proposés sur le site (les cloturés sont exclus)
+	 * @return mixed Les données sous forme de tableau associatif
+	 */
+	public function countWithoutClosed()
+	{
+		$sql = 'SELECT count(*) as nbTotalService FROM ' . $this->table;
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+
+		return $sth->fetch();
+	}
 
 }

@@ -347,6 +347,8 @@ class ServicesController extends Controller
 	 */
 	public function listAllUsers()
 	{
+		//Instanciation de la classe "ProjectModel"
+		$projectModel = new ProjectModel();
 
 		//Gestion du formulaire de recherche
 		$get = [];
@@ -371,8 +373,10 @@ class ServicesController extends Controller
 			}
 		}
 
-		//Recherche de l'ensemble des projets non cloturés
-		$projectModel = new ProjectModel();
+		//Recherche du nombre de services à pourvoir (Les clôturés sont donc exclus)
+		$projectsTotal = $projectModel->countWithoutClosed();
+
+		//Recherche de l'ensemble des projets non cloturés en tenant compte du filtre de recherche
 		$projects = $projectModel->findAllWithoutClosed($zip_code, $sub_sector, $sector);
 
 		//Recherche de tous les "Sector" triés par numéro d'ordre
@@ -402,6 +406,7 @@ class ServicesController extends Controller
 				'sectors'			=> $sectors,
 				'search'			=> $get,
 				'optionSubSector'	=> $optionSubSector,
+				'projectsTotal'	=> $projectsTotal,
 			]);
 	}
 

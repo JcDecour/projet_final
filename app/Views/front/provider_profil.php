@@ -7,7 +7,7 @@
 	<div class="forms">
 		
 		<div class="page-header">
-			<h1 style="text-align: center;">Mon profil</h1>
+			<h1>Mon profil</h1>
 		</div>
 	
 		<form method="post" class="form-horizontal">

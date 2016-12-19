@@ -12,7 +12,7 @@
 	<div class="accrocheNbOffre">
 		<span class="accroche">
 			<i class="fa fa-fw fa-quote-left"></i>
-			Actuellement, 523 offres de services sont à pourvoir !
+			Actuellement, <?=$projectsTotal['nbTotalService'];?> offres de services sont à pourvoir !
 			<i class="fa fa-fw fa-quote-right"></i>
 		<span>
 	</div>
