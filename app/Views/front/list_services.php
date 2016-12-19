@@ -80,6 +80,7 @@
                              Consulter
                             </a>
                         </div>
+                        &nbsp;
                     <?php if($project['nb_devis'] == 0):?>
                         <div class="col-md-3">
                             <a href="<?=$this->url('front_edit_service', ['idProject' => $project['id']]);?>" class="btn btn-info btn-sm btn_margin" title="Modifier ce service">

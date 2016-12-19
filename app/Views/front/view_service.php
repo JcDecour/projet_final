@@ -89,9 +89,9 @@
 				    	<th>Devis</th>
 				    	<th>Date de création</th>
 				    	<th>Société</th>
-				    	<th>Prix HT (€)</th>
+				    	<th>Montant HT (€)</th>
 				    	<th>TVA (%)</th>
-				    	<th>Prix TTC (€)</th>
+				    	<th>Montant TTC (€)</th>
 				    </thead>
 				 
 					<tbody>
