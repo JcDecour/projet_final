@@ -20,13 +20,13 @@
         </div>
 
             <div class="item active">
-                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/baby.jpg') ?>');"></div>
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/evenement.jpg') ?>');"></div>
                 <div class="carousel-caption">
                     <h2>&Eacute;vénements</h2>
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/cours.jpg') ?>');"></div>
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/proximite.jpg') ?>');"></div>
                 <div class="carousel-caption">
                     <h2>Services à la personne</h2>
                 </div>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/renovation.jpg') ?>');"></div>
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/transport.jpg') ?>');"></div>
                 <div class="carousel-caption">
                     <h2>Transport - Logistique</h2>
                 </div>
@@ -155,7 +155,7 @@
 
         </div>
 
-    	<hr>
+        <hr>
 
     </div>
 
