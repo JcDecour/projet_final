@@ -66,6 +66,18 @@ body{
     color: #468847;
 }
 
+.btn-info {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #33B7AD;
+}
+
+.btn-danger {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #C9302C;
+}
+
 .hello{
     width: 30% !important;
     color: white !important;

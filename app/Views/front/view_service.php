@@ -144,7 +144,7 @@
 	
 	<div class="row">
 		<div class="col-md-4 col-md-offset-8">
-			<button type="submit" class="btn btn-primary btn-block">Accepter</button>
+			<button type="submit" class="btn btn-success btn-block">Accepter</button>
 		</div>
 	</div>
 	<div id="inputHidden"></div>
