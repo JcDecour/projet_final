@@ -8,6 +8,46 @@
 		<h1>Liste des offres de services disponibles</h1>
 	</div>
 	
+    <!-- Formulaire de recherche -->
+	<div class="well well-sm">
+		<form method="get" class="form-inline">
+			<!-- Code postal -->
+			<div class="form-group">
+				<label class="sr-only" for="zip_code">Code postal</label>
+				<input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="CP" value="<?=isset($search['zip_code']) ? $search['zip_code'] : '';?>">
+			</div>
+
+			<!-- Service (Recherche dans le sujet ou la description) -->
+			<div class="form-group">
+				<label class="sr-only" for="title">Un type de contenu de service</label>
+				<input type="text" class="form-control" id="title" name="title" placeholder="Libellé service" value="<?=isset($search['title']) ? $search['title'] : '';?>">
+			</div>
+
+			<!-- Catégorie -->
+			<select id="sector" name="sector" class="form-control">
+				<option value="" selected>Catégorie</option>
+				<?php foreach($sectors as $sector) :; ?>
+					<option value="<?=$sector['id'];?>" <?=(isset($search['sector']) && $search['sector'] == $sector['id']) ? 'selected' : '';?>><?=$sector['title'];?></option>
+				<?php endforeach; ?>
+			</select>
+
+			<!-- Sous-Catégorie -->
+			<select id="sub-sector" name="sub-sector" class="form-control">
+				<?php if(!empty($optionSubSector)):?>
+					<?=$optionSubSector;?>
+				<?php else: ?>
+					<option value="" selected>Sous-Catégorie</option>
+				<?php endif; ?>
+			</select>
+				
+			<button class="btn btn-default" type="submit">
+				Rechercher
+			</button>
+				
+			
+		</form>
+	</div>
+    
 	<!-- Liste des projets -->
 	<?php if(!empty($projects)): ?>	
 
@@ -133,8 +173,29 @@
 		<p>Aucun devis proposé.</p>
 	<?php endif; ?>
 
-
-
 </div>
 
 <?php $this->stop('main_content') ?>
+
+<?php $this->start('js') ?>
+<script>
+	$(document).ready(function(){
+
+		/*Gestion des menu déroulants liés (Carégories -> Sous Catégories)*/
+		$('#sector').change(function(){
+			$.ajax({
+				url: '<?=$this->url('ajax_refreshSubSector'); ?>',
+				type: 'get',
+				cache: false,
+				data: {idsector: $('#sector').find(":selected").attr('value') }, 
+				dataType: 'json', 
+				success: function(result) {
+					console.log(result);
+					$('#sub-sector').html(result.option);
+				}
+			});
+		});
+
+	});
+</script>
+<?php $this->stop('js') ?>

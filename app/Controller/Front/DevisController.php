@@ -9,6 +9,8 @@ use \W\Security\AuthentificationModel;
 use \W\Security\AuthorizationModel;
 use \Model\ProjectModel;
 use \Model\DevisModel;
+use \Model\SectorModel;
+use \Model\SubSectorModel;
 use \Respect\Validation\Validator as v; 
 
 class DevisController extends Controller
@@ -18,24 +20,87 @@ class DevisController extends Controller
 	*/
     public function listService()
 	{
+          
 		//Si le professionnel n'est pas connecté , il est redirigé sur la page de login
 		if (empty($this->getUser())) {
 			$this->redirectToRoute('front_provider_login');
 		}
-
+        
+        //Instanciation de la classe "SectorModel"
+		$sectorModel = new SectorModel();
+        
+        //#####################################################################
+        // Partie Liste des Projets disponibles
+        //#####################################################################
+        
+        //Gestion du formulaire de recherche
+		$get = [];
 		$zip_code = null;
 		$sub_sector = null;
         $sector = null;
+        $title = null;
+
+		if(!empty($_GET)){
+			$get = array_map('trim', array_map('strip_tags', $_GET));
+
+			//Cas d'un recherche sur le code postal
+			if(isset($get['zip_code']) && ctype_digit($get['zip_code'])){
+				$zip_code = $get['zip_code'];
+			}
+			//Cas d'une recherche sur la sous-catégorie
+			if(!empty($get['sub-sector']) && ctype_digit($get['sub-sector'])){
+				$sub_sector = $get['sub-sector'];
+			}
+            //Cas d'un recherche sur la catégorie
+			if(!empty($get['sector']) && ctype_digit($get['sector'])){
+				$sector = $get['sector'];
+			}
+			//Cas d'un recherche sur la catégorie
+			if(!empty($get['title'])){
+				$title = $get['title'];
+			}
+		}
+
 		//Recherche de tous les projets en détail non terminés et non extimés par le professionnel
 		$projectModel = new ProjectModel();
-		$projects = $projectModel->findAllDetailWithoutClosed($zip_code, $sub_sector, $sector);
+		$projects = $projectModel->findAllDetailWithoutClosed($zip_code, $sub_sector, $sector, $title);
 
+        //Recherche de tous les "Sector" triés par numéro d'ordre
+		$sectors = $sectorModel->findAll('order_num');
+        
+        //Si la sous catégorie de la recherche est renseignée, alors il faut reconstruire le menu déroulant de la sous catégorie
+		$optionSubSector = '';
+		if(!empty($get['sector'])){
+			$optionSubSector = '<option value="" selected>Sous-Catégorie</option>';
+			$subSectorModel = new SubSectorModel();
+			$subSectors = $subSectorModel->findBySectorId($get['sector']);
+			foreach ($subSectors as $key => $subSector) {
+				if((isset($get['sub-sector'])) && ($get['sub-sector'] == $subSector['id'])){
+					$selected = 'selected';
+				}
+				else
+				{
+					$selected = '';
+				}
+				$optionSubSector.='<option value="'.$subSector['id'].'" '.$selected.'>'.$subSector['title'].'</option>';
+			}
+		}
+        
+        //#####################################################################
+        // Partie Devis réalisé par le provider
+        //#####################################################################
+        
 		//Recherche des devis établis par le professionnel
 		$devisModel = new DevisModel();
 		$provider = $this->getUser();
 		$devis = $devisModel->findAllWithDetailsByProviderId($provider['id']);
 
-		$this->show('front/devis_list', ['projects' => $projects, 'listdevis' => $devis]);	
+		$this->show('front/devis_list', [
+            'projects'          => $projects,
+            'sectors'           => $sectors,
+            'optionSubSector'	=> $optionSubSector,
+            'listdevis'         => $devis,
+        ]);	
 	}
 
 	/**

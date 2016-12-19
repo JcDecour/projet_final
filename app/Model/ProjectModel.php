@@ -89,7 +89,7 @@ class ProjectModel extends \W\Model\Model
 	 * @param  integer Sous Catégories auquel les projets doivent etre rattachés
 	 * @return array Les données sous forme de tableau multidimensionnel
 	 */
-	public function findAllDetailWithoutClosed($zip_code = null, $sub_sector = null)
+	public function findAllDetailWithoutClosed($zip_code = null, $sub_sector = null, $sector = null, $title = null)
 	{
 		$sql = 'SELECT p.*, subsector.title as titlesubsector, ps.id as idprojetsubsector, ps.nb_devis as nbdevisprojetsubsector, sector.title as titlesector, devis.designation as designation FROM ' . $this->table . ' as p 
 				INNER JOIN project_subsector as ps ON p.id = ps.id_project
@@ -104,21 +104,40 @@ class ProjectModel extends \W\Model\Model
 		if(!empty($sub_sector) && !ctype_digit($sub_sector)){
 			return false;
 		}
+        if(!empty($sector) && !ctype_digit($sector)){
+			return false;
+		}
 
 		if(!empty($zip_code)){
 			$sql .= ' AND zip_code = :zip_code';
 		}
 		if(!empty($sub_sector)){
-			$sql .= ' AND id_subsector = :sub_sector';
+			$sql .= ' AND id_subsector = :idSub_sector';
 		}
-		$sql .= ' ORDER BY created_at DESC, sector.order_num ASC, subsector.order_num ASC';
+        elseif(!empty($sector)){
+            $sql .= ' AND sector.id = :idSector';   
+        }
 
+        if(!empty($zip_code)){
+			$sql .= ' AND zip_code = :zip_code';
+		}
+        if(!empty($title)){
+			$sql .= ' AND (p.title LIKE :title OR p.description LIKE :title)';
+		}
+		$sql .= ' ORDER BY created_at DESC, sector.order_num ASC, subsector.title ASC';
+        
 		$sth = $this->dbh->prepare($sql);
 		if(!empty($zip_code)){
 			$sth->bindValue(':zip_code', $zip_code);
 		}
 		if(!empty($sub_sector)){
-			$sth->bindValue(':sub_sector', $sub_sector);
+			$sth->bindValue(':idSub_sector', $sub_sector);
+		}
+        elseif(!empty($sector)){
+            $sth->bindValue(':idSector', $sector);  
+        }
+        if(!empty($title)){
+			$sth->bindValue(':title', '%'.$title.'%');
 		}
 		$sth->execute();
 
