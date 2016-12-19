@@ -21,14 +21,14 @@ nav {
     background-color: black;
 }
 
-.navbar-inverse .navbar-nav > li > a {
+/*.navbar-inverse .navbar-nav > li > a {
     background-color: #222222;
     color: #9d9d9d;
-}
+}*/
 
-.dropdown-menu>li>a {
+/*.dropdown-menu>li>a {
   background-color: #222222;
-}
+}*/
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
     border-color: #101010;
