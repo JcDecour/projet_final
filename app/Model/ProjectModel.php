@@ -4,19 +4,39 @@ namespace Model;
 class ProjectModel extends \W\Model\Model
 {
 	/**
-	 * Récupère tous les services ou projets en fonction d'un identifiant
-	 * @param  integer Identifiant
+	 * Récupère tous les lignes de la table en fonction de L'idCustomer
+	 * @param integer idCustomer Identifiant
+	 * @param  string $closed La colonne en fonction de laquelle trier
+	 * @param integer $closedValue la valeur de la colonne 'closed'
 	 * @return mixed Les données sous forme de tableau associatif
 	 */
-	public function findServiceById($id)
+	public function findServiceById($idCustomer, $closed = 'closed', $closedValue = '')
 	{
-		if (!is_numeric($id)){
+		if (!is_numeric($idCustomer)){
 			return false;
 		}
 
-		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_customer = :idCustomer ORDER BY created_at';
+		
+		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_customer = :idCustomer ';
+
+		if (!empty(strip_tags($closedValue))){
+
+			//sécurisation des paramètres, pour éviter les injections SQL
+			if($closedValue !== '0' && $closedValue !== '1'){
+				die('Error: invalid closedValue param');
+			}
+			$closed = strtolower(strip_tags($closed));
+			if($closed !== 'closed'){
+				die('Error: invalid closed param');
+			}
+
+			$sql .= ' AND '.$closed.' = '.$closedValue;
+			
+		}
+
+		$sql .= ' ORDER BY created_at';
 		$sth = $this->dbh->prepare($sql);
-		$sth->bindValue(':idCustomer', $id);
+		$sth->bindValue(':idCustomer', $idCustomer);
 		$sth->execute();
 
 		return $sth->fetchAll();

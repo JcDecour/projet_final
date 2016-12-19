@@ -68,9 +68,9 @@
 	    <div class="panel panel-default">
 			  <!-- Default panel contents -->
 				<div class="panel-heading">
-				  	<span class="tag label label-default">
+				  	
 				  		<?=$sector['sectorTitle'];?> - <?=$sector['subSectorTitle'];?>		  		
-				  	</span>
+				  	
 				</div>
 
 				<div class="panel-body">
@@ -89,9 +89,9 @@
 				    	<th>Devis</th>
 				    	<th>Date de création</th>
 				    	<th>Société</th>
-				    	<th>Prix HT</th>
-				    	<th>TVA %</th>
-				    	<th class="text-center">Prix TTC (€)</th>
+				    	<th>Prix HT (€)</th>
+				    	<th>TVA (%)</th>
+				    	<th>Prix TTC (€)</th>
 				    </thead>
 				 
 					<tbody>
@@ -107,8 +107,8 @@
 								  		<td><?=$dataDevis['devisId'] ?></td>
 								  		<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $dataDevis['devisDateCreat'])->format('d/m/Y');?></td>
 								  		<td><?=$dataDevis['companyName'] ?></td>
-								  		<td><?=number_format($dataDevis['ttc_amount'], 2, ',', ' ') ?></td>
-								  		<td><?=$dataDevis['tva_amount'] ?></td>
+								  		<td class="text-right"><?=number_format($dataDevis['ht_amount'], 2, ',', ' ') ?></td>
+								  		<td class="text-right"><?=$dataDevis['tva_amount'] ?></td>
 								  		<td class="text-right"><?=number_format($dataDevis['ttc_amount'], 2, ',', ' ') ?></td>
 								  	</tr>
 
@@ -139,7 +139,7 @@
 		<div class="col-md-2 ">
 			<strong>Total TTC :</strong>
 		</div>
-		<div class="col-md-2 text-right "><span id="totalResult">0.00</span></div>
+		<div class="col-md-2 text-right "><span id="totalResult">0.00 €</span></div>
 	</div>
 	
 	<div class="row">

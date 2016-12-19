@@ -421,22 +421,47 @@ class ServicesController extends Controller
 	public function list_services()
 	{	
 
+		$get = [];
+
 		// si le client n'est pas connecté je le redirige 
 		if (empty($this->getUser())) {
 			
 			$this->redirectToRoute('front_customer_login');
 		}
 
+
 		// On récupère les infos du client connecté
 		$customer = $this->getUser();
 	
 		// On instancie le model pour communiquer avec la BDD
 		$projectModel = new ProjectModel();
-		$projectSubsectorModel = new ProjectSubsectorModel();
 
 		//On récupère la liste des projets correspondant au client connecté
-		$projects = $projectModel->findServiceById($customer['id']);
+		// S'il y a un ordre de tri
+		if(!empty($_GET)){
+			$get = array_map('trim', array_map('strip_tags', $_GET));
+
+			//Recherche de tous les devis
+			if(isset($get['statut']) && $get['statut'] === 'all'){
+				$projects = $projectModel->findServiceById($customer['id'], $colsed = 'closed', $closedValue = '');
+				
+			}
+			//Recherche de tous les devis qui ont un statut "Ouvert"
+			if(isset($get['statut']) && $get['statut'] === 'opened'){
+				$projects = $projectModel->findServiceById($customer['id'], $colsed = 'closed', $closedValue = '0');
+			}
+            //Recherche de tous les devis qui ont un statut "Cloturé"
+			if(isset($get['statut']) && $get['statut'] === 'closed'){
+				$projects = $projectModel->findServiceById($customer['id'], $colsed = 'closed', $closedValue = '1');
+			}
+
 			
+		}
+		else {
+
+			$projects = $projectModel->findServiceById($customer['id'], $colsed = 'closed', $closedValue = '');
+		}
+
 		$this->show('front/list_services', ['projects' => $projects]);
 	}
 
