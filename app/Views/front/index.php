@@ -22,25 +22,25 @@
             <div class="item active">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/baby.jpg') ?>');"></div>
                 <div class="carousel-caption">
-                    <h2>&Eacute;vènements</h2>
+                    <h2>&Eacute;vénements</h2>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/alliance.jpg') ?>');"></div>
                 <div class="carousel-caption">
-                    <h2>Services à la Personne</h2>
+                    <h2>Services à la personne</h2>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/travaux2.jpg') ?>');"></div>
                 <div class="carousel-caption">
-                    <h2>Construction, Rénovation</h2>
+                    <h2>Construction - Rénovation</h2>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/repair.jpg') ?>');"></div>
                 <div class="carousel-caption">
-                    <h2>Transport, Logistique</h2>
+                    <h2>Transport - Logistique</h2>
                 </div>
             </div>
         </div>

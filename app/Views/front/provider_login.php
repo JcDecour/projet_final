@@ -18,10 +18,6 @@
 
 			<form method="post" class="form-horizontal" enctype="multipart/form-data">
 
-				<p class="text-required-filed">
-					<span class="obligatoire">*</span>
-					Champs obligatoires
-				</p>
 				
 				<!-- Gestion des erreurs -->
 				<?php if(isset($error) && !empty($error)): ?>

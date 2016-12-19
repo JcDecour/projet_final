@@ -23,7 +23,7 @@ class ProjectModel extends \W\Model\Model
 	}
 
 	/**
-	 * Récupère toutes les lignes de la table sans les projet "Terminés" (possibilité de filtrer sur le lieu géographique, le secteur et sous secteur)
+	 * Récupère toutes les lignes de la table sans les projet "Terminés" (possibilité de filtrer sur le lieu géographique, le secteur, le sous secteur et le titre du services)
 	 * @param  integer Code postal auquel les projets doivent etre rattachés
 	 * @param  integer Sous Catégories auquel les projets doivent etre rattachés
 	 * @return array Les données sous forme de tableau multidimensionnel
@@ -55,6 +55,13 @@ class ProjectModel extends \W\Model\Model
         elseif(!empty($sector)){
             $sql .= ' AND s.id = :idSector';   
         }
+
+        if(!empty($zip_code)){
+			$sql .= ' AND zip_code = :zip_code';
+		}
+
+
+
 		$sql .= ' ORDER BY created_at DESC';
 
 		$sth = $this->dbh->prepare($sql);
@@ -121,7 +128,7 @@ class ProjectModel extends \W\Model\Model
 	 */
 	public function countWithoutClosed()
 	{
-		$sql = 'SELECT count(*) as nbTotalService FROM ' . $this->table;
+		$sql = 'SELECT count(*) as nbTotalService FROM ' . $this->table . ' WHERE closed = 0';
 		$sth = $this->dbh->prepare($sql);
 		$sth->execute();
 

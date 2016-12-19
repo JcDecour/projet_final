@@ -5,7 +5,7 @@
 
 <div class="content-site">
   <div class="page-header">
-    <h1 style="text-align: center;">Inscription Particulier</h1>
+    <h1">Inscription Particulier</h1>
   </div>
  
     <form method="post" class="form-horizontal">

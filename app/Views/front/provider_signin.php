@@ -4,7 +4,7 @@
 	<div class="forms">
 		
 		<div class="page-header">
-			<h1 style="text-align: center;">Inscription Professionnel</h1>
+			<h1>Inscription Professionnel</h1>
 		</div>
 	
 		<form method="post" class="form-horizontal">
