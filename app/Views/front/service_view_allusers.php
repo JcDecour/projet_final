@@ -28,6 +28,18 @@
 
 	<br>
 
+    <!-- Catégorie / Ss Catégorie du service -->
+	<div class="row">
+		<label class="col-md-4 control-label text-right" for="zip_code">Catégorie / Sous Catégorie:</label>  
+		<div class="col-md-8">
+			<?php if(!empty($contenuSsSector)): ?>
+				<?=$contenuSsSector;?>	
+			<?php endif; ?>	
+		</div>
+	</div>
+
+	<br>
+    
 	<!-- Description du service -->
 	<div class="row">
 		<label class="col-md-4 control-label text-right" for="zip_code">Description:</label>  
@@ -44,17 +56,6 @@
 
 	<br>
 
-	<!-- Catégorie / Ss Catégorie du service -->
-	<div class="row">
-		<label class="col-md-4 control-label text-right" for="zip_code">Catégorie / Sous Catégorie:</label>  
-		<div class="col-md-8">
-			<?php if(!empty($contenuSsSector)): ?>
-				<?=$contenuSsSector;?>	
-			<?php endif; ?>	
-		</div>
-	</div>
-
-	<br>
     
     <div class="row">
 	<div class="col-md-12 text-right">

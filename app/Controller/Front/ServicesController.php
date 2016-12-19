@@ -332,7 +332,7 @@ class ServicesController extends Controller
 			if($subSector){
 				$sector = $sectorModel->find($subSector['id_sector']);
 				if($sector){
-					$contenuSsSector.= '<span class="tag label label-default">'.$sector['title'].' - '.$subSector['title'].'</span>&nbsp;';
+					$contenuSsSector.= '<span class="tag label label-categories">'.$sector['title'].' - '.$subSector['title'].'</span>&nbsp;';
 				}
 			}
 		}

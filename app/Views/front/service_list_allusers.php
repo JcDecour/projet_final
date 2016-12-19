@@ -56,8 +56,8 @@
 				<?php endif; ?>
 			</select>
 				
-			<button class="btn btn-info" type="submit">
-				<i class="fa fa-search"></i>
+			<button class="btn btn-default" type="submit">
+				Rechercher
 			</button>
 				
 			
@@ -97,7 +97,7 @@
 						<?php endif; ?>	
 					</td>
 					<td class="text-center">
-						<a href="<?=$this->url('front_service_view_allusers', ['id' => $project['id']]);?>" class="btn btn-success btn-sm" title="Consulter ce service">
+						<a href="<?=$this->url('front_service_view_allusers', ['id' => $project['id']]);?>" class="btn btn-default btn-sm" title="Consulter ce service">
 					 		Consulter
 						</a>
 					</td>
