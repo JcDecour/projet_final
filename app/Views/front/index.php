@@ -95,8 +95,8 @@
                                 <li class="list-group-item">
                                     <span class="puce pucerecentservice">&#10004;</span>
                                    <?=DateTime::createFromFormat('Y-m-d H:i:s', $topProject['created_at'])->format('d/m/y');?>
-                                    -&nbsp;<?=$topProject['title']; ?>
-                                    &nbsp;(<i class="fa fa-fw fa-map-marker"></i><?=$topProject['zip_code']; ?> )
+                                    -&nbsp;<?=$topProject['title']; ?><br>
+                                    (<i class="fa fa-fw fa-map-marker"></i><?=$topProject['zip_code']; ?> )
                             </li>
                             <?php endforeach; ?>
                         </ul>
@@ -114,19 +114,19 @@
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <span class="puce pucecommentcamarche">1</span>
-                                Vous effectuez <span class="markup">gratuitement</span> votre demande de service.
+                                Vous effectuez <span class="settofront">gratuitement</span> votre demande de service.
                             </li>
                             <li class="list-group-item">
                                 <span class="puce pucecommentcamarche">2</span>
-                                Des professionnels émettent <span class="markup">gratuitement</span> leurs propositions de devis.
+                                Des professionnels émettent <span class="settofront">gratuitement</span> leurs propositions de devis.
                             </li>
                             <li class="list-group-item">
                                 <span class="puce pucecommentcamarche">3</span>
-                                <span class="markup">Comparez</span> et sélectionnez les devis reçus et validez ceux de votre <span class="markup">choix</span>.
+                                <span class="settofront">Comparez</span> et sélectionnez les devis reçus et validez ceux de votre <span class="settofront">choix</span>.
                             </li>
                             <li class="list-group-item">
                                 <span class="puce pucecommentcamarche">4</span>
-                                Les coordonnées des professionnels retenus vous sont alors accessibles et vous pouvez entrer <span class="markup">directement</span> en contact avec eux.
+                                Les coordonnées des professionnels retenus vous sont alors accessibles et vous pouvez entrer <span class="settofront">directement</span> en contact avec eux.
                             </li>
                         </ul>
                     </div>

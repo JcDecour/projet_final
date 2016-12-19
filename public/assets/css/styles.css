@@ -175,6 +175,23 @@ a {
     width: 15px;
 }
 
+.pucerecentservice{
+    background-color: #00a699;
+}
+
+.pucecommentcamarche{
+    background-color: #00a699;  
+}
+
+.pucetopartisans{
+    background-color: #00a699;
+}
+
+.settofront{
+    font-weight: 600;
+    color: #222;
+}
+
 /* Slider */
 
 .txt {
