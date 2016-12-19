@@ -27,12 +27,12 @@ nav {
 }
 
 .dropdown-menu>li>a {
-  background-color: black;
+  background-color: #222222;
 }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-  border-color: #101010;
-  background-color: black;
+    border-color: #101010;
+    background-color: #222222;
 }
 
 /*Bannière*/
@@ -252,16 +252,6 @@ a {
 
 .label-categories {
     background-color: #33b7ad;
-    border-radius: 0.25em;
-    color: #fff;
-    display: inline;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 2.5;
-    padding: 0.4em;
-    text-align: center;
-    vertical-align: baseline;
-    white-space: nowrap;
 }
 
 header.carousel {
