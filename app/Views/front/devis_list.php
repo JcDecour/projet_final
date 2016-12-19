@@ -49,67 +49,65 @@
 	</div>
     
 	<!-- Liste des projets -->
-	<?php if(!empty($projects)): ?>	
+    <table class="table table-responsive table-bordered">
+        <thead>
+            <tr>
+                <th>N° Offre</th>
+                <th>Lieu</th>
+                <th>Service</th>
+                <th>Catégorie</th>
+                <th>Ss Catégorie</th>
+                <th>Créé le</th>
+                <th>Prévu le</th>
+                <th class="text-center">Devis</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
 
-		<table class="table table-responsive table-bordered">
+        <tbody>
+            <?php if(!empty($projects)): ?>	
 
-			<thead>
-				<tr>
-                    <th>N° Offre</th>
-					<th>Lieu</th>
-					<th>Service</th>
-					<th>Catégorie</th>
-					<th>Ss Catégorie</th>
-					<th>Créé le</th>
-					<th>Prévu le</th>
-					<th class="text-center">Devis</th>
-					<th class="text-center">Action</th>
-				</tr>
-			</thead>
+                <?php $cpt = 0; ?>
+                <?php foreach($projects as $project): ?>
 
-			<tbody>
-				<?php $cpt = 0; ?>
-				<?php foreach($projects as $project): ?>
-
-					<?php if(empty($project['designation'])): ?> <!-- Si le champ désignation est renseigné c'est que le provider a fait une estimation sur cette sous catégorie de projet, il ne faut donc pas l'ajouter-->
-						<?php $cpt++; ?>
-						<tr>
+                    <?php if(empty($project['designation'])): ?> <!-- Si le champ désignation est renseigné c'est que le provider a fait une estimation sur cette sous catégorie de projet, il ne faut donc pas l'ajouter-->
+                        <?php $cpt++; ?>
+                        <tr>
                             <td><?=sprintf("%06d", $project['id'])?></td>
-							<td><?=$project['zip_code'];?></td>
-							<td><?=$project['title'];?></td>
-							<td><?=$project['titlesector'];?></td>
-							<td><?=$project['titlesubsector'];?></td>
-							<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></td>
-							<td><?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></td>
-							<td class="text-center">
-								<?php if($project['closed']): ?>
-									<span class="text-danger">Cloturé</span>
-								<?php else: ?>
-									<span class="badge badge-success"><?=$project['nbdevisprojetsubsector'];?></span>
-								<?php endif; ?>	
-							</td>
-							<td class="text-center">
-								<a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-default btn-sm" title="Proposer un devis">
-							 		Proposer devis
-								</a>
-							</td>
-						</tr>
+                            <td><?=$project['zip_code'];?></td>
+                            <td><?=$project['title'];?></td>
+                            <td><?=$project['titlesector'];?></td>
+                            <td><?=$project['titlesubsector'];?></td>
+                            <td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></td>
+                            <td><?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></td>
+                            <td class="text-center">
+                                <?php if($project['closed']): ?>
+                                    <span class="text-danger">Cloturé</span>
+                                <?php else: ?>
+                                    <span class="badge badge-success"><?=$project['nbdevisprojetsubsector'];?></span>
+                                <?php endif; ?>	
+                            </td>
+                            <td class="text-center">
+                                <a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-default btn-sm" title="Proposer un devis">
+                                    Proposer devis
+                                </a>
+                            </td>
+                        </tr>
 
-					<?php endif; ?>
+                    <?php endif; ?>
 
-				<?php endforeach; ?>
+                <?php endforeach; ?>
 
-				<?php if($cpt == 0): ?>
-					<tr><td colspan="8">Aucun service.</td></tr>
-				<?php endif; ?>
+                <?php if($cpt == 0): ?>
+                    <tr><td colspan="8">Aucune offre de services n'est disponible.</td></tr>
+                <?php endif; ?>
 
-			</tbody>
+            <?php else: ?>
+                <tr><td colspan="8">Aucune offre de services n'est disponible.</td></tr>
+            <?php endif; ?>
 
-		</table>
-
-	<?php else: ?>
-		<p>Aucune offre de services n'est disponible.</p>
-	<?php endif; ?>
+        </tbody>
+    </table>
 
 	<!-- ######################################################## -->
 

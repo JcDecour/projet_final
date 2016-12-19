@@ -99,6 +99,7 @@ class DevisController extends Controller
             'projects'          => $projects,
             'sectors'           => $sectors,
             'optionSubSector'	=> $optionSubSector,
+            'search'			=> $get,
             'listdevis'         => $devis,
         ]);	
 	}
