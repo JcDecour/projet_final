@@ -35,10 +35,16 @@
         </div>
     <?php endif; ?>
     
+    <br>
     
     <!--Partie entete du devis (Récapitulatif)-->
+    <!-- N° de l'offre -->
+	<div class="row">
+		<label class="col-md-3 control-label text-right" for="num_offre">N° Offre:</label>  
+		<div class="col-md-9"><?=sprintf("%06d", $devis['projectId'])?>&nbsp;( Ajoutée le <?=DateTime::createFromFormat('Y-m-d H:i:s', $devis['created_at'])->format('d/m/Y');?> )</div>
+	</div>
+    
         <!-- Code postal du lieu du service -->
-        
 	<div class="row">
 		<label class="col-md-3 control-label text-right" for="zip_code">Code postal du lieu du service:</label>  
 		<div class="col-md-9"><?=$devis['projectZipCode'];?></div>
@@ -52,10 +58,18 @@
 
 	<br>
 
+         <!-- Catégorie / Ss Catégorie du service -->
+	<div class="row">
+		<label class="col-md-3 control-label text-right" for="zip_code">Catégorie / Sous Catégorie:</label>
+		<div class="col-md-9"><span class="tag label label-categories"><?=$devis['titleSector'];?> - <?=$devis['titleSubsector'];?></span></div> 
+	</div>
+    
+    <br>
+    
 	   <!-- Description du service -->
 	<div class="row">
 		<label class="col-md-3 control-label text-right" for="zip_code">Description:</label>  
-		<div class="col-md-9"><?=nl2br($devis['projectDescription']);?></div>
+		<div class="col-md-7 withbackground"><?=nl2br($devis['projectDescription']);?></div>
 	</div>
     
     <br>
@@ -66,19 +80,13 @@
 		<div class="col-md-9"><?=DateTime::createFromFormat('Y-m-d', $devis['projectPredicted'])->format('d/m/Y');?></div>
 	</div>
     
-        <!-- Catégorie / Ss Catégorie du service -->
-	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Catégorie / Sous Catégorie:</label>
-		<div class="col-md-9"><span class="tag label label-default"><?=$devis['titleSector'];?> - <?=$devis['titleSubsector'];?></span></div> 
-	</div>
-    
     <br>
     
     
    <!-- Partie devis-->
     <div class="panel panel-default">
 		  <!-- Default panel contents -->
-		  <div class="panel-heading">Devis</div>
+		  <div class="panel-heading">Devis&nbsp;N°&nbsp;<?=sprintf("%06d", $devis['id'])?></div>
 			<div class="panel-body">
 
 				<div class="row">
@@ -93,9 +101,9 @@
 				<thead>
 					<tr>
 						<th>Désignation</th>
-						<th>Montant HT (€)</th>
-						<th>Taux de TVA (%)</th>
-						<th>Montant TTC (€)</th>
+						<th class="text-right">Montant HT (€)</th>
+						<th class="text-right">Taux de TVA (%)</th>
+						<th class="text-right">Montant TTC (€)</th>
 					</tr>
 				</thead>
                 <tbody>
@@ -104,7 +112,7 @@
 							<?=$devis['designation'];?>
 						</td>
 						<td class="text-right">
-				            <?=$devis['ht_amount'];?>
+				            <?=number_format($devis['ht_amount'], 2 , "." , " ");?>
 						</td>
 						<td class="text-right">
 							 <?=$devis['tva_amount'];?>

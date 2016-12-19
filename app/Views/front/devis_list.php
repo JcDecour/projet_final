@@ -84,7 +84,7 @@
 
 			<thead>
 				<tr>
-					<th>Devis</th>
+					<th>N° Devis</th>
 					<th>Lieu</th>
 					<th>Service</th>
 					<th>Catégorie</th>

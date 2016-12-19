@@ -85,6 +85,7 @@ class DevisModel extends \W\Model\Model
 
 		$sql = 'SELECT devis.*, 
                     project.zip_code as projectZipCode,
+                    project.id as projectId,
                     project.title as projectTitle,
                     project.description as projectDescription, 
                     project.predicted_date as projectPredicted,
