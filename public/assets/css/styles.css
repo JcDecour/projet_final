@@ -243,6 +243,16 @@ a {
 
 .label-categories {
     background-color: #33b7ad;
+    border-radius: 0.25em;
+    color: #fff;
+    display: inline;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 2.5;
+    padding: 0.4em;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
 }
 
 header.carousel {

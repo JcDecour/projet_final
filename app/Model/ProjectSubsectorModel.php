@@ -38,7 +38,7 @@ class ProjectSubsectorModel extends \W\Model\Model
 			return false;
 		}
 
-		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_project = :idProject';
+		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_project = :idProject ORDER BY id ASC';
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':idProject', $id);
 		$sth->execute();
