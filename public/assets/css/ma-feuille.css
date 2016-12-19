@@ -51,10 +51,10 @@ body{
 }
 
 .content-site span.accroche{
-    background-color: #F39200;
+    background-color: orange;
     color: #FFF;
     font-size: 14px;
-    padding: 5px;
+    padding: 8px;
     font-weight: 500;
 }
 
