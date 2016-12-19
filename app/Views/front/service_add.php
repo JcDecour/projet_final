@@ -52,37 +52,7 @@
 				<?php endif; ?>
 			</div>
 
-			<!-- Description du projet -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="description">
-					Descriptif du service
-					<span class="obligatoire">*</span>
-				</label>  
-				<div class="col-md-6">
-					<textarea id="description" name="description" rows="4" placeholder="Soyez le plus précis possible dans les éléments de description du service que vous souhaitez obtenir" class="form-control"><?=isset($post['description']) ? $post['description'] : '';?></textarea>
-				</div>
-				<!-- Gestion des erreurs -->
-				<?php if(isset($formErrors['description'])): ?>
-					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['description']?></div>
-				<?php endif; ?>
-			</div>
-
-			<!-- Date prévisionnelle du service -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="predicted_date">
-					Date prévisonnelle (jj/mm/aaaa)
-					<span class="obligatoire">*</span>
-				</label>  
-				<div class="col-md-2">
-					<input id="predicted_date" name="predicted_date" type="text" class="form-control input-md" value="<?=isset($post['predicted_date']) ? $post['predicted_date'] : '';?>">
-				</div>
-				<!-- Gestion des erreurs -->
-				<?php if(isset($formErrors['predicted_date'])): ?>
-					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['predicted_date']?></div>
-				<?php endif; ?>
-			</div>
-
-			<!-- Catégorie du service -->
+            <!-- Catégorie du service -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="sector" >
 					Catégorie / Sous Catégorie
@@ -117,6 +87,38 @@
 					<?php endif; ?>
 				</div>
 			</div>
+            
+			<!-- Description du projet -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="description">
+					Descriptif du service
+					<span class="obligatoire">*</span>
+				</label>  
+				<div class="col-md-6">
+					<textarea id="description" name="description" rows="4" placeholder="Soyez le plus précis possible dans les éléments de description du service que vous souhaitez obtenir" class="form-control"><?=isset($post['description']) ? $post['description'] : '';?></textarea>
+				</div>
+				<!-- Gestion des erreurs -->
+				<?php if(isset($formErrors['description'])): ?>
+					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['description']?></div>
+				<?php endif; ?>
+			</div>
+
+			<!-- Date prévisionnelle du service -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="predicted_date">
+					Date prévisonnelle (jj/mm/aaaa)
+					<span class="obligatoire">*</span>
+				</label>  
+				<div class="col-md-2">
+					<input id="predicted_date" name="predicted_date" type="text" class="form-control input-md" value="<?=isset($post['predicted_date']) ? $post['predicted_date'] : '';?>">
+				</div>
+				<!-- Gestion des erreurs -->
+				<?php if(isset($formErrors['predicted_date'])): ?>
+					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['predicted_date']?></div>
+				<?php endif; ?>
+			</div>
+
+			
 
 			<!-- Si le User est déja connecté, ses infos de connexion ne lui sont pas demandées -->
 			<?php if(!$w_user): ?>
