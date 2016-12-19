@@ -15,19 +15,19 @@
 
     <!-- N° de l'offre -->
 	<div class="row">
-		<label class="col-md-3 control-label text-right" for="num_offre">N° Offre:</label>  
+		<label class="col-md-3 control-label text-right">N° Offre:</label>  
 		<div class="col-md-9"><?=sprintf("%06d", $projectSubsector['id'])?>&nbsp;( Ajoutée le <?=DateTime::createFromFormat('Y-m-d H:i:s', $projectSubsector['created_at'])->format('d/m/Y');?> )</div>
 	</div>
     
 	<!-- Code postal du lieu du service -->
 	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Code postal du lieu du service:</label>  
+		<label class="col-md-3 control-label text-right">Code postal du lieu du service:</label>  
 		<div class="col-md-9"><?=$projectSubsector['zip_code'];?></div>
 	</div>
 
 	<!-- Objet du service -->
 	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Objet du service:</label>  
+		<label class="col-md-3 control-label text-right">Objet du service:</label>  
 		<div class="col-md-9"><?=$projectSubsector['title'];?></div>
 	</div>
 
@@ -35,7 +35,7 @@
 
         <!-- Catégorie / Ss Catégorie du service -->
 	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Catégorie / Sous Catégorie:</label>
+		<label class="col-md-3 control-label text-right">Catégorie / Sous Catégorie:</label>
 		<div class="col-md-9"><span class="tag label label-categories"><?=$projectSubsector['titlesector'];?> - <?=$projectSubsector['titlesubsector'];?></span></div> 
 	</div>
     
@@ -43,7 +43,7 @@
     
 	<!-- Description du service -->
 	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Description:</label>  
+		<label class="col-md-3 control-label text-right">Description:</label>  
 		<div class="col-md-7 withbackground"><?=nl2br($projectSubsector['description']);?></div>
 	</div>
 
@@ -51,7 +51,7 @@
 
 	<!-- Date prévisionnelle du service -->
 	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Date prévisonnelle:</label>  
+		<label class="col-md-3 control-label text-right">Date prévisionnelle:</label>  
 		<div class="col-md-9"><?=DateTime::createFromFormat('Y-m-d', $projectSubsector['predicted_date'])->format('d/m/Y');?></div>
 	</div>
 

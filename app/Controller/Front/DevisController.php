@@ -63,7 +63,8 @@ class DevisController extends Controller
 		}
         
 		//Recherche de tous les projets en détail non terminés et non extimés par le professionnel
-		$projects = $projectModel->findAllDetailWithoutClosed($zip_code, $sub_sector, $sector, $title);
+        $provider = $this->getUser();
+		$projects = $projectModel->findAllDetailWithoutClosed($zip_code, $sub_sector, $sector, $title, $provider['id']);
 
         //Recherche de tous les "Sector" triés par numéro d'ordre
 		$sectors = $sectorModel->findAll('order_num');

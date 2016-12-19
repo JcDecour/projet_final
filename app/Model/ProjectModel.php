@@ -109,14 +109,14 @@ class ProjectModel extends \W\Model\Model
 	 * @param  integer Sous Catégories auquel les projets doivent etre rattachés
 	 * @return array Les données sous forme de tableau multidimensionnel
 	 */
-	public function findAllDetailWithoutClosed($zip_code = null, $sub_sector = null, $sector = null, $title = null)
+	public function findAllDetailWithoutClosed($zip_code = null, $sub_sector = null, $sector = null, $title = null, $idProvider)
 	{
-		$sql = 'SELECT p.*, subsector.title as titlesubsector, ps.id as idprojetsubsector, ps.nb_devis as nbdevisprojetsubsector, sector.title as titlesector, devis.designation as designation FROM ' . $this->table . ' as p 
+		$sql = 'SELECT p.*, subsector.title as titlesubsector, ps.id as idprojetsubsector, ps.nb_devis as nbdevisprojetsubsector, sector.title as titlesector  FROM ' . $this->table . ' as p 
 				INNER JOIN project_subsector as ps ON p.id = ps.id_project
 				INNER JOIN sub_sector as subsector ON subsector.id = ps.id_subsector
 				INNER JOIN sector as sector ON sector.id = subsector.id_sector
-				LEFT JOIN devis as devis ON (devis.id_project_subsector = ps.id AND devis.id_provider = 1)
-				WHERE closed = 0';
+				WHERE closed = 0
+                AND ps.id NOT IN (SELECT devis.id_project_subsector FROM devis WHERE devis.id_provider = :idProvider AND devis.id_project_subsector = ps.id)';
 
 		if(!empty($zip_code) && !ctype_digit($zip_code)){
 			return false;
@@ -125,6 +125,9 @@ class ProjectModel extends \W\Model\Model
 			return false;
 		}
         if(!empty($sector) && !ctype_digit($sector)){
+			return false;
+		}
+        if(empty($idProvider) || !ctype_digit($idProvider)){
 			return false;
 		}
 
@@ -144,7 +147,7 @@ class ProjectModel extends \W\Model\Model
         if(!empty($title)){
 			$sql .= ' AND (p.title LIKE :title OR p.description LIKE :title)';
 		}
-		$sql .= ' ORDER BY p.id DESC, sector.order_num ASC, subsector.title ASC';
+		$sql .= ' ORDER BY p.id DESC, sector.order_num ASC, subsector.title ASC';  
         
 		$sth = $this->dbh->prepare($sql);
 		if(!empty($zip_code)){
@@ -159,6 +162,7 @@ class ProjectModel extends \W\Model\Model
         if(!empty($title)){
 			$sth->bindValue(':title', '%'.$title.'%');
 		}
+        $sth->bindValue(':idProvider', $idProvider);  
 		$sth->execute();
 
 		return $sth->fetchAll();

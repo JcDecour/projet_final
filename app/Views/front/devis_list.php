@@ -67,15 +67,14 @@
                 <th class="text-center">Action</th>
             </tr>
         </thead>
-
+        
         <tbody>
             <?php if(!empty($projects)): ?>	
 
                 <?php $cpt = 0; ?>
                 <?php foreach($projects as $project): ?>
 
-                    <?php if(empty($project['designation'])): ?> <!-- Si le champ désignation est renseigné c'est que le provider a fait une estimation sur cette sous catégorie de projet, il ne faut donc pas l'ajouter-->
-                        <?php $cpt++; ?>
+                  
                         <tr>
                             <td><?=sprintf("%06d", $project['id'])?></td>
                             <td><?=$project['zip_code'];?></td>
@@ -98,13 +97,11 @@
                             </td>
                         </tr>
 
-                    <?php endif; ?>
+                   
 
                 <?php endforeach; ?>
 
-                <?php if($cpt == 0): ?>
-                    <tr><td colspan="8">Aucune offre de services n'est disponible.</td></tr>
-                <?php endif; ?>
+              
 
             <?php else: ?>
                 <tr><td colspan="8">Aucune offre de services n'est disponible.</td></tr>
