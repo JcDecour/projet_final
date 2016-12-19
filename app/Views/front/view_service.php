@@ -14,15 +14,21 @@
 	</div>
 	
 	 <!--Partie entete du service (Récapitulatif)-->
+        <!-- N° de l'offre -->
+	<div class="row">
+		<label class="col-md-3 control-label text-right">N° Offre:</label>  
+		<div class="col-md-9"><?=sprintf("%06d", $project['id'])?>&nbsp;( Ajoutée le <?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?> )</div>
+	</div>
+    
         <!-- Code postal du lieu du service -->
 	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Code postal du lieu du service:</label>  
+		<label class="col-md-3 control-label text-right">Code postal du lieu du service:</label>  
 		<div class="col-md-9"><?=$project['zip_code'];?></div>
 	</div>
 
 	   <!-- Objet du service -->
 	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Objet du service:</label>  
+		<label class="col-md-3 control-label text-right">Objet du service:</label>  
 		<div class="col-md-9"><?=$project['title'];?></div>
 	</div>
 
@@ -30,23 +36,15 @@
 
 	   <!-- Description du service -->
 	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Description:</label>  
-		<div class="col-md-9"><?=nl2br($project['description']);?></div>
-	</div>
-    
-    <br>
-    
-        <!-- Date de création du service -->
-	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Date de création:</label>  
-		<div class="col-md-9"><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></div>
+		<label class="col-md-3 control-label text-right">Description:</label>  
+		<div class="col-md-7 withbackground"><?=nl2br($project['description']);?></div>
 	</div>
     
     <br>
 
      <!-- Date prévisionnelle du service -->
 	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Date prévisonnelle:</label>  
+		<label class="col-md-3 control-label text-right">Date prévisionnelle:</label>  
 		<div class="col-md-9">
 			<?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?>		
 		</div>
@@ -85,13 +83,13 @@
 			  
 			  	<table class="table table-bordered table-responsive ">
 				    <thead>
-				    	<th>Votre choix</th>
-				    	<th>Devis</th>
-				    	<th>Date de création</th>
+				    	<th class="text-center">Choix</th>
+				    	<th>N° Devis</th>
+				    	<th>Créé le</th>
 				    	<th>Société</th>
-				    	<th>Montant HT (€)</th>
-				    	<th>TVA (%)</th>
-				    	<th>Montant TTC (€)</th>
+				    	<th class="text-right">Montant HT(€)</th>
+				    	<th class="text-right">Taux de TVA(%)</th>
+				    	<th class="text-right">Montant TTC (€)</th>
 				    </thead>
 				 
 					<tbody>
@@ -101,10 +99,10 @@
 						  		<?php if($sector['projectSubSectorId'] == $dataDevis['projectSubsectorId']):?>
 
 								  	<tr>
-								  		<td>
+								  		<td class="text-center">
 								  			<input id="<?= $dataDevis['devisId'] ?>" type="checkbox" name="" value="<?= $dataDevis['ttc_amount'] ?>">
 								  		</td>
-								  		<td><?=$dataDevis['devisId'] ?></td>
+								  		<td><?=sprintf("%06d", $dataDevis['devisId'])?></td>
 								  		<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $dataDevis['devisDateCreat'])->format('d/m/Y');?></td>
 								  		<td><?=$dataDevis['companyName'] ?></td>
 								  		<td class="text-right"><?=number_format($dataDevis['ht_amount'], 2, ',', ' ') ?></td>
@@ -117,18 +115,16 @@
 						 		<?php endif; ?>					  	
 					  	 
 					  	<?php endforeach; ?>
+                        
+                        <?php if($cpt == 0):?>
+                            <tr>
+                                <td colspan="7" class="text-danger">Aucune proposition de devis</td>
+                            </tr>
+                        <?php endif;?>
+                        <?php $cpt=0;?>
 					 
 					</tbody>
-
-					<?php if($cpt == 0):?>
-						<tbody>
-							<tr>
-								<td colspan="7" class="text-danger">Aucun devis enregistré</td>
-							</tr>
-						</tbody>
-					<?php endif;?>
-
-					<?php $cpt=0;?>
+					
 			   	</table>
 		</div>
 	</div>

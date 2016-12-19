@@ -337,7 +337,6 @@ class ServicesController extends Controller
 			}
 		}
         
-
 		$this->show('front/service_view_allusers', ['project' => $project, 'contenuSsSector' => $contenuSsSector]);
 	}
 
