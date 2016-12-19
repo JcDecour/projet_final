@@ -27,14 +27,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?= $this->url('front_default_index') ?>">DevisCible</a>
+                <a class="navbar-brand" href="<?= $this->url('front_default_index') ?>">DevisRama</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <?php if(isset($w_user) && (!isset($w_user['siret']))):?>
-                            <a style="color:orange;" href="<?=$this->url('front_customer_profil')?>"> Bonjour&nbsp;<?=$w_user['civilite'];?>&nbsp;<?=$w_user['lastname'];?>
+                            <a style="color:orange;" href="<?=$this->url('front_customer_profil')?>"> Bienvenue&nbsp;<?=$w_user['civilite'];?>&nbsp;<?=$w_user['lastname'];?>
                             </a>
                         <?php elseif(isset($w_user) && (isset($w_user['company_name']))):?>
                             <a style="color:orange;" href="<?=$this->url('front_provider_profil')?>"> Bonjour&nbsp;<?=$w_user['company_name'];?>
