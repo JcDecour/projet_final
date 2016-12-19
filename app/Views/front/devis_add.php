@@ -27,10 +27,18 @@
 
 	<br>
 
+        <!-- Catégorie / Ss Catégorie du service -->
+	<div class="row">
+		<label class="col-md-3 control-label text-right" for="zip_code">Catégorie / Sous Catégorie:</label>
+		<div class="col-md-9"><span class="tag label label-categories"><?=$projectSubsector['titlesector'];?> - <?=$projectSubsector['titlesubsector'];?></span></div> 
+	</div>
+    
+    <br>
+    
 	<!-- Description du service -->
 	<div class="row">
 		<label class="col-md-3 control-label text-right" for="zip_code">Description:</label>  
-		<div class="col-md-9"><?=nl2br($projectSubsector['description']);?></div>
+		<div class="col-md-7 withbackground"><?=nl2br($projectSubsector['description']);?></div>
 	</div>
 
 	<br>
@@ -39,14 +47,6 @@
 	<div class="row">
 		<label class="col-md-3 control-label text-right" for="zip_code">Date prévisonnelle:</label>  
 		<div class="col-md-9"><?=DateTime::createFromFormat('Y-m-d', $projectSubsector['predicted_date'])->format('d/m/Y');?></div>
-	</div>
-
-	<br>
-
-	<!-- Catégorie / Ss Catégorie du service -->
-	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Catégorie / Sous Catégorie:</label>
-		<div class="col-md-9"><span class="tag label label-default"><?=$projectSubsector['titlesector'];?> - <?=$projectSubsector['titlesubsector'];?></span></div> 
 	</div>
 
 	<!-- ########### -->
@@ -76,9 +76,9 @@
 				<thead>
 					<tr>
 						<th>Désignation<span class="obligatoire">*</span></th>
-						<th>Montant HT (€)<span class="obligatoire">*</span></th>
-						<th>Taux de TVA</th>
-						<th>Montant TTC (€)</th>
+						<th class="text-right">Montant HT (€)<span class="obligatoire">*</span></th>
+						<th class="text-right">Taux de TVA</th>
+						<th class="text-right">Montant TTC (€)</th>
 					</tr>
 				</thead>
 
