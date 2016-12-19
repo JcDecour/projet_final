@@ -355,6 +355,7 @@ class ServicesController extends Controller
 		$zip_code = null;
 		$sub_sector = null;
         $sector = null;
+        $title = null;
 
 		if(!empty($_GET)){
 			$get = array_map('trim', array_map('strip_tags', $_GET));
@@ -371,13 +372,17 @@ class ServicesController extends Controller
 			if(!empty($get['sector']) && ctype_digit($get['sector'])){
 				$sector = $get['sector'];
 			}
+			//Cas d'un recherche sur la catégorie
+			if(!empty($get['title']) && ctype_digit($get['title'])){
+				$title = $get['title'];
+			}
 		}
 
 		//Recherche du nombre de services à pourvoir (Les clôturés sont donc exclus)
 		$projectsTotal = $projectModel->countWithoutClosed();
 
 		//Recherche de l'ensemble des projets non cloturés en tenant compte du filtre de recherche
-		$projects = $projectModel->findAllWithoutClosed($zip_code, $sub_sector, $sector);
+		$projects = $projectModel->findAllWithoutClosed($zip_code, $sub_sector, $sector, $title);
 
 		//Recherche de tous les "Sector" triés par numéro d'ordre
 		$sectorModel = new SectorModel();

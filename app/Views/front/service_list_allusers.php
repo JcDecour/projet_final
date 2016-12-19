@@ -27,6 +27,12 @@
 				<input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="CP" value="<?=isset($search['zip_code']) ? $search['zip_code'] : '';?>">
 			</div>
 
+			<!-- Service (Recherche dans le sujet ou la description) -->
+			<div class="form-group">
+				<label class="sr-only" for="title">Un type de contenu de service</label>
+				<input type="text" class="form-control" id="title" name="title" placeholder="Libellé service" value="<?=isset($search['title']) ? $search['title'] : '';?>">
+			</div>
+
 			<!-- Catégorie -->
 			<select id="sector" name="sector" class="form-control">
 				<option value="" selected>Catégorie</option>

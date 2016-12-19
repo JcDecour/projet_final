@@ -28,7 +28,7 @@ class ProjectModel extends \W\Model\Model
 	 * @param  integer Sous Catégories auquel les projets doivent etre rattachés
 	 * @return array Les données sous forme de tableau multidimensionnel
 	 */
-	public function findAllWithoutClosed($zip_code = null, $sub_sector = null, $sector = null)
+	public function findAllWithoutClosed($zip_code = null, $sub_sector = null, $sector = null, $title = null)
 	{
 		$sql = 'SELECT distinct p.* FROM ' . $this->table . ' as p 
                 INNER JOIN project_subsector as ps ON p.id = ps.id_project
