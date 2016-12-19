@@ -59,11 +59,11 @@ class ProjectModel extends \W\Model\Model
         if(!empty($zip_code)){
 			$sql .= ' AND zip_code = :zip_code';
 		}
-
-
-
+        if(!empty($title)){
+			$sql .= ' AND (p.title LIKE :title OR p.description LIKE :title)';
+		}
 		$sql .= ' ORDER BY created_at DESC';
-
+        
 		$sth = $this->dbh->prepare($sql);
 		if(!empty($zip_code)){
 			$sth->bindValue(':zip_code', $zip_code);
@@ -74,6 +74,9 @@ class ProjectModel extends \W\Model\Model
         elseif(!empty($sector)){
             $sth->bindValue(':idSector', $sector);  
         }
+        if(!empty($title)){
+			$sth->bindValue(':title', '%'.$title.'%');
+		}
 		$sth->execute();
 
 		return $sth->fetchAll();

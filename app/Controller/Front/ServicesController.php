@@ -373,7 +373,7 @@ class ServicesController extends Controller
 				$sector = $get['sector'];
 			}
 			//Cas d'un recherche sur la catégorie
-			if(!empty($get['title']) && ctype_digit($get['title'])){
+			if(!empty($get['title'])){
 				$title = $get['title'];
 			}
 		}
