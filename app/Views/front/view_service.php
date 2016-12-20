@@ -54,8 +54,6 @@
     
 <?php $cpt = 0;?>
 
-
-
 <?php if(!$project['closed']): ?>
 <form method="POST">
 
@@ -72,28 +70,26 @@
 				</div>
 
 				<div class="panel-body">
-
-				
-				
 			  
-			  	<table class="table table-bordered table-responsive ">
-				    <thead>
-				    	<th class="text-center">Choix</th>
-				    	<th>N° Devis</th>
-				    	<th>Créé le</th>
-				    	<th>Société</th>
-				    	<th class="text-right">Montant HT(€)</th>
-				    	<th class="text-right">Taux de TVA(%)</th>
-				    	<th class="text-right">Montant TTC (€)</th>
-				    </thead>
-				 
-					<tbody>
+				  	<table class="table table-bordered table-responsive ">
+					    <thead>
+					    	<th class="text-center">Choix</th>
+					    	<th>N° Devis</th>
+					    	<th>Créé le</th>
+					    	<th>Société</th>
+					    	<th class="text-right">Montant HT(€)</th>
+					    	<th class="text-right">Taux de TVA(%)</th>
+					    	<th class="text-right">Montant TTC (€)</th>
+					    </thead>
+					 
+						<tbody>
 
-					  	<?php foreach($datasDevis as $dataDevis): ?>
-						
+						<?php $cpt2 = 0; ?>
+						  	<?php foreach($datasDevis as $dataDevis): ?>
+							
 						  		<?php if($sector['projectSubSectorId'] == $dataDevis['projectSubsectorId']):?>
 
-								  	<tr>
+								  	<tr <?php if($cpt2%2){echo 'class=""';}else{echo 'class="devis-striped"';};?>>
 								  		<td class="text-center">
 								  			<input id="<?= $dataDevis['devisId'] ?>" type="checkbox" name="" value="<?= $dataDevis['ttc_amount'] ?>">
 								  		</td>
@@ -105,22 +101,29 @@
 								  		<td class="text-right"><?=number_format($dataDevis['ttc_amount'], 2, ',', ' ') ?></td>
 								  	</tr>
 
+								  	<tr <?php if($cpt2%2){echo 'class=""';}else{echo 'class="devis-striped"';};?>>
+								  		<th colspan="2" class="text-right ">Complément devis</th>
+								  		<td colspan="5"><?=$dataDevis['description'] ?></td>
+								  	</tr>
+
 									<?php $cpt++;?>
 
 						 		<?php endif; ?>					  	
-					  	 
-					  	<?php endforeach; ?>
-                        
-                        <?php if($cpt == 0):?>
-                            <tr>
-                                <td colspan="7" class="text-danger">Aucune proposition de devis</td>
-                            </tr>
-                        <?php endif;?>
-                        <?php $cpt=0;?>
-					 
-					</tbody>
-					
-			   	</table>
+						  	 
+						 		<?php $cpt2++; ?>
+
+						  	<?php endforeach; ?>
+	                        
+	                        <?php if($cpt == 0):?>
+	                            <tr>
+	                                <td colspan="7" class="text-danger">Aucune proposition de devis sur cette catégorie.</td>
+	                            </tr>
+	                        <?php endif;?>
+	                        <?php $cpt=0;?>
+						 
+						</tbody>
+						
+				   	</table>
 
 			   	</div>
 		</div>
