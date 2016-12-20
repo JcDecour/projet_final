@@ -3,6 +3,8 @@ namespace Model;
 
 use \W\Model\ConnectionModel;
 use \W\Model\UsersModel;
+use \Respect\Validation\Validator as v;
+
 
 class ProviderModel extends \W\Model\Model
 {
@@ -24,9 +26,9 @@ class ProviderModel extends \W\Model\Model
 		$sth->bindValue(':email', $email);
 		
 		if($sth->execute()){
-			$foundCustomer = $sth->fetch();
-			if($foundCustomer){
-				return $foundCustomer;
+			$foundProvider = $sth->fetch();
+			if($foundProvider){
+				return $foundProvider;
 			}
 		}
 
@@ -80,5 +82,39 @@ class ProviderModel extends \W\Model\Model
 	   }
 
 	   return false;
+	}
+
+	/**
+	 * Modifie une ligne en fonction d'un email
+	 * @param array $data Un tableau associatif de valeurs à insérer
+	 * @param mixed $email L'email de la ligne à modifier
+	 * @param boolean $stripTags Active le strip_tags automatique sur toutes les valeurs
+	 * @return mixed false si erreur, les données mises à jour sinon
+	 */
+	public function updateByEmail(array $data, $email, $stripTags = true)
+	{	
+		if(!v::notEmpty()->email()->validate($email)){		
+			return false;
+		}
+		
+		$sql = 'UPDATE ' . $this->table . ' SET ';
+		foreach($data as $key => $value){
+			$sql .= "`$key` = :$key, ";
+		}
+		// Supprime les caractères superflus en fin de requète
+		$sql = substr($sql, 0, -2);
+		$sql .= ' WHERE email = :email';
+
+		$sth = $this->dbh->prepare($sql);
+		foreach($data as $key => $value){
+			$value = ($stripTags) ? strip_tags($value) : $value;
+			$sth->bindValue(':'.$key, $value);
+		}
+		$sth->bindValue(':email', $email);
+
+		if(!$sth->execute()){
+			return false;
+		}
+		return true;
 	}
 }

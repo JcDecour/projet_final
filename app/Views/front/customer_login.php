@@ -65,7 +65,7 @@
 
 				<div class="form-group">
 					<div class="col-md-4 col-md-offset-4">
-						<a href="#" class="text-danger">Mot de passe oublié</a>
+						<a href="<?=$this->url('front_customer_pwd_forget');?>" class="text-danger">Mot de passe oublié</a>
 					</div>
 				</div>
 		</form>
