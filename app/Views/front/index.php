@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Accueil']) ?>
+<?php $this->layout('layout', ['title' => 'Devirama']) ?>
 
 <?php $this->start('header_content') ?>
     <header id="myCarousel" class="carousel slide">
