@@ -35,6 +35,13 @@ class ProviderController extends Controller
 
 	public function signin()
 	{	
+		$user = $this->getUser();
+		
+		// si connecté je le redirige 
+		if (isset($user)){
+			
+			$this->redirectToRoute('front_default_index');
+		}
 
 		$providerModel = new ProviderModel(); // appel de la fonction insert 
 		$formErrors =[];//stockage des erreurs
@@ -221,6 +228,14 @@ class ProviderController extends Controller
 	*/
 	public function edit()
 	{
+
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || !isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
 
 		$provider = $this->getUser(); // récupère les info de l'utilisateur connecté$
 		$providerModel = new ProviderModel(); // appel de la fonction update

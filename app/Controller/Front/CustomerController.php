@@ -97,6 +97,13 @@ class CustomerController extends Controller
 	*/
 	public function signin()
 	{	
+		$user = $this->getUser();
+		
+		// si le client est connecté en compte pro je le redirige 
+		if (isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
 		
 		$customerModel = new CustomerModel(); // appel de la fonction insert 
 		$formErrors =[];//stockage des erreurs
@@ -197,6 +204,14 @@ class CustomerController extends Controller
 	*/
 	public function edit()
 	{
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
+		
 		$customerModel = new CustomerModel(); // appel de la fonction update
 		$formErrors =[];//stockage des erreurs
 		$passwordHash = new AuthentificationModel(); // appel de la fonction hashPassword

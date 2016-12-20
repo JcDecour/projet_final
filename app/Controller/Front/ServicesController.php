@@ -20,6 +20,14 @@ class ServicesController extends Controller
 	 */
 	public function edit($idProject)
 	{
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
+
 		$projectModel = new ProjectModel();
 		$sectorModel = new SectorModel();
 		$subSectorModel = new SubSectorModel();
@@ -424,10 +432,12 @@ class ServicesController extends Controller
 		$get = [];
 		$msg = '';
 
-		// si le client n'est pas connecté je le redirige 
-		if (empty($this->getUser())) {
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || isset($user['siret'])) {
 			
-			$this->redirectToRoute('front_customer_login');
+			$this->redirectToRoute('front_default_index');
 		}
 
 
