@@ -73,13 +73,8 @@
 
 				<div class="panel-body">
 
-					<div class="row">
-						<label class="col-md-12 control-label" for="description">Informations complémentaires:</label>
-						<div class="col-md-12">
-							Choisissez un seul devis par sous catégorie
-	                    </div>
-					</div>
-				</div>
+				
+				
 			  
 			  	<table class="table table-bordered table-responsive ">
 				    <thead>
@@ -126,6 +121,8 @@
 					</tbody>
 					
 			   	</table>
+
+			   	</div>
 		</div>
 	</div>
 	<?php endforeach; ?>
