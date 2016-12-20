@@ -256,6 +256,14 @@ a {
     line-height: 2.2;
 }
 
+.remove_ss_categ_button{
+  font-size: 14px;
+}
+
+.remove_ss_categ_button:hover{
+  text-decoration: none;
+}
+
 header.carousel {
   height: 60%;
 }
