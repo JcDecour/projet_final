@@ -223,8 +223,5 @@
 		});
 	});	
 
-
-
-
 </script>
 <?php $this->stop('js') ?>
