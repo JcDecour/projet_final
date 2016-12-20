@@ -13,7 +13,7 @@ class DevisModel extends \W\Model\Model
 	 * @param $id integer Identifiant du provider
 	 * @return mixed Les données sous forme de tableau associatif triées sur la date de création descendante
 	 */
-	public function findAllWithDetailsByProviderId($idProvider)
+	public function findAllWithDetailsByProviderId($idProvider, $statut = 'all')
 	{
 		if (!is_numeric($idProvider)){
 			return false;
@@ -32,8 +32,20 @@ class DevisModel extends \W\Model\Model
                     INNER JOIN sub_sector as subsector ON subsector.id = ps.id_subsector 
                     INNER JOIN sector as sector ON sector.id = subsector.id_sector 
                     INNER JOIN project as project ON project.id = ps.id_project
-                    WHERE id_provider = :idProvider 
-                    ORDER BY devis.id DESC';
+                    WHERE id_provider = :idProvider';
+
+        if($statut === 'accepted'){
+            $sql.= ' AND devis.accepted = 1 AND project.closed = 1';
+        }
+        elseif($statut === 'notselected'){
+            $sql.= ' AND devis.accepted = 0 AND project.closed = 1';
+        }
+        elseif($statut === 'notstatue'){
+            $sql.= ' AND devis.accepted = 0 AND project.closed = 0';
+        }
+
+        $sql.= ' ORDER BY devis.id DESC';
+
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':idProvider', $idProvider);
 		$sth->execute();

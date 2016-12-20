@@ -29,10 +29,7 @@ class DevisController extends Controller
         //Instanciation des classes
 		$sectorModel = new SectorModel();
         $projectModel = new ProjectModel();
-        
-        //#####################################################################
-        // Partie Liste des Projets disponibles
-        //#####################################################################
+      
         
         //Gestion du formulaire de recherche
 		$get = [];
@@ -62,6 +59,10 @@ class DevisController extends Controller
 			}
 		}
         
+        //#####################################################################
+        // Partie Liste des Projets disponibles
+        //#####################################################################
+
 		//Recherche de tous les projets en détail non terminés et non extimés par le professionnel
         $provider = $this->getUser();
 		$projects = $projectModel->findAllDetailWithoutClosed($zip_code, $sub_sector, $sector, $title, $provider['id']);
@@ -94,7 +95,23 @@ class DevisController extends Controller
 		//Recherche des devis établis par le professionnel
 		$devisModel = new DevisModel();
 		$provider = $this->getUser();
-		$devis = $devisModel->findAllWithDetailsByProviderId($provider['id']);
+
+		$statut = 'all';
+		if(isset($get['statut']) && $get['statut'] === 'all'){
+			$statut = 'all';
+		}
+		elseif(isset($get['statut']) && $get['statut'] === 'accepted'){
+			$statut = 'accepted';
+		}
+		elseif(isset($get['statut']) && $get['statut'] === 'notselected'){
+			$statut = 'notselected';
+		}
+		elseif(isset($get['statut']) && $get['statut'] === 'notstatue'){
+			$statut = 'notstatue';
+		}
+
+		//Recherche des devis du "Provider"
+		$devis = $devisModel->findAllWithDetailsByProviderId($provider['id'], $statut);
 
 		$this->show('front/devis_list', [
             'projects'          => $projects,

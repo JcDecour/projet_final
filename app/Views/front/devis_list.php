@@ -44,7 +44,6 @@
 				Rechercher
 			</button>
 				
-			
 		</form>
 	</div>
     
@@ -114,6 +113,33 @@
 
 	<!-- Filtre sur l'état du devis géré par bouton "radio" -->
 
+	
+	<div class="well well-sm">
+		<form method="get" class="form-inline">
+			<label class="control-label">Statut:</label>&nbsp;
+			<div class="form-group">
+				<label class="radio-inline">
+					<input type="radio" name="statut" id="all" value="all" checked> Tous
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="statut" id="accepted" value="accepted" <?=(isset($search['statut']) && $search['statut'] == 'accepted') ? 'checked' : '';?>> Accepté
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="statut" id="notselected" value="notselected" <?=(isset($search['statut']) && $search['statut'] == 'notselected') ? 'checked' : '';?>> Non retenu
+				</label>
+				<label class="radio-inline">
+					<input type="radio" name="statut" id="notstatue" value="notstatue" <?=(isset($search['statut']) && $search['statut'] == 'notstatue') ? 'checked' : '';?>> Non statué
+				</label>					
+			</div>
+			&nbsp;
+			<div class="form-group">					
+				<button class="btn btn-info" type="submit">
+					<i class="fa fa-search"></i>
+				</button>
+			</div>	
+
+		</form>
+	</div>
 
 	<!-- Liste des projets -->
 	<?php if(!empty($listdevis)): ?>	
@@ -172,7 +198,7 @@
 		</table>
 
 	<?php else: ?>
-		<p>Aucun devis proposé.</p>
+		<p>Aucun devis n'est disponible.</p>
 	<?php endif; ?>
 
 </div>
