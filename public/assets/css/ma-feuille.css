@@ -94,15 +94,25 @@ body{
     background-color: #EFEFEF;
 }
 
+.help li{
+    padding-left: 15px;
+}
+
+.help ol{
+    margin-left: 40px;
+}
+
 /******* media queries*********/
 
 @media only screen and (max-width: 500px) {
+
   /* responsive des fenêtre de connexion */
-  .width50, .width80 {
+
+ 
+.width50, .width80 {
+
     width: 100%;
     margin: 30px auto;
     }
-
-
 
 }

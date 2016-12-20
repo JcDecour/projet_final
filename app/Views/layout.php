@@ -155,6 +155,7 @@
     <!-- Script du Carousel -->
     <script>
     $(document).ready(function(){
+
         $('.carousel').carousel({
             interval: 5000, //vitesse de changement
             pause: null, // défini l'activité du slider si il y a une activité de l'utilisateur ou pas

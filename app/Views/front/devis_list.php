@@ -47,7 +47,7 @@
 	</div>
     
 	<!-- Liste des projets -->
-    <table class="table table-responsive table-bordered">
+    <table id="breakpoint" class="table table-responsive table-bordered ">
         <thead>
             <tr>
                 <th>
@@ -197,8 +197,15 @@
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>
-<script>
+<script type="text/javascript">
+
+
+
 	$(document).ready(function(){
+
+
+	
+
 
 		/*Gestion des menu déroulants liés (Carégories -> Sous Catégories)*/
 		$('#sector').change(function(){
@@ -219,6 +226,12 @@
 		$('input[type="radio"]').click(function() {
 			$('#my_form').submit();
 		});
+
+	
+
+		
+
+
 	});	
 
 </script>
