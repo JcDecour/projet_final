@@ -40,4 +40,4 @@
 		<?php endif; ?>
 	</div>
 </div>
-<?php $this->start('main_content') ?>
+<?php $this->stop('main_content') ?>

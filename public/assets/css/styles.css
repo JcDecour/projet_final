@@ -21,15 +21,6 @@ nav {
     background-color: black;
 }
 
-/*.navbar-inverse .navbar-nav > li > a {
-    background-color: #222222;
-    color: #9d9d9d;
-}*/
-
-/*.dropdown-menu>li>a {
-  background-color: #222222;
-}*/
-
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
     border-color: #101010;
     background-color: #222222;
@@ -211,6 +202,12 @@ a {
 .settofront{
     font-weight: 600;
     color: #222;
+}
+
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: rgb(224, 225, 230);
+    border-color: #ddd;
 }
 
 /* Slider */

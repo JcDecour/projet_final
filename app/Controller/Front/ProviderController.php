@@ -214,13 +214,13 @@ class ProviderController extends Controller
 	}
 
 	/**
-		* Page du principe de fonctionnement du site pour le particulier
+		* Page du principe de fonctionnement du site pour le professionnel
 	*/
 	public function help()
 	{	
 
 
-		$this->show('front/customer_help');
+		$this->show('front/provider_help');
 	}
 
 	/*
@@ -339,4 +339,5 @@ class ProviderController extends Controller
 		}			
 		$this->show('front/provider_profil', ['formErrors' => $formErrors, 'provider' => $provider, 'formValid' => $formValid]);
 	}
+
 }

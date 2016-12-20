@@ -77,7 +77,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace professionnel<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="full-width.html">Comment ça marche ?</a>
+                                    <a href="<?= $this->url('front_provider_help') ?>">Comment ça marche ?</a>
                                 </li>
                             <?php if(isset($w_user['siret'])):?>
                                 <li>
