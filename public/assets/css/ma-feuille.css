@@ -93,3 +93,11 @@ body{
 .devis-striped{
     background-color: #EFEFEF;
 }
+
+.help li{
+    padding-left: 15px;
+}
+
+.help ol{
+    margin-left: 40px;
+}
