@@ -499,6 +499,13 @@ class ServicesController extends Controller
 		$post = [];
 		$msg = '';
 
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
 
 		if (!is_numeric($id) || empty($id)) {
 			$this->showNotFound();

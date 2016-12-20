@@ -20,8 +20,12 @@ class DevisController extends Controller
 	*/
     public function listService()
 	{
-          // pro
-		//Si le professionnel n'est pas connecté , il est redirigé sur la page d'accueil
+
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte customer je le redirige 
+		if (!($user) || !isset($user['siret'])) {
+			
 			$this->redirectToRoute('front_default_index');
 		}
         
@@ -127,7 +131,16 @@ class DevisController extends Controller
 	*/
 	public function add($id)
 	{
-		//  pro
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte customer je le redirige 
+		if (!($user) || !isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
+
+
+		
 		if(!is_numeric($id) || empty($id)){
 			$this->showNotFound();
 		}
@@ -217,7 +230,13 @@ class DevisController extends Controller
 	*/
 	public function view($id)
 	{	
-		// pro
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte customer je le redirige 
+		if (!($user) || !isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
         //Recherche du devis à consulter
         $devisModel = new DevisModel;
         $devis = $devisModel->findWithDetailsById($id);
