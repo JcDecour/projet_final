@@ -422,6 +422,7 @@ class ServicesController extends Controller
 	{	
 
 		$get = [];
+		$msg = '';
 
 		// si le client n'est pas connecté je le redirige 
 		if (empty($this->getUser())) {
@@ -443,26 +444,41 @@ class ServicesController extends Controller
 
 			//Recherche de tous les devis
 			if(isset($get['statut']) && $get['statut'] === 'all'){
-				$projects = $projectModel->findServiceById($customer['id'], $colsed = 'closed', $closedValue = '');
-				
+				$projects = $projectModel->findServiceById($customer['id']);
+				if (!$projects) {
+					
+					$msg = 'Vous n\'avez aucun service encours';
+				}
 			}
 			//Recherche de tous les devis qui ont un statut "Ouvert"
 			if(isset($get['statut']) && $get['statut'] === 'opened'){
-				$projects = $projectModel->findServiceById($customer['id'], $colsed = 'closed', $closedValue = '0');
+				$projects = $projectModel->findServiceById($customer['id'], 0);
+				if (!$projects) {
+					
+					$msg = 'Vous n\'avez aucun service ouvert';
+				}
 			}
             //Recherche de tous les devis qui ont un statut "Cloturé"
 			if(isset($get['statut']) && $get['statut'] === 'closed'){
-				$projects = $projectModel->findServiceById($customer['id'], $colsed = 'closed', $closedValue = '1');
+				$projects = $projectModel->findServiceById($customer['id'], 1);
+				if (!$projects) {
+					
+					$msg = 'Vous n\'avez aucun service cloturé';
+				}
 			}
 
 			
 		}
 		else {
 
-			$projects = $projectModel->findServiceById($customer['id'], $colsed = 'closed', $closedValue = '');
+			$projects = $projectModel->findServiceById($customer['id']);
+			if (!$projects) {
+					
+					$msg = 'Vous n\'avez aucun service encours';
+				}
 		}
 
-		$this->show('front/list_services', ['projects' => $projects]);
+		$this->show('front/list_services', ['projects' => $projects, 'msg' => $msg]);
 	}
 
 	/**
@@ -539,7 +555,6 @@ class ServicesController extends Controller
 					$this->redirectToRoute('front_list_services');
 				}
 
-				var_dump($post);
 			}
 
 			// On récupère les données du projet

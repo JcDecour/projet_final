@@ -10,7 +10,7 @@ class ProjectModel extends \W\Model\Model
 	 * @param integer $closedValue la valeur de la colonne 'closed'
 	 * @return mixed Les données sous forme de tableau associatif
 	 */
-	public function findServiceById($idCustomer, $closed = 'closed', $closedValue = '')
+	public function findServiceById($idCustomer, $closedValue = '')
 	{
 		if (!is_numeric($idCustomer)){
 			return false;
@@ -19,18 +19,14 @@ class ProjectModel extends \W\Model\Model
 		
 		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_customer = :idCustomer ';
 
-		if (!empty(strip_tags($closedValue))){
+		if (!empty($closedValue)){
 
 			//sécurisation des paramètres, pour éviter les injections SQL
-			if($closedValue !== '0' && $closedValue !== '1'){
+			if(!preg_match('#^[0-1]{1,1}$#', $closedValue)){
 				die('Error: invalid closedValue param');
 			}
-			$closed = strtolower(strip_tags($closed));
-			if($closed !== 'closed'){
-				die('Error: invalid closed param');
-			}
 
-			$sql .= ' AND '.$closed.' = '.$closedValue;
+			$sql .= ' AND closed = '.$closedValue;
 			
 		}
 

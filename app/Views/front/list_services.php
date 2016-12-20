@@ -114,17 +114,10 @@
 
 	</table>
 
-	<?php elseif(empty($projects) && !empty($_GET['statut'])): ?>
-		<?php if($_GET['statut'] == 'opened'): ?>
-			<p class="text-danger">Vous n'avez aucun service ouvert</p>
-		<?php endif; ?>
-		<?php if($_GET['statut'] == 'closed'): ?>
-			<p class="text-danger">Vous n'avez aucun service cloturé</p>
-		<?php endif; ?>
+<?php else: ?>
+	<p class="text-danger"><?=$msg ?></p>
+<?php endif; ?>
 
-	<?php else: ?>
-		<p class="text-danger">Vous n'avez aucun service encours</p>
-	<?php endif; ?>
 
 	<div class="text-right">
 		<a href="<?=$this->url('front_service_add');?>" class="btn btn-info" title="Ajouter un nouveau service">Nouveau service</a>
