@@ -106,7 +106,7 @@
 			<!-- Date prévisionnelle du service -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="predicted_date">
-					Date prévisonnelle (jj/mm/aaaa)
+					Date prévisionnelle (jj/mm/aaaa)
 					<span class="obligatoire">*</span>
 				</label>  
 				<div class="col-md-2">
