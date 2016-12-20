@@ -115,18 +115,17 @@
 	
 	<div class="well well-sm">
 		<form id="my_form" method="get" class="form-inline">
-			<label class="control-label">Statut:</label>&nbsp;
 			<div class="form-group">
-				<label class="radio-inline">
+				<label class="radio-inline devis_status">
 					<input type="radio" name="statut" id="all" value="all" checked> Tous
 				</label>
-				<label class="radio-inline">
+				<label class="radio-inline accepted devis_status">
 					<input type="radio" name="statut" id="accepted" value="accepted" <?=(isset($search['statut']) && $search['statut'] == 'accepted') ? 'checked' : '';?>> Accepté
 				</label>
-				<label class="radio-inline">
+				<label class="radio-inline not_accepted devis_status">
 					<input type="radio" name="statut" id="notselected" value="notselected" <?=(isset($search['statut']) && $search['statut'] == 'notselected') ? 'checked' : '';?>> Non retenu
 				</label>
-				<label class="radio-inline">
+				<label class="radio-inline pending devis_status">
 					<input type="radio" name="statut" id="notstatue" value="notstatue" <?=(isset($search['statut']) && $search['statut'] == 'notstatue') ? 'checked' : '';?>> Non statué
 				</label>					
 			</div>
