@@ -39,10 +39,9 @@
 					<option value="" selected>Sous-Catégorie</option>
 				<?php endif; ?>
 			</select>
-				
-			<button class="btn btn-default" type="submit">
-				Rechercher
-			</button>
+			
+			<!-- Bouton pour lancer la recherche -->
+			<input class="btn btn-default" id="btn-filtre" name="btn-filtre" type="submit" value="Rechercher" role="button">
 				
 		</form>
 	</div>

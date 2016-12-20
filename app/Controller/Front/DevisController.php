@@ -32,7 +32,6 @@ class DevisController extends Controller
         //Instanciation des classes
 		$sectorModel = new SectorModel();
         $projectModel = new ProjectModel();
-      
         
         //Gestion du formulaire de recherche
 		$get = [];
@@ -44,30 +43,74 @@ class DevisController extends Controller
 		if(!empty($_GET)){
 			$get = array_map('trim', array_map('strip_tags', $_GET));
 
-			//Cas d'un recherche sur le code postal
-			if(isset($get['zip_code']) && ctype_digit($get['zip_code'])){
-				$zip_code = $get['zip_code'];
+			//Cas d'une recherche sur la liste des offres disponibles
+				//Stockage dans les sessions de l'ensemble des valeurs
+			if(isset($get['btn-filtre'])){
+
+				//Suppression des anciennes valeurs sauvegardées
+				if(isset($_SESSION['listService'])){
+					unset($_SESSION['listService']);
+				}
+
+				//Construction d'un tableau des valeur du filtre de recherche de la liste des offres de services
+				$dataSearch = [];
+				//Cas d'un recherche sur le code postal
+				if(isset($get['zip_code']) && ctype_digit($get['zip_code'])){
+					$dataSearch['zip_code'] = $get['zip_code'];
+				}
+				//Cas d'une recherche sur la sous-catégorie
+				if(!empty($get['sub-sector']) && ctype_digit($get['sub-sector'])){
+					$dataSearch['sub_sector'] = $get['sub-sector'];
+				}
+				 //Cas d'un recherche sur la catégorie
+				if(!empty($get['sector']) && ctype_digit($get['sector'])){
+					$dataSearch['sector'] = $get['sector'];
+				}
+				//Cas d'un recherche sur la title
+				if(!empty($get['title'])){
+					$dataSearch['title'] = $get['title'];
+				}
+
+				//Stcokage du tableau des valeurs dans les sessions
+				$_SESSION['listService'] = $dataSearch;
+
 			}
-			//Cas d'une recherche sur la sous-catégorie
-			if(!empty($get['sub-sector']) && ctype_digit($get['sub-sector'])){
-				$sub_sector = $get['sub-sector'];
-			}
-            //Cas d'un recherche sur la catégorie
-			if(!empty($get['sector']) && ctype_digit($get['sector'])){
-				$sector = $get['sector'];
-			}
-			//Cas d'un recherche sur la catégorie
-			if(!empty($get['title'])){
-				$title = $get['title'];
+			
+			//Cas d'une recherche sur le statut du devis
+				//Stockage dans les sessions de la valeur du statut
+			if(!empty($get['statut'])){
+				$_SESSION['devisStatut'] = $get['statut'];
 			}
 		}
         
+
         //#####################################################################
         // Partie Liste des Projets disponibles
         //#####################################################################
 
 		//Recherche de tous les projets en détail non terminés et non extimés par le professionnel
         $provider = $this->getUser();
+        //
+		$search = null;
+		if(isset($_SESSION['listService'])){
+			$search = $_SESSION['listService'];
+			if(isset($search['zip_code'])){
+				$zip_code = $search['zip_code'];
+			}
+			if(isset($search['sub_sector'])){
+				$zip_code = $search['sub_sector'];
+			}
+			if(isset($search['sector'])){
+				$zip_code = $search['sector'];
+			}
+			if(isset($search['title'])){
+				$zip_code = $search['title'];
+			}
+		}
+		else{
+			$search = [];	
+		}
+
 		$projects = $projectModel->findAllDetailWithoutClosed($zip_code, $sub_sector, $sector, $title, $provider['id']);
 
         //Recherche de tous les "Sector" triés par numéro d'ordre
@@ -99,18 +142,11 @@ class DevisController extends Controller
 		$devisModel = new DevisModel();
 		$provider = $this->getUser();
 
+
 		$statut = 'all';
-		if(isset($get['statut']) && $get['statut'] === 'all'){
-			$statut = 'all';
-		}
-		elseif(isset($get['statut']) && $get['statut'] === 'accepted'){
-			$statut = 'accepted';
-		}
-		elseif(isset($get['statut']) && $get['statut'] === 'notselected'){
-			$statut = 'notselected';
-		}
-		elseif(isset($get['statut']) && $get['statut'] === 'notstatue'){
-			$statut = 'notstatue';
+		if(isset($_SESSION['devisStatut'])){
+			$statut = $_SESSION['devisStatut'];
+			$search['statut'] = $_SESSION['devisStatut'];
 		}
 
 		//Recherche des devis du "Provider"
@@ -120,7 +156,7 @@ class DevisController extends Controller
             'projects'          => $projects,
             'sectors'           => $sectors,
             'optionSubSector'	=> $optionSubSector,
-            'search'			=> $get,
+            'search'			=> $search,
             'listdevis'         => $devis,
         ]);	
 	}
