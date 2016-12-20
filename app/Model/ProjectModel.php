@@ -16,7 +16,7 @@ class ProjectModel extends \W\Model\Model
 			return false;
 		}
 		if(isset($closedValue) && ($closedValue !== 0) && ($closedValue !== 1)){
-			die('Error: $closedValue invalid');
+			die('Error: invalid closedValue param');
 		}
 
 
