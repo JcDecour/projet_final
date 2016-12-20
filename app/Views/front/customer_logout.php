@@ -1,7 +1,8 @@
 <?php $this->layout('layout', ['title' => 'Connexion']); ?>
 
 <?php $this->start('main_content') ?>
-<div class="content-site">
+
+<div class="content-site width80">
 
 	<div class="forms">
 		
@@ -13,8 +14,8 @@
 		<form method="post" class="form-horizontal">
 				
 			<div class="form-group">
-				<div class="col-md-6 col-md-offset-4">
-					<h3>Confirmez votre déconnexion</h3>
+				<div class="col-md-12 text-center">
+					<h3>Confirmez-vous votre déconnexion ?</h3>
 
 					<button class="btn btn-default" name="disconnect" value="no">
 					Non
@@ -26,6 +27,9 @@
 				</div>
 			</div>
 		</form>
+
 	</div>
+	
 </div>	
+
 <?php $this->stop('main_content') ?>

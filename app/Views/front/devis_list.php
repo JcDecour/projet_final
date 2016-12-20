@@ -90,7 +90,7 @@
                             </td>
                             <td class="text-center">
                                 <a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-default btn-sm" title="Proposer un devis">
-                                    Proposer devis
+                                    Consulter
                                 </a>
                             </td>
                         </tr>
