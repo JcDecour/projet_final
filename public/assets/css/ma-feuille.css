@@ -101,3 +101,15 @@ body{
 .help ol{
     margin-left: 40px;
 }
+
+/******* media queries*********/
+
+@media only screen and (max-width: 500px) {
+ 
+.width50 {
+    width: 100%;
+    margin: 30px auto;
+    }
+
+
+}

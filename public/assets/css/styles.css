@@ -14,6 +14,33 @@ body {
     box-sizing: border-box;
 }
 
+/*message d'erreur*/
+.alert-success {
+    color: #3c763d;
+    background-color: inherit;
+    border-color: inherit;
+}
+
+.alert-info {
+    color: #31708f;
+    background-color: inherit;
+    border-color: inherit;
+    text-align: center;
+}
+
+.alert-danger {
+    color: red;
+     background-color: inherit; 
+     border-color: inherit; 
+}
+
+.alert {
+    padding: 0; 
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
 /*Barre de navigation*/
 
 nav {
@@ -60,7 +87,7 @@ footer {
 
 .footer_links a, .footer_links p{
     color: #FFF;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 #update_footer {
@@ -336,14 +363,27 @@ table.bt tbody td .bt-content {
 /******* media queries*********/
 
 @media only screen and (max-width: 500px) {
-  .footer_links a, .footer_links p{
-    color: #FFF;
-    font-size: 7px;
-  }
-
+  
+/** Bannière **/
   #banner p {
     font-size: 12px;
     font-weight: none;
   }
+
+/** Footer **/
+
+  .footer_links {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    list-style: none;
+    text-align: center;
+    padding: 0;     /*centrage du texte footer*/    
+
+  }
   
-}
+  .footer_links a, .footer_links p{
+    color: #FFF;
+    font-size: 12px;
+  }
+
