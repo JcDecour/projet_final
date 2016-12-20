@@ -478,7 +478,7 @@ class ServicesController extends Controller
 				}
 		}
 
-		$this->show('front/list_services', ['projects' => $projects, 'msg' => $msg]);
+		$this->show('front/list_services', ['projects' => $projects, 'msg' => $msg, 'get' => $get]);
 	}
 
 	/**

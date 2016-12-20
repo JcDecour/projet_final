@@ -18,10 +18,10 @@
 					<input type="radio" name="statut" id="all" value="all" checked=""> Tous les services
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="statut" id="opened" value="opened"> Services ouverts
+					<input type="radio" name="statut" id="opened" value="opened" <?=(isset($get['statut']) && $get['statut'] == 'opened') ? 'checked' : '';?>> Services ouverts
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="statut" id="closed" value="closed"> Services cloturés
+					<input type="radio" name="statut" id="closed" value="closed" <?=(isset($get['statut']) && $get['statut'] == 'closed') ? 'checked' : '';?>> Services cloturés
 				</label>					
 			</div>
 			&nbsp;

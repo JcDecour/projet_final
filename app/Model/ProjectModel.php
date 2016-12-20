@@ -10,27 +10,24 @@ class ProjectModel extends \W\Model\Model
 	 * @param integer $closedValue la valeur de la colonne 'closed'
 	 * @return mixed Les données sous forme de tableau associatif
 	 */
-	public function findServiceById($idCustomer, $closedValue = '')
+	public function findServiceById($idCustomer, $closedValue = null)
 	{
 		if (!is_numeric($idCustomer)){
 			return false;
 		}
+		if(isset($closedValue) && ($closedValue !== 0) && ($closedValue !== 1)){
+			die('Error: $closedValue invalid');
+		}
 
-		
+
 		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_customer = :idCustomer ';
 
-		if (!empty($closedValue)){
-
-			//sécurisation des paramètres, pour éviter les injections SQL
-			if(!preg_match('#^[0-1]{1,1}$#', $closedValue)){
-				die('Error: invalid closedValue param');
-			}
-
+		if (($closedValue === 0) || ($closedValue === 1)){
 			$sql .= ' AND closed = '.$closedValue;
-			
 		}
 
 		$sql .= ' ORDER BY created_at';
+
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':idCustomer', $idCustomer);
 		$sth->execute();
