@@ -160,7 +160,7 @@ a {
 /*Style de la page Index*/
 
 .recentservice, .commentcamarche, .topartisans{
-    min-height: 450px;
+    min-height: 500px;
 }
 
 .recentservice li, .commentcamarche li, .topartisans li{
