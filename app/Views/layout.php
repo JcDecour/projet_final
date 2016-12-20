@@ -48,9 +48,11 @@
                                 <li>
                                     <a href="<?= $this->url('front_customer_help') ?>">Comment ça marche ?</a>
                                 </li>
+                            <?php if(isset($w_user)):?>
                                 <li>
-                                    <a href="<?= $this->url('front_list_services') ?>">Mes demandes de services</a>
+                                    <a href="<?= $this->url('front_list_services') ?>">Mes demandes</a>
                                 </li>
+                            <?php endif;?>
                                 <li>
                                     <?php if($w_user): ?>
                                         <a href="<?=$this->url('front_customer_profil')?>">Mon profil</a>
@@ -77,9 +79,11 @@
                                 <li>
                                     <a href="full-width.html">Comment ça marche ?</a>
                                 </li>
+                            <?php if(isset($w_user['siret'])):?>
                                 <li>
                                     <a href="<?= $this->url('front_devis_list') ?>">Mes devis</a>
                                 </li>
+                            <?php endif;?>
                                 <li>
                                     <?php if($w_user): ?>
                                         <a href="<?=$this->url('front_provider_profil') ?>">Mon Profil</a>

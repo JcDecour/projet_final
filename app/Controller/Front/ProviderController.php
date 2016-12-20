@@ -55,7 +55,7 @@ class ProviderController extends Controller
 			}
 
 			if(!v::notEmpty()->digit()->length(14,14)->validate($post['siret'])){
-				$formErrors['siret'] = 'Le n° siret est invalide';
+				$formErrors['siret'] = 'Le n°siret doit contenir 14 chiffres';
 			}
 
 			if(!v::notEmpty()->length(3, 15)->validate($post['firstname'])){
