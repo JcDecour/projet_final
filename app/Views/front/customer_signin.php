@@ -94,7 +94,6 @@
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="fixed_phone">Téléphone fixe:
-            <span class="obligatoire">*</span>
           </label>
           <div class="col-md-4">
             <input id="fixed_phone" name="fixed_phone" type="text" placeholder="0123456789" value="<?=isset($post['fixed_phone']) ? $post['fixed_phone'] : '';?>" class="form-control input-md">
@@ -108,7 +107,6 @@
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="mobile_phone">Téléphone mobile:
-            <span class="obligatoire">*</span>
           </label>
           <div class="col-md-4">
             <input id="mobile_phone" name="mobile_phone" type="text" placeholder="0612345678" value="<?=isset($post['mobile_phone']) ? $post['mobile_phone'] : '';?>" class="form-control input-md">
@@ -122,7 +120,6 @@
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="street">Adresse:
-            <span class="obligatoire">*</span>
           </label>
           <div class="col-md-4">
             <input id="street" name="street" type="text" placeholder="Rue de la paix" value="<?=isset($post['street']) ? $post['street'] : '';?>" class="form-control input-md">
@@ -136,7 +133,6 @@
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="zipcode">Code postal:
-            <span class="obligatoire">*</span>
           </label>
           <div class="col-md-2">
             <input id="zipcode" name="zipcode" type="text" placeholder="75000" value="<?=isset($post['zipcode']) ? $post['zipcode'] : '';?>" class="form-control input-md">
@@ -150,7 +146,6 @@
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="city">Ville:
-            <span class="obligatoire">*</span>
           </label>
           <div class="col-md-4">
             <input id="city" name="city" type="text" placeholder="Paris" value="<?=isset($post['city']) ? $post['city'] : '';?>" class="form-control input-md">

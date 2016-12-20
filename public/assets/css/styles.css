@@ -14,6 +14,33 @@ body {
     box-sizing: border-box;
 }
 
+/*message d'erreur*/
+.alert-success {
+    color: #3c763d;
+    background-color: inherit;
+    border-color: inherit;
+}
+
+.alert-info {
+    color: #31708f;
+    background-color: inherit;
+    border-color: inherit;
+    text-align: center;
+}
+
+.alert-danger {
+    color: red;
+     background-color: inherit; 
+     border-color: inherit; 
+}
+
+.alert {
+    padding: 0; 
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
 /*Barre de navigation*/
 
 nav {
