@@ -10,7 +10,7 @@
 
 
 	<div class="well well-sm">
-		<form method="get" class="form-inline">
+		<form id="my_form" method="get" class="form-inline">
 			
 				<!-- Service (Recherche selon le statut) -->
 			<div class="form-group">
@@ -24,12 +24,6 @@
 					<input type="radio" name="statut" id="closed" value="closed" <?=(isset($get['statut']) && $get['statut'] == 'closed') ? 'checked' : '';?>> Services cloturés
 				</label>					
 			</div>
-			&nbsp;
-			<div class="form-group">					
-				<button class="btn btn-info" type="submit">
-					<i class="fa fa-search"></i>
-				</button>
-			</div>	
 
 		</form>
 	</div>
@@ -126,3 +120,24 @@
 </div>
 
 <?php $this->stop('main_content') ?>
+
+<?php $this->start('js') ?>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+// on valide le formulaire en cochant un bouton radio
+
+		$('input[type="radio"]').click(function() {
+		
+
+			$('#my_form').submit();
+
+		});
+
+});	
+
+</script>
+
+<?php $this->stop('js') ?>
