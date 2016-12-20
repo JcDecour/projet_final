@@ -127,7 +127,7 @@ class ServicesController extends Controller
 				$subSectorResult = $subSectorModel->find($projectSubsector['id_subsector']);
 				$sectorResult = $sectorModel->find($subSectorResult['id_sector']);
 
-				$contenuSsSector .= '<div>'.$sectorResult['title'].' - '.$subSectorResult['title'].'<input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/><a href="#" class="remove_ss_categ_button"> Supprimer</a></div>';	
+				$contenuSsSector .= '<div><span class="tag label label-categories">'.$sectorResult['title'].' - '.$subSectorResult['title'].'&nbsp;<a href="#" class="remove_ss_categ_button">x</a></span><input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/></div>';	
 			}
 			$contenuSsSector_build = true;
 		}
@@ -142,7 +142,7 @@ class ServicesController extends Controller
 					$subSectorResult = $subSectorModel->find($value);
 					$sectorResult = $sectorModel->find($subSectorResult['id_sector']);
 
-					$contenuSsSector .= '<div>'.$sectorResult['title'].' - '.$subSectorResult['title'].'<input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/><a href="#" class="remove_ss_categ_button"> Supprimer</a></div>';	
+					$contenuSsSector .= '<div><span class="tag label label-categories">'.$sectorResult['title'].' - '.$subSectorResult['title'].'&nbsp;<a href="#" class="remove_ss_categ_button">x</a></span><input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/></div>';		
 				}
 			}
 		}
@@ -306,7 +306,7 @@ class ServicesController extends Controller
 				$sectorResult = $sectorModel->find($subSectorResult['id_sector']);
 
 
-				$contenuSsSector .= '<div>'.$sectorResult['title'].' - '.$subSectorResult['title'].'<input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/><a href="#" class="remove_ss_categ_button"> Supprimer</a></div>';	
+				$contenuSsSector .= '<div><span class="tag label label-categories">'.$sectorResult['title'].' - '.$subSectorResult['title'].'&nbsp;<a href="#" class="remove_ss_categ_button">x</a></span><input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/></div>';	
 			}
 		}
 

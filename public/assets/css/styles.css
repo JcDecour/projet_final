@@ -251,7 +251,9 @@ a {
 }
 
 .label-categories {
-    background-color: #33b7ad;
+    background-color: rgba(0, 166, 153, 0.8);
+    font-size: 80%;
+    line-height: 2.2;
 }
 
 header.carousel {
