@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Accueil']) ?>
+<?php $this->layout('layout', ['title' => 'Devirama']) ?>
 
 <?php $this->start('header_content') ?>
     <header id="myCarousel" class="carousel slide">
@@ -126,7 +126,11 @@
                             </li>
                             <li class="list-group-item">
                                 <span class="puce pucecommentcamarche">4</span>
-                                Les coordonnées des professionnels retenus vous sont alors accessibles et vous pouvez entrer <span class="settofront">directement</span> en contact avec eux.
+                                Les coordonnées des professionnels retenus vous sont alors <span class="settofront">instantanément</span> communiqués.
+                            </li>
+                            <li class="list-group-item">
+                                <span class="puce pucecommentcamarche">5</span>
+                                Vous entrez <span class="settofront">directement</span> en contact avec eux.
                             </li>
                         </ul>
                     </div>

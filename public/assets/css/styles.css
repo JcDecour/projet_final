@@ -14,21 +14,39 @@ body {
     box-sizing: border-box;
 }
 
+/*message d'erreur*/
+.alert-success {
+    color: #3c763d;
+    background-color: inherit;
+    border-color: inherit;
+}
+
+.alert-info {
+    color: #31708f;
+    background-color: inherit;
+    border-color: inherit;
+    text-align: center;
+}
+
+.alert-danger {
+    color: red;
+     background-color: inherit; 
+     border-color: inherit; 
+}
+
+.alert {
+    padding: 0; 
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
 /*Barre de navigation*/
 
 nav {
     height: 50px;
     background-color: black;
 }
-
-/*.navbar-inverse .navbar-nav > li > a {
-    background-color: #222222;
-    color: #9d9d9d;
-}*/
-
-/*.dropdown-menu>li>a {
-  background-color: #222222;
-}*/
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
     border-color: #101010;
@@ -69,7 +87,7 @@ footer {
 
 .footer_links a, .footer_links p{
     color: #FFF;
-    font-size: 1vw;
+    font-size: 12px;
 }
 
 #update_footer {
@@ -86,7 +104,7 @@ footer {
 /*Formulaires*/
 .forms{
    /* background-color: #ffffff;*/
-    padding: 0 35px 30px 5px;
+    padding: 0 0px 30px 0px;
 }
 
 .forms .obligatoire {
@@ -169,7 +187,7 @@ a {
 /*Style de la page Index*/
 
 .recentservice, .commentcamarche, .topartisans{
-    min-height: 450px;
+    min-height: 500px;
 }
 
 .recentservice li, .commentcamarche li, .topartisans li{
@@ -211,6 +229,12 @@ a {
 .settofront{
     font-weight: 600;
     color: #222;
+}
+
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: rgb(224, 225, 230);
+    border-color: #ddd;
 }
 
 /* Slider */
@@ -315,7 +339,7 @@ table.bt tbody td::before {
   -ms-flex-shrink: 0;
   flex-shrink: 0;
   font-weight: bold;
-  width: 6.5em;
+  width: 10em;
 }
 
 table.bt tfoot th.bt-hide,
@@ -335,4 +359,31 @@ table.bt tbody td .bt-content {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
+
+/******* media queries*********/
+
+@media only screen and (max-width: 500px) {
+  
+/** Bannière **/
+  #banner p {
+    font-size: 12px;
+    font-weight: none;
+  }
+
+/** Footer **/
+
+  .footer_links {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    list-style: none;
+    text-align: center;
+    padding: 0;     /*centrage du texte footer*/    
+
+  }
+  
+  .footer_links a, .footer_links p{
+    color: #FFF;
+    font-size: 12px;
+  }
 

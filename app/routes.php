@@ -28,8 +28,12 @@ $front_r = array(
 	['GET|POST', '/provider/signin', 'Provider#signin', 'front_provider_signin'],
 	['GET|POST', '/provider/login', 'Provider#login', 'front_provider_login'],
 	['GET|POST', '/provider/profil', 'Provider#edit', 'front_provider_profil'],
+
 	['GET|POST', '/provider/pwd-forget', 'Provider#pwdForget', 'front_provider_pwd_forget'],
 	['GET|POST', '/provider/pwd-reset', 'Provider#pwdReset', 'front_provider_pwd_reset'],
+
+	['GET', '/provider/help', 'Provider#help', 'front_provider_help'],
+
 
 	//Routes devis
 	['GET|POST', '/devis/add/[i:id]', 'Devis#add', 'front_devis_add'],

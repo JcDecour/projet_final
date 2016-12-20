@@ -499,6 +499,13 @@ class ServicesController extends Controller
 		$post = [];
 		$msg = '';
 
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
 
 		if (!is_numeric($id) || empty($id)) {
 			$this->showNotFound();
@@ -535,6 +542,13 @@ class ServicesController extends Controller
 	 */
 	public function view_service($id) // L'id passé en paramètre doit être le même passé dans la route [i:id]
 	{	
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
 		// On instancie les classes
 		$projectModel = new ProjectModel();
 		$customerModel = new CustomerModel();
@@ -621,6 +635,14 @@ class ServicesController extends Controller
 	*/
 	public function viewClosed($id)
 	{
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
+		
         $projectModel = new ProjectModel();
         $projectSubSectorModel = new ProjectSubSectorModel();
         

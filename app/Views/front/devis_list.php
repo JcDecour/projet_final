@@ -39,16 +39,15 @@
 					<option value="" selected>Sous-Catégorie</option>
 				<?php endif; ?>
 			</select>
-				
-			<button class="btn btn-default" type="submit">
-				Rechercher
-			</button>
+			
+			<!-- Bouton pour lancer la recherche -->
+			<input class="btn btn-default" id="btn-filtre" name="btn-filtre" type="submit" value="Rechercher" role="button">
 				
 		</form>
 	</div>
     
 	<!-- Liste des projets -->
-    <table class="table table-responsive table-bordered">
+    <table id="breakpoint" class="table table-responsive table-bordered ">
         <thead>
             <tr>
                 <th>
@@ -91,7 +90,7 @@
                             </td>
                             <td class="text-center">
                                 <a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-default btn-sm" title="Proposer un devis">
-                                    Proposer devis
+                                    Consulter
                                 </a>
                             </td>
                         </tr>
@@ -116,18 +115,17 @@
 	
 	<div class="well well-sm">
 		<form id="my_form" method="get" class="form-inline">
-			<label class="control-label">Statut:</label>&nbsp;
 			<div class="form-group">
-				<label class="radio-inline">
+				<label class="radio-inline devis_status">
 					<input type="radio" name="statut" id="all" value="all" checked> Tous
 				</label>
-				<label class="radio-inline">
+				<label class="radio-inline accepted devis_status">
 					<input type="radio" name="statut" id="accepted" value="accepted" <?=(isset($search['statut']) && $search['statut'] == 'accepted') ? 'checked' : '';?>> Accepté
 				</label>
-				<label class="radio-inline">
+				<label class="radio-inline not_accepted devis_status">
 					<input type="radio" name="statut" id="notselected" value="notselected" <?=(isset($search['statut']) && $search['statut'] == 'notselected') ? 'checked' : '';?>> Non retenu
 				</label>
-				<label class="radio-inline">
+				<label class="radio-inline pending devis_status">
 					<input type="radio" name="statut" id="notstatue" value="notstatue" <?=(isset($search['statut']) && $search['statut'] == 'notstatue') ? 'checked' : '';?>> Non statué
 				</label>					
 			</div>
@@ -199,8 +197,15 @@
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>
-<script>
+<script type="text/javascript">
+
+
+
 	$(document).ready(function(){
+
+
+	
+
 
 		/*Gestion des menu déroulants liés (Carégories -> Sous Catégories)*/
 		$('#sector').change(function(){
@@ -221,10 +226,13 @@
 		$('input[type="radio"]').click(function() {
 			$('#my_form').submit();
 		});
+
+	
+
+		
+
+
 	});	
-
-
-
 
 </script>
 <?php $this->stop('js') ?>

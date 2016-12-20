@@ -154,7 +154,7 @@ class ProviderController extends Controller
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
 			if (empty($post['email']) && empty($post['password'])) {
-				$error = 'Identifiant ou mot de passe invalid';
+				$error = 'Identifiant ou mot de passe invalide';
 			}
 			else {
 				// l'utilisateur a bien rempli un mdp et un email
@@ -216,13 +216,13 @@ class ProviderController extends Controller
 	}
 
 	/**
-		* Page du principe de fonctionnement du site pour le particulier
+		* Page du principe de fonctionnement du site pour le professionnel
 	*/
 	public function help()
 	{	
 
 
-		$this->show('front/customer_help');
+		$this->show('front/provider_help');
 	}
 
 	/*
@@ -341,6 +341,7 @@ class ProviderController extends Controller
 		}			
 		$this->show('front/provider_profil', ['formErrors' => $formErrors, 'provider' => $provider, 'formValid' => $formValid]);
 	}
+
 
 	/*
 	 * fonction pour gérer le mot de passe oublié
@@ -477,5 +478,6 @@ class ProviderController extends Controller
 
 		$this->show('front/provider_pwd-reset', ['formErrors' => $formErrors, 'formValid' => $formValid]);
 	}
+
 
 }
