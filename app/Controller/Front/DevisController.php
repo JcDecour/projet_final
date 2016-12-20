@@ -20,10 +20,9 @@ class DevisController extends Controller
 	*/
     public function listService()
 	{
-          
-		//Si le professionnel n'est pas connecté , il est redirigé sur la page de login
-		if (empty($this->getUser())) {
-			$this->redirectToRoute('front_provider_login');
+          // pro
+		//Si le professionnel n'est pas connecté , il est redirigé sur la page d'accueil
+			$this->redirectToRoute('front_default_index');
 		}
         
         //Instanciation des classes
@@ -128,6 +127,7 @@ class DevisController extends Controller
 	*/
 	public function add($id)
 	{
+		//  pro
 		if(!is_numeric($id) || empty($id)){
 			$this->showNotFound();
 		}
@@ -216,7 +216,8 @@ class DevisController extends Controller
 	 * @param $id integer Correspond a l'id du devis à consulter
 	*/
 	public function view($id)
-	{
+	{	
+		// pro
         //Recherche du devis à consulter
         $devisModel = new DevisModel;
         $devis = $devisModel->findWithDetailsById($id);
