@@ -115,7 +115,7 @@
 
 	
 	<div class="well well-sm">
-		<form method="get" class="form-inline">
+		<form id="my_form" method="get" class="form-inline">
 			<label class="control-label">Statut:</label>&nbsp;
 			<div class="form-group">
 				<label class="radio-inline">
@@ -131,13 +131,6 @@
 					<input type="radio" name="statut" id="notstatue" value="notstatue" <?=(isset($search['statut']) && $search['statut'] == 'notstatue') ? 'checked' : '';?>> Non statué
 				</label>					
 			</div>
-			&nbsp;
-			<div class="form-group">					
-				<button class="btn btn-info" type="submit">
-					<i class="fa fa-search"></i>
-				</button>
-			</div>	
-
 		</form>
 	</div>
 
@@ -224,6 +217,14 @@
 			});
 		});
 
-	});
+		//Valide du formulaire de recherche des devis par statut sur simple cli d'un bouton radio du filtre
+		$('input[type="radio"]').click(function() {
+			$('#my_form').submit();
+		});
+	});	
+
+
+
+
 </script>
 <?php $this->stop('js') ?>
