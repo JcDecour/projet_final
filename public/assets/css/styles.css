@@ -60,7 +60,7 @@ footer {
 
 .footer_links a, .footer_links p{
     color: #FFF;
-    font-size: 1vw;
+    font-size: 10px;
 }
 
 #update_footer {
@@ -333,3 +333,17 @@ table.bt tbody td .bt-content {
   -webkit-overflow-scrolling: touch;
 }
 
+/******* media queries*********/
+
+@media only screen and (max-width: 500px) {
+  .footer_links a, .footer_links p{
+    color: #FFF;
+    font-size: 7px;
+  }
+
+  #banner p {
+    font-size: 12px;
+    font-weight: none;
+  }
+  
+}

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= $this->assetUrl('css/modern-business.css') ?>">
     <!-- Custom Fonts -->
-    <link rel="stylesheet" type="text/css" href="<?= $this->assetUrl('font-awesome/css/font-awesome.min.css') ?>">
+    <link href="<?= $this->assetUrl('font-awesome/css/font-awesome.min.css') ?>" type="text/css" rel="stylesheet"> 
     <link rel="stylesheet" href="<?= $this->assetUrl('css/styles.css') ?>">
     <link rel="stylesheet" href="<?= $this->assetUrl('css/ma-feuille.css') ?>">
 </head>
@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?= $this->url('front_default_index') ?>">DEVIRAMA</a>
+                <a style="font-family: 'PoetsenOne-Regular';" class="navbar-brand" href="<?= $this->url('front_default_index') ?>">DEVIRAMA</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
