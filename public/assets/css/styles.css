@@ -87,7 +87,7 @@ footer {
 
 .footer_links a, .footer_links p{
     color: #FFF;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 #update_footer {
@@ -363,14 +363,27 @@ table.bt tbody td .bt-content {
 /******* media queries*********/
 
 @media only screen and (max-width: 500px) {
-  .footer_links a, .footer_links p{
-    color: #FFF;
-    font-size: 7px;
-  }
-
+  
+/** Bannière **/
   #banner p {
     font-size: 12px;
     font-weight: none;
   }
+
+/** Footer **/
+
+  .footer_links {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    list-style: none;
+    text-align: center;
+    padding: 0;     /*centrage du texte footer*/    
+
+  }
   
-}
+  .footer_links a, .footer_links p{
+    color: #FFF;
+    font-size: 12px;
+  }
+

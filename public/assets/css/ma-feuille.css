@@ -93,3 +93,14 @@ body{
 .devis-striped{
     background-color: #EFEFEF;
 }
+
+/******* media queries*********/
+
+@media only screen and (max-width: 500px) {
+  /* responsive des fenêtre de connexion */
+  .width50 {
+    width: 100%;
+    margin: 30px auto;
+    }
+
+}

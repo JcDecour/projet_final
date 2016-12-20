@@ -12,6 +12,7 @@
     <link href="<?= $this->assetUrl('font-awesome/css/font-awesome.min.css') ?>" type="text/css" rel="stylesheet"> 
     <link rel="stylesheet" href="<?= $this->assetUrl('css/styles.css') ?>">
     <link rel="stylesheet" href="<?= $this->assetUrl('css/ma-feuille.css') ?>">
+    <link rel="icon" type="image/png" href="<?= $this->assetUrl('img/devis.png') ?>">
 </head>
 <body>
 
@@ -131,7 +132,7 @@
                         <li><a href="">Mention Légales</a></li>
                         <li><a href="">Condition Générales d'utilisation</a></li>
                         <li>
-                            <p>Copyright &copy; &nbsp;Farid&nbsp;Eric&nbsp;Jean-charles</p>
+                            <p class="copyright">Copyright &copy; &nbsp;Farid&nbsp;Eric&nbsp;Jean-charles</p class="copyright">
                         </li>
                     </ul>
                 </div>
