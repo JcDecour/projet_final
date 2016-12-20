@@ -97,11 +97,7 @@
                             </td>
                         </tr>
 
-                   
-
                 <?php endforeach; ?>
-
-              
 
             <?php else: ?>
                 <tr><td colspan="8">Aucune offre de services n'est disponible.</td></tr>
@@ -115,6 +111,9 @@
 	<div class="page-header">
 		<h1>Mes devis proposés</h1>
 	</div>
+
+	<!-- Filtre sur l'état du devis géré par bouton "radio" -->
+
 
 	<!-- Liste des projets -->
 	<?php if(!empty($listdevis)): ?>	
