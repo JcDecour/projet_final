@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/proximite.jpg') ?>');"></div>
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/cours.jpg') ?>');"></div>
                 <div class="carousel-caption">
                     <h2>Services à la personne</h2>
                 </div>
@@ -92,7 +92,7 @@
                     <div class="panel-body">
                         <ul class="list-group">
                             <?php foreach($topProjects as $key => $topProject): ?>
-                                <li style="text-align: center;" class="list-group-item">
+                                <li class="list-group-item">
                                     <span class="puce pucerecentservice">&#10004;</span>
                                    <?=DateTime::createFromFormat('Y-m-d H:i:s', $topProject['created_at'])->format('d/m/y');?>
                                     -&nbsp;<?=$topProject['title']; ?><br>
