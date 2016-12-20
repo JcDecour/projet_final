@@ -98,9 +98,11 @@ body{
 
 @media only screen and (max-width: 500px) {
   /* responsive des fenêtre de connexion */
-  .width50 {
+  .width50, .width80 {
     width: 100%;
     margin: 30px auto;
     }
+
+
 
 }
