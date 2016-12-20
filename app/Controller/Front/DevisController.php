@@ -135,6 +135,12 @@ class DevisController extends Controller
 			$post= array_map('trim',array_map('strip_tags', $_POST));
 
 			//Designation
+			if(!v::notEmpty()->length(8, null)->validate($post['description'])){
+				$formErrors['description'] = 'La description doit comporter au minimum 10 caractères.';
+			}
+
+
+			//Designation
 			if(!v::notEmpty()->length(8, null)->validate($post['designation'])){
 				$formErrors['designation'] = 'La désignation doit comporter au minimum 8 caractères.';
 			}
@@ -185,7 +191,7 @@ class DevisController extends Controller
 		}
 
 		//Affichage du template
-		$this->show('front/devis_add', ['projectSubsector' => $projectSubsector, 'formErrors' => $formErrors]);	
+		$this->show('front/devis_add', ['projectSubsector' => $projectSubsector, 'formErrors' => $formErrors, 'post' => $post]);	
 	}
 	
     /**

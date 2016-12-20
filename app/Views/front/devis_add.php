@@ -69,7 +69,7 @@
 				<div class="row">
 					<label class="col-md-12 control-label" for="description">Informations complémentaires</label>
 					<div class="col-md-12">
-						<textarea id="description" name="description" class="form-control input-md" placeholder="Toute précision, détail ou autre permettant de décrire au mieux votre offre de devis..."></textarea>
+						<textarea id="description" name="description" class="form-control input-md" placeholder="Toute précision, détail ou autre permettant de décrire au mieux votre offre de devis..."><?=isset($post['description']) ? $post['description'] : '';?></textarea>
 					</div>
 					<!-- Gestion des erreurs -->
 					<?php if(isset($formErrors['description'])): ?>
@@ -82,38 +82,42 @@
 				<thead>
 					<tr>
 						<th>Désignation<span class="obligatoire">*</span></th>
-						<th class="text-right">Montant HT (€)<span class="obligatoire">*</span></th>
-						<th class="text-right">Taux de TVA</th>
-						<th class="text-right">Montant TTC (€)</th>
+						<th class="text-right">Montant HT(€)<span class="obligatoire">*</span></th>
+						<th class="text-right">Taux de TVA(%)</th>
+						<th class="text-right">Montant TTC(€)</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					<tr>
 						<td>
-							<input id="designation" name="designation" class="form-control input-md" type="text" placeholder="Libellé">
+							<input id="designation" name="designation" class="form-control input-md" type="text" placeholder="Libellé" value="<?=isset($post['designation']) ? $post['designation'] : '';?>">
 							<!-- Gestion des erreurs -->
 							<?php if(isset($formErrors['designation'])): ?>
 								<div class="error col-md-12"><?=$formErrors['designation']?></div>
 							<?php endif; ?>
 						</td>
 						<td>
-							<input id="ht_amount" name="ht_amount" class="form-control input-md text-right" type="text" placeholder="0.00">
+							<input id="ht_amount" name="ht_amount" class="form-control input-md text-right" type="text" placeholder="0.00" value="<?=isset($post['ht_amount']) ? $post['ht_amount'] : '';?>">
 							<!-- Gestion des erreurs -->
 							<?php if(isset($formErrors['ht_amount'])): ?>
 								<div class="error col-md-12"><?=$formErrors['ht_amount']?></div>
 							<?php endif; ?>
 						</td>
 						<td>
-							<select id="tva_amount" name="tva_amount" class="form-control">
-								<option value="2.1">2.1</option>
-								<option value="5.5">5.5</option>
-								<option value="10">10</option>
-								<option value="20">20</option>
+							<select id="tva_amount" name="tva_amount" class="form-control text-right">
+								<option value="2.1" <?=(isset($post['tva_amount']) && ($post['tva_amount'] == '2.1')) ? 'selected' : '';?>>2.1</option>
+								<option value="5.5" <?=(isset($post['tva_amount']) && ($post['tva_amount'] == '5.5')) ? 'selected' : '';?>>5.5</option>
+								<option value="10" <?=(isset($post['tva_amount']) && ($post['tva_amount'] == '10')) ? 'selected' : '';?>>10</option>
+								<option value="20" <?=(isset($post['tva_amount']) && ($post['tva_amount'] == '20')) ? 'selected' : '';?>>20</option>
 							</select>
 						</td>
 						<td>
-							<span id="ttc_amount" name="ttc_amount" class="col-md-12 text-right">0.00</span>
+							<?php if(isset($post['ht_amount']) && isset($post['tva_amount'])): ?>
+								<span id="ttc_amount" name="ttc_amount" class="col-md-12 text-right"><?=number_format($post['ht_amount'] * (1  + ($post['tva_amount'] / 100)), 2 , "." , " ");?></span>
+							<?php else: ?>
+								<span id="ttc_amount" name="ttc_amount" class="col-md-12 text-right">0.00</span>
+							<?php endif; ?>
 						</td>
 					</tr>
 				</tbody>
@@ -160,8 +164,8 @@
 //Fonction permettant de calculer le montant TTC du devis
 function calculTtcAmount()
 {
-	var tva_amount = parseInt($('#tva_amount').find(":selected").attr('value'));
-	var ht_amount = parseInt($('#ht_amount').val());
+	var tva_amount = parseFloat($('#tva_amount').find(":selected").attr('value'));
+	var ht_amount = parseFloat($('#ht_amount').val());
 
 	var ttc_amount = ht_amount * (1 + (tva_amount/100));
 	ttc_amount = Math.round(ttc_amount*100)/100;

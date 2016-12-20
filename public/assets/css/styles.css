@@ -156,7 +156,8 @@ a {
 }
 
 .container .jumbotrondevis{
-   padding: 20px;
+  padding: 20px 20px 4px 20px;
+  background-color: rgba(96, 224, 96, 0.2);
 }
 
 /*Button*/

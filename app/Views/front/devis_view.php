@@ -76,7 +76,7 @@
     
         <!-- Date prévisionnelle du service -->
 	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Date prévisonnelle:</label>  
+		<label class="col-md-3 control-label text-right" for="zip_code">Date prévisionnelle:</label>  
 		<div class="col-md-9"><?=DateTime::createFromFormat('Y-m-d', $devis['projectPredicted'])->format('d/m/Y');?></div>
 	</div>
     
@@ -86,7 +86,7 @@
    <!-- Partie devis-->
     <div class="panel panel-default">
 		  <!-- Default panel contents -->
-		  <div class="panel-heading">Devis&nbsp;N°&nbsp;<?=sprintf("%06d", $devis['id'])?></div>
+		  <div class="panel-heading">Devis&nbsp;N°&nbsp;<?=sprintf("%06d", $devis['id'])?>&nbsp;( Ajouté le <?=DateTime::createFromFormat('Y-m-d H:i:s', $devis['created_at'])->format('d/m/Y');?> )</div>
 			<div class="panel-body">
 
 				<div class="row">
