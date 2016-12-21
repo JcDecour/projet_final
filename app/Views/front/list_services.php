@@ -71,40 +71,83 @@
 					<?php endif; ?>	
 				</td>
                 <td class="text-center-basic-table"><span class="badge badge-success"><?=$project['nb_devis'];?></span></td>
+
 				<td class="text-center-basic-table">
-                    <?php if(!$project['closed']): ?>
-                        <div class="col-md-3">
-                            <a href="<?=$this->url('front_view_service', ['id' => $project['id']]);?>" class="btn btn-success btn-sm btn_margin" title="Consulter ce service">
-                             Consulter
-                            </a>
-                        </div>
-                        &nbsp;
-                    <?php if($project['nb_devis'] == 0):?>
-                        <div class="col-md-3">
-                            <a href="<?=$this->url('front_edit_service', ['idProject' => $project['id']]);?>" class="btn btn-info btn-sm btn_margin" title="Modifier ce service">
-                             Modifier
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="<?=$this->url('front_delete_service', ['id' => $project['id']]);?>" class="btn btn-danger btn-sm btn_margin" title="Supprimer ce service">
-                             Supprimer
-                            </a>
-                        </div>
-                    <?php endif; ?>
-                   
-                    <?php else: ?>
-                        <div class="col-md-3">
-                            <a href="<?=$this->url('front_service_view_closed', ['id' => $project['id']]);?>" class="btn btn-success btn-sm btn_margin" title="Consulter ce service">
-                             Consulter
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            &nbsp;
-                        </div>
-                        <div class="col-md-3">
-                            &nbsp;
-                        </div>
-                    <?php endif; ?>
+
+    <!-- Beginning large screen -->
+					<span id="action_list_services_largeScreen">
+	                    <?php if(!$project['closed']): ?>
+	                        <div class="col-md-3">
+	                            <a href="<?=$this->url('front_view_service', ['id' => $project['id']]);?>" class="btn btn-success btn-sm btn_margin" title="Consulter ce service">
+	                             Consulter
+	                            </a>
+	                        </div>
+	                        &nbsp;
+	                    <?php if($project['nb_devis'] == 0):?>
+	                    	&nbsp;
+	                        <div class="col-md-3">
+	                            <a href="<?=$this->url('front_edit_service', ['idProject' => $project['id']]);?>" class="btn btn-info btn-sm btn_margin" title="Modifier ce service">
+	                             Modifier
+	                            </a>
+	                        </div>
+	                        <div class="col-md-3">
+	                            <a href="<?=$this->url('front_delete_service', ['id' => $project['id']]);?>" class="btn btn-danger btn-sm btn_margin" title="Supprimer ce service">
+	                             Supprimer
+	                            </a>
+	                        </div>
+	                    <?php endif; ?>
+	                   
+	                    <?php else: ?>
+	                        <div class="col-md-3">
+	                            <a href="<?=$this->url('front_service_view_closed', ['id' => $project['id']]);?>" class="btn btn-success btn-sm btn_margin" title="Consulter ce service">
+	                             Consulter
+	                            </a>
+	                        </div>
+	                        <div class="col-md-3">
+	                            &nbsp;
+	                        </div>
+	                        <div class="col-md-3">
+	                            &nbsp;
+	                        </div>
+	                    <?php endif; ?>
+	                </span>
+		<!-- End large screen -->
+		<!-- Beginning small screen -->
+					<span id="action_list_services_smallScreen" class="text-center-basic-table">
+	                    <?php if(!$project['closed']): ?>
+	                        <div class="deletePaddingLeft" class="col-md-3">
+	                            <a href="<?=$this->url('front_view_service', ['id' => $project['id']]);?>" title="Consulter ce service">
+	                             <i class="fa fa-eye fa-lg text-success" aria-hidden="true"></i>
+
+	                            </a>
+	                       
+	                        &nbsp;
+	                    <?php if($project['nb_devis'] == 0):?>
+	                        
+	                            <a href="<?=$this->url('front_edit_service', ['idProject' => $project['id']]);?>" title="Modifier ce service">
+	                             <i class="fa fa-pencil-square-o fa-lg text-info" aria-hidden="true"></i>
+
+	                            </a>
+	                        
+	                        &nbsp;
+	                       
+	                            <a href="<?=$this->url('front_delete_service', ['id' => $project['id']]);?>" title="Supprimer ce service">
+	                             <i class="fa fa-times fa-lg text-danger"></i>
+	                            </a>
+	                        </div>
+	                    <?php endif; ?>
+	                   
+	                    <?php else: ?>
+	                        <div class="deletePaddingLeft" class="col-md-3">
+	                            <a href="<?=$this->url('front_service_view_closed', ['id' => $project['id']]);?>" title="Consulter ce service">
+	                             <i class="fa fa-eye fa-lg text-success" aria-hidden="true"></i>
+
+	                            </a>
+	                        </div>
+	                    <?php endif; ?>
+					</span>
+
+		<!-- End small screen -->
 				</td>
 			</tr>
 			<?php endforeach; ?>

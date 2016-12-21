@@ -137,7 +137,7 @@ body{
 
 @media only screen and (max-width: 500px) {
 
-  /* responsive des fenêtre de connexion */
+  /* Responsive des fenêtre de connexion */
 
  
     .width50, .width80 {
@@ -161,6 +161,35 @@ body{
     }
 
 }
+
+ /* Responsive de la cellule "Action" du tableau dans list_services */
+
+@media only screen and (min-width: 1000px) 
+        
+{
+
+    #action_list_services_smallScreen {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 1000px)
+
+{
+
+    #action_list_services_largeScreen {
+        display: none;
+    }
+
+    .deletePaddingLeft {
+        padding-left: 0;
+    }
+
+}
+
+
+
 
 
 
