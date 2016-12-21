@@ -266,6 +266,11 @@ class ServicesController extends Controller
 
 			    	//Création du "Customer" en BDD
 			    	$customer = $customerModel->insert($dataCustomer);
+			    	//On peuple la session
+			    	if($customer){
+				    	$authModel = new AuthentificationModel();
+						$authModel->logUserIn($customer);
+					}
 			    	$idCustomer = $customer['id'];
 		    	}
 
@@ -436,7 +441,6 @@ class ServicesController extends Controller
 		
 		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
 		if (!($user) || isset($user['siret'])) {
-			
 			$this->redirectToRoute('front_default_index');
 		}
 
