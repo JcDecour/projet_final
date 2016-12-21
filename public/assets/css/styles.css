@@ -425,4 +425,16 @@ table.bt tbody td .bt-content {
     height: 60%;
   }
 
+  .txt {
+  padding: 15px 0 0 0;
+  }
+
+
+  .txt p {
+    font-size: 14px;
+    max-width: 200px;
+    max-height: 150px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
 }
