@@ -1,9 +1,9 @@
 <?php $this->layout('layout', ['title' => 'Réinitialisation du mot de passe']); ?>
 
 <?php $this->start('main_content') ?>
-<div class="content-site">
+<div class="content-site width50">
 	<div class="forms">					
-		<div class="page-header">
+		<div class="page-header text-center">
 			<h1>Réinitialisation du mot de passe</h1>
 		</div>
 
@@ -20,12 +20,12 @@
 						<label class="col-md-4 control-label" for="email">
 							Nouveau mot de passe
 						</label>  
-						<div class="col-md-4">
+						<div class="col-md-6 col-md-offset-3">
 							<input id="password" name="password" type="password" placeholder="" class="form-control input-md">
 						</div>
 						<!-- Gestion des erreurs -->
 						<?php if(isset($formErrors['password'])): ?>
-							<div class="error col-md-offset-4 col-md-8"><?=$formErrors['password']?></div>
+							<div class="error col-md-offset-3 col-md-6"><?=$formErrors['password']?></div>
 						<?php endif; ?>
 					</div>
 
