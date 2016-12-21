@@ -63,7 +63,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <p><i class="fa fa-fw fa-check"></i>&nbsp;Gratuit pour les particuliers et professionnels</p>
+                    <p><i class="fa fa-fw fa-check"></i>&nbsp;Gratuit pour les particuliers et les professionnels</p>
                 </div>
                 <div class="col-md-4">
                     <p><i class="fa fa-fw fa-check"></i>&nbsp;Pas d'intermédiaires</p>
