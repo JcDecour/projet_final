@@ -112,7 +112,7 @@
                 <?php endforeach; ?>
 
             <?php else: ?>
-                <tr><td colspan="8">Aucune offre de services n'est disponible.</td></tr>
+                <tr><td colspan="9">Aucune offre de service n'est disponible.</td></tr>
             <?php endif; ?>
 
         </tbody>
