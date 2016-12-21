@@ -102,22 +102,6 @@ body{
     margin-left: 40px;
 }
 
-/******* media queries*********/
-
-@media only screen and (max-width: 500px) {
-
-  /* responsive des fenêtre de connexion */
-
- 
-    .width50, .width80 {
-
-    width: 100%;
-    margin: 30px auto;
-    }
-
-
-
-
 /*Test de centrage avec module Basic Table Demo*/
     .text-center-basic-table{
         text-align: center;
@@ -127,6 +111,21 @@ body{
         text-align: right;
     }
 
+    .table-striped > tbody > tr:nth-of-type(2n+1) {
+  background-color: #F2EFEF;
+    }
+
+/******* media queries*********/
+
+@media only screen and (max-width: 500px) {
+
+  /* responsive des fenêtre de connexion */
+
+ 
+    .width50, .width80 {
+        width: 100%;
+        margin: 30px auto;
+    }
     .content-site span.accroche {
         font-size: 12px;
     }
@@ -145,7 +144,12 @@ body{
 
 }
 
-.table-striped > tbody > tr:nth-of-type(2n+1) {
-  background-color: #F2EFEF;
-}
+
+
+
+
+
+
+
+
 
