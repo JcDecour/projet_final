@@ -204,15 +204,19 @@ class ProviderController extends Controller
 				$authentificationModel = new AuthentificationModel();
 				$authentificationModel->logUserOut();
 
+				//Il faut vider les session des filtres
+				unset($_SESSION['listService']);
+				unset($_SESSION['devisStatut']);
+
 				$this->redirectToRoute('front_default_index');
 			}
 			elseif ($post['disconnect'] === 'no') {
 				
-				$this->redirectToRoute('front_list_services');
+				$this->redirectToRoute('front_devis_list');
 			}
 		}
 
-		$this->show('front/customer_logout');
+		$this->show('front/provider_logout');
 	}
 
 	/**

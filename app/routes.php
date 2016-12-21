@@ -34,6 +34,8 @@ $front_r = array(
 
 	['GET', '/provider/help', 'Provider#help', 'front_provider_help'],
 
+	['GET|POST', '/provider/logout', 'Provider#logout', 'front_provider_logout'],
+
 
 	//Routes devis
 	['GET|POST', '/devis/add/[i:id]', 'Devis#add', 'front_devis_add'],

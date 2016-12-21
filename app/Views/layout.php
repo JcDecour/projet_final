@@ -94,7 +94,7 @@
                                 </li>
                                 <li>
                                     <?php if($w_user): ?>
-                                        <a href="<?= $this->url('front_customer_logout') ?>">Se déconnecter</a> 
+                                        <a href="<?= $this->url('front_provider_logout') ?>">Se déconnecter</a> 
                                     <?php else: ?>
                                         <a href="<?= $this->url('front_provider_login') ?>">Se connecter</a>
                                     <?php endif; ?>
