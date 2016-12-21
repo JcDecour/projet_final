@@ -26,7 +26,7 @@ class ProjectModel extends \W\Model\Model
 			$sql .= ' AND closed = '.$closedValue;
 		}
 
-		$sql .= ' ORDER BY created_at';
+		$sql .= ' ORDER BY id DESC';
 
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':idCustomer', $idCustomer);
@@ -133,10 +133,6 @@ class ProjectModel extends \W\Model\Model
         elseif(!empty($sector)){
             $sql .= ' AND sector.id = :idSector';   
         }
-
-        if(!empty($zip_code)){
-			$sql .= ' AND zip_code = :zip_code';
-		}
         if(!empty($title)){
 			$sql .= ' AND (p.title LIKE :title OR p.description LIKE :title)';
 		}

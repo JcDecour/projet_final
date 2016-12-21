@@ -38,14 +38,17 @@
 	<?php endif; ?>
 
 	<?php if(!empty($projects)): ?>	
-	<table class="table table-bordered table-responsive">
+	<table class="table table-bordered table-responsive table-striped">
 
 		<thead>
 			<tr>
-				<th>N° Offre</th>
+				<th>N° Offre
+					&nbsp;
+                    <i class="fa fa-fw fa-sort-amount-desc"></i>
+                </th>
 				<th>Service</th>
-				<th>Créé le</th>
-				<th>Prévu le</th>
+				<th>Ajoutée le</th>
+				<th>Prévue le</th>
                 <th class="text-center">Statut</th>
 				<th class="text-center">Devis</th>
 				<th class="text-center">Action</th>
@@ -59,15 +62,15 @@
 				<td><?=$project['title'] ?></td>
 				<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></td>
 				<td><?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></td>
-				<td class="text-center">
+				<td class="text-center-basic-table">
 					<?php if($project['closed']): ?>
 						<span class="text-danger">Cloturé</span>
 					<?php else: ?>
 						<span class="text-success">Ouvert</span>
 					<?php endif; ?>	
 				</td>
-                <td class="text-center"><span class="badge badge-success"><?=$project['nb_devis'];?></span></td>
-				<td class="text-center">
+                <td class="text-center-basic-table"><span class="badge badge-success"><?=$project['nb_devis'];?></span></td>
+				<td class="text-center-basic-table">
                     <?php if(!$project['closed']): ?>
                         <div class="col-md-3">
                             <a href="<?=$this->url('front_view_service', ['id' => $project['id']]);?>" class="btn btn-success btn-sm btn_margin" title="Consulter ce service">

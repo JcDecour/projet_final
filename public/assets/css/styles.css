@@ -161,6 +161,11 @@ a {
     text-align: center;
 }
 
+p.devis_status {
+    font-size: 18px;
+   
+}
+
 .pending {
     color: #008489;
 }

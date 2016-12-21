@@ -90,15 +90,15 @@
 						  		<?php if($sector['projectSubSectorId'] == $dataDevis['projectSubsectorId']):?>
 
 								  	<tr <?php if($cpt2%2){echo 'class=""';}else{echo 'class="devis-striped"';};?>>
-								  		<td class="text-center">
+								  		<td class="text-center-basic-table">
 								  			<input id="<?= $dataDevis['devisId'] ?>" type="checkbox" name="" value="<?= $dataDevis['ttc_amount'] ?>">
 								  		</td>
 								  		<td><?=sprintf("%06d", $dataDevis['devisId'])?></td>
 								  		<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $dataDevis['devisDateCreat'])->format('d/m/Y');?></td>
 								  		<td><?=$dataDevis['companyName'] ?></td>
-								  		<td class="text-right"><?=number_format($dataDevis['ht_amount'], 2, ',', ' ') ?></td>
-								  		<td class="text-right"><?=$dataDevis['tva_amount'] ?></td>
-								  		<td class="text-right"><?=number_format($dataDevis['ttc_amount'], 2, ',', ' ') ?></td>
+								  		<td class="text-right-basic-table"><?=number_format($dataDevis['ht_amount'], 2, ',', ' ') ?></td>
+								  		<td class="text-right-basic-table"><?=$dataDevis['tva_amount'] ?></td>
+								  		<td class="text-right-basic-table"><?=number_format($dataDevis['ttc_amount'], 2, ',', ' ') ?></td>
 								  	</tr>
 
 								  	<tr <?php if($cpt2%2){echo 'class=""';}else{echo 'class="devis-striped"';};?>>
@@ -132,10 +132,14 @@
 
 	<div class="row" >
 		<div class="col-md-8"></div>
-		<div class="col-md-2 ">
-			<strong>Total TTC :</strong>
+		<div class="col-md-4">
+		<div class="row" >
+			<div class="col-xs-6 text-left">
+				<strong>Montant TTC:</strong>
+			</div>
+			<div class="col-xs-6 text-right "><span id="totalResult">0.00 €</span></div>
+			</div>
 		</div>
-		<div class="col-md-2 text-right "><span id="totalResult">0.00 €</span></div>
 	</div>
 	
 	<div class="row">

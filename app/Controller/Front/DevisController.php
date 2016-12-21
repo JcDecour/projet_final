@@ -98,13 +98,13 @@ class DevisController extends Controller
 				$zip_code = $search['zip_code'];
 			}
 			if(isset($search['sub_sector'])){
-				$zip_code = $search['sub_sector'];
+				$sub_sector = $search['sub_sector'];
 			}
 			if(isset($search['sector'])){
-				$zip_code = $search['sector'];
+				$sector = $search['sector'];
 			}
 			if(isset($search['title'])){
-				$zip_code = $search['title'];
+				$title = $search['title'];
 			}
 		}
 		else{
