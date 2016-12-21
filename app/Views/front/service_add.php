@@ -158,7 +158,7 @@
 			<!-- Bouton de validation -->
 			<div class="form-group">
 				<div class="col-md-3 col-md-offset-9">
-					<button type="submit" class="btn btn-success btn-block">Valider</button>
+					<button type="submit" class="btn btn-devirama btn-block">Valider</button>
 				</div>
 			</div>
 

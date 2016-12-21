@@ -70,7 +70,7 @@
 						<option value="" selected disabled>Sous-Catégorie</option>
 					</select>
 				</div>
-				<button class="add_ss_categ_button btn btn-success">Ajouter</button>
+				<button class="add_ss_categ_button btn btn-info">Ajouter</button>
 				<!-- Gestion des erreurs -->
 				<?php if(isset($formErrors['tabSsCateg'])): ?>
 					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['tabSsCateg']?></div>
@@ -119,7 +119,7 @@
 			<!-- Bouton de validation -->
 			<div class="form-group">
 				<div class="col-md-3 col-md-offset-9">
-					<button type="submit" class="btn btn-info btn-block">Valider</button>
+					<button type="submit" class="btn btn-devirama btn-block">Valider</button>
 				</div>
 			</div>
 		</form>

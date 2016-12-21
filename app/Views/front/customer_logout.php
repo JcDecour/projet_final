@@ -21,7 +21,7 @@
 					Non
 					</button>
 					&nbsp; 
-					<button class="btn btn-info" name="disconnect" value="yes">
+					<button class="btn btn-devirama" name="disconnect" value="yes">
 					Oui
 					</button>
 				</div>

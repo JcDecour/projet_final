@@ -129,7 +129,7 @@
     <!--Bouton de retour à la liste des devis-->
     <div class="row">
         <div class="col-md-12 text-right">
-            <a href="<?=$this->url('front_devis_list');?>" class="btn btn-default" title="Retour liste des devis">Retour liste des devis</a>
+            <a href="<?=$this->url('front_devis_list');?>" class="btn btn-devirama" title="Retour liste des devis">Retour liste des devis</a>
         </div>
     </div>
 </div>

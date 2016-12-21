@@ -77,10 +77,28 @@ body{
     color: #33B7AD;
 }
 
+.btn-info:hover {
+    background-color: #33B7AD;
+    border-color: #ccc;
+    color: white;
+}
+
 .btn-danger {
     background-color: #ccc;
     border-color: #ccc;
     color: #C9302C;
+}
+
+.btn-devirama {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #4C4C4C;
+}
+
+.btn-devirama:hover {
+    background-color: orange;
+    border-color: #ccc;
+    color: white;
 }
 
 .hello{

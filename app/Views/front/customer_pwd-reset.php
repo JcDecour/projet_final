@@ -47,7 +47,7 @@
 
 				<div class="form-group">
 					<div class="col-md-4 col-md-offset-4">
-						<button type="submit" class="btn btn-info btn-block">Réinitialiser</button>
+						<button type="submit" class="btn btn-devirama btn-block">Réinitialiser</button>
 					</div>
 				</div>
 		</form>

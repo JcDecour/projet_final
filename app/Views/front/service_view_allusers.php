@@ -58,7 +58,7 @@
 
     <div class="row">
 		<div class="col-md-12 text-right">
-			<a href="<?=$this->url('front_service_list_allusers');?>" class="btn btn-default" title="Ajouter un nouveau service">Retour liste</a>
+			<a href="<?=$this->url('front_service_list_allusers');?>" class="btn btn-devirama" title="Ajouter un nouveau service">Retour liste</a>
 		</div>
     </div>
 

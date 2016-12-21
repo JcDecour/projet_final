@@ -114,7 +114,7 @@
 
 
 	<div class="text-right">
-		<a href="<?=$this->url('front_service_add');?>" class="btn btn-info" title="Ajouter un nouveau service">Nouveau service</a>
+		<a href="<?=$this->url('front_service_add');?>" class="btn btn-devirama" title="Ajouter un nouveau service">Nouveau service</a>
 	</div>
 
 </div>

@@ -55,7 +55,7 @@
 				<!-- Submit -->
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-						<button type="submit" class="btn btn-info btn-block">Se connecter </button>
+						<button type="submit" class="btn btn-devirama btn-block">Se connecter </button>
 					</div>
 				</div>
 

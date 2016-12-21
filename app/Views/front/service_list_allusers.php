@@ -56,7 +56,7 @@
 				<?php endif; ?>
 			</select>
 				
-			<button class="btn btn-default" type="submit">
+			<button class="btn btn-devirama" type="submit">
 				Rechercher
 			</button>
 				

@@ -160,7 +160,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="signin"></label>
           <div class="col-md-4">
-            <button id="signin" name="signin" class="btn btn-info">Inscription</button>
+            <button id="signin" name="signin" class="btn btn-devirama">Inscription</button>
           </div>
         </div>
       </fieldset>

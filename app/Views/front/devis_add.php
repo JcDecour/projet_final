@@ -60,7 +60,7 @@
 		<div class="col-md-12 text-right">
 			<a href="<?=$this->url('front_devis_list');?>" class="btn btn-default" title="Retour liste des devis">Retour liste des devis</a>
 			&nbsp;
-			<button id="test" class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapsedevis" aria-expanded="false" aria-controls="collapsedevis">
+			<button id="test" class="btn btn-devirama" type="button" data-toggle="collapse" data-target="#collapsedevis" aria-expanded="false" aria-controls="collapsedevis">
 				Proposer un devis
 			</button>
 		</div>
@@ -152,7 +152,7 @@
 			<div class="row">
 				<div class="form-group">
 					<div class="col-md-2 col-md-offset-10">
-						<button type="submit" class="btn btn-success btn-block">Valider</button>
+						<button type="submit" class="btn btn-devirama btn-block">Valider</button>
 					</div>
 				</div>
 			</div> 
