@@ -5,7 +5,7 @@
 <div class="content-site help">
 	
 	<div class="page-header">
-		<h1>Comment ça marche</h1>
+		<h1>Particulier: Comment ça marche</h1>
 	</div>
 	
 	<br>
@@ -18,7 +18,7 @@
 			</div>
 			<div class="col-lg-11 col-md-12 helperol">
 				<ol>
-					<li>Vous effectuez gratuitement votre demande de service avec un maximum de détails.</li>
+					<h4><li>Vous effectuez gratuitement votre demande de service avec un maximum de détails.</li><h4>
 					
 					<h4><li>Des professionnels vous font des propositions de devis.</li></h4>
 					

@@ -153,11 +153,19 @@ body{
         text-align: center;
 
     }
+
+   
+
+
 }
 @media only screen and (max-width: 1000px) {
 
     .text-center-basic-table, .text-right-basic-table{
         text-align: left;
+    }
+
+     .help ol{
+        margin-left: 0px;
     }
 
 }
@@ -187,6 +195,8 @@ body{
     }
 
 }
+
+
 
 
 
