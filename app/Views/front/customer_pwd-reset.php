@@ -8,7 +8,7 @@
 		</div>
 
 		<?php if(isset($formValid['valid'])): ?>
-			<div class="alert alert-success">
+			<div class="alert alert-success text-center">
 				<?=$formValid['valid'];?>
 			</div>
 		<?php endif; ?>

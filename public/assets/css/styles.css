@@ -263,18 +263,19 @@ p.devis_status {
 .txt {
     position: absolute;
     text-align: center;
-    padding: 60px 0 0 0;
+    padding: 330px 0 0 0;
     z-index: 1029;
-    left: 0;
+    left: 0px;
     right: 0;
 }
 
 .txt p {
     color: white;
     text-shadow: 0 1px 2px rgba(0,0,0,.8);
-    font-size: 22px;
+    font-size: 24px;
     background-color: rgba(0, 0, 0, 0.45);
-    max-width: 600px;
+    max-width: 570px;
+    max-height: 100px;
     margin: 0 auto;
     padding: 20px 15px;
     border-radius: 3px;
@@ -288,7 +289,7 @@ p.devis_status {
   line-height: 38px;
   padding: 0 20px;
   border-radius: 4px;
-  margin-top: 15px;
+  /*margin-top: 15px;*/
   transition: all 0.2s;
 }
 .txt a:hover {
@@ -403,21 +404,27 @@ table.bt tbody td .bt-content {
   }
 
   /** bouton slider **/
-
+  .h2, h2{
+    font-size: 18px;
+  }
   .txt {
-  padding: 15px 0 0 0;
+  padding: 70px 0 0 0;
+  }
+
+  .txt a{
+    line-height: 25px; 
   }
 
   .txt p {
-    font-size: 14px;
+    font-size: 16px;
     max-width: 200px;
-    max-height: 125px;
+    max-height: 100px;
     background-color: rgba(0, 0, 0, 0.3);
   }
 
   /* disparition du trait-d'union en responsive */
   .trait{
-    display: none;
+    /*display: none;*/
   }
 }
 /*and (-webkit-min-device-pixel-ratio: 2)*/

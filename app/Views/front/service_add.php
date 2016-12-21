@@ -5,7 +5,7 @@
 	<div class="forms">
 		
 		<div class="page-header">
-			<h1>Description du service à ajouter</h1>
+			<h1>Ajouter un service</h1>
 		</div>
 	
 

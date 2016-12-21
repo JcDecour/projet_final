@@ -130,7 +130,7 @@
                 <div class="container">
                     <ul class="footer_links">
                         <li><a href="">Mention Légales</a></li>
-                        <li><a href="">Condition Générales d'utilisation</a></li>
+                        <li><a href="<?= $this->url('front_default_cgu') ?>">Condition Générales d'utilisation</a></li>
                         <li>
                             <p class="copyright">Copyright &copy; &nbsp;Farid&nbsp;Eric&nbsp;Jean-charles</p class="copyright">
                         </li>

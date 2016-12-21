@@ -14,7 +14,7 @@
         <div class="carousel-inner">
 
         <div class="txt">
-            <p>Un service à faire réaliser par un professionnel ?
+            <p>Un projet ou un service à réaliser ? &nbsp;
               <a href="<?=$this->url('front_service_add')?>" class=""> C'est parti</a>
             </p>
         </div>
@@ -87,7 +87,7 @@
             <div class="col-md-4">
                 <div class="panel panel-default recentservice">
                     <div class="panel-heading">
-                        <h3 class="text-center"><i style="color:#ffb400;" class="fa fa-fw fa-check"></i>&nbsp;Les derniers services</h3>
+                        <h3 class="text-center"><i style="color:#ffb400;" class="fa fa-check-square"></i>&nbsp;Les derniers services</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">

@@ -4,6 +4,7 @@
 $front_r = array(
 
 	['GET', '/', 'Default#index', 'front_default_index'],
+	['GET', '/front/cgu', 'Default#cgu', 'front_default_cgu'],
 
 	// Routes services
 	['GET|POST', '/service/add', 'Services#add', 'front_service_add'],

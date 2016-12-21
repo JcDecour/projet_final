@@ -27,4 +27,15 @@ class DefaultController extends Controller
 		$this->show('front/index', ['topProjects' => $topProjects, 'devis' => $devis]);
 	}
 
+	/**
+	 * Page CGU
+	 */
+	public function cgu()
+	{
+
+        //Affichage du template
+		$this->show('front/cgu');
+	}
+
+
 }
