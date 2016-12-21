@@ -355,7 +355,7 @@ class CustomerController extends Controller
 
    				// Récupération de l'adresse du site
 		            /*$domaineName = $_SERVER['HTTP_HOST'].$_SERVER['W_BASE'];*/
-		            $domaineName = $adresse = "http://".$_SERVER['SERVER_NAME'].$_SERVER['W_BASE'];
+		            $domaineName ="http://".$_SERVER['SERVER_NAME'].$_SERVER['W_BASE'];
 		            $sujet = "Réinitialisation de votre mot de passe";
 		            $content = '<p>Bonjour,<br><br><a href="'.$domaineName.'/customer/pwd-reset?token='.$token.'">Cliquez sur ce lien pour réinitialiser votre mot de passe</a></p>'; 
 
