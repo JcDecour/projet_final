@@ -53,6 +53,14 @@ nav {
     background-color: #222222;
 }
 
+.navbar-inverse .navbar-brand {
+  color: orange;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: orange;
+}
+
 /*Bannière*/
 
 #banner {
