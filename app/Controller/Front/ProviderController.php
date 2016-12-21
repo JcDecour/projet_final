@@ -128,7 +128,7 @@ class ProviderController extends Controller
 				];
 				if($providerModel->insert($createProvider)){
 					// si l'utilisateur a été bien été créer ont stock un message de reussite dans $_SESSION et on redirige vers la page de connexion
-					$_SESSION = [ 'formValid' => 'Votre profil a bien été créer, veuillez vous connecter.'];
+					$_SESSION = [ 'formValid' => 'Votre profil a bien été créé, veuillez vous connecter.'];
 					$this->redirectToRoute('front_provider_login');
 						
 
