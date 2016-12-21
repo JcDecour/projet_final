@@ -247,24 +247,33 @@ class CustomerController extends Controller
 				}
 			}
 
-			if(!v::notEmpty()->digit()->length(10,10)->validate($post['fixed_phone'])){
-				$formErrors['fixed_phone'] = 'Le téléphone fixe est invalide';
+			if(!empty($post['fixed_phone'])){
+				if(!v::notEmpty()->digit()->length(10,10)->validate($post['fixed_phone'])){
+					$formErrors['fixed_phone'] = 'Le téléphone fixe est invalide';
+				}
 			}
 
-			if(!v::notEmpty()->digit()->length(10,10)->validate($post['mobile_phone'])){
-				$formErrors['mobile_phone'] = 'Le téléphone mobile est invalide';
-			}
+			if(!empty($post['mobile_phone'])){
+				if(!v::notEmpty()->digit()->length(10,10)->validate($post['mobile_phone'])){
+					$formErrors['mobile_phone'] = 'Le téléphone mobile est invalide';
+				}
+			}	
 
-			if(!v::notEmpty()->length(8, 80)->validate($post['street'])){
-				$formErrors['street'] = 'L\'adresse doit comporter entre 8 et 80 caractères';
-			}
+			if(!empty($post['street'])){
+				if(!v::notEmpty()->length(8, 80)->validate($post['street'])){
+					$formErrors['street'] = 'L\'adresse doit comporter entre 8 et 80 caractères';
+				}
+			}	
 
-			if(!v::notEmpty()->digit()->length(5,5)->validate($post['zipcode'])){
-				$formErrors['zipcode'] = 'Le code postal est invalide';
+			if(!empty($post['zipcode'])){
+				if(!v::notEmpty()->digit()->length(5,5)->validate($post['zipcode'])){
+					$formErrors['zipcode'] = 'Le code postal est invalide';
+				}
 			}
-
-			if(!v::notEmpty()->length(3, 80)->validate($post['city'])){
-				$formErrors['city'] = 'La ville doit comporter entre 3 et 80 caractères';
+			if(!empty($post['city'])){	
+				if(!v::notEmpty()->length(3, 80)->validate($post['city'])){
+					$formErrors['city'] = 'La ville doit comporter entre 3 et 80 caractères';
+				}
 			}
 
 			if(count($formErrors) === 0){

@@ -97,7 +97,6 @@
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="fixed_phone">Téléphone fixe:
-            <span class="obligatoire">*</span>
           </label>
           <div class="col-md-4">
             <input id="fixed_phone" name="fixed_phone" type="text" class="form-control input-md" value="<?=isset($customer['fixed_phone']) ? $customer['fixed_phone'] : '';?>">
@@ -111,7 +110,6 @@
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="mobile_phone">Téléphone mobile:
-            <span class="obligatoire">*</span>
           </label>
           <div class="col-md-4">
             <input id="mobile_phone" name="mobile_phone" type="text"  class="form-control input-md" value="<?=isset($customer['mobile_phone']) ? $customer['mobile_phone'] : '';?>">
@@ -125,7 +123,6 @@
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="street">Adresse:
-            <span class="obligatoire">*</span>
           </label>
           <div class="col-md-4">
             <input id="street" name="street" type="text" placeholder="Rue de la paix" class="form-control input-md" value="<?=isset($customer['street']) ? $customer['street'] : '';?>">
@@ -139,7 +136,6 @@
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="zipcode">Code postal:
-            <span class="obligatoire">*</span>
           </label>
           <div class="col-md-2">
             <input id="zipcode" name="zipcode" type="text" placeholder="75000" class="form-control input-md" value="<?=isset($customer['zipcode']) ? $customer['zipcode'] : '';?>">
@@ -153,7 +149,6 @@
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="city">Ville:
-            <span class="obligatoire">*</span>
           </label>
           <div class="col-md-4">
             <input id="city" name="city" type="text" placeholder="Paris" class="form-control input-md" value="<?=isset($customer['city']) ? $customer['city'] : '';?>">
