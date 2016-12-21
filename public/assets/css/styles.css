@@ -133,7 +133,8 @@ p.text-required-filed{
 
 /*Bagdes*/
 .badge-success {
-  background-color: #468847;
+  background-color: #E89F22;
+  min-width: 20px;
 }
 
  .test {

@@ -35,6 +35,7 @@
 				<a href="<?=$this->url('front_customer_profil');?>" title="Compléter votre profil">Veuillez compléter votre profil pour consulter les devis</a>
 			</div>
 		</div>
+		<br>
 	<?php endif; ?>
 
 	<?php if(!empty($projects)): ?>	
