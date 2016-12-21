@@ -121,7 +121,7 @@
 
 	                            </a>
 	                       
-	                        &nbsp;
+	                        
 	                    <?php if($project['nb_devis'] == 0):?>
 	                        
 	                            <a href="<?=$this->url('front_edit_service', ['idProject' => $project['id']]);?>" title="Modifier ce service">
@@ -129,7 +129,7 @@
 
 	                            </a>
 	                        
-	                        &nbsp;
+	                       
 	                       
 	                            <a href="<?=$this->url('front_delete_service', ['id' => $project['id']]);?>" title="Supprimer ce service">
 	                             <i class="fa fa-times fa-lg text-danger"></i>
