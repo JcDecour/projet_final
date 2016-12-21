@@ -34,13 +34,13 @@
             <div class="item">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/maison.jpg') ?>');"></div>
                 <div class="carousel-caption">
-                    <h2>Construction - Rénovation</h2>
+                    <h2>Construction <span class="trait">-</span> Rénovation</h2>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/transport.jpg') ?>');"></div>
                 <div class="carousel-caption">
-                    <h2>Transport - Logistique</h2>
+                    <h2>Transport <span class="trait">-</span> Logistique</h2>
                 </div>
             </div>
         </div>

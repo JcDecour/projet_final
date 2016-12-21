@@ -311,12 +311,6 @@ header.carousel {
   text-shadow: 0 2px 4px rgba(0,0,0,.9);
 }
 
-
-
-
-
-
-
 /* basic table */
 /*
  * jQuery Basic Table
@@ -407,34 +401,41 @@ table.bt tbody td .bt-content {
   padding: 15px 0 0 0;
   }
 
-
   .txt p {
     font-size: 14px;
     max-width: 200px;
-    max-height: 150px;
-    background-color: rgba(0, 0, 0, 0.2);
+    max-height: 125px;
+    
   }
 
+  /* disparition du trait-d'union en responsive */
+  .trait{
+    display: none;
+  }
 }
+/*and (-webkit-min-device-pixel-ratio: 2)*/
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 768px)
+  and (orientation: landscape){
 
-@media only screen and (max-width: 768px) {
-  .txt {
-    padding: 15px 0 0 0;
-  }
   header.carousel {
-    height: 60%;
+    height: 80%;
+
   }
 
   .txt {
-  padding: 15px 0 0 0;
+    padding: 0 0 0 0;
   }
 
 
   .txt p {
-    font-size: 14px;
-    max-width: 200px;
-    max-height: 150px;
-    background-color: rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    max-width: 450px;
+    max-height: 100px;
   }
 
+  .txt a {
+    line-height: 20px;
+  }   
 }
