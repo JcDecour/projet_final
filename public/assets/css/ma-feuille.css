@@ -116,3 +116,25 @@ body{
     }
 
 }
+
+
+/*Test de centrage avec module Basic Table Demo*/
+.text-center-basic-table{
+    text-align: center;
+}
+
+.text-right-basic-table{
+    text-align: right;
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .text-center-basic-table, .text-right-basic-table{
+        text-align: left;
+    }
+
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+  background-color: #F2EFEF;
+}

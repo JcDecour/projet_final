@@ -59,18 +59,12 @@
 	<div class="row ">
 		<div class="col-md-12 text-right">
 			<a href="<?=$this->url('front_devis_list');?>" class="btn btn-default" title="Retour liste des devis">Retour liste des devis</a>
-			&nbsp;
-			<button id="test" class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapsedevis" aria-expanded="false" aria-controls="collapsedevis">
-				Proposer un devis
-			</button>
 		</div>
 	</div>	
 
 	<!-- ########### -->
 	<!-- PARTIE DEVIS-->
 	<!-- ########### -->
-
-	<div class="collapse" id="collapsedevis">
 
 		<br>
 		<div class="page-header">
@@ -116,14 +110,14 @@
 								<?php endif; ?>
 							</td>
 							<td>
-								<input id="ht_amount" name="ht_amount" class="form-control input-md text-right" type="text" placeholder="0.00" value="<?=isset($post['ht_amount']) ? $post['ht_amount'] : '';?>">
+								<input id="ht_amount" name="ht_amount" class="form-control input-md text-right-basic-table" type="text" placeholder="0.00" value="<?=isset($post['ht_amount']) ? $post['ht_amount'] : '';?>">
 								<!-- Gestion des erreurs -->
 								<?php if(isset($formErrors['ht_amount'])): ?>
 									<div class="error col-md-12"><?=$formErrors['ht_amount']?></div>
 								<?php endif; ?>
 							</td>
 							<td>
-								<select id="tva_amount" name="tva_amount" class="form-control text-right">
+								<select id="tva_amount" name="tva_amount" class="form-control text-right-basic-table">
 									<option value="2.1" <?=(isset($post['tva_amount']) && ($post['tva_amount'] == '2.1')) ? 'selected' : '';?>>2.1</option>
 									<option value="5.5" <?=(isset($post['tva_amount']) && ($post['tva_amount'] == '5.5')) ? 'selected' : '';?>>5.5</option>
 									<option value="10" <?=(isset($post['tva_amount']) && ($post['tva_amount'] == '10')) ? 'selected' : '';?>>10</option>
@@ -132,9 +126,9 @@
 							</td>
 							<td>
 								<?php if(isset($post['ht_amount']) && isset($post['tva_amount'])): ?>
-									<span id="ttc_amount" name="ttc_amount" class="col-md-12 text-right"><?=number_format($post['ht_amount'] * (1  + ($post['tva_amount'] / 100)), 2 , "." , " ");?></span>
+									<span id="ttc_amount" name="ttc_amount" class="col-md-12 text-right-basic-table"><?=number_format($post['ht_amount'] * (1  + ($post['tva_amount'] / 100)), 2 , "." , " ");?></span>
 								<?php else: ?>
-									<span id="ttc_amount" name="ttc_amount" class="col-md-12 text-right">0.00</span>
+									<span id="ttc_amount" name="ttc_amount" class="col-md-12 text-right-basic-table">0.00</span>
 								<?php endif; ?>
 							</td>
 						</tr>
@@ -159,7 +153,7 @@
 
 		</form>
 
-	</div>
+	
 
 </div>
 

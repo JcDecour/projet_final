@@ -111,13 +111,13 @@
 						<td>
 							<?=$devis['designation'];?>
 						</td>
-						<td class="text-right">
+						<td class="text-right-basic-table">
 				            <?=number_format($devis['ht_amount'], 2 , "." , " ");?>
 						</td>
-						<td class="text-right">
+						<td class="text-right-basic-table">
 							 <?=$devis['tva_amount'];?>
 						</td>
-						<td class="text-right">
+						<td class="text-right-basic-table">
 							<span id="ttc_amount"><?=number_format($devis['ht_amount'] * (1  + ($devis['tva_amount'] / 100)), 2 , "." , " ");?></span>
 						</td>
 					</tr>
