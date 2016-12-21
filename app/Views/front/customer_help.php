@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Connexion']); ?>
+<?php $this->layout('layout', ['title' => 'Comment ça marche']); ?>
 
 <?php $this->start('main_content') ?>
 
@@ -13,12 +13,12 @@
 	<div class="row">
 		
 		<div class="col-md-12">
-			<div class="col-md-1">
-				<i class="fa fa-5x fa-question" aria-hidden="true"></i>
+			<div class="col-lg-1 col-md-12 text-center">
+				<img src="<?= $this->assetUrl('img/devis.jpg') ?>" alt="..."  class="img-rounded">
 			</div>
-			<div class="col-md-11">
+			<div class="col-lg-11 col-md-12 helperol">
 				<ol>
-					<h4><li>Vous effectuez gratuitement votre demande de service avec un maximum de détails.</li></h4>
+					<li>Vous effectuez gratuitement votre demande de service avec un maximum de détails.</li>
 					
 					<h4><li>Des professionnels vous font des propositions de devis.</li></h4>
 					
@@ -28,7 +28,7 @@
 					
 					<h4><li>Vous entrez alors directement en contact avec les professionnels.</li></h4>
 					
-					<h4><li>Aucun intermédiaire.</li></h4>
+					<h4><li style="color:orange;"><bold>Aucun intermédiaire.</bold></li></h4>
 				</ol>
 			</div>
 		</div>
