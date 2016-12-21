@@ -135,7 +135,7 @@
 	<!-- Liste des projets -->
 	<?php if(!empty($listdevis)): ?>	
 
-		<table class="table table-responsive table-bordered">
+		<table class="table table-responsive table-bordered table-striped">
 
 			<thead>
 				<tr>
