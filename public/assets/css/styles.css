@@ -412,6 +412,17 @@ table.bt tbody td .bt-content {
     font-size: 14px;
     max-width: 200px;
     max-height: 150px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  .txt {
+    padding: 15px 0 0 0;
+  }
+  header.carousel {
+    height: 60%;
   }
 
 }
