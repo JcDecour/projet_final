@@ -13,7 +13,7 @@
 		<span class="accroche">
 			<i class="fa fa-fw fa-quote-left"></i>
 			<?php if($projectsTotal['nbTotalService'] == 0): ?>
-				Il n'y a pas d'offre de services à pourvoir
+				Il n'y a pas d'offre de service à pourvoir
 			<?php elseif($projectsTotal['nbTotalService'] == 1): ?>
 				1 offre de service est à pourvoir
 			<?php else: ?>	

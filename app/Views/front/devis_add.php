@@ -71,7 +71,7 @@
 
 		<br>
 		<div class="page-header">
-			<h1>Proposition de devis</h1>
+			<h1>Proposer un devis sur cette offre</h1>
 		</div>
 
 		<br>
@@ -84,7 +84,7 @@
 					<div class="row">
 						<label class="col-md-12 control-label" for="description">Informations complémentaires</label>
 						<div class="col-md-12">
-							<textarea id="description" name="description" class="form-control input-md" placeholder="Toute précision, détail ou autre permettant de décrire au mieux votre offre de devis..."><?=isset($post['description']) ? $post['description'] : '';?></textarea>
+							<textarea id="description" name="description" class="form-control input-md" placeholder="Renseignez toute précision, détail ou autre permettant de détailler au mieux votre devis..."><?=isset($post['description']) ? $post['description'] : '';?></textarea>
 						</div>
 						<!-- Gestion des erreurs -->
 						<?php if(isset($formErrors['description'])): ?>
@@ -106,7 +106,7 @@
 					<tbody>
 						<tr>
 							<td>
-								<input id="designation" name="designation" class="form-control input-md" type="text" placeholder="Libellé" value="<?=isset($post['designation']) ? $post['designation'] : '';?>">
+								<input id="designation" name="designation" class="form-control input-md" type="text" placeholder="Mention diverse" value="<?=isset($post['designation']) ? $post['designation'] : '';?>">
 								<!-- Gestion des erreurs -->
 								<?php if(isset($formErrors['designation'])): ?>
 									<div class="error col-md-12"><?=$formErrors['designation']?></div>

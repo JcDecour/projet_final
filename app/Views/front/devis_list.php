@@ -8,6 +8,20 @@
 		<h1>Liste des offres de services disponibles</h1>
 	</div>
     
+	<div class="accrocheNbOffre">
+		<span class="accroche">
+			<i class="fa fa-fw fa-quote-left"></i>
+			<?php if(count($projects) == 0): ?>
+				Il n'y a pas d'offre de service à pourvoir
+			<?php elseif(count($projects) == 1): ?>
+				1 offre de service est à pourvoir
+			<?php else: ?>	
+				<?=count($projects);?> offres de services sont à pourvoir
+			<?php endif; ?>
+			<i class="fa fa-fw fa-quote-right"></i>
+		<span>
+	</div>
+
     <!-- Formulaire de recherche -->
 	<div class="well well-sm">
 		<form method="get" class="form-inline">
