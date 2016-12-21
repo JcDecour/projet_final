@@ -43,7 +43,7 @@ class ProjectModel extends \W\Model\Model
 	 */
 	public function findAllWithoutClosed($zip_code = null, $sub_sector = null, $sector = null, $title = null)
 	{
-		$sql = 'SELECT distinct p.* FROM ' . $this->table . ' as p 
+		$sql = 'SELECT distinct p.*, s.title as titleSector FROM ' . $this->table . ' as p 
                 INNER JOIN project_subsector as ps ON p.id = ps.id_project
                 INNER JOIN sub_sector as ss ON ss.id = ps.id_subsector
                 INNER JOIN sector as s ON s.id = ss.id_sector
