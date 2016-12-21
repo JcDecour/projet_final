@@ -32,7 +32,7 @@
 	<?php if(isset($errorConsult) && $errorConsult): ?>
 		<div class="row">
 			<div class="col-md-12 text-right">
-				<a href="<?=$this->url('front_customer_profil');?>" title="Compléter votre profil">Veuillez compléter votre profil pour consulter les devis</a>
+				<a href="<?=$this->url('front_customer_profil');?>" title="Compléter votre profil"><ins>Veuillez compléter votre profil pour consulter les devis</ins></a>
 			</div>
 		</div>
 		<br>

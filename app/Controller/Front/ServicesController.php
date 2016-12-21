@@ -593,7 +593,7 @@ class ServicesController extends Controller
 
 			/** On vérifie si son profil est complet pour pouvoir consulter les offres de devis */
 
-			if (empty($customer['lastname'])) {
+			if (empty($customer['lastname']) && $project['nb_devis'] > 0) {
 				
 				$errorConsult = true;
 

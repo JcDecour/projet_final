@@ -298,7 +298,7 @@ class CustomerController extends Controller
 				$customer = $customerModel->update($updateCustomer, $customer['id']);
 				if($customer){
 					//si ok message de réussite
-					$formValid = [ 'valid' => 'Votre profil a bien été modifier'];	
+					$formValid = [ 'valid' => 'Votre profil a bien été modifié'];	
 					// je refresh mes info de session avec les info stocke en bdd
 					unset($_SESSION['user']);
 					$_SESSION['user'] = $customer;

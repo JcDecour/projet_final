@@ -333,7 +333,7 @@ class ProviderController extends Controller
 				// si les info on été mise a jours ont affiche un message de réussite
 
 				if($provider){
-					$formValid = ['valid' => 'Votre profil a bien été modifier'];
+					$formValid = ['valid' => 'Votre profil a bien été modifié'];
 					//update des infos stocké en SESSION
 					unset($_SESSION['user']);
 					$_SESSION['user'] = $provider;
