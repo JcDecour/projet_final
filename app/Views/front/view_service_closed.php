@@ -95,13 +95,13 @@
                             <td>
                                 <?=$projectSubSector['designation'];?>
                             </td>
-                            <td class="text-right">
+                            <td class="text-right-basic-table">
                                 <?=number_format($projectSubSector['ht_amount'], 2 , "." , " ");?>
                             </td>
-                            <td class="text-right">
+                            <td class="text-right-basic-table">
                                  <?=$projectSubSector['tva_amount'];?>
                             </td>
-                            <td class="text-right">
+                            <td class="text-right-basic-table">
                                 <span id="ttc_amount"><?=number_format($projectSubSector['ht_amount'] * (1  + ($projectSubSector['tva_amount'] / 100)), 2 , "." , " ");?></span>
                             </td>
                         </tr>
@@ -119,7 +119,9 @@
     <!--Bouton de retour à la liste des devis-->
     <div class="row">
         <div class="col-md-12 text-right">
-            <a href="<?=$this->url('front_list_services');?>" class="btn btn-devirama" title="Retour liste des devis">Retour liste des services</a>
+
+            <a href="<?=$this->url('front_list_services');?>" class="btn btn-devirama" title="Retour liste des devis">Retour liste</a>
+
         </div>
     </div>
     

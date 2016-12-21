@@ -6,7 +6,7 @@
 
 	<div class="forms">
 		
-		<div class="page-header">
+		<div class="page-header text-center">
 			<h1>Déconnexion</h1>
 		</div>
 		

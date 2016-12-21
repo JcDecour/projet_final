@@ -53,6 +53,14 @@ nav {
     background-color: #222222;
 }
 
+.navbar-inverse .navbar-brand {
+  color: orange;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: orange;
+}
+
 /*Bannière*/
 
 #banner {
@@ -133,7 +141,8 @@ p.text-required-filed{
 
 /*Bagdes*/
 .badge-success {
-  background-color: #468847;
+  background-color: #E89F22;
+  min-width: 20px;
 }
 
  .test {
@@ -159,6 +168,11 @@ a {
 .devis_status {
     font-weight: 600;
     text-align: center;
+}
+
+p.devis_status {
+    font-size: 18px;
+   
 }
 
 .pending {
@@ -387,3 +401,28 @@ table.bt tbody td .bt-content {
     font-size: 12px;
   }
 
+  /** bouton slider **/
+
+  .txt {
+  padding: 15px 0 0 0;
+  }
+
+
+  .txt p {
+    font-size: 14px;
+    max-width: 200px;
+    max-height: 150px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  .txt {
+    padding: 15px 0 0 0;
+  }
+  header.carousel {
+    height: 60%;
+  }
+
+}

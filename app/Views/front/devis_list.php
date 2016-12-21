@@ -47,7 +47,7 @@
 	</div>
     
 	<!-- Liste des projets -->
-    <table id="breakpoint" class="table table-responsive table-bordered ">
+    <table id="breakpoint" class="table table-responsive table-bordered table-striped">
         <thead>
             <tr>
                 <th>
@@ -81,14 +81,14 @@
                             <td><?=$project['titlesubsector'];?></td>
                             <td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></td>
                             <td><?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></td>
-                            <td class="text-center">
+                            <td class="text-center-basic-table">
                                 <?php if($project['closed']): ?>
                                     <span class="text-danger">Cloturé</span>
                                 <?php else: ?>
                                     <span class="badge badge-success"><?=$project['nbdevisprojetsubsector'];?></span>
                                 <?php endif; ?>	
                             </td>
-                            <td class="text-center">
+                            <td class="text-center-basic-table">
                                 <a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-default btn-sm" title="Proposer un devis">
                                     Consulter
                                 </a>
@@ -135,7 +135,7 @@
 	<!-- Liste des projets -->
 	<?php if(!empty($listdevis)): ?>	
 
-		<table class="table table-responsive table-bordered">
+		<table class="table table-responsive table-bordered table-striped">
 
 			<thead>
 				<tr>
@@ -167,8 +167,8 @@
 					<?php 
 						$montantTTC = number_format($devis['ht_amount'] * (1 +($devis['tva_amount']/100)), 2, "." , " ");
 					?>
-                    <td class="text-right"><span id="ttc_amount"><?=$montantTTC;?></span></td>
-					<td class="text-center">
+                    <td class="text-right-basic-table"><span id="ttc_amount"><?=$montantTTC;?></span></td>
+					<td class="text-center-basic-table">
 						<?php if($devis['accepted']): ?>
                             <span class="devis_status accepted">Accepté</span>
 						<?php elseif($devis['projectClosed']): ?>
@@ -177,7 +177,7 @@
 							<span class="devis_status pending">Non statué</span>
 						<?php endif; ?>
 					</td>
-					<td class="text-center">
+					<td class="text-center-basic-table">
 						<a href="<?=$this->url('front_devis_view', ['id' => $devis['id']]);?>" class="btn btn-default btn-sm" title="Consulter mon devis">
 					 		Consulter
 						</a>
