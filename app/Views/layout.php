@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= $this->assetUrl('css/modern-business.css') ?>">
     <!-- Custom Fonts -->
-    <link rel="stylesheet" type="text/css" href="<?= $this->assetUrl('font-awesome/css/font-awesome.min.css') ?>">
+    <link href="<?= $this->assetUrl('font-awesome/css/font-awesome.min.css') ?>" type="text/css" rel="stylesheet"> 
     <link rel="stylesheet" href="<?= $this->assetUrl('css/styles.css') ?>">
     <link rel="stylesheet" href="<?= $this->assetUrl('css/ma-feuille.css') ?>">
+    <link rel="icon" type="image/png" href="<?= $this->assetUrl('img/devis.png') ?>">
 </head>
 <body>
 
@@ -27,7 +28,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?= $this->url('front_default_index') ?>">DEVIRAMA</a>
+                <a style="font-family: 'PoetsenOne-Regular';" class="navbar-brand" href="<?= $this->url('front_default_index') ?>">DEVIRAMA</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
@@ -48,9 +49,11 @@
                                 <li>
                                     <a href="<?= $this->url('front_customer_help') ?>">Comment ça marche ?</a>
                                 </li>
+                            <?php if(isset($w_user)):?>
                                 <li>
-                                    <a href="<?= $this->url('front_list_services') ?>">Mes demandes de services</a>
+                                    <a href="<?= $this->url('front_list_services') ?>">Mes demandes</a>
                                 </li>
+                            <?php endif;?>
                                 <li>
                                     <?php if($w_user): ?>
                                         <a href="<?=$this->url('front_customer_profil')?>">Mon profil</a>
@@ -75,11 +78,13 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace professionnel<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="full-width.html">Comment ça marche ?</a>
+                                    <a href="<?= $this->url('front_provider_help') ?>">Comment ça marche ?</a>
                                 </li>
+                            <?php if(isset($w_user['siret'])):?>
                                 <li>
                                     <a href="<?= $this->url('front_devis_list') ?>">Mes devis</a>
                                 </li>
+                            <?php endif;?>
                                 <li>
                                     <?php if($w_user): ?>
                                         <a href="<?=$this->url('front_provider_profil') ?>">Mon Profil</a>
@@ -89,7 +94,7 @@
                                 </li>
                                 <li>
                                     <?php if($w_user): ?>
-                                        <a href="<?= $this->url('front_customer_logout') ?>">Se déconnecter</a> 
+                                        <a href="<?= $this->url('front_provider_logout') ?>">Se déconnecter</a> 
                                     <?php else: ?>
                                         <a href="<?= $this->url('front_provider_login') ?>">Se connecter</a>
                                     <?php endif; ?>
@@ -125,9 +130,9 @@
                 <div class="container">
                     <ul class="footer_links">
                         <li><a href="">Mention Légales</a></li>
-                        <li><a href="">Condition Générales d'utilisation</a></li>
+                        <li><a href="<?= $this->url('front_default_cgu') ?>">Condition Générales d'utilisation</a></li>
                         <li>
-                            <p>Copyright &copy; &nbsp;Farid&nbsp;Eric&nbsp;Jean-charles</p>
+                            <p class="copyright">Copyright &copy; &nbsp;Farid&nbsp;Eric&nbsp;Jean-charles</p class="copyright">
                         </li>
                     </ul>
                 </div>
@@ -150,6 +155,7 @@
     <!-- Script du Carousel -->
     <script>
     $(document).ready(function(){
+
         $('.carousel').carousel({
             interval: 5000, //vitesse de changement
             pause: null, // défini l'activité du slider si il y a une activité de l'utilisateur ou pas

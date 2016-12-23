@@ -76,7 +76,7 @@
     
         <!-- Date prévisionnelle du service -->
 	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Date prévisonnelle:</label>  
+		<label class="col-md-3 control-label text-right" for="zip_code">Date prévisionnelle:</label>  
 		<div class="col-md-9"><?=DateTime::createFromFormat('Y-m-d', $devis['projectPredicted'])->format('d/m/Y');?></div>
 	</div>
     
@@ -86,7 +86,7 @@
    <!-- Partie devis-->
     <div class="panel panel-default">
 		  <!-- Default panel contents -->
-		  <div class="panel-heading">Devis&nbsp;N°&nbsp;<?=sprintf("%06d", $devis['id'])?></div>
+		  <div class="panel-heading">Devis&nbsp;N°&nbsp;<?=sprintf("%06d", $devis['id'])?>&nbsp;( Ajouté le <?=DateTime::createFromFormat('Y-m-d H:i:s', $devis['created_at'])->format('d/m/Y');?> )</div>
 			<div class="panel-body">
 
 				<div class="row">
@@ -111,13 +111,13 @@
 						<td>
 							<?=$devis['designation'];?>
 						</td>
-						<td class="text-right">
+						<td class="text-right-basic-table">
 				            <?=number_format($devis['ht_amount'], 2 , "." , " ");?>
 						</td>
-						<td class="text-right">
+						<td class="text-right-basic-table">
 							 <?=$devis['tva_amount'];?>
 						</td>
-						<td class="text-right">
+						<td class="text-right-basic-table">
 							<span id="ttc_amount"><?=number_format($devis['ht_amount'] * (1  + ($devis['tva_amount'] / 100)), 2 , "." , " ");?></span>
 						</td>
 					</tr>
@@ -129,7 +129,9 @@
     <!--Bouton de retour à la liste des devis-->
     <div class="row">
         <div class="col-md-12 text-right">
-            <a href="<?=$this->url('front_devis_list');?>" class="btn btn-default" title="Retour liste des devis">Retour liste des devis</a>
+
+            <a href="<?=$this->url('front_devis_list');?>" class="btn btn-devirama" title="Retour liste des devis">Retour liste</a>
+
         </div>
     </div>
 </div>

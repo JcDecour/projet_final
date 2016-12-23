@@ -8,6 +8,20 @@
 		<h1>Liste des offres de services disponibles</h1>
 	</div>
     
+	<div class="accrocheNbOffre">
+		<span class="accroche">
+			<i class="fa fa-fw fa-quote-left"></i>
+			<?php if(count($projects) == 0): ?>
+				Il n'y a pas d'offre de service à pourvoir
+			<?php elseif(count($projects) == 1): ?>
+				1 offre de service est à pourvoir
+			<?php else: ?>	
+				<?=count($projects);?> offres de services sont à pourvoir
+			<?php endif; ?>
+			<i class="fa fa-fw fa-quote-right"></i>
+		<span>
+	</div>
+
     <!-- Formulaire de recherche -->
 	<div class="well well-sm">
 		<form method="get" class="form-inline">
@@ -39,17 +53,15 @@
 					<option value="" selected>Sous-Catégorie</option>
 				<?php endif; ?>
 			</select>
-				
-			<button class="btn btn-default" type="submit">
-				Rechercher
-			</button>
-				
 			
+			<!-- Bouton pour lancer la recherche -->
+			<input class="btn btn-default" id="btn-filtre" name="btn-filtre" type="submit" value="Rechercher" role="button">
+				
 		</form>
 	</div>
     
 	<!-- Liste des projets -->
-    <table class="table table-responsive table-bordered">
+    <table id="breakpoint" class="table table-responsive table-bordered table-striped">
         <thead>
             <tr>
                 <th>
@@ -83,28 +95,24 @@
                             <td><?=$project['titlesubsector'];?></td>
                             <td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></td>
                             <td><?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></td>
-                            <td class="text-center">
+                            <td class="text-center-basic-table">
                                 <?php if($project['closed']): ?>
                                     <span class="text-danger">Cloturé</span>
                                 <?php else: ?>
                                     <span class="badge badge-success"><?=$project['nbdevisprojetsubsector'];?></span>
                                 <?php endif; ?>	
                             </td>
-                            <td class="text-center">
+                            <td class="text-center-basic-table">
                                 <a href="<?=$this->url('front_devis_add', ['id' => $project['idprojetsubsector']]);?>" class="btn btn-default btn-sm" title="Proposer un devis">
-                                    Proposer devis
+                                    Consulter
                                 </a>
                             </td>
                         </tr>
 
-                   
-
                 <?php endforeach; ?>
 
-              
-
             <?php else: ?>
-                <tr><td colspan="8">Aucune offre de services n'est disponible.</td></tr>
+                <tr><td colspan="9">Aucune offre de service n'est disponible.</td></tr>
             <?php endif; ?>
 
         </tbody>
@@ -116,10 +124,32 @@
 		<h1>Mes devis proposés</h1>
 	</div>
 
+	<!-- Filtre sur l'état du devis géré par bouton "radio" -->
+
+	
+	<div class="well well-sm">
+		<form id="my_form" method="get" class="form-inline">
+			<div class="form-group">
+				<label class="radio-inline devis_status">
+					<input type="radio" name="statut" id="all" value="all" checked> Tous
+				</label>
+				<label class="radio-inline accepted devis_status">
+					<input type="radio" name="statut" id="accepted" value="accepted" <?=(isset($search['statut']) && $search['statut'] == 'accepted') ? 'checked' : '';?>> Accepté
+				</label>
+				<label class="radio-inline not_accepted devis_status">
+					<input type="radio" name="statut" id="notselected" value="notselected" <?=(isset($search['statut']) && $search['statut'] == 'notselected') ? 'checked' : '';?>> Non retenu
+				</label>
+				<label class="radio-inline pending devis_status">
+					<input type="radio" name="statut" id="notstatue" value="notstatue" <?=(isset($search['statut']) && $search['statut'] == 'notstatue') ? 'checked' : '';?>> Non statué
+				</label>					
+			</div>
+		</form>
+	</div>
+
 	<!-- Liste des projets -->
 	<?php if(!empty($listdevis)): ?>	
 
-		<table class="table table-responsive table-bordered">
+		<table class="table table-responsive table-bordered table-striped">
 
 			<thead>
 				<tr>
@@ -151,8 +181,8 @@
 					<?php 
 						$montantTTC = number_format($devis['ht_amount'] * (1 +($devis['tva_amount']/100)), 2, "." , " ");
 					?>
-                    <td class="text-right"><span id="ttc_amount"><?=$montantTTC;?></span></td>
-					<td class="text-center">
+                    <td class="text-right-basic-table"><span id="ttc_amount"><?=$montantTTC;?></span></td>
+					<td class="text-center-basic-table">
 						<?php if($devis['accepted']): ?>
                             <span class="devis_status accepted">Accepté</span>
 						<?php elseif($devis['projectClosed']): ?>
@@ -161,7 +191,7 @@
 							<span class="devis_status pending">Non statué</span>
 						<?php endif; ?>
 					</td>
-					<td class="text-center">
+					<td class="text-center-basic-table">
 						<a href="<?=$this->url('front_devis_view', ['id' => $devis['id']]);?>" class="btn btn-default btn-sm" title="Consulter mon devis">
 					 		Consulter
 						</a>
@@ -173,7 +203,7 @@
 		</table>
 
 	<?php else: ?>
-		<p>Aucun devis proposé.</p>
+		<p>Aucun devis n'est disponible.</p>
 	<?php endif; ?>
 
 </div>
@@ -181,8 +211,15 @@
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('js') ?>
-<script>
+<script type="text/javascript">
+
+
+
 	$(document).ready(function(){
+
+
+	
+
 
 		/*Gestion des menu déroulants liés (Carégories -> Sous Catégories)*/
 		$('#sector').change(function(){
@@ -199,6 +236,17 @@
 			});
 		});
 
-	});
+		//Valide du formulaire de recherche des devis par statut sur simple cli d'un bouton radio du filtre
+		$('input[type="radio"]').click(function() {
+			$('#my_form').submit();
+		});
+
+	
+
+		
+
+
+	});	
+
 </script>
 <?php $this->stop('js') ?>

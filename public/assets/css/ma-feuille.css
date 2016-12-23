@@ -1,21 +1,12 @@
 body{
-    background-color: #FBF7F7;
-    /*background-image: url("../img/fond-3.png");*/
+    background-color: rgba(138, 109, 50, 0.19);
     background-position: center;
     background-size: cover;
 }
 
-
-
-
 .content-site{
     
     background-color: rgba(255,255,255,0.5);
-    
-   
-   
-    
-    
     border: 1px solid #d7d7d7;
     border-radius: 3px;
     margin-bottom: 30px;
@@ -26,9 +17,9 @@ body{
 .content-site .page-header {
     background-color: rgba(61, 61, 61, 0.92);
     border-bottom: 1px solid #eee;
- 
+    text-align: center;
     padding: 5px 10px;
-    color: #FFF;
+    color: rgb(255, 190, 0);
     font-size: 18px;
     margin: 5px 0 15px 0;
    
@@ -52,12 +43,25 @@ body{
 }
 
 .content-site span.accroche{
-   /* background-color: rgba(255,165,0,0.8);*/
-     background-color: rgba(0,166,153,0.8);
+    background-color: rgba(0,166,153,0.8);
     color: #FFF;
     font-size: 14px;
     padding: 3px;
     font-weight: 500;
+}
+
+.content-site  p{
+    font-weight: bold;
+}
+
+.width80{
+    width: 60%;
+    margin: 30px auto;
+}
+
+.width50{
+    width: 50%;
+    margin: 30px auto;
 }
 
 .btn-success {
@@ -72,10 +76,28 @@ body{
     color: #33B7AD;
 }
 
+.btn-info:hover {
+    background-color: #33B7AD;
+    border-color: #ccc;
+    color: white;
+}
+
 .btn-danger {
     background-color: #ccc;
     border-color: #ccc;
     color: #C9302C;
+}
+
+.btn-devirama {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #4C4C4C;
+}
+
+.btn-devirama:hover {
+    background-color: orange;
+    border-color: #ccc;
+    color: white;
 }
 
 .hello{
@@ -84,3 +106,106 @@ body{
     padding-top: 15px;
     padding-bottom: 15px;
 }
+
+.devis-striped{
+    background-color: #EFEFEF;
+}
+
+.help li{
+    padding-left: 15px;
+}
+
+.help ol{
+    margin-left: 40px;
+}
+
+/*Test de centrage avec module Basic Table Demo*/
+    .text-center-basic-table{
+        text-align: center;
+    }
+
+    .text-right-basic-table{
+        text-align: right;
+    }
+
+    .table-striped > tbody > tr:nth-of-type(2n+1) {
+  background-color: #F2EFEF;
+    }
+
+/******* media queries*********/
+
+@media only screen and (max-width: 500px) {
+
+  /* Responsive des fenêtre de connexion */
+
+ 
+    .width50, .width80 {
+        width: 100%;
+        margin: 30px auto;
+    }
+    .content-site span.accroche {
+        font-size: 12px;
+    }
+
+    .content-site .page-header h1 {
+        font-size: 16px;
+        text-align: center;
+
+    }
+
+   
+
+
+}
+@media only screen and (max-width: 1000px) {
+
+    .text-center-basic-table, .text-right-basic-table{
+        text-align: left;
+    }
+
+     .help ol{
+        margin-left: 0px;
+    }
+
+}
+
+ /* Responsive de la cellule "Action" du tableau dans list_services */
+
+@media only screen and (min-width: 1000px) 
+        
+{
+
+    #action_list_services_smallScreen {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 1000px)
+
+{
+
+    #action_list_services_largeScreen {
+        display: none;
+    }
+
+    .deletePaddingLeft {
+        padding-left: 0;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

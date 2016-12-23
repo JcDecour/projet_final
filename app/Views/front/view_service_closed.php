@@ -26,14 +26,14 @@
 	   <!-- Description du service -->
 	<div class="row">
 		<label class="col-md-3 control-label text-right" for="zip_code">Description:</label>  
-		<div class="col-md-9"><?=nl2br($project['description']);?></div>
+		<div class="col-md-7 withbackground"><?=nl2br($project['description']);?></div>
 	</div>
     
     <br>
     
         <!-- Date prévisionnelle du service -->
 	<div class="row">
-		<label class="col-md-3 control-label text-right" for="zip_code">Date prévisonnelle:</label>  
+		<label class="col-md-3 control-label text-right" for="zip_code">Date prévisionnelle:</label>  
 		<div class="col-md-9"><?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></div>
 	</div>
     
@@ -50,7 +50,7 @@
             
             <?php if(empty($projectSubSector['id_provider'])): ?>
                 <div class="panel-body">
-                     Absence de devis retenu pour cette catégorie.
+                     Aucun devis retenu pour cette catégorie.
                 </div>
             <?php else:;?>
                 <div class="panel-body">
@@ -72,8 +72,6 @@
                         </address>
                     </div>
                     
-                    
-                    
                     <!--Informations complémenatires du devis-->
                     <div class="row">
                         <label class="col-md-12 control-label" for="description">Informations complémentaires du devis:</label>
@@ -87,9 +85,9 @@
                     <thead>
                         <tr>
                             <th>Désignation</th>
-                            <th>Montant HT (€)</th>
-                            <th>Taux de TVA</th>
-                            <th>Montant TTC (€)</th>
+                            <th class="text-right">Montant HT(€)</th>
+                            <th class="text-right">Taux de TVA(%)</th>
+                            <th class="text-right">Montant TTC(€)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -97,16 +95,17 @@
                             <td>
                                 <?=$projectSubSector['designation'];?>
                             </td>
-                            <td class="text-right">
-                                <?=$projectSubSector['ht_amount'];?>
+                            <td class="text-right-basic-table">
+                                <?=number_format($projectSubSector['ht_amount'], 2 , "." , " ");?>
                             </td>
-                            <td class="text-right">
+                            <td class="text-right-basic-table">
                                  <?=$projectSubSector['tva_amount'];?>
                             </td>
-                            <td class="text-right">
+                            <td class="text-right-basic-table">
                                 <span id="ttc_amount"><?=number_format($projectSubSector['ht_amount'] * (1  + ($projectSubSector['tva_amount'] / 100)), 2 , "." , " ");?></span>
                             </td>
                         </tr>
+
                     </tbody>
                 </table>
             
@@ -120,7 +119,9 @@
     <!--Bouton de retour à la liste des devis-->
     <div class="row">
         <div class="col-md-12 text-right">
-            <a href="<?=$this->url('front_list_services');?>" class="btn btn-default" title="Retour liste des devis">Retour liste des services</a>
+
+            <a href="<?=$this->url('front_list_services');?>" class="btn btn-devirama" title="Retour liste des devis">Retour liste</a>
+
         </div>
     </div>
     

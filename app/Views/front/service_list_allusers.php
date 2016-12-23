@@ -6,14 +6,14 @@
 <div class="content-site">
 	
 	<div class="page-header">
-		<h1>Liste des offres de services des particuliers</h1>
+		<h1>Liste des offres de services</h1>
 	</div>
     
 	<div class="accrocheNbOffre">
 		<span class="accroche">
 			<i class="fa fa-fw fa-quote-left"></i>
 			<?php if($projectsTotal['nbTotalService'] == 0): ?>
-				Il n'y a pas d'offre de services à pourvoir
+				Il n'y a pas d'offre de service à pourvoir
 			<?php elseif($projectsTotal['nbTotalService'] == 1): ?>
 				1 offre de service est à pourvoir
 			<?php else: ?>	
@@ -56,7 +56,7 @@
 				<?php endif; ?>
 			</select>
 				
-			<button class="btn btn-default" type="submit">
+			<button class="btn btn-devirama" type="submit">
 				Rechercher
 			</button>
 				
@@ -67,7 +67,7 @@
 	<!-- Liste des projets -->
 	<?php if(!empty($projects)): ?>	
 
-		<table class="table table-responsive table-bordered">
+		<table class="table table-responsive table-bordered table-striped">
 
 			<thead>
 				<tr>
@@ -93,14 +93,14 @@
 					<td><?=$project['title'] ?></td>
 					<td><?=DateTime::createFromFormat('Y-m-d H:i:s', $project['created_at'])->format('d/m/Y');?></td>
 					<td><?=DateTime::createFromFormat('Y-m-d', $project['predicted_date'])->format('d/m/Y');?></td>
-					<td class="text-center">
+					<td class="text-center-basic-table">
 						<?php if($project['closed']): ?>
 							<span class="text-danger">Cloturé</span>
 						<?php else: ?>
 							<span class="badge badge-success"><?=$project['nb_devis'];?></span>
 						<?php endif; ?>	
 					</td>
-					<td class="text-center">
+					<td class="text-center-basic-table">
 						<a href="<?=$this->url('front_service_view_allusers', ['id' => $project['id']]);?>" class="btn btn-default btn-sm" title="Consulter ce service">
 					 		Consulter
 						</a>

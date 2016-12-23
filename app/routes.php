@@ -4,6 +4,7 @@
 $front_r = array(
 
 	['GET', '/', 'Default#index', 'front_default_index'],
+	['GET', '/front/cgu', 'Default#cgu', 'front_default_cgu'],
 
 	// Routes services
 	['GET|POST', '/service/add', 'Services#add', 'front_service_add'],
@@ -21,11 +22,21 @@ $front_r = array(
 	['GET|POST', '/customer/signin', 'Customer#signin', 'front_customer_signin'],
 	['GET|POST', '/customer/profil', 'Customer#edit', 'front_customer_profil'],
 	['GET', '/customer/help', 'Customer#help', 'front_customer_help'],
+	['GET|POST', '/customer/pwd-forget', 'Customer#pwdForget', 'front_customer_pwd_forget'],
+	['GET|POST', '/customer/pwd-reset', 'Customer#pwdReset', 'front_customer_pwd_reset'],
 	
 	// Routes Profesionnels
 	['GET|POST', '/provider/signin', 'Provider#signin', 'front_provider_signin'],
 	['GET|POST', '/provider/login', 'Provider#login', 'front_provider_login'],
 	['GET|POST', '/provider/profil', 'Provider#edit', 'front_provider_profil'],
+
+	['GET|POST', '/provider/pwd-forget', 'Provider#pwdForget', 'front_provider_pwd_forget'],
+	['GET|POST', '/provider/pwd-reset', 'Provider#pwdReset', 'front_provider_pwd_reset'],
+
+	['GET', '/provider/help', 'Provider#help', 'front_provider_help'],
+
+	['GET|POST', '/provider/logout', 'Provider#logout', 'front_provider_logout'],
+
 
 	//Routes devis
 	['GET|POST', '/devis/add/[i:id]', 'Devis#add', 'front_devis_add'],

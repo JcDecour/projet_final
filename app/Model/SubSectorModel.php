@@ -14,7 +14,7 @@ class SubSectorModel extends \W\Model\Model
 			return false;
 		}
 
-		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_sector = :idSector ORDER BY order_num';
+		$sql = 'SELECT * FROM ' . $this->table . ' WHERE id_sector = :idSector ORDER BY title ASC';
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindValue(':idSector', $idSector);
 		$sth->execute();

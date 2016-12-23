@@ -20,6 +20,14 @@ class ServicesController extends Controller
 	 */
 	public function edit($idProject)
 	{
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
+
 		$projectModel = new ProjectModel();
 		$sectorModel = new SectorModel();
 		$subSectorModel = new SubSectorModel();
@@ -127,7 +135,7 @@ class ServicesController extends Controller
 				$subSectorResult = $subSectorModel->find($projectSubsector['id_subsector']);
 				$sectorResult = $sectorModel->find($subSectorResult['id_sector']);
 
-				$contenuSsSector .= '<div>'.$sectorResult['title'].' - '.$subSectorResult['title'].'<input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/><a href="#" class="remove_ss_categ_button"> Supprimer</a></div>';	
+				$contenuSsSector .= '<div><span class="tag label label-categories">'.$sectorResult['title'].' - '.$subSectorResult['title'].'&nbsp;<a href="#" class="remove_ss_categ_button">x</a></span><input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/></div>';	
 			}
 			$contenuSsSector_build = true;
 		}
@@ -142,7 +150,7 @@ class ServicesController extends Controller
 					$subSectorResult = $subSectorModel->find($value);
 					$sectorResult = $sectorModel->find($subSectorResult['id_sector']);
 
-					$contenuSsSector .= '<div>'.$sectorResult['title'].' - '.$subSectorResult['title'].'<input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/><a href="#" class="remove_ss_categ_button"> Supprimer</a></div>';	
+					$contenuSsSector .= '<div><span class="tag label label-categories">'.$sectorResult['title'].' - '.$subSectorResult['title'].'&nbsp;<a href="#" class="remove_ss_categ_button">x</a></span><input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/></div>';		
 				}
 			}
 		}
@@ -258,6 +266,11 @@ class ServicesController extends Controller
 
 			    	//Création du "Customer" en BDD
 			    	$customer = $customerModel->insert($dataCustomer);
+			    	//On peuple la session
+			    	if($customer){
+				    	$authModel = new AuthentificationModel();
+						$authModel->logUserIn($customer);
+					}
 			    	$idCustomer = $customer['id'];
 		    	}
 
@@ -306,7 +319,7 @@ class ServicesController extends Controller
 				$sectorResult = $sectorModel->find($subSectorResult['id_sector']);
 
 
-				$contenuSsSector .= '<div>'.$sectorResult['title'].' - '.$subSectorResult['title'].'<input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/><a href="#" class="remove_ss_categ_button"> Supprimer</a></div>';	
+				$contenuSsSector .= '<div><span class="tag label label-categories">'.$sectorResult['title'].' - '.$subSectorResult['title'].'&nbsp;<a href="#" class="remove_ss_categ_button">x</a></span><input type="hidden" value="'.$subSectorResult['id'].'" name="tabSsCateg[]"/></div>';	
 			}
 		}
 
@@ -422,11 +435,13 @@ class ServicesController extends Controller
 	{	
 
 		$get = [];
+		$msg = '';
 
-		// si le client n'est pas connecté je le redirige 
-		if (empty($this->getUser())) {
-			
-			$this->redirectToRoute('front_customer_login');
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || isset($user['siret'])) {
+			$this->redirectToRoute('front_default_index');
 		}
 
 
@@ -443,26 +458,41 @@ class ServicesController extends Controller
 
 			//Recherche de tous les devis
 			if(isset($get['statut']) && $get['statut'] === 'all'){
-				$projects = $projectModel->findServiceById($customer['id'], $colsed = 'closed', $closedValue = '');
-				
+				$projects = $projectModel->findServiceById($customer['id']);
+				if (!$projects) {
+					
+					$msg = 'Vous n\'avez aucun service encours';
+				}
 			}
 			//Recherche de tous les devis qui ont un statut "Ouvert"
 			if(isset($get['statut']) && $get['statut'] === 'opened'){
-				$projects = $projectModel->findServiceById($customer['id'], $colsed = 'closed', $closedValue = '0');
+				$projects = $projectModel->findServiceById($customer['id'], 0);
+				if (!$projects) {
+					
+					$msg = 'Vous n\'avez aucun service ouvert';
+				}
 			}
             //Recherche de tous les devis qui ont un statut "Cloturé"
 			if(isset($get['statut']) && $get['statut'] === 'closed'){
-				$projects = $projectModel->findServiceById($customer['id'], $colsed = 'closed', $closedValue = '1');
+				$projects = $projectModel->findServiceById($customer['id'], 1);
+				if (!$projects) {
+					
+					$msg = 'Vous n\'avez aucun service cloturé';
+				}
 			}
 
 			
 		}
 		else {
 
-			$projects = $projectModel->findServiceById($customer['id'], $colsed = 'closed', $closedValue = '');
+			$projects = $projectModel->findServiceById($customer['id']);
+			if (!$projects) {
+					
+					$msg = 'Vous n\'avez aucun service encours';
+				}
 		}
 
-		$this->show('front/list_services', ['projects' => $projects]);
+		$this->show('front/list_services', ['projects' => $projects, 'msg' => $msg, 'get' => $get]);
 	}
 
 	/**
@@ -473,6 +503,13 @@ class ServicesController extends Controller
 		$post = [];
 		$msg = '';
 
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
 
 		if (!is_numeric($id) || empty($id)) {
 			$this->showNotFound();
@@ -509,6 +546,13 @@ class ServicesController extends Controller
 	 */
 	public function view_service($id) // L'id passé en paramètre doit être le même passé dans la route [i:id]
 	{	
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
 		// On instancie les classes
 		$projectModel = new ProjectModel();
 		$customerModel = new CustomerModel();
@@ -539,7 +583,6 @@ class ServicesController extends Controller
 					$this->redirectToRoute('front_list_services');
 				}
 
-				var_dump($post);
 			}
 
 			// On récupère les données du projet
@@ -550,7 +593,7 @@ class ServicesController extends Controller
 
 			/** On vérifie si son profil est complet pour pouvoir consulter les offres de devis */
 
-			if (empty($customer['lastname'])) {
+			if (empty($customer['lastname']) && $project['nb_devis'] > 0) {
 				
 				$errorConsult = true;
 
@@ -596,6 +639,14 @@ class ServicesController extends Controller
 	*/
 	public function viewClosed($id)
 	{
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
+		
         $projectModel = new ProjectModel();
         $projectSubSectorModel = new ProjectSubSectorModel();
         

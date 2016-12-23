@@ -5,7 +5,7 @@
 	<div class="forms">
 		
 		<div class="page-header">
-			<h1>Description du service à ajouter</h1>
+			<h1>Ajouter un service</h1>
 		</div>
 	
 
@@ -106,7 +106,7 @@
 			<!-- Date prévisionnelle du service -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="predicted_date">
-					Date prévisonnelle (jj/mm/aaaa)
+					Date prévisionnelle (jj/mm/aaaa)
 					<span class="obligatoire">*</span>
 				</label>  
 				<div class="col-md-2">
@@ -158,7 +158,7 @@
 			<!-- Bouton de validation -->
 			<div class="form-group">
 				<div class="col-md-3 col-md-offset-9">
-					<button type="submit" class="btn btn-success btn-block">Valider</button>
+					<button type="submit" class="btn btn-devirama btn-block">Valider</button>
 				</div>
 			</div>
 
@@ -196,7 +196,7 @@
 	        var id_ss_categ = $('#sub-sector').find(":selected").attr('value');
 
 	        if(id_ss_categ){
-		        var contenu = '<div>'+title_categ+' - '+title_ss_categ+'<input type="hidden" value="'+id_ss_categ+'" name="tabSsCateg[]"/><a href="#" class="remove_ss_categ_button"> Supprimer</a></div>';
+		        var contenu = '<div><span class="tag label label-categories">'+title_categ+' - '+title_ss_categ+'&nbsp;<a href="#" class="remove_ss_categ_button">x</a></span><input type="hidden" value="'+id_ss_categ+'" name="tabSsCateg[]"/></div>';
 
 		        $('.input_categ_wrap').append(contenu);
 		    }
@@ -205,7 +205,7 @@
 		/*Gestion de la suppression d'une sous catégorie*/
 		$('.input_categ_wrap').on("click",".remove_ss_categ_button", function(e){ 
 	        e.preventDefault(); 
-	        $(this).parent('div').remove(); 
+	        $(this).parent('div span').remove(); 
 	    })
 
 	});

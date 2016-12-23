@@ -4,7 +4,7 @@
 
 <div class="content-site">
 	<div class="page-header">
-		<h1>Proposition de devis sur une offre de service</h1>
+		<h1>Consultation d'une offre</h1>
 	</div>
 	
 	<?php if(isset($formErrors['global'])): ?>
@@ -55,87 +55,108 @@
 		<div class="col-md-9"><?=DateTime::createFromFormat('Y-m-d', $projectSubsector['predicted_date'])->format('d/m/Y');?></div>
 	</div>
 
+	<!-- Bouton de proposition de devis et retour liste des devis-->
+	<div class="row ">
+		<div class="col-md-12 text-right">
+
+			<a href="<?=$this->url('front_devis_list');?>" class="btn btn-default" title="Retour liste des devis">Retour liste</a>
+			
+
+		</div>
+	</div>	
+
 	<!-- ########### -->
 	<!-- PARTIE DEVIS-->
 	<!-- ########### -->
 
-	<br>
-	<form method="post" class="forms">
-		<div class="panel panel-default">
-		  <!-- Default panel contents -->
-		  <div class="panel-heading">Devis</div>
-			<div class="panel-body">
-
-				<div class="row">
-					<label class="col-md-12 control-label" for="description">Informations complémentaires</label>
-					<div class="col-md-12">
-						<textarea id="description" name="description" class="form-control input-md" placeholder="Toute précision, détail ou autre permettant de décrire au mieux votre offre de devis..."></textarea>
-					</div>
-					<!-- Gestion des erreurs -->
-					<?php if(isset($formErrors['description'])): ?>
-						<div class="error col-md-12"><?=$formErrors['description']?></div>
-					<?php endif; ?>
-				</div>
-			</div>
-
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>Désignation<span class="obligatoire">*</span></th>
-						<th class="text-right">Montant HT (€)<span class="obligatoire">*</span></th>
-						<th class="text-right">Taux de TVA</th>
-						<th class="text-right">Montant TTC (€)</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<tr>
-						<td>
-							<input id="designation" name="designation" class="form-control input-md" type="text" placeholder="Libellé">
-							<!-- Gestion des erreurs -->
-							<?php if(isset($formErrors['designation'])): ?>
-								<div class="error col-md-12"><?=$formErrors['designation']?></div>
-							<?php endif; ?>
-						</td>
-						<td>
-							<input id="ht_amount" name="ht_amount" class="form-control input-md text-right" type="text" placeholder="0.00">
-							<!-- Gestion des erreurs -->
-							<?php if(isset($formErrors['ht_amount'])): ?>
-								<div class="error col-md-12"><?=$formErrors['ht_amount']?></div>
-							<?php endif; ?>
-						</td>
-						<td>
-							<select id="tva_amount" name="tva_amount" class="form-control">
-								<option value="2.1">2.1</option>
-								<option value="5.5">5.5</option>
-								<option value="10">10</option>
-								<option value="20">20</option>
-							</select>
-						</td>
-						<td>
-							<span id="ttc_amount" name="ttc_amount" class="col-md-12 text-right">0.00</span>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-
+		<br>
+		<div class="page-header">
+			<h1>Proposer un devis sur cette offre</h1>
 		</div>
 
-		<p class="text-required-filed">
-			<span class="obligatoire">*</span>
-			Champs obligatoires
-		</p>
-		
-		<!-- Bouton de validation -->
-		<div class="row">
-			<div class="form-group">
-				<div class="col-md-3 col-md-offset-9">
-					<button type="submit" class="btn btn-success btn-block">Valider</a>
-				</div>
-			</div>
-		</div> 
+		<br>
+		<form method="post" class="forms">
+			<div class="panel panel-default">
+			  <!-- Default panel contents -->
+			  <div class="panel-heading">Devis</div>
+				<div class="panel-body">
 
-	</form>
+					<div class="row">
+						<label class="col-md-12 control-label" for="description">Informations complémentaires</label>
+						<div class="col-md-12">
+							<textarea id="description" name="description" class="form-control input-md" placeholder="Renseignez toute précision, détail ou autre permettant de détailler au mieux votre devis..."><?=isset($post['description']) ? $post['description'] : '';?></textarea>
+						</div>
+						<!-- Gestion des erreurs -->
+						<?php if(isset($formErrors['description'])): ?>
+							<div class="error col-md-12"><?=$formErrors['description']?></div>
+						<?php endif; ?>
+					</div>
+				</div>
+
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Désignation<span class="obligatoire">*</span></th>
+							<th class="text-right">Montant HT(€)<span class="obligatoire">*</span></th>
+							<th class="text-right">Taux de TVA(%)</th>
+							<th class="text-right">Montant TTC(€)</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>
+								<input id="designation" name="designation" class="form-control input-md" type="text" placeholder="Mention diverse" value="<?=isset($post['designation']) ? $post['designation'] : '';?>">
+								<!-- Gestion des erreurs -->
+								<?php if(isset($formErrors['designation'])): ?>
+									<div class="error col-md-12"><?=$formErrors['designation']?></div>
+								<?php endif; ?>
+							</td>
+							<td>
+								<input id="ht_amount" name="ht_amount" class="form-control input-md text-right-basic-table" type="text" placeholder="0.00" value="<?=isset($post['ht_amount']) ? $post['ht_amount'] : '';?>">
+								<!-- Gestion des erreurs -->
+								<?php if(isset($formErrors['ht_amount'])): ?>
+									<div class="error col-md-12"><?=$formErrors['ht_amount']?></div>
+								<?php endif; ?>
+							</td>
+							<td>
+								<select id="tva_amount" name="tva_amount" class="form-control text-right-basic-table">
+									<option value="2.1" <?=(isset($post['tva_amount']) && ($post['tva_amount'] == '2.1')) ? 'selected' : '';?>>2.1</option>
+									<option value="5.5" <?=(isset($post['tva_amount']) && ($post['tva_amount'] == '5.5')) ? 'selected' : '';?>>5.5</option>
+									<option value="10" <?=(isset($post['tva_amount']) && ($post['tva_amount'] == '10')) ? 'selected' : '';?>>10</option>
+									<option value="20" <?=(isset($post['tva_amount']) && ($post['tva_amount'] == '20')) ? 'selected' : '';?>>20</option>
+								</select>
+							</td>
+							<td>
+								<?php if(isset($post['ht_amount']) && isset($post['tva_amount'])): ?>
+									<span id="ttc_amount" name="ttc_amount" class="col-md-12 text-right-basic-table"><?=number_format($post['ht_amount'] * (1  + ($post['tva_amount'] / 100)), 2 , "." , " ");?></span>
+								<?php else: ?>
+									<span id="ttc_amount" name="ttc_amount" class="col-md-12 text-right-basic-table">0.00</span>
+								<?php endif; ?>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+			<p class="text-required-filed">
+				<span class="obligatoire">*</span>
+				Champs obligatoires
+			</p>
+			
+			<!-- Bouton de validation -->
+			<div class="row">
+				<div class="form-group">
+					<div class="col-md-2 col-md-offset-10">
+						<button type="submit" class="btn btn-devirama btn-block">Valider</button>
+					</div>
+				</div>
+			</div> 
+
+		</form>
+
+	
 
 </div>
 
@@ -143,7 +164,28 @@
 
 <?php $this->start('js') ?>
 <script>
+
+	
+
 	$(document).ready(function(){
+
+
+
+		$('#test').click(function(){
+			
+
+			if($("#update_footer").hasClass("fixed")){
+				
+				$("#update_footer").removeClass("fixed");
+
+
+			}
+			else
+			{
+				$("#update_footer").addClass("fixed");
+			}
+       
+		});
 
 		/*Gestion du changement de taux de TVA*/
 		$('#tva_amount').change(function(){
@@ -160,8 +202,8 @@
 //Fonction permettant de calculer le montant TTC du devis
 function calculTtcAmount()
 {
-	var tva_amount = parseInt($('#tva_amount').find(":selected").attr('value'));
-	var ht_amount = parseInt($('#ht_amount').val());
+	var tva_amount = parseFloat($('#tva_amount').find(":selected").attr('value'));
+	var ht_amount = parseFloat($('#ht_amount').val());
 
 	var ttc_amount = ht_amount * (1 + (tva_amount/100));
 	ttc_amount = Math.round(ttc_amount*100)/100;
@@ -169,6 +211,15 @@ function calculTtcAmount()
 
 	$('#ttc_amount').text(ttc_amount);
 }	
+
+ var fot = function() {
+        var e = $(window).height(),
+            t = 0;
+        $("body").children().each(function() {
+            t += $(this).outerHeight(!0)
+        }), e > t ? $("#update_footer").addClass("fixed") : $("#update_footer").removeClass("fixed")
+    };
+
 
 </script>
 <?php $this->stop('js') ?>

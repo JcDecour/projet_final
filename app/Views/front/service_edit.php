@@ -51,36 +51,6 @@
 				<?php endif; ?>
 			</div>
 
-			<!-- Description du projet -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="description">
-					Descriptif du service
-					<span class="obligatoire">*</span>
-				</label>  
-				<div class="col-md-6">
-					<textarea id="description" name="description" rows="4" placeholder="Soyez le plus précis possible dans les éléments de description du service que vous souhaitez obtenir" class="form-control"><?=isset($post['description']) ? $post['description'] : '';?></textarea>
-				</div>
-				<!-- Gestion des erreurs -->
-				<?php if(isset($formErrors['description'])): ?>
-					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['description']?></div>
-				<?php endif; ?>
-			</div>
-
-			<!-- Date prévisionnelle du service -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="predicted_date">
-					Date prévisonnelle (jj/mm/aaaa)
-					<span class="obligatoire">*</span>
-				</label>  
-				<div class="col-md-2">
-					<input id="predicted_date" name="predicted_date" type="text" class="form-control input-md" value="<?=isset($post['predicted_date']) ? $post['predicted_date'] : '';?>">
-				</div>
-				<!-- Gestion des erreurs -->
-				<?php if(isset($formErrors['predicted_date'])): ?>
-					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['predicted_date']?></div>
-				<?php endif; ?>
-			</div>
-
 			<!-- Catégorie du service -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="sector" >
@@ -100,12 +70,11 @@
 						<option value="" selected disabled>Sous-Catégorie</option>
 					</select>
 				</div>
-				<button class="add_ss_categ_button btn btn-success">Ajouter</button>
+				<button class="add_ss_categ_button btn btn-info">Ajouter</button>
 				<!-- Gestion des erreurs -->
 				<?php if(isset($formErrors['tabSsCateg'])): ?>
 					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['tabSsCateg']?></div>
 				<?php endif; ?>
-				
 			</div>	
 
 			<!-- Sous catégories sélectionnées -->
@@ -117,10 +86,40 @@
 				</div>
 			</div>
 
+			<!-- Description du projet -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="description">
+					Descriptif du service
+					<span class="obligatoire">*</span>
+				</label>  
+				<div class="col-md-6">
+					<textarea id="description" name="description" rows="4" placeholder="Soyez le plus précis possible dans les éléments de description du service que vous souhaitez obtenir" class="form-control"><?=isset($post['description']) ? $post['description'] : '';?></textarea>
+				</div>
+				<!-- Gestion des erreurs -->
+				<?php if(isset($formErrors['description'])): ?>
+					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['description']?></div>
+				<?php endif; ?>
+			</div>
+
+			<!-- Date prévisionnelle du service -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="predicted_date">
+					Date prévisionnelle (jj/mm/aaaa)
+					<span class="obligatoire">*</span>
+				</label>  
+				<div class="col-md-2">
+					<input id="predicted_date" name="predicted_date" type="text" class="form-control input-md" value="<?=isset($post['predicted_date']) ? $post['predicted_date'] : '';?>">
+				</div>
+				<!-- Gestion des erreurs -->
+				<?php if(isset($formErrors['predicted_date'])): ?>
+					<div class="error col-md-offset-4 col-md-8"><?=$formErrors['predicted_date']?></div>
+				<?php endif; ?>
+			</div>
+
 			<!-- Bouton de validation -->
 			<div class="form-group">
 				<div class="col-md-3 col-md-offset-9">
-					<button type="submit" class="btn btn-info btn-block">Valider</button>
+					<button type="submit" class="btn btn-devirama btn-block">Valider</button>
 				</div>
 			</div>
 		</form>
@@ -157,7 +156,7 @@
 	        var id_ss_categ = $('#sub-sector').find(":selected").attr('value');
 
 	        if(id_ss_categ){
-		        var contenu = '<div>'+title_categ+' - '+title_ss_categ+'<input type="hidden" value="'+id_ss_categ+'" name="tabSsCateg[]"/><a href="#" class="remove_ss_categ_button"> Supprimer</a></div>';
+		        var contenu = '<div><span class="tag label label-categories">'+title_categ+' - '+title_ss_categ+'&nbsp;<a href="#" class="remove_ss_categ_button">x</a></span><input type="hidden" value="'+id_ss_categ+'" name="tabSsCateg[]"/></div>';
 
 		        $('.input_categ_wrap').append(contenu);
 		    }
@@ -166,7 +165,7 @@
 		/*Gestion de la suppression d'une sous catégorie*/
 		$('.input_categ_wrap').on("click",".remove_ss_categ_button", function(e){ 
 	        e.preventDefault(); 
-	        $(this).parent('div').remove(); 
+	        $(this).parent('div span').remove(); 
 	    })
 
 	});

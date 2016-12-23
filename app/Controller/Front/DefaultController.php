@@ -17,14 +17,25 @@ class DefaultController extends Controller
 
         //Recherche des 5 derniers projets soumis par les particuliers
         $projectModel = new ProjectModel();
-        $topProjects = $projectModel->findAll('created_at', 'DESC', null, 5);
+        $topProjects = $projectModel->findAll('created_at', 'DESC', 4);
        
         //Recherche des 5 meilleurs professionnels
         $devisModel = new DevisModel();
-        $devis = $devisModel->findBestProfessionnels(5);
+        $devis = $devisModel->findBestProfessionnels(4);
 
         //Affichage du template
 		$this->show('front/index', ['topProjects' => $topProjects, 'devis' => $devis]);
 	}
+
+	/**
+	 * Page CGU
+	 */
+	public function cgu()
+	{
+
+        //Affichage du template
+		$this->show('front/cgu');
+	}
+
 
 }

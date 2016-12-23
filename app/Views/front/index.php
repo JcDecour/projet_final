@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Accueil']) ?>
+<?php $this->layout('layout', ['title' => 'Devirama']) ?>
 
 <?php $this->start('header_content') ?>
     <header id="myCarousel" class="carousel slide">
@@ -14,7 +14,7 @@
         <div class="carousel-inner">
 
         <div class="txt">
-            <p>Un service à faire réaliser par un professionnel ?
+            <p>Un projet ou un service à réaliser ? &nbsp;
               <a href="<?=$this->url('front_service_add')?>" class=""> C'est parti</a>
             </p>
         </div>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/proximite.jpg') ?>');"></div>
+                <div class="fill" style="background-image:url('<?= $this->assetUrl('img/cours.jpg') ?>');"></div>
                 <div class="carousel-caption">
                     <h2>Services à la personne</h2>
                 </div>
@@ -34,13 +34,13 @@
             <div class="item">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/maison.jpg') ?>');"></div>
                 <div class="carousel-caption">
-                    <h2>Construction - Rénovation</h2>
+                    <h2>Construction <span class="trait">-</span> Rénovation</h2>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('<?= $this->assetUrl('img/transport.jpg') ?>');"></div>
                 <div class="carousel-caption">
-                    <h2>Transport - Logistique</h2>
+                    <h2>Transport <span class="trait">-</span> Logistique</h2>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <p><i class="fa fa-fw fa-check"></i>&nbsp;Gratuit pour les particuliers et professionnels</p>
+                    <p><i class="fa fa-fw fa-check"></i>&nbsp;Gratuit pour les particuliers et les professionnels</p>
                 </div>
                 <div class="col-md-4">
                     <p><i class="fa fa-fw fa-check"></i>&nbsp;Pas d'intermédiaires</p>
@@ -87,13 +87,13 @@
             <div class="col-md-4">
                 <div class="panel panel-default recentservice">
                     <div class="panel-heading">
-                        <h3 class="text-center"><i style="color:#ffb400;" class="fa fa-fw fa-check"></i>&nbsp;Les derniers services</h3>
+                        <h3 class="text-center"><i style="color:#ffb400;" class="fa fa-check-square"></i>&nbsp;Les derniers services</h3>
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
                             <?php foreach($topProjects as $key => $topProject): ?>
                                 <li class="list-group-item">
-                                    <span class="puce pucerecentservice">&#10004;</span>
+                                    <span class="puce pucerecentservice"><i class="fa fa-check" aria-hidden="true"></i></span>
                                    <?=DateTime::createFromFormat('Y-m-d H:i:s', $topProject['created_at'])->format('d/m/y');?>
                                     -&nbsp;<?=$topProject['title']; ?><br>
                                     (<i class="fa fa-fw fa-map-marker"></i><?=$topProject['zip_code']; ?> )
@@ -126,7 +126,11 @@
                             </li>
                             <li class="list-group-item">
                                 <span class="puce pucecommentcamarche">4</span>
-                                Les coordonnées des professionnels retenus vous sont alors accessibles et vous pouvez entrer <span class="settofront">directement</span> en contact avec eux.
+                                Les coordonnées des professionnels retenus vous sont alors <span class="settofront">instantanément</span> communiqués.
+                            </li>
+                            <li class="list-group-item">
+                                <span class="puce pucecommentcamarche">5</span>
+                                Vous entrez <span class="settofront">directement</span> en contact avec eux.
                             </li>
                         </ul>
                     </div>

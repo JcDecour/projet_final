@@ -31,7 +31,7 @@
 					Annuler
 					</a>
 					&nbsp; 
-					<button type="submit" class="btn btn-info" name="delete">
+					<button type="submit" class="btn btn-devirama" name="delete">
 					Supprimer
 					</button>
 				</div>
@@ -40,4 +40,4 @@
 		<?php endif; ?>
 	</div>
 </div>
-<?php $this->start('main_content') ?>
+<?php $this->stop('main_content') ?>

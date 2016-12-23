@@ -5,9 +5,11 @@ namespace Controller\Front;
 
 use \W\Controller\Controller;
 use \Model\ProviderModel;
+use \Model\TokenModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\AuthorizationModel;
 use \Model\DevisModel;
+use \PHPMailer;
 use \Respect\Validation\Validator as v;
 
 class ProviderController extends Controller
@@ -35,6 +37,13 @@ class ProviderController extends Controller
 
 	public function signin()
 	{	
+		$user = $this->getUser();
+		
+		// si connecté je le redirige 
+		if (isset($user)){
+			
+			$this->redirectToRoute('front_default_index');
+		}
 
 		$providerModel = new ProviderModel(); // appel de la fonction insert 
 		$formErrors =[];//stockage des erreurs
@@ -55,7 +64,7 @@ class ProviderController extends Controller
 			}
 
 			if(!v::notEmpty()->digit()->length(14,14)->validate($post['siret'])){
-				$formErrors['siret'] = 'Le n° siret est invalide';
+				$formErrors['siret'] = 'Le n°siret doit contenir 14 chiffres';
 			}
 
 			if(!v::notEmpty()->length(3, 15)->validate($post['firstname'])){
@@ -119,7 +128,7 @@ class ProviderController extends Controller
 				];
 				if($providerModel->insert($createProvider)){
 					// si l'utilisateur a été bien été créer ont stock un message de reussite dans $_SESSION et on redirige vers la page de connexion
-					$_SESSION = [ 'formValid' => 'Votre profil a bien été créer, veuillez vous connecter.'];
+					$_SESSION = [ 'formValid' => 'Votre profil a bien été créé, veuillez vous connecter.'];
 					$this->redirectToRoute('front_provider_login');
 						
 
@@ -145,7 +154,7 @@ class ProviderController extends Controller
 			$post = array_map('trim', array_map('strip_tags', $_POST));
 
 			if (empty($post['email']) && empty($post['password'])) {
-				$error = 'Identifiant ou mot de passe invalid';
+				$error = 'Identifiant ou mot de passe invalide';
 			}
 			else {
 				// l'utilisateur a bien rempli un mdp et un email
@@ -195,25 +204,29 @@ class ProviderController extends Controller
 				$authentificationModel = new AuthentificationModel();
 				$authentificationModel->logUserOut();
 
+				//Il faut vider les session des filtres
+				unset($_SESSION['listService']);
+				unset($_SESSION['devisStatut']);
+
 				$this->redirectToRoute('front_default_index');
 			}
 			elseif ($post['disconnect'] === 'no') {
 				
-				$this->redirectToRoute('front_list_services');
+				$this->redirectToRoute('front_devis_list');
 			}
 		}
 
-		$this->show('front/customer_logout');
+		$this->show('front/provider_logout');
 	}
 
 	/**
-		* Page du principe de fonctionnement du site pour le particulier
+		* Page du principe de fonctionnement du site pour le professionnel
 	*/
 	public function help()
 	{	
 
 
-		$this->show('front/customer_help');
+		$this->show('front/provider_help');
 	}
 
 	/*
@@ -221,6 +234,14 @@ class ProviderController extends Controller
 	*/
 	public function edit()
 	{
+
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte pro je le redirige 
+		if (!($user) || !isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
 
 		$provider = $this->getUser(); // récupère les info de l'utilisateur connecté$
 		$providerModel = new ProviderModel(); // appel de la fonction update
@@ -312,7 +333,7 @@ class ProviderController extends Controller
 				// si les info on été mise a jours ont affiche un message de réussite
 
 				if($provider){
-					$formValid = ['valid' => 'Votre profil a bien été modifier'];
+					$formValid = ['valid' => 'Votre profil a bien été modifié'];
 					//update des infos stocké en SESSION
 					unset($_SESSION['user']);
 					$_SESSION['user'] = $provider;
@@ -324,4 +345,144 @@ class ProviderController extends Controller
 		}			
 		$this->show('front/provider_profil', ['formErrors' => $formErrors, 'provider' => $provider, 'formValid' => $formValid]);
 	}
+
+
+	/*
+	 * fonction pour gérer le mot de passe oublié
+	*/
+	public function pwdForget()
+	{	
+		$post = [];
+		$formErrors =[];
+		$formValid = [];
+
+		$providerModel = new ProviderModel();
+		$tokenModel = new TokenModel();
+
+		if (!empty($_POST)) {
+			
+			$post= array_map('trim', array_map('strip_tags', $_POST));
+
+			if(!v::notEmpty()->email()->validate($post['email'])){
+				$formErrors['email'] = 'L\'adresse email saisie est invalide';
+			}
+			if (!$providerModel->emailExists(($post['email']))) {
+    			$formErrors['email'] = 'L\'email saisi est inconnu.';
+   			}
+
+   			if (count($formErrors) === 0) {
+   				
+   				//Génération du token
+        		$token = hash('sha256', uniqid(rand(), true));
+
+        		$data =[
+        			'email' => $post['email'],
+        			'token' => $token,
+        		];
+
+        		// Insertion dans la table token
+   				$tokenModel->insert($data);
+
+   				// Récupération de l'adresse du site
+		            /*$domaineName = $_SERVER['HTTP_HOST'].$_SERVER['W_BASE'];*/
+		            $domaineName ="http://".$_SERVER['SERVER_NAME'].$_SERVER['W_BASE'];
+		            $sujet = "Réinitialisation de votre mot de passe";
+		            $content = '<p>Bonjour,<br><br><a href="'.$domaineName.'/provider/pwd-reset?token='.$token.'">Cliquez sur ce lien pour réinitialiser votre mot de passe</a></p>'; 
+
+		            $dest = $post['email'];
+		         
+		            //Envoie d'un email
+				    $mail = new PHPMailer;
+					$mail->isSMTP();                                      // Set mailer to use SMTP
+					$mail->Host = 'ssl0.ovh.net';  					  // Specify main and backup SMTP servers
+					$mail->SMTPAuth = true;                               // Enable SMTP authentication
+					$mail->Username = 'devirama@alloitech.com';           // SMTP username
+					$mail->Password = 'devisrama';                       // SMTP password
+					$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+					$mail->Port = 587;                                    // TCP port to connect to
+					
+					$mail->CharSet = 'UTF-8';							  //Encodage en utf8 pour les problèmes d'accents
+
+					$mail->setFrom('contact@devirama.com');
+					$mail->addAddress($dest, 'EAL WF3');     			  // Add a recipient
+
+					$mail->Subject = $sujet;
+					$mail->Body    = $content;							  //Pour tous les messages (Peuvent contenir du HTML)
+					$mail->AltBody = $content;							  //Pour tous les messages  SANS HTML
+
+					// Envoi 
+					if ($mail->send()) {
+						$formValid = [ 'valid' => 'Vous allez recevoir un email pour reinitialiser votre mot de passe'];
+					}
+					else {
+						var_dump( 'Erreur : ' . $mail->ErrorInfo);						
+					}
+   			}
+   	
+		}
+
+			$this->show('front/provider_pwd-forget', ['formErrors' => $formErrors, 'formValid' => $formValid]);
+ 
+	}
+	
+
+	/*
+	 * fonction pour réinitialiser un mot de passe
+	*/
+	public function pwdReset()
+	{	
+
+		$get = [];
+		$post = [];
+		$formErrors =[];
+		$formValid = [];
+
+		$providerModel = new ProviderModel();
+		$tokenModel = new TokenModel();
+		$authentificationModel = new AuthentificationModel();
+
+		if (!empty($_GET)) {
+			
+			if (!empty($_POST)) {
+				
+				$post = array_map('trim', array_map('strip_tags', $_POST)); 
+
+				if(!v::stringType()->length(8,20)->validate($post['password'])){
+					$formErrors['password'] = 'Le mot de passe doit comporter entre 8 et 20 caractères';
+				}
+				if($post['password'] !== $post['password_confirm']){
+	    	 		$formErrors['password_confirm'] = 'Erreur de confirmation de mot de passe.';
+	    		}
+
+	    		if (count($formErrors) === 0) {
+	    			
+	    			if (!empty($_GET['token'])) {
+	    				
+	    				$get = array_map('trim', array_map('strip_tags', $_GET));
+
+	    				$token = $tokenModel->findByToken($get['token']);
+
+	    				if ($token) {
+	    					
+		    				if ($providerModel->emailExists(($token['email']))) {
+
+		    						$hashPassword = $authentificationModel->hashPassword($post['password']);
+
+		    						$providerModel->updateByEmail(['password' => $hashPassword], $token['email']);
+		    						
+		    						$formValid = [ 'valid' => 'Votre mot de passe a été réinitialisé avec succès'];	 
+
+	   						}
+	    				}
+
+	    			}
+	    		}
+
+			}
+		}
+
+		$this->show('front/provider_pwd-reset', ['formErrors' => $formErrors, 'formValid' => $formValid]);
+	}
+
+
 }

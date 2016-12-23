@@ -20,19 +20,18 @@ class DevisController extends Controller
 	*/
     public function listService()
 	{
-          
-		//Si le professionnel n'est pas connecté , il est redirigé sur la page de login
-		if (empty($this->getUser())) {
-			$this->redirectToRoute('front_provider_login');
+
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte customer je le redirige 
+		if (!($user) || !isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
 		}
         
         //Instanciation des classes
 		$sectorModel = new SectorModel();
         $projectModel = new ProjectModel();
-        
-        //#####################################################################
-        // Partie Liste des Projets disponibles
-        //#####################################################################
         
         //Gestion du formulaire de recherche
 		$get = [];
@@ -44,26 +43,74 @@ class DevisController extends Controller
 		if(!empty($_GET)){
 			$get = array_map('trim', array_map('strip_tags', $_GET));
 
-			//Cas d'un recherche sur le code postal
-			if(isset($get['zip_code']) && ctype_digit($get['zip_code'])){
-				$zip_code = $get['zip_code'];
+			//Cas d'une recherche sur la liste des offres disponibles
+				//Stockage dans les sessions de l'ensemble des valeurs
+			if(isset($get['btn-filtre'])){
+
+				//Suppression des anciennes valeurs sauvegardées
+				if(isset($_SESSION['listService'])){
+					unset($_SESSION['listService']);
+				}
+
+				//Construction d'un tableau des valeur du filtre de recherche de la liste des offres de services
+				$dataSearch = [];
+				//Cas d'un recherche sur le code postal
+				if(isset($get['zip_code']) && ctype_digit($get['zip_code'])){
+					$dataSearch['zip_code'] = $get['zip_code'];
+				}
+				//Cas d'une recherche sur la sous-catégorie
+				if(!empty($get['sub-sector']) && ctype_digit($get['sub-sector'])){
+					$dataSearch['sub_sector'] = $get['sub-sector'];
+				}
+				 //Cas d'un recherche sur la catégorie
+				if(!empty($get['sector']) && ctype_digit($get['sector'])){
+					$dataSearch['sector'] = $get['sector'];
+				}
+				//Cas d'un recherche sur la title
+				if(!empty($get['title'])){
+					$dataSearch['title'] = $get['title'];
+				}
+
+				//Stcokage du tableau des valeurs dans les sessions
+				$_SESSION['listService'] = $dataSearch;
+
 			}
-			//Cas d'une recherche sur la sous-catégorie
-			if(!empty($get['sub-sector']) && ctype_digit($get['sub-sector'])){
-				$sub_sector = $get['sub-sector'];
-			}
-            //Cas d'un recherche sur la catégorie
-			if(!empty($get['sector']) && ctype_digit($get['sector'])){
-				$sector = $get['sector'];
-			}
-			//Cas d'un recherche sur la catégorie
-			if(!empty($get['title'])){
-				$title = $get['title'];
+			
+			//Cas d'une recherche sur le statut du devis
+				//Stockage dans les sessions de la valeur du statut
+			if(!empty($get['statut'])){
+				$_SESSION['devisStatut'] = $get['statut'];
 			}
 		}
         
+
+        //#####################################################################
+        // Partie Liste des Projets disponibles
+        //#####################################################################
+
 		//Recherche de tous les projets en détail non terminés et non extimés par le professionnel
         $provider = $this->getUser();
+        //
+		$search = null;
+		if(isset($_SESSION['listService'])){
+			$search = $_SESSION['listService'];
+			if(isset($search['zip_code'])){
+				$zip_code = $search['zip_code'];
+			}
+			if(isset($search['sub_sector'])){
+				$sub_sector = $search['sub_sector'];
+			}
+			if(isset($search['sector'])){
+				$sector = $search['sector'];
+			}
+			if(isset($search['title'])){
+				$title = $search['title'];
+			}
+		}
+		else{
+			$search = [];	
+		}
+
 		$projects = $projectModel->findAllDetailWithoutClosed($zip_code, $sub_sector, $sector, $title, $provider['id']);
 
         //Recherche de tous les "Sector" triés par numéro d'ordre
@@ -94,13 +141,22 @@ class DevisController extends Controller
 		//Recherche des devis établis par le professionnel
 		$devisModel = new DevisModel();
 		$provider = $this->getUser();
-		$devis = $devisModel->findAllWithDetailsByProviderId($provider['id']);
+
+
+		$statut = 'all';
+		if(isset($_SESSION['devisStatut'])){
+			$statut = $_SESSION['devisStatut'];
+			$search['statut'] = $_SESSION['devisStatut'];
+		}
+
+		//Recherche des devis du "Provider"
+		$devis = $devisModel->findAllWithDetailsByProviderId($provider['id'], $statut);
 
 		$this->show('front/devis_list', [
             'projects'          => $projects,
             'sectors'           => $sectors,
             'optionSubSector'	=> $optionSubSector,
-            'search'			=> $get,
+            'search'			=> $search,
             'listdevis'         => $devis,
         ]);	
 	}
@@ -111,6 +167,16 @@ class DevisController extends Controller
 	*/
 	public function add($id)
 	{
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte customer je le redirige 
+		if (!($user) || !isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
+
+
+		
 		if(!is_numeric($id) || empty($id)){
 			$this->showNotFound();
 		}
@@ -133,6 +199,12 @@ class DevisController extends Controller
 		$formErrors = [];
 		if(!empty($_POST)){
 			$post= array_map('trim',array_map('strip_tags', $_POST));
+
+			//Designation
+			if(!v::notEmpty()->length(8, null)->validate($post['description'])){
+				$formErrors['description'] = 'La description doit comporter au minimum 10 caractères.';
+			}
+
 
 			//Designation
 			if(!v::notEmpty()->length(8, null)->validate($post['designation'])){
@@ -185,7 +257,7 @@ class DevisController extends Controller
 		}
 
 		//Affichage du template
-		$this->show('front/devis_add', ['projectSubsector' => $projectSubsector, 'formErrors' => $formErrors]);	
+		$this->show('front/devis_add', ['projectSubsector' => $projectSubsector, 'formErrors' => $formErrors, 'post' => $post]);	
 	}
 	
     /**
@@ -193,7 +265,14 @@ class DevisController extends Controller
 	 * @param $id integer Correspond a l'id du devis à consulter
 	*/
 	public function view($id)
-	{
+	{	
+		$user = $this->getUser();
+		
+		// si le client n'est pas connecté ou connecté en compte customer je le redirige 
+		if (!($user) || !isset($user['siret'])) {
+			
+			$this->redirectToRoute('front_default_index');
+		}
         //Recherche du devis à consulter
         $devisModel = new DevisModel;
         $devis = $devisModel->findWithDetailsById($id);
